@@ -1,11 +1,12 @@
 ---
-title: "Week 1: Introduction to R for SNA"
-author: "by: Nina Sneijers"
+title: 'Week 1: Introduction to R for SNA'
+author: 'by: Nina Sneijers'
 bibliography: references.bib
-version: 1-9-2026
+version: "5-9-2026"
 ---
 
 Welcome to my lab journal!
+
 
 ```{r, install remotely, globalsettings, echo=FALSE, warning=FALSE, results='hide'}
 #install.packages("remotes")
@@ -278,7 +279,8 @@ Explanatory: To what extent do friend groups mainly consisting of people whose p
 A couple of questions and thoughts I had after completing the tasks: 
 - What are ethical issues that I could think of connected with SNA? None of these papers specifically mentioned any so I would be interested in that. 
 - The concept of egonets, this is not entirely clear to me yet. 
-- One of the papers used meta-analysis techniques in SNA and I would be interested in how this works. 
+- One of the papers used meta-analysis techniques in SNA and I would be interested in how this works.
+- The referencing, as they do not appear correctly on my website (although they do appear correctly in the knitting file)
 
 ------------------------------------------------------------------------
 

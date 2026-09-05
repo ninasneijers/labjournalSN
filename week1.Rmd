@@ -2,10 +2,11 @@
 title: "Week 1: Introduction to R for SNA"
 author: "by: Nina Sneijers"
 bibliography: references.bib
-version: 1-9-2026
+version: 5-9-2026
 ---
 
 Welcome to my lab journal!
+
 
 ```{r, install remotely, globalsettings, echo=FALSE, warning=FALSE, results='hide'}
 #install.packages("remotes")

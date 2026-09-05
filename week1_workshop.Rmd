@@ -1,0 +1,354 @@
+---
+title: "Week 1: Introduction to R for SNA"
+author: "by: Nina Sneijers"
+bibliography: references.bib
+version: 31-8-2026
+---
+
+Welcome to my lab journal!
+
+```{r, install remotely, globalsettings, echo=FALSE, warning=FALSE, results='hide'}
+#install.packages("remotes")
+#remotes::install_github("rlesur/klippy")
+```
+
+```{r, globalsettings, echo=FALSE, warning=FALSE, results='hide'}
+library(knitr)
+
+knitr::opts_chunk$set(echo = TRUE)
+opts_chunk$set(tidy.opts=list(width.cutoff=100),tidy=TRUE, warning = FALSE, message = FALSE,comment = "#>", cache=TRUE, class.source=c("test"), class.output=c("test2"))
+options(width = 100)
+rgl::setupKnitr()
+```
+
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy(position = c('top', 'right'))
+#klippy::klippy(color = 'darkred')
+#klippy::klippy(tooltip_message = 'Click to copy', tooltip_success = 'Done')
+```
+
+------------------------------------------------------------------------
+
+```{=html}
+<!--- This is the best way to write a comment. 
+It also demonstrate, you can add html directly in your rmarkdown file. See: https://www.w3schools.com/html/html_comments.asp --->
+```
+
+```{=html}
+<!--- to use a multi column page we use Pandoc's fenced Div. 
+see here: https://bookdown.org/yihui/rmarkdown-cookbook/multi-column.html 
+But please note, we are not here to make a beautiful website, our intention is just to have a quick lab journal up and running --->
+```
+
+::::: columns
+::: {.column width="50%"}
+# A: Introduction to R for SNA
+
+Last compiled on `r format(Sys.time(), '%B, %Y')`
+
+*Describe lab journal here.*
+rm(list = ls())
+install.packages("installr")
+require(installr)
+install.packages("foreign")
+require(foreign)
+require(tidyverse) 
+ 
+setwd("C:\\Users\\ninas\\OneDrive - Radboud Universiteit\\RSCS\\Social Networks\\labjournalSN")
+
+Important R codes:
+#mutate()      # create or change variables
+#case_match()  # recode values by conditions
+#across()      # apply same transformation to many variables
+#select()      # keep or reorder columns
+#filter()      # keep rows by condition
+#arrange()     # order rows
+#group_by()    # define groups for calculations
+#summarise()   # collapse to summary stats
+#ungroup()     # drop grouping
+#na_if()       # set specific values to NA
+#as.factor()   # convert numeric → categorical
+#levels()      # rename factor categories
+#rowwise()     # do calculations row by row
+#add_row()     # append rows to a dataset
+#full_join()   # merge datasets by key
+
+#stargazer()      # create regression tables (LaTeX/HTML/Text)
+#apa.reg.table()  # APA-style regression tables (Word/RTF)
+#as_flextable()   # turn model or data frame into Word/PowerPoint table
+
+#str()         # structure of object
+#summary()     # descriptive statistics
+#table()       # frequency counts
+#attributes()  # see labels/metadata
+
+### A.5: I don't understand the code! 
+```{r}
+tesvariable <- 4
+ls()
+list <- ls()
+list
+rm(list) 
+ls()
+rm(list = ls()) #remove list
+ls()
+```
+
+### A.6: Reading in data files
+```{r}
+cv08 <- foreign::read.spss("C:\\Users\\ninas\\OneDrive - Radboud Universiteit\\RSCS\\Social Networks\\labjournalSN\\Cultural_Changes_2008.sav", use.value.labels = T, to.data.frame = T)
+cv10 <- foreign::read.spss("C:\\Users\\ninas\\OneDrive - Radboud Universiteit\\RSCS\\Social Networks\\labjournalSN\\Cultural_Changes_2010.sav", use.value.labels = T, to.data.frame = T)
+##### without labels
+cv08_nolab <- foreign::read.spss("C:\\Users\\ninas\\OneDrive - Radboud Universiteit\\RSCS\\Social Networks\\labjournalSN\\Cultural_Changes_2008.sav", use.value.labels = F, to.data.frame = T)
+cv10_nolab <- foreign::read.spss("C:\\Users\\ninas\\OneDrive - Radboud Universiteit\\RSCS\\Social Networks\\labjournalSN\\Cultural_Changes_2010.sav", use.value.labels = F, to.data.frame = T)
+##### using haven
+cv08_haven <- haven::read_spss("C:\\Users\\ninas\\OneDrive - Radboud Universiteit\\RSCS\\Social Networks\\labjournalSN\\Cultural_Changes_2008.sav")
+str(cv08)
+str(cv08_nolab)
+str(cv08_haven)
+
+#look at the stored attributes
+attributes(cv08$lftop)
+attributes(cv08_nolabs$lftop)
+attributes(cv08_haven$lftop)
+
+#accessing specific attributes
+attr(cv08_haven$lftop, "labels")
+
+summary(cv08$lftop)
+summary(cv08_nolab$lftop)
+summary(cv08_haven$lftop)
+
+table(cv08_haven$lftop, useNA = "always")
+
+names(cv08_haven)
+summary(cv08_haven)
+head(cv08_haven)
+fix(cv08)
+View(cv08_haven)
+```
+
+### A.7: Define Missings 
+##### A.7.1 R Base
+```{r}
+str(cv08_haven$lftop)
+summary(cv08_haven$lftop)
+attr(cv08_haven$lftop, "labels")
+table(cv08_haven$lftop, useNA = "always")
+
+#This way, you subset your values.
+cv08$lftop_new <- cv08$lftop 
+cv08$lftop_new[cv08$lftop_new == "Onbekend"] <- NA 
+table(cv08$lftop_new, useNA = "always")
+levels(cv08$lftop_new)
+str(cv08$lftop_new)
+
+cv08$agen <- as.numeric(as.character(cv08$lftop_new))
+table(cv08$agen, useNA = "always")
+str(cv08$agen)
+
+table(cv08_haven$lftop_new, useNA = "always")
+```
+
+##### A.7.2 Tidy 
+```{r}
+library("dplyr")
+cv08_haven <- mutate(cv08_haven, lftop_new = lftop)
+cv08_haven$lftop_new <- na_if(cv08_haven$lftop_new, 99)
+# combined steps: cv08_haven <- mutate(cv08_haven, lftop_new = na_if(lftop, 99))
+table(cv08_haven$lftop_new, useNA = "always")
+```
+<br>
+
+### A.8: Recoding variables
+#### A.8.2 Tidy 
+```{r}
+#install.packages('labelled')
+library(tidyverse) 
+str(cv08_haven$var006n)
+attr(cv08_haven$var006n, "labels")
+table(cv08_haven$var006n, useNA = "always")
+
+cv08_haven <- mutate(cv08_haven, educ3 = recode(var006n, `-3` = -9, `-1` = 1, `1` = 1, `2` = 2, `3` = 2,
+    `4` = 2, `5` = 2, `6` = 3, `7` = 3, `8` = 3, `10` = -9), .keep_value_labels = FALSE)
+cv08_haven <- mutate(cv08_haven, educ3 = na_if(educ3, -9))
+cv08_haven <- mutate(cv08_haven, educ3 = factor(educ3, levels = c(1, 2, 3), labels = c("primary", "secondary","tertiary")))
+table(cv08_haven$educ3, useNA = "always")
+
+####3 with piping operator 
+cv08_haven <- cv08_haven %>% 
+  mutate(educ3 = recode(var006n, `-3` = -9, `-1` = 1, `1` = 1, `2` = 2, `3` = 2, `4` = 2, `5` = 2,
+        `6` = 3, `7` = 3, `8` = 3, `10` = -9), .keep_value_labels = FALSE) %>% mutate(educ3 = na_if(educ3, -9)) %>%
+    mutate(educ3 = factor(educ3, levels = c(1, 2, 3), labels = c("primary", "secondary", "tertiary")))
+
+```
+
+### A.9: Means and counting specific values
+#### A.9.2 Tidy
+```{r}
+str(cv08_haven$int055)
+attr(cv08_haven$int055, "labels")
+summary(cv08_haven$int055)
+summary(cv08_haven$int056)
+summary(cv08_haven$int057)
+
+table(cv08_haven$int055n, useNA = "always")
+table(cv08_haven$int056n, useNA = "always")
+table(cv08_haven$int057n, useNA = "always")
+
+#Step 2: define missings and recode
+cv08_haven <- mutate(cv08_haven, int055n = recode(int055, `-6` = -9, `-5` = -9, `-3` = -9, `-2` = -9,
+    `1` = 4, `2` = 3, `3` = 2, `4` = 1), .keep_value_labels = FALSE) %>%
+    mutate(int055n = na_if(int055n, -9)) %>%
+    mutate(int055n = labelled(int055n, c(`Helemaal geen tegenstelling` = 1, `Niet zo groot` = 2, Groot = 3,
+        `Zeer groot` = 4)))
+
+cv08_haven <- mutate(cv08_haven, int056n = recode(int056, `-6` = -9, `-5` = -9, `-3` = -9, `-2` = -9,
+    `1` = 4, `2` = 3, `3` = 2, `4` = 1), .keep_value_labels = FALSE) %>%
+    mutate(int056n = na_if(int056n, -9)) %>%
+    mutate(int056n = labelled(int056n, c(`Helemaal geen tegenstelling` = 1, `Niet zo groot` = 2, Groot = 3,
+        `Zeer groot` = 4)))
+
+cv08_haven <- mutate(cv08_haven, int057n = recode(int057, `-6` = -9, `-5` = -9, `-3` = -9, `-2` = -9,
+    `1` = 4, `2` = 3, `3` = 2, `4` = 1), .keep_value_labels = FALSE) %>%
+    mutate(int057n = na_if(int057n, -9)) %>%
+    mutate(int057n = labelled(int057n, c(`Helemaal geen tegenstelling` = 1, `Niet zo groot` = 2, Groot = 3,
+        `Zeer groot` = 4)))
+# Step 3: calculate means
+cv08_haven <- cv08_haven %>% mutate(int_mean = rowMeans(cbind(int055, int056, int057), na.rm = TRUE))
+
+#Get a mean but only if there is a maximum of 1 NA in the three variables 
+cv08_haven <- cv08_haven %>%
+    mutate(int_mean_temp = rowMeans(cbind(int055n, int056n, int057n), na.rm = TRUE), nmis = rowSums(is.na(cbind(int055n,
+        int056n, int057n))), int_mean = ifelse(nmis < 2, int_mean_temp, NA)) %>%
+    dplyr::select(-int_mean_temp, -nmis)
+```
+
+### A.10: Merging data files 
+#### A.10.1.1 Step 1: select variables 
+```{r}
+cv08_sel <- cv08[, c("we_id", "lftop", "geslacht", "var006n", "v401", "landd")]
+cv10_sel <- cv10[, c("Sleutel", "var002", "var001", "Vltoplop", "V401", "Landd")]
+```
+#### A.10.1.2 Step 2: Make consistent
+
+```{r}
+names(cv08_sel) <- names(cv10_sel) <- c("id", "age", "sex", "educ", "health", "region")
+summary(cv08_sel)
+summary(cv10_sel)
+
+#as numeric 
+cv08_sel$id <- as.numeric(as.character(cv08_sel$id))
+cv10_sel$id <- as.numeric(as.character(cv10_sel$id))
+
+cv08_sel$age <- as.numeric(as.character(cv08_sel$age))
+cv10_sel$age <- as.numeric(as.character(cv10_sel$age))
+
+
+levels(cv08_sel$sex)
+levels(cv10_sel$sex)
+table(cv08_sel$sex, useNA = "always")
+table(cv10_sel$sex, useNA = "always")
+# lets make it a numeric var first
+cv08_sel$sexn <- as.numeric(cv08_sel$sex)
+table(cv08_sel$sexn)
+# recode into dummy
+cv08_sel$men <- ifelse(cv08_sel$sexn == 2, 1, 0)
+cv08_sel$men <- ifelse(cv08_sel$sexn == 1, NA, cv08_sel$men)
+# check
+table(cv08_sel$men, useNA = "always")
+```
+
+------------------------------------------------------------------------
+#B: Interdependencies 
+### B2.1 Dyadic Data
+```{r}
+install.packages('spatsoc')
+library('spatsoc')
+require(MASS)
+set.seed(9864)
+
+Sigma <- matrix(c(10, 4, 4, 5), 2, 2)
+opinions <- mvrnorm(n = 1000, mu = c(4, 5), Sigma)
+opinion_W <- opinions[, 1]
+opinion_M <- opinions[, 2]
+dyad_id <- 1:1000
+data <- data.frame(dyad_id, opinion_W, opinion_M)
+attr(data, "description") <- "This is a simulated dataset to illustrate interdependencies of observations within dyads (i.e. heterosexual couples). The dataset is in wide-format: one row refers to one couple. Variables with \"_W\" refer to women,\"_M\" refer to men."
+
+#Describe data
+require(psych)
+head(data)
+str(data) 
+summary(data)
+attr(data, "description")
+describe(data)
+```
+# B2.2 Egonet/Socionet data
+
+```{r}
+#dataset
+require(MASS)
+set.seed(9864)
+
+Sigma <- matrix(sample(c(1, 2, 3), 36, replace = T), 6, 6)
+Sigma[lower.tri(Sigma)] <- t(Sigma)[lower.tri(Sigma)]
+diag(Sigma) <- c(5, 4, 6, 3, 7, 6)
+
+opinions <- mvrnorm(n = 1000, mu = c(4,4,4,4, 4, 4), Sigma)
+opinion_ego <- opinions[,1]
+opinion_alter1 <- opinions[,2]
+opinion_alter2 <- opinions[,3]
+opinion_alter3 <- opinions[,4]
+opinion_alter4 <- opinions[,5]
+opinion_alter5 <- opinions[,6]
+
+egonet_id <- 1:1000
+data <- data.frame(egonet_id, opinion_alter1, opinion_alter2, opinion_alter3, opinion_alter4, opinion_alter5)
+
+#data description
+require(psych)
+head(data)
+str(data)
+summary(data)
+attr(data, "description")
+describe(data)
+
+require("tidyverse")
+data_long <- tidyr::pivot_longer(data = data, cols = everything()[-1], names_to = "alter", values_to = "opinion")
+
+head(data_long)
+```
+#B2.2.2 ICC via ML 
+```{r}
+require(nlme)
+mlme <- lme(opinion ~ 1, data = data_long, random = list(~1 | egonet_id), )
+summary(mlme)
+
+VarCorr(mlme)
+
+varests <- as.numeric(VarCorr(mlme)[1:2])
+varests
+ICC_MLb <- varests[1]/sum(varests)
+ICC_MLb
+```
+#B2.2.3 ICC via SEM/lavaan
+```{r}
+require("lavaan")
+model <- "
+    level: 1
+        opinion ~ 1 #regression model
+        opinion ~~ opinion #variance
+    level: 2
+        opinion ~ 1
+        opinion ~~ opinion
+"
+fit <- lavaan(model = model, data = data_long, cluster = "egonet_id")
+summary(fit)
+
+lavInspect(fit, "icc")
+```
+
+------------------------------------------------------------------------
+
+# References

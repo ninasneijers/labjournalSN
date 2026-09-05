@@ -1,0 +1,288 @@
+---
+title: "Week 1: Introduction to R for SNA"
+author: "by: Nina Sneijers"
+bibliography: references.bib
+version: 1-9-2026
+---
+
+Welcome to my lab journal!
+
+```{r, install remotely, globalsettings, echo=FALSE, warning=FALSE, results='hide'}
+#install.packages("remotes")
+#remotes::install_github("rlesur/klippy")
+```
+
+```{r, globalsettings, echo=FALSE, warning=FALSE, results='hide'}
+library(knitr)
+
+knitr::opts_chunk$set(echo = TRUE)
+opts_chunk$set(tidy.opts=list(width.cutoff=100),tidy=TRUE, warning = FALSE, message = FALSE,comment = "#>", cache=TRUE, class.source=c("test"), class.output=c("test2"))
+options(width = 100)
+rgl::setupKnitr()
+```
+
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy(position = c('top', 'right'))
+#klippy::klippy(color = 'darkred')
+#klippy::klippy(tooltip_message = 'Click to copy', tooltip_success = 'Done')
+```
+
+------------------------------------------------------------------------
+
+```{=html}
+<!--- This is the best way to write a comment. 
+It also demonstrate, you can add html directly in your rmarkdown file. See: https://www.w3schools.com/html/html_comments.asp --->
+```
+
+```{=html}
+<!--- to use a multi column page we use Pandoc's fenced Div. 
+see here: https://bookdown.org/yihui/rmarkdown-cookbook/multi-column.html 
+But please note, we are not here to make a beautiful website, our intention is just to have a quick lab journal up and running --->
+```
+
+:::: columns
+::: {.column width="50%"}
+
+# Week 1
+
+Last compiled on `r format(Sys.time(), '%B, %Y')`
+
+For this week, I have set up my GitHub account. During our tutorial, I have worked on the R-tutorial, some of the assignments are posed below. I have also read Chapter 1 of SNASS [@SNASS] and worked on the Homework. After reading chapter 1, I have also noted down what is still unclear to me (i.e. egonets).
+
+
+## Workshop A: Introduction to R for SNA
+
+
+### A.5: I don't understand the code!
+
+```{r}
+tesvariable <- 4
+ls()
+list <- ls()
+list
+rm(list) 
+ls()
+rm(list = ls()) #remove list
+ls()
+```
+
+
+### Loops
+
+I tried to create a loop, as I have not done that before. I based this one a website suggested by Jochem: <https://adv-r.hadley.nz/control-flow.html#loops>
+
+```{r}
+for(i in 1:3){print(i)}
+i <- 100
+for(i in 1:3){}
+i 
+
+#terminating a loop: next - exists the current iteration & break - exits the entire for loop
+for(i in 1:10){
+  if (i < 3) next 
+
+  print(i)
+
+if(i >= 5)
+  break}
+
+#when using for, make sure to preallocate the output container
+means <- c(1, 50, 20)
+out <- vector("list", length (means))
+for(i in 1: length(means)){
+  out[[i]] <- rnorm(10, means[[i]])
+}
+out
+
+#use seq-along to make sure that a value always returns the same length as x (I don't entirely understand this but at least x is not 0)
+seq_along(means)
+out <- vector("list", length(means))
+for(i in seq_along(means)){ 
+  out[[i]] <- rnorm(10, means[[i]])}
+out
+```
+
+
+## Workshop B: Interdependencies
+
+I wanted to work through Appendix B.2.1, but I am encountering issues with loading the data set and I get different results than in the example.
+
+
+### B2.2 Egonet/Socionet data
+
+```{r}
+#dataset
+require(MASS)
+set.seed(9864)
+
+Sigma <- matrix(sample(c(1, 2, 3), 36, replace = T), 6, 6)
+Sigma[lower.tri(Sigma)] <- t(Sigma)[lower.tri(Sigma)]
+diag(Sigma) <- c(5, 4, 6, 3, 7, 6)
+
+opinions <- mvrnorm(n = 1000, mu = c(4,4,4,4, 4, 4), Sigma)
+opinion_ego <- opinions[,1]
+opinion_alter1 <- opinions[,2]
+opinion_alter2 <- opinions[,3]
+opinion_alter3 <- opinions[,4]
+opinion_alter4 <- opinions[,5]
+opinion_alter5 <- opinions[,6]
+
+egonet_id <- 1:1000
+data <- data.frame(egonet_id, opinion_alter1, opinion_alter2, opinion_alter3, opinion_alter4, opinion_alter5)
+
+#data description
+require(psych)
+head(data)
+str(data)
+summary(data)
+attr(data, "description")
+describe(data)
+
+require("tidyverse")
+data_long <- tidyr::pivot_longer(data = data, cols = everything()[-1], names_to = "alter", values_to = "opinion")
+
+head(data_long)
+```
+
+```{r}
+# B2.2.2 ICC via ML
+require(nlme)
+mlme <- lme(opinion ~ 1, data = data_long, random = list(~1 | egonet_id), )
+summary(mlme)
+
+VarCorr(mlme)
+
+varests <- as.numeric(VarCorr(mlme)[1:2])
+varests
+ICC_MLb <- varests[1]/sum(varests)
+ICC_MLb
+```
+
+```{r}
+# B2.2.3 ICC via SEM/lavaan
+require("lavaan")
+model <- "
+    level: 1
+        opinion ~ 1 #regression model
+        opinion ~~ opinion #variance
+    level: 2
+        opinion ~ 1
+        opinion ~~ opinion
+"
+fit <- lavaan(model = model, data = data_long, cluster = "egonet_id")
+summary(fit)
+
+lavInspect(fit, "icc")
+```
+
+
+## Homework
+
+
+### Relevant papers
+
+
+#### Paper 1:
+
+Knowing me, knowing you: Socio-economic status and (segregation in) peer and parental networks in primary school [@ZWIER2023127]
+
+![](C:/Users/ninas/OneDrive%20-%20Radboud%20Universiteit/RSCS/Social%20Networks/labjournalSN/ABBA_-_TopPop_1974_5.png)
+
+
+##### Research question:
+
+To what extent are social relations in schools segregated by SES?
+
+
+##### Theoretical:
+
+This paper focuses on within-school segregation, which is something I think SNA can be easily used for, as the social relations between students from different SES-backgrounds can be investigated.
+
+On the one hand, the paper theorises that social relations are segregated based on SES because of structural opportunities, such as higher SES-children living more closely to each other, and homophily. Additionally, it puts an emphasis on how the structure of preexisting relations affect the creation of new ones, which is how the covariance between individuals is taken in to account.
+
+On the other hand, the paper not only looks at the relationships between students, but also between parents. Thus, not only the social networks of students within a class are taken into account, but also the social networks of their parents. This is also how covariance between networks is taken into account, because the paper recognises that there could be a relationship between parents who befriend each other and children who befriend each other. The study theorizes that higher-SES parents interfere more in with whom their children interact and that this contributes to higher SES-children befriending each other.
+
+The hypotheses were as follows: H1: (a) Primary school students display a tendency to befriend same-SES classmates, net of opportunities and (b) this effect is stronger among higher SES-students () [@ZWIER2023127] p.128
+
+H2: (a) Parents display a tendency to associate with same-SES parents of children's peers, net of structural opportunities and (b) this effect is stronger among higher SES parents. [@ZWIER2023127] p.129
+
+H3: Peer networks of higher SES students enjoy higher levels of intergenerational disclosure
+
+
+##### Methodological:
+
+I had some troubles understanding the technicalities of the methodology but I thought that at least taking into account student-friendship and parental contacts in school was one way to take into account interdependencies. One thing that should be considered here is that the paper could not recognise whether parents first befriended the parents of the other child and that is why the children became friends, or the other way around.
+
+The paper had a two-step procedure in the hypothesis. Firstly, the paper estimated cross-sectional exponential random graph models to identify the importance of certain tie-generating mechanisms for peer and parental networks in each class. Secondly, it used meta-analysis techniques to combine estimates across classrooms [@ZWIER2023127] p.130.
+
+I had a hard time understanding the methodologies of the paper and therefore I found it difficult to identify how exactly the interdependencies were taken into account, but I think that tie-generating mechanisms might be about how relations ara formed. I can understand that meta-analysis in some sort of way can help with taking interdependencies into account but I do not really get why.
+
+
+##### Data:
+
+Data-wise there were a couple of specifies that came with selection because a network analysis was conducted. Firstly, the specific classrooms that were being selected should have attained to three specifies: 1. A response rate of at least 70% 2. At least 15 students with no missing data on all variables of interest. 3. No more than two students that (were) never nominated in any of the sociometric questions. This was especially necessary for well-representation of the network structure [@ZWIER2023127] p.130.
+
+The study did not make use of a separate parental survey (which could have established parental contacts in a more reliable way), because it would have led to a smaller and more selective sample.
+
+
+##### Findings:
+
+Very shortly, the paper concluded that both the students and their parents are more likely to connect with same-SES than cross-SES others in class, but there are no clear SES-differences in the strenght of SES-homophily.
+
+
+#### Paper 2:
+
+Down and out? The role of household income in students’ friendship formation in school-classes [@RAABE2024109]
+
+Note: I want to focus on friendship formation based on educational level, but I could not find a paper focussing on specifically this topic that uses RSiena, therefore I went with the income paper. Theorization will differ but I think methodology-wise it could come somewhat close.
+
+
+##### Research Question:
+
+(Not very clearly stated, but my guess is this) How is household income related to the number of in-class friends youths themselves perceive to have and whether classmates perceive youths as friends across time? [@RAABE2024109] p.110
+
+
+##### Theoretical:
+
+The paper wants to research the consequences of household income on student-relations based on two effects, namely transitivity and popularity. Transitivity is the effect that is also addressed in the first paper, namely the tendency for individuals to be friends with the friends of their friends. Popularity is about the tendency that those who have many friends will make even more friends over time than those who have comparably less friends. Through these two concepts that would explain the covariance between individuals, the paper wants to investigate if they have the potential to work in a disadvantage to those who are already less integrate, in this case, students coming from houses with a lower household income. [@RAABE2024109] p.110
+
+The hypotheses of the paper are as follows: H1: (a) Classmates are expected to be less likely to establish and maintain friendship ties with students with lower household income than with students with higher household income. (b) Students from lower income households are less likely to establish and maintain friendship ties with classmates than students with higher household income.
+
+H2: Negative associations between lower income and students' integration in friendship networks will be stronger in classes with a higher average household income.
+
+H3: Students with a lower income rank within their school class are less likely to establish and maintain friendship ties with classmates and classmates are less likely to establish and maintain friendships with students with a lower income rank.
+
+
+##### Methodological:
+This study applies multilevel Stochastic Actor Oriented Models (SAOMs) using RSiena. SAOMs aim to understand what drives change and stability in a social network over time and they test whether endogenous network effects as well as actor characteristics play a role in the evolution of a particular network. Interdependencies are thus being taken into account because there is both being tested for endogenous network effects and actor characteristics. Additionally, the study involves a second set of analysis which puts all the income effects to zero and then  looks at whether networks would evolve the same. 
+
+
+##### Data:
+Occurring data issues have not been mentioned very clearly, nor did the study discuss any ethical issues. The only thing that it mentioned that I think could be about certain sampling issues is that classes that have changed completely in student composition between waves were removed because of SAOM-data requirements and that there has thus not been looked at relationships of students between classes. 
+
+
+##### Findings:
+Shortly, the paper concluded that across time, youth from lower income households were less often nominated as friends by their classmates and they also obtained or maintained friendship nominations less often than youths with higher household income. These links with household income were independent of potential confounders [@RAABE2024109].
+
+The paper also found that around 1/6th of a friendship tie could be explained by the effects of household income and that the finding that youths from a lower income background tended to be less often selected for friendship formation or maintenance was independent of school class context. 
+
+
+### Research Questions
+
+Descriptive: To what extent does homophily occur between students whose parents have a similar educational background?
+
+Explanatory: To what extent do friend groups mainly consisting of people whose parents have a higher education background differ from friend groups mainly consisting of people whose parents mainly have a lower education background in their social satisfaction? (This one should be twisted and turned still)
+
+
+# Additional things I want to discuss
+A couple of questions and thoughts I had after completing the tasks: 
+- What are ethical issues that I could think of connected with SNA? None of these papers specifically mentioned any so I would be interested in that. 
+- The concept of egonets, this is not entirely clear to me yet. 
+- One of the papers used meta-analysis techniques in SNA and I would be interested in how this works. 
+
+------------------------------------------------------------------------
+
+
+# References
+:::
+::::

@@ -1,24 +1,14 @@
 ---
 title: "Lab journal"
-author: "by: Your Name"
+author: "by: Nina Sneijers"
 bibliography: references.bib
 ---
 
-wsdfghjhgfd
-
-listy:
-
-1.  gfhjkl
-2.  hjkl;
-3.  
-
-```{r}
-2 + 2 
-```
+Welcome to my lab journal!
 
 ```{r, install remotely, globalsettings, echo=FALSE, warning=FALSE, results='hide'}
-install.packages("remotes")
-remotes::install_github("rlesur/klippy")
+#install.packages("remotes")
+#remotes::install_github("rlesur/klippy")
 ```
 
 ```{r, globalsettings, echo=FALSE, warning=FALSE, results='hide'}

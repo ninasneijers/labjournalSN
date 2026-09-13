@@ -1,0 +1,53 @@
+---
+title: "week2"
+author: "byL Nina Sneijers"
+bibliography: references.bib
+version: "7-9-2026"
+---
+
+# Week 2 
+This week, I have read the relevant chapters, started with an introduction for my research project and thought about the type of data I will need for the research project. Additionally, I have 'geklooid' with some data in order to learn how to inspect social networks. 
+
+## Workshop inspecting Social Networks (klooien)
+
+```{r}
+library(igraph)
+library(RSiena)
+```
+
+```{r}
+graph1 <- graph_from_adjacency_matrix(s501, mode = "directed")
+
+dyad_census(graph1)
+
+#mut --> number of pairs with mutual connections
+#asym --> number of pairs no mutual connections
+#null --> number of no pairs 
+
+?triad_census
+triad_census(graph1)
+#this tells me how much each of the triad option occurs. The 003 (no ties) occurs the most (16243 times), followed by the 102 (one tie in both directions, 1724 times) and 012 (one tie in one direction, 1470 times). Hereafter, the numbers shrink a lot, with 021D (42 times) and 021U (30 times) occurring the most after this. 
+```
+
+## Homework
+I have written a first version of my introduction (see: Final Project - Introduction) and inspected some relevant papers regarding the topic. Based on that, this is my list of the type of data I think I need. 
+
+### Type of data need
+Actor attributes: 
+- Parental educational level 
+I think the last two variables might be important to take into account as control variables. 
+
+Relational attributes: 
+- Friendship relations
+- Studygroup relations
+I have seen that the data I want to use not only has looked into friendship relations, but also into studygroup relations so I think it is good to take both of these into account. 
+
+Control variables on actor level: 
+- Ethnic/migration background
+- Parental income level
+
+I saw that a paper by [@JEROENSE2024135] (might be familiar to the course coordinator;) used dyad characteristics and network characteristics as control variables and now I am wondering whether this is something important to take into account as well. 
+
+# References
+:::
+::::

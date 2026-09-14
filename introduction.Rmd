@@ -2,35 +2,88 @@
 title: "Lab journal"
 author: "by: Nina Sneijers"
 bibliography: references.bib
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
-#Introduction
+
+# Introduction
 
 **First version of the introduction**
 
-Being a first year student at university brings quite a lot of challenges. This is especially true for students coming from a family where they parent or guardian has not enjoyed higher education themselves. Universities have social norms that one needs to adhere to and additionally, it requires learning skills on how to manage it effectively. Someone coming from a family where these norms and skills are not a familiar will need more time to adapt. 
+Being a first year student at university brings quite a lot of
+challenges. This is especially true for students coming from a family
+where they parent or guardian has not enjoyed higher education
+themselves. Universities have social norms that one needs to adhere to
+and additionally, it requires learning skills on how to manage it
+effectively. Someone coming from a family where these norms and skills
+are not a familiar will need more time to adapt.
 
- --> needs to be rewritten and more references 
- 
- Studies show that there is a possitive correlation between belonging, motivation and enjoyment, meaning that if students feel like they belonging at university, this increases their academic motivation as well [@Pedler2022]. However, it has also been shown that students coming from a family where none or only one parent/guardina with a higher education background report lower senses of belonging than students coming from a family with two parents or guardians [@Janke2024][@Pedler2022], which indicates that these students potentially experience less academic motivation and enjoyment. First generation students (FGS) report a lack of social support compared to non-first generation students [@Wittner2023]. 
- 
-  This does, however, not mean that all first generation students experience the same level of difficulties at university. This also depends on, for example, what their network at university looks like in terms of socio-emotional support and instrumental support [@Wittner2023]. Additionally, it also intersects with for example their race or ethnicity [@Salusky2024]. This raises questions upon what other aspects could influence the sense of belonging and social support of students coming from a family where none or only one of the parents has enjoyed higher education, such as befriending with students that come from a family where both parents/guardians have enjoyed higher education.
-  A social network perspective enables us to research this phenomena, as this perspective allows us to look into not only what relations are being established between people, but also how these relations affect other variables, such as sense of belonging. 
- 
- (more need of a bridge here)
- 
-  Research has shown that in primary school networks, even when students from different socio-economic backgrounds are within the same school, both school students and their parents are more likely to connect with people coming from a similar SES-background than people coming from a different background [@ZWIER2023127]. This is a phenomenon called homophily, meaning that it is more likely to observe a positive correlation between two people that are similar, than between people who are different [@SNASS]. It is therefore likely that this phenomenon not only occurs within primary schools, but also in secondary schools or universities. (paragraph needs more elaboration)
-  Therefore, the first question that this paper aims to explore is: 
-  To what extent does homophily occur between students whose parents have a similar educational background? 
-  
-(Very drafty, apologies!!) Then following this question, one can wonder how this homophily affects the sense of belonging of FGS* at university. For example, do students within a more homogene network, meaning that they mainly befriend people whose parents also have not enjoyed higher education, feel like they fit in more or less at university? On the one hand, they might feel like they fit in more because they share a similar background. On the other hand, a more mixed friendgroup might help these students with understanding the university norms better and this might make them fit in more. (sources also still needed on this). 
- This leads us to our second question: 
- To what extent does friendgroup homophily based on parental educational background affect social satisfaction? 
- 
- We could also ask whether it might not depend on friendgroup, but on studygroup, hence the third research question: 
- To what extent does studygroup homophily based on parental educational background affect social satisfaction? 
- 
- ------------------------------------------------------------------------
+--\> needs to be rewritten and more references
+
+Studies show that there is a possitive correlation between belonging,
+motivation and enjoyment, meaning that if students feel like they
+belonging at university, this increases their academic motivation as
+well [@Pedler2022]. However, it has also been shown that students coming
+from a family where none or only one parent/guardina with a higher
+education background report lower senses of belonging than students
+coming from a family with two parents or guardians
+[@Janke2024][@Pedler2022], which indicates that these students
+potentially experience less academic motivation and enjoyment. First
+generation students (FGS) report a lack of social support compared to
+non-first generation students [@Wittner2023].
+
+This does, however, not mean that all first generation students
+experience the same level of difficulties at university. This also
+depends on, for example, what their network at university looks like in
+terms of socio-emotional support and instrumental support
+[@Wittner2023]. Additionally, it also intersects with for example their
+race or ethnicity [@Salusky2024]. This raises questions upon what other
+aspects could influence the sense of belonging and social support of
+students coming from a family where none or only one of the parents has
+enjoyed higher education, such as befriending with students that come
+from a family where both parents/guardians have enjoyed higher
+education. A social network perspective enables us to research this
+phenomena, as this perspective allows us to look into not only what
+relations are being established between people, but also how these
+relations affect other variables, such as sense of belonging.
+
+(more need of a bridge here)
+
+Research has shown that in primary school networks, even when students
+from different socio-economic backgrounds are within the same school,
+both school students and their parents are more likely to connect with
+people coming from a similar SES-background than people coming from a
+different background [@ZWIER2023127]. This is a phenomenon called
+homophily, meaning that it is more likely to observe a positive
+correlation between two people that are similar, than between people who
+are different [@SNASS]. It is therefore likely that this phenomenon not
+only occurs within primary schools, but also in secondary schools or
+universities. (paragraph needs more elaboration) Therefore, the first
+question that this paper aims to explore is: To what extent does
+homophily occur between students whose parents have a similar
+educational background?
+
+(Very drafty, apologies!!) Then following this question, one can wonder
+how this homophily affects the sense of belonging of FGS\* at
+university. For example, do students within a more homogene network,
+meaning that they mainly befriend people whose parents also have not
+enjoyed higher education, feel like they fit in more or less at
+university? On the one hand, they might feel like they fit in more
+because they share a similar background. On the other hand, a more mixed
+friendgroup might help these students with understanding the university
+norms better and this might make them fit in more. (sources also still
+needed on this). This leads us to our second question: To what extent
+does friendgroup homophily based on parental educational background
+affect social satisfaction?
+
+We could also ask whether it might not depend on friendgroup, but on
+studygroup, hence the third research question: To what extent does
+studygroup homophily based on parental educational background affect
+social satisfaction?
+
+------------------------------------------------------------------------
 
 # References
-:::
-::::
+
+::: ::::

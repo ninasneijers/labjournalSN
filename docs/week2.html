@@ -70,6 +70,28 @@ if (window.hljs) {
 }
 </style>
 
+<style type="text/css">
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="tweaks.css" type="text/css" />
 
@@ -465,11 +487,9 @@ dyad_census(graph1)</code></pre>
 #asym --&gt; number of pairs no mutual connections
 #null --&gt; number of no pairs 
 
-?triad_census</code></pre>
-<pre><code>## starting httpd help server ... done</code></pre>
-<pre class="r"><code>triad_census(graph1)</code></pre>
-<pre><code>##  [1] 16243  1470  1724     5    18    21    42    30     5     0    15     6
-## [13]     5     2     9     5</code></pre>
+#?triad_census
+triad_census(graph1)</code></pre>
+<pre><code>##  [1] 16243  1470  1724     5    18    21    42    30     5     0    15     6     5     2     9     5</code></pre>
 <pre class="r"><code>#this tells me how much each of the triad option occurs. The 003 (no ties) occurs the most (16243 times), followed by the 102 (one tie in both directions, 1724 times) and 012 (one tie in one direction, 1470 times). Hereafter, the numbers shrink a lot, with 021D (42 times) and 021U (30 times) occurring the most after this. </code></pre>
 </div>
 <div id="homework" class="section level2" number="1.2">
@@ -483,26 +503,35 @@ need</h3>
 <p>Actor attributes: - Parental educational level I think the last two
 variables might be important to take into account as control
 variables.</p>
-<p>Relational attributes: - Friendship relations - Studygroup relations
-I have seen that the data I want to use not only has looked into
-friendship relations, but also into studygroup relations so I think it
-is good to take both of these into account.</p>
+<p>Relational attributes/dyadic relations: - Friendship relations -
+Studygroup relations I have seen that the data I want to use not only
+has looked into friendship relations, but also into studygroup relations
+so I think it is good to take both of these into account.</p>
 <p>Control variables on actor level: - Ethnic/migration background -
-Parental income level</p>
-<p>I saw that a paper by <span
-class="citation">(<strong>JEROENSE2024135?</strong>)</span> (might be
-familiar to the course coordinator;) used dyad characteristics and
-network characteristics as control variables and now I am wondering
-whether this is something important to take into account as well.</p>
+Parental income level - Popularity</p>
+<p>I saw that a paper by <span class="citation">(Jeroense et al.
+2024)</span> (might be familiar to the course coordinator;) used dyad
+characteristics and network characteristics as control variables and now
+I am wondering whether this is something important to take into account
+as well.</p>
 </div>
 </div>
 </div>
 <div id="references" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> References</h1>
 <p>::: ::::</p>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-JEROENSE2024135" class="csl-entry">
+Jeroense, Thijmen, Niels Spierings, and Jochem Tolsma. 2024.
+<span>“Similarity and Differences in Age, Gender, Ethnicity, and
+Education as Explanatory Factors of Tie Loss in the Core Discussion
+Network.”</span> <em>Social Networks</em> 76: 135–49. https://doi.org/<a
+href="https://doi.org/10.1016/j.socnet.2023.09.003">https://doi.org/10.1016/j.socnet.2023.09.003</a>.
+</div>
+</div>
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIndlZWsyIg0KYXV0aG9yOiAiYnlMIE5pbmEgU25laWplcnMiDQpiaWJsaW9ncmFwaHk6IHJlZmVyZW5jZXMuYmliDQp2ZXJzaW9uOiAiNy05LTIwMjYiDQotLS0NCg0KIyBXZWVrIDIgDQpUaGlzIHdlZWssIEkgaGF2ZSByZWFkIHRoZSByZWxldmFudCBjaGFwdGVycywgc3RhcnRlZCB3aXRoIGFuIGludHJvZHVjdGlvbiBmb3IgbXkgcmVzZWFyY2ggcHJvamVjdCBhbmQgdGhvdWdodCBhYm91dCB0aGUgdHlwZSBvZiBkYXRhIEkgd2lsbCBuZWVkIGZvciB0aGUgcmVzZWFyY2ggcHJvamVjdC4gQWRkaXRpb25hbGx5LCBJIGhhdmUgJ2dla2xvb2lkJyB3aXRoIHNvbWUgZGF0YSBpbiBvcmRlciB0byBsZWFybiBob3cgdG8gaW5zcGVjdCBzb2NpYWwgbmV0d29ya3MuIA0KDQojIyBXb3Jrc2hvcCBpbnNwZWN0aW5nIFNvY2lhbCBOZXR3b3JrcyAoa2xvb2llbikNCg0KYGBge3J9DQpsaWJyYXJ5KGlncmFwaCkNCmxpYnJhcnkoUlNpZW5hKQ0KYGBgDQoNCmBgYHtyfQ0KZ3JhcGgxIDwtIGdyYXBoX2Zyb21fYWRqYWNlbmN5X21hdHJpeChzNTAxLCBtb2RlID0gImRpcmVjdGVkIikNCg0KZHlhZF9jZW5zdXMoZ3JhcGgxKQ0KDQojbXV0IC0tPiBudW1iZXIgb2YgcGFpcnMgd2l0aCBtdXR1YWwgY29ubmVjdGlvbnMNCiNhc3ltIC0tPiBudW1iZXIgb2YgcGFpcnMgbm8gbXV0dWFsIGNvbm5lY3Rpb25zDQojbnVsbCAtLT4gbnVtYmVyIG9mIG5vIHBhaXJzIA0KDQo/dHJpYWRfY2Vuc3VzDQp0cmlhZF9jZW5zdXMoZ3JhcGgxKQ0KI3RoaXMgdGVsbHMgbWUgaG93IG11Y2ggZWFjaCBvZiB0aGUgdHJpYWQgb3B0aW9uIG9jY3Vycy4gVGhlIDAwMyAobm8gdGllcykgb2NjdXJzIHRoZSBtb3N0ICgxNjI0MyB0aW1lcyksIGZvbGxvd2VkIGJ5IHRoZSAxMDIgKG9uZSB0aWUgaW4gYm90aCBkaXJlY3Rpb25zLCAxNzI0IHRpbWVzKSBhbmQgMDEyIChvbmUgdGllIGluIG9uZSBkaXJlY3Rpb24sIDE0NzAgdGltZXMpLiBIZXJlYWZ0ZXIsIHRoZSBudW1iZXJzIHNocmluayBhIGxvdCwgd2l0aCAwMjFEICg0MiB0aW1lcykgYW5kIDAyMVUgKDMwIHRpbWVzKSBvY2N1cnJpbmcgdGhlIG1vc3QgYWZ0ZXIgdGhpcy4gDQpgYGANCg0KIyMgSG9tZXdvcmsNCkkgaGF2ZSB3cml0dGVuIGEgZmlyc3QgdmVyc2lvbiBvZiBteSBpbnRyb2R1Y3Rpb24gKHNlZTogRmluYWwgUHJvamVjdCAtIEludHJvZHVjdGlvbikgYW5kIGluc3BlY3RlZCBzb21lIHJlbGV2YW50IHBhcGVycyByZWdhcmRpbmcgdGhlIHRvcGljLiBCYXNlZCBvbiB0aGF0LCB0aGlzIGlzIG15IGxpc3Qgb2YgdGhlIHR5cGUgb2YgZGF0YSBJIHRoaW5rIEkgbmVlZC4gDQoNCiMjIyBUeXBlIG9mIGRhdGEgbmVlZA0KQWN0b3IgYXR0cmlidXRlczogDQotIFBhcmVudGFsIGVkdWNhdGlvbmFsIGxldmVsIA0KSSB0aGluayB0aGUgbGFzdCB0d28gdmFyaWFibGVzIG1pZ2h0IGJlIGltcG9ydGFudCB0byB0YWtlIGludG8gYWNjb3VudCBhcyBjb250cm9sIHZhcmlhYmxlcy4gDQoNClJlbGF0aW9uYWwgYXR0cmlidXRlczogDQotIEZyaWVuZHNoaXAgcmVsYXRpb25zDQotIFN0dWR5Z3JvdXAgcmVsYXRpb25zDQpJIGhhdmUgc2VlbiB0aGF0IHRoZSBkYXRhIEkgd2FudCB0byB1c2Ugbm90IG9ubHkgaGFzIGxvb2tlZCBpbnRvIGZyaWVuZHNoaXAgcmVsYXRpb25zLCBidXQgYWxzbyBpbnRvIHN0dWR5Z3JvdXAgcmVsYXRpb25zIHNvIEkgdGhpbmsgaXQgaXMgZ29vZCB0byB0YWtlIGJvdGggb2YgdGhlc2UgaW50byBhY2NvdW50LiANCg0KQ29udHJvbCB2YXJpYWJsZXMgb24gYWN0b3IgbGV2ZWw6IA0KLSBFdGhuaWMvbWlncmF0aW9uIGJhY2tncm91bmQNCi0gUGFyZW50YWwgaW5jb21lIGxldmVsDQoNCkkgc2F3IHRoYXQgYSBwYXBlciBieSBbQEpFUk9FTlNFMjAyNDEzNV0gKG1pZ2h0IGJlIGZhbWlsaWFyIHRvIHRoZSBjb3Vyc2UgY29vcmRpbmF0b3I7KSB1c2VkIGR5YWQgY2hhcmFjdGVyaXN0aWNzIGFuZCBuZXR3b3JrIGNoYXJhY3RlcmlzdGljcyBhcyBjb250cm9sIHZhcmlhYmxlcyBhbmQgbm93IEkgYW0gd29uZGVyaW5nIHdoZXRoZXIgdGhpcyBpcyBzb21ldGhpbmcgaW1wb3J0YW50IHRvIHRha2UgaW50byBhY2NvdW50IGFzIHdlbGwuIA0KDQojIFJlZmVyZW5jZXMNCjo6Og0KOjo6Og0K</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIndlZWsyIg0KYXV0aG9yOiAiYnlMIE5pbmEgU25laWplcnMiDQpiaWJsaW9ncmFwaHk6IHJlZmVyZW5jZXMuYmliDQp2ZXJzaW9uOiAiNy05LTIwMjYiDQotLS0NCg0KIyBXZWVrIDIgDQpUaGlzIHdlZWssIEkgaGF2ZSByZWFkIHRoZSByZWxldmFudCBjaGFwdGVycywgc3RhcnRlZCB3aXRoIGFuIGludHJvZHVjdGlvbiBmb3IgbXkgcmVzZWFyY2ggcHJvamVjdCBhbmQgdGhvdWdodCBhYm91dCB0aGUgdHlwZSBvZiBkYXRhIEkgd2lsbCBuZWVkIGZvciB0aGUgcmVzZWFyY2ggcHJvamVjdC4gQWRkaXRpb25hbGx5LCBJIGhhdmUgJ2dla2xvb2lkJyB3aXRoIHNvbWUgZGF0YSBpbiBvcmRlciB0byBsZWFybiBob3cgdG8gaW5zcGVjdCBzb2NpYWwgbmV0d29ya3MuIA0KDQojIyBXb3Jrc2hvcCBpbnNwZWN0aW5nIFNvY2lhbCBOZXR3b3JrcyAoa2xvb2llbikNCg0KYGBge3J9DQpsaWJyYXJ5KGlncmFwaCkNCmxpYnJhcnkoUlNpZW5hKQ0KYGBgDQoNCmBgYHtyfQ0KZ3JhcGgxIDwtIGdyYXBoX2Zyb21fYWRqYWNlbmN5X21hdHJpeChzNTAxLCBtb2RlID0gImRpcmVjdGVkIikNCg0KZHlhZF9jZW5zdXMoZ3JhcGgxKQ0KDQojbXV0IC0tPiBudW1iZXIgb2YgcGFpcnMgd2l0aCBtdXR1YWwgY29ubmVjdGlvbnMNCiNhc3ltIC0tPiBudW1iZXIgb2YgcGFpcnMgbm8gbXV0dWFsIGNvbm5lY3Rpb25zDQojbnVsbCAtLT4gbnVtYmVyIG9mIG5vIHBhaXJzIA0KDQojP3RyaWFkX2NlbnN1cw0KdHJpYWRfY2Vuc3VzKGdyYXBoMSkNCiN0aGlzIHRlbGxzIG1lIGhvdyBtdWNoIGVhY2ggb2YgdGhlIHRyaWFkIG9wdGlvbiBvY2N1cnMuIFRoZSAwMDMgKG5vIHRpZXMpIG9jY3VycyB0aGUgbW9zdCAoMTYyNDMgdGltZXMpLCBmb2xsb3dlZCBieSB0aGUgMTAyIChvbmUgdGllIGluIGJvdGggZGlyZWN0aW9ucywgMTcyNCB0aW1lcykgYW5kIDAxMiAob25lIHRpZSBpbiBvbmUgZGlyZWN0aW9uLCAxNDcwIHRpbWVzKS4gSGVyZWFmdGVyLCB0aGUgbnVtYmVycyBzaHJpbmsgYSBsb3QsIHdpdGggMDIxRCAoNDIgdGltZXMpIGFuZCAwMjFVICgzMCB0aW1lcykgb2NjdXJyaW5nIHRoZSBtb3N0IGFmdGVyIHRoaXMuIA0KYGBgDQoNCiMjIEhvbWV3b3JrDQpJIGhhdmUgd3JpdHRlbiBhIGZpcnN0IHZlcnNpb24gb2YgbXkgaW50cm9kdWN0aW9uIChzZWU6IEZpbmFsIFByb2plY3QgLSBJbnRyb2R1Y3Rpb24pIGFuZCBpbnNwZWN0ZWQgc29tZSByZWxldmFudCBwYXBlcnMgcmVnYXJkaW5nIHRoZSB0b3BpYy4gQmFzZWQgb24gdGhhdCwgdGhpcyBpcyBteSBsaXN0IG9mIHRoZSB0eXBlIG9mIGRhdGEgSSB0aGluayBJIG5lZWQuIA0KDQojIyMgVHlwZSBvZiBkYXRhIG5lZWQNCkFjdG9yIGF0dHJpYnV0ZXM6IA0KLSBQYXJlbnRhbCBlZHVjYXRpb25hbCBsZXZlbCANCkkgdGhpbmsgdGhlIGxhc3QgdHdvIHZhcmlhYmxlcyBtaWdodCBiZSBpbXBvcnRhbnQgdG8gdGFrZSBpbnRvIGFjY291bnQgYXMgY29udHJvbCB2YXJpYWJsZXMuIA0KDQpSZWxhdGlvbmFsIGF0dHJpYnV0ZXMvZHlhZGljIHJlbGF0aW9uczogDQotIEZyaWVuZHNoaXAgcmVsYXRpb25zDQotIFN0dWR5Z3JvdXAgcmVsYXRpb25zDQpJIGhhdmUgc2VlbiB0aGF0IHRoZSBkYXRhIEkgd2FudCB0byB1c2Ugbm90IG9ubHkgaGFzIGxvb2tlZCBpbnRvIGZyaWVuZHNoaXAgcmVsYXRpb25zLCBidXQgYWxzbyBpbnRvIHN0dWR5Z3JvdXAgcmVsYXRpb25zIHNvIEkgdGhpbmsgaXQgaXMgZ29vZCB0byB0YWtlIGJvdGggb2YgdGhlc2UgaW50byBhY2NvdW50LiANCg0KQ29udHJvbCB2YXJpYWJsZXMgb24gYWN0b3IgbGV2ZWw6IA0KLSBFdGhuaWMvbWlncmF0aW9uIGJhY2tncm91bmQNCi0gUGFyZW50YWwgaW5jb21lIGxldmVsDQotIFBvcHVsYXJpdHkNCg0KSSBzYXcgdGhhdCBhIHBhcGVyIGJ5IFtASkVST0VOU0UyMDI0MTM1XSAobWlnaHQgYmUgZmFtaWxpYXIgdG8gdGhlIGNvdXJzZSBjb29yZGluYXRvcjspIHVzZWQgZHlhZCBjaGFyYWN0ZXJpc3RpY3MgYW5kIG5ldHdvcmsgY2hhcmFjdGVyaXN0aWNzIGFzIGNvbnRyb2wgdmFyaWFibGVzIGFuZCBub3cgSSBhbSB3b25kZXJpbmcgd2hldGhlciB0aGlzIGlzIHNvbWV0aGluZyBpbXBvcnRhbnQgdG8gdGFrZSBpbnRvIGFjY291bnQgYXMgd2VsbC4gDQoNCiMgUmVmZXJlbmNlcw0KOjo6DQo6Ojo6DQo=</div>
 
 
 </div>

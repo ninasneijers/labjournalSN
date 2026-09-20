@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="by: Nina Sneijers" />
+
+
+<title>Lab journal</title>
+
+<script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+<style type="text/css">
+#rmd-source-code {
+  display: none;
+}
+</style>
+
+<style type="text/css">
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="tweaks.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    My journal
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="week1.html">Week 1: 31-8-2026</a>
+    </li>
+    <li>
+      <a href="week2.html">Week 2: 7-9-2026</a>
+    </li>
+    <li>
+      <a href="week3.html">Week 3: 14-9-2026</a>
+    </li>
+    <li>
+      <a href="week4.html">Week 4: 21-9-2026</a>
+    </li>
+    <li>
+      <a href="week5.html">Week 5: 28-9-2026</a>
+    </li>
+    <li>
+      <a href="week6.html">Week 6: 5-10-2026</a>
+    </li>
+    <li>
+      <a href="week7.html">Week 7: 12-10-2026</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Final Project
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="introduction.html">Introduction</a>
+    </li>
+    <li>
+      <a href="theory.html">Theory</a>
+    </li>
+    <li>
+      <a href="dm.html">Data &amp; Methods</a>
+    </li>
+    <li>
+      <a href="desr.html">Descriptive Results</a>
+    </li>
+    <li>
+      <a href="Rsr.html">RSiena Results</a>
+    </li>
+    <li>
+      <a href="conclusion.html">Conclusion</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/ninasneijers/labjournalSN">
+    <span class="fab fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+<li role="separator" class="divider"></li>
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Lab journal</h1>
+<h4 class="author">by: Nina Sneijers</h4>
+
+</div>
+
+
+<div id="introduction" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Introduction</h1>
+<p><strong>First version of the introduction</strong></p>
+<p>Being a first year student at university brings quite a lot of
+challenges. This is especially true for students coming from a family
+where they parent or guardian has not enjoyed higher education
+themselves. Universities have social norms that one needs to adhere to
+and additionally, it requires learning skills on how to manage it
+effectively. Someone coming from a family where these norms and skills
+are not a familiar will need more time to adapt.</p>
+<p>–&gt; needs to be rewritten and more references</p>
+<p>Studies show that there is a possitive correlation between belonging,
+motivation and enjoyment, meaning that if students feel like they
+belonging at university, this increases their academic motivation as
+well <span class="citation">(Pedler et al. 2022)</span>. However, it has
+also been shown that students coming from a family where none or only
+one parent/guardina with a higher education background report lower
+senses of belonging than students coming from a family with two parents
+or guardians [<span class="citation">Janke et al. (2024)</span>]<span
+class="citation">(Pedler et al. 2022)</span>, which indicates that these
+students potentially experience less academic motivation and enjoyment.
+First generation students (FGS) report a lack of social support compared
+to non-first generation students <span class="citation">(Wittner et al.
+2023)</span>.</p>
+<p>This does, however, not mean that all first generation students
+experience the same level of difficulties at university. This also
+depends on, for example, what their network at university looks like in
+terms of socio-emotional support and instrumental support <span
+class="citation">(Wittner et al. 2023)</span>. Additionally, it also
+intersects with for example their race or ethnicity <span
+class="citation">(Salusky et al. 2024)</span>. This raises questions
+upon what other aspects could influence the sense of belonging and
+social support of students coming from a family where none or only one
+of the parents has enjoyed higher education, such as befriending with
+students that come from a family where both parents/guardians have
+enjoyed higher education. A social network perspective enables us to
+research this phenomena, as this perspective allows us to look into not
+only what relations are being established between people, but also how
+these relations affect other variables, such as sense of belonging.</p>
+<p>(more need of a bridge here)</p>
+<p>Research has shown that in primary school networks, even when
+students from different socio-economic backgrounds are within the same
+school, both school students and their parents are more likely to
+connect with people coming from a similar SES-background than people
+coming from a different background <span class="citation">(Zwier and
+Geven 2023)</span>. This is a phenomenon called homophily, meaning that
+it is more likely to observe a positive correlation between two people
+that are similar, than between people who are different <span
+class="citation">(Tolsma and Hofstra 2022)</span>. It is therefore
+likely that this phenomenon not only occurs within primary schools, but
+also in secondary schools or universities. (paragraph needs more
+elaboration)</p>
+<p>Therefore, the first question that this paper aims to explore is: To
+what extent does homophily occur between students whose parents have a
+similar educational background?</p>
+<p>can this be included as an RQ, or is just some initial analysis that
+needs to happen?</p>
+<p>(Very drafty, apologies!!) Then following this question, one can
+wonder how this homophily affects the sense of belonging of FGS* at
+university. For example, do students within a more homogene network,
+meaning that they mainly befriend people whose parents also have not
+enjoyed higher education, feel like they fit in more or less at
+university? On the one hand, they might feel like they fit in more
+because they share a similar background. On the other hand, a more mixed
+friendgroup might help these students with understanding the university
+norms better and this might make them fit in more. (sources also still
+needed on this).</p>
+<p>This leads us to our second question: To what extent does friendgroup
+homophily based on parental educational background affect social
+satisfaction? –&gt; should RQ be more broad? Add more?</p>
+<p>We could also ask whether it might not depend on friendgroup, but on
+studygroup, hence the third research question: To what extent does
+studygroup homophily based on parental educational background affect
+social satisfaction?</p>
+<hr />
+</div>
+<div id="references" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> References</h1>
+<div class="::::">
+
+</div>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Janke2024" class="csl-entry">
+Janke, Stefan, Laura A. S. Messerer, Belinda Merkle, and Selma C.
+Rudert. 2024. <span>“Why Do Minority Students Feel They Don’t Fit in?
+Migration Background and Parental Education Differentially Predict
+Social Ostracism and Belongingness.”</span> <em>Group Processes &amp;
+Intergroup Relations</em> 27 (2): 278–99. <a
+href="https://doi.org/10.1177/13684302221142781">https://doi.org/10.1177/13684302221142781</a>.
+</div>
+<div id="ref-Pedler2022" class="csl-entry">
+Pedler, Megan Louise, Royce Willis, and Johanna Elizabeth Nieuwoudt.
+2022. <span>“A Sense of Belonging at University: Student Retention,
+Motivation and Enjoyment.”</span> <em>Journal of Further and Higher
+Education</em> 46 (3): 397–408. <a
+href="https://doi.org/10.1080/0309877X.2021.1955844">https://doi.org/10.1080/0309877X.2021.1955844</a>.
+</div>
+<div id="ref-Salusky2024" class="csl-entry">
+Salusky, Ida, Lidia Monjaras-Gaytan, Grevelin Ulerio, Nicola Forbes,
+George Perron, and Elizabeth Raposa. 2024. <span>“The Formation and Role
+of Social Belonging in on-Campus Integration of Diverse First-Generation
+College Students.”</span> <em>Journal of College Student Retention:
+Research, Theory &amp; Practice</em> 26 (2): 473–99. <a
+href="https://doi.org/10.1177/15210251221092709">https://doi.org/10.1177/15210251221092709</a>.
+</div>
+<div id="ref-SNASS" class="csl-entry">
+Tolsma, Jochem, and Bas Hofstra. 2022. <em>Social Network Analysis for
+Social Scientists</em>. <a
+href="https://jtolsma.nl/SNASS/">https://jtolsma.nl/SNASS/</a>.
+</div>
+<div id="ref-Wittner2023" class="csl-entry">
+Wittner, Britta, Luisa Barthauer, and Simone Kauffeld. 2023.
+<span>“Accessibility and Mobilisation of Social Capital in
+First-Generation Students’ Social Networks—a Mixed-Methods
+Approach.”</span> <em>Journal of College Student Retention: Research,
+Theory &amp; Practice</em> 25 (2): 254–78. <a
+href="https://doi.org/10.1177/1521025120979643">https://doi.org/10.1177/1521025120979643</a>.
+</div>
+<div id="ref-ZWIER2023127" class="csl-entry">
+Zwier, Dieuwke, and Sara Geven. 2023. <span>“Knowing Me, Knowing You:
+Socio-Economic Status and (Segregation in) Peer and Parental Networks in
+Primary School.”</span> <em>Social Networks</em> 74: 127–38.
+https://doi.org/<a
+href="https://doi.org/10.1016/j.socnet.2023.03.003">https://doi.org/10.1016/j.socnet.2023.03.003</a>.
+</div>
+</div>
+</div>
+
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkxhYiBqb3VybmFsIg0KYXV0aG9yOiAiYnk6IE5pbmEgU25laWplcnMiDQpiaWJsaW9ncmFwaHk6IHJlZmVyZW5jZXMuYmliDQplZGl0b3Jfb3B0aW9uczogDQogIG1hcmtkb3duOiANCiAgICB3cmFwOiA3Mg0KLS0tDQoNCiMgSW50cm9kdWN0aW9uDQoNCioqRmlyc3QgdmVyc2lvbiBvZiB0aGUgaW50cm9kdWN0aW9uKioNCg0KQmVpbmcgYSBmaXJzdCB5ZWFyIHN0dWRlbnQgYXQgdW5pdmVyc2l0eSBicmluZ3MgcXVpdGUgYSBsb3Qgb2YNCmNoYWxsZW5nZXMuIFRoaXMgaXMgZXNwZWNpYWxseSB0cnVlIGZvciBzdHVkZW50cyBjb21pbmcgZnJvbSBhIGZhbWlseQ0Kd2hlcmUgdGhleSBwYXJlbnQgb3IgZ3VhcmRpYW4gaGFzIG5vdCBlbmpveWVkIGhpZ2hlciBlZHVjYXRpb24NCnRoZW1zZWx2ZXMuIFVuaXZlcnNpdGllcyBoYXZlIHNvY2lhbCBub3JtcyB0aGF0IG9uZSBuZWVkcyB0byBhZGhlcmUgdG8NCmFuZCBhZGRpdGlvbmFsbHksIGl0IHJlcXVpcmVzIGxlYXJuaW5nIHNraWxscyBvbiBob3cgdG8gbWFuYWdlIGl0DQplZmZlY3RpdmVseS4gU29tZW9uZSBjb21pbmcgZnJvbSBhIGZhbWlseSB3aGVyZSB0aGVzZSBub3JtcyBhbmQgc2tpbGxzDQphcmUgbm90IGEgZmFtaWxpYXIgd2lsbCBuZWVkIG1vcmUgdGltZSB0byBhZGFwdC4NCg0KLS0+IG5lZWRzIHRvIGJlIHJld3JpdHRlbiBhbmQgbW9yZSByZWZlcmVuY2VzDQoNClN0dWRpZXMgc2hvdyB0aGF0IHRoZXJlIGlzIGEgcG9zc2l0aXZlIGNvcnJlbGF0aW9uIGJldHdlZW4gYmVsb25naW5nLA0KbW90aXZhdGlvbiBhbmQgZW5qb3ltZW50LCBtZWFuaW5nIHRoYXQgaWYgc3R1ZGVudHMgZmVlbCBsaWtlIHRoZXkNCmJlbG9uZ2luZyBhdCB1bml2ZXJzaXR5LCB0aGlzIGluY3JlYXNlcyB0aGVpciBhY2FkZW1pYyBtb3RpdmF0aW9uIGFzDQp3ZWxsIFtAUGVkbGVyMjAyMl0uIEhvd2V2ZXIsIGl0IGhhcyBhbHNvIGJlZW4gc2hvd24gdGhhdCBzdHVkZW50cyBjb21pbmcNCmZyb20gYSBmYW1pbHkgd2hlcmUgbm9uZSBvciBvbmx5IG9uZSBwYXJlbnQvZ3VhcmRpbmEgd2l0aCBhIGhpZ2hlcg0KZWR1Y2F0aW9uIGJhY2tncm91bmQgcmVwb3J0IGxvd2VyIHNlbnNlcyBvZiBiZWxvbmdpbmcgdGhhbiBzdHVkZW50cw0KY29taW5nIGZyb20gYSBmYW1pbHkgd2l0aCB0d28gcGFyZW50cyBvciBndWFyZGlhbnMNCltASmFua2UyMDI0XVtAUGVkbGVyMjAyMl0sIHdoaWNoIGluZGljYXRlcyB0aGF0IHRoZXNlIHN0dWRlbnRzDQpwb3RlbnRpYWxseSBleHBlcmllbmNlIGxlc3MgYWNhZGVtaWMgbW90aXZhdGlvbiBhbmQgZW5qb3ltZW50LiBGaXJzdA0KZ2VuZXJhdGlvbiBzdHVkZW50cyAoRkdTKSByZXBvcnQgYSBsYWNrIG9mIHNvY2lhbCBzdXBwb3J0IGNvbXBhcmVkIHRvDQpub24tZmlyc3QgZ2VuZXJhdGlvbiBzdHVkZW50cyBbQFdpdHRuZXIyMDIzXS4NCg0KVGhpcyBkb2VzLCBob3dldmVyLCBub3QgbWVhbiB0aGF0IGFsbCBmaXJzdCBnZW5lcmF0aW9uIHN0dWRlbnRzDQpleHBlcmllbmNlIHRoZSBzYW1lIGxldmVsIG9mIGRpZmZpY3VsdGllcyBhdCB1bml2ZXJzaXR5LiBUaGlzIGFsc28NCmRlcGVuZHMgb24sIGZvciBleGFtcGxlLCB3aGF0IHRoZWlyIG5ldHdvcmsgYXQgdW5pdmVyc2l0eSBsb29rcyBsaWtlIGluDQp0ZXJtcyBvZiBzb2Npby1lbW90aW9uYWwgc3VwcG9ydCBhbmQgaW5zdHJ1bWVudGFsIHN1cHBvcnQNCltAV2l0dG5lcjIwMjNdLiBBZGRpdGlvbmFsbHksIGl0IGFsc28gaW50ZXJzZWN0cyB3aXRoIGZvciBleGFtcGxlIHRoZWlyDQpyYWNlIG9yIGV0aG5pY2l0eSBbQFNhbHVza3kyMDI0XS4gVGhpcyByYWlzZXMgcXVlc3Rpb25zIHVwb24gd2hhdCBvdGhlcg0KYXNwZWN0cyBjb3VsZCBpbmZsdWVuY2UgdGhlIHNlbnNlIG9mIGJlbG9uZ2luZyBhbmQgc29jaWFsIHN1cHBvcnQgb2YNCnN0dWRlbnRzIGNvbWluZyBmcm9tIGEgZmFtaWx5IHdoZXJlIG5vbmUgb3Igb25seSBvbmUgb2YgdGhlIHBhcmVudHMgaGFzDQplbmpveWVkIGhpZ2hlciBlZHVjYXRpb24sIHN1Y2ggYXMgYmVmcmllbmRpbmcgd2l0aCBzdHVkZW50cyB0aGF0IGNvbWUNCmZyb20gYSBmYW1pbHkgd2hlcmUgYm90aCBwYXJlbnRzL2d1YXJkaWFucyBoYXZlIGVuam95ZWQgaGlnaGVyDQplZHVjYXRpb24uIEEgc29jaWFsIG5ldHdvcmsgcGVyc3BlY3RpdmUgZW5hYmxlcyB1cyB0byByZXNlYXJjaCB0aGlzDQpwaGVub21lbmEsIGFzIHRoaXMgcGVyc3BlY3RpdmUgYWxsb3dzIHVzIHRvIGxvb2sgaW50byBub3Qgb25seSB3aGF0DQpyZWxhdGlvbnMgYXJlIGJlaW5nIGVzdGFibGlzaGVkIGJldHdlZW4gcGVvcGxlLCBidXQgYWxzbyBob3cgdGhlc2UNCnJlbGF0aW9ucyBhZmZlY3Qgb3RoZXIgdmFyaWFibGVzLCBzdWNoIGFzIHNlbnNlIG9mIGJlbG9uZ2luZy4NCg0KKG1vcmUgbmVlZCBvZiBhIGJyaWRnZSBoZXJlKQ0KDQpSZXNlYXJjaCBoYXMgc2hvd24gdGhhdCBpbiBwcmltYXJ5IHNjaG9vbCBuZXR3b3JrcywgZXZlbiB3aGVuIHN0dWRlbnRzDQpmcm9tIGRpZmZlcmVudCBzb2Npby1lY29ub21pYyBiYWNrZ3JvdW5kcyBhcmUgd2l0aGluIHRoZSBzYW1lIHNjaG9vbCwNCmJvdGggc2Nob29sIHN0dWRlbnRzIGFuZCB0aGVpciBwYXJlbnRzIGFyZSBtb3JlIGxpa2VseSB0byBjb25uZWN0IHdpdGgNCnBlb3BsZSBjb21pbmcgZnJvbSBhIHNpbWlsYXIgU0VTLWJhY2tncm91bmQgdGhhbiBwZW9wbGUgY29taW5nIGZyb20gYQ0KZGlmZmVyZW50IGJhY2tncm91bmQgW0BaV0lFUjIwMjMxMjddLiBUaGlzIGlzIGEgcGhlbm9tZW5vbiBjYWxsZWQNCmhvbW9waGlseSwgbWVhbmluZyB0aGF0IGl0IGlzIG1vcmUgbGlrZWx5IHRvIG9ic2VydmUgYSBwb3NpdGl2ZQ0KY29ycmVsYXRpb24gYmV0d2VlbiB0d28gcGVvcGxlIHRoYXQgYXJlIHNpbWlsYXIsIHRoYW4gYmV0d2VlbiBwZW9wbGUgd2hvDQphcmUgZGlmZmVyZW50IFtAU05BU1NdLiBJdCBpcyB0aGVyZWZvcmUgbGlrZWx5IHRoYXQgdGhpcyBwaGVub21lbm9uIG5vdA0Kb25seSBvY2N1cnMgd2l0aGluIHByaW1hcnkgc2Nob29scywgYnV0IGFsc28gaW4gc2Vjb25kYXJ5IHNjaG9vbHMgb3INCnVuaXZlcnNpdGllcy4gKHBhcmFncmFwaCBuZWVkcyBtb3JlIGVsYWJvcmF0aW9uKSANCg0KVGhlcmVmb3JlLCB0aGUgZmlyc3QNCnF1ZXN0aW9uIHRoYXQgdGhpcyBwYXBlciBhaW1zIHRvIGV4cGxvcmUgaXM6IFRvIHdoYXQgZXh0ZW50IGRvZXMNCmhvbW9waGlseSBvY2N1ciBiZXR3ZWVuIHN0dWRlbnRzIHdob3NlIHBhcmVudHMgaGF2ZSBhIHNpbWlsYXINCmVkdWNhdGlvbmFsIGJhY2tncm91bmQ/DQoNCmNhbiB0aGlzIGJlIGluY2x1ZGVkIGFzIGFuIFJRLCBvciBpcyBqdXN0IHNvbWUgaW5pdGlhbCBhbmFseXNpcyB0aGF0IG5lZWRzIHRvIGhhcHBlbj8gDQoNCihWZXJ5IGRyYWZ0eSwgYXBvbG9naWVzISEpIFRoZW4gZm9sbG93aW5nIHRoaXMgcXVlc3Rpb24sIG9uZSBjYW4gd29uZGVyDQpob3cgdGhpcyBob21vcGhpbHkgYWZmZWN0cyB0aGUgc2Vuc2Ugb2YgYmVsb25naW5nIG9mIEZHU1wqIGF0DQp1bml2ZXJzaXR5LiBGb3IgZXhhbXBsZSwgZG8gc3R1ZGVudHMgd2l0aGluIGEgbW9yZSBob21vZ2VuZSBuZXR3b3JrLA0KbWVhbmluZyB0aGF0IHRoZXkgbWFpbmx5IGJlZnJpZW5kIHBlb3BsZSB3aG9zZSBwYXJlbnRzIGFsc28gaGF2ZSBub3QNCmVuam95ZWQgaGlnaGVyIGVkdWNhdGlvbiwgZmVlbCBsaWtlIHRoZXkgZml0IGluIG1vcmUgb3IgbGVzcyBhdA0KdW5pdmVyc2l0eT8gT24gdGhlIG9uZSBoYW5kLCB0aGV5IG1pZ2h0IGZlZWwgbGlrZSB0aGV5IGZpdCBpbiBtb3JlDQpiZWNhdXNlIHRoZXkgc2hhcmUgYSBzaW1pbGFyIGJhY2tncm91bmQuIE9uIHRoZSBvdGhlciBoYW5kLCBhIG1vcmUgbWl4ZWQNCmZyaWVuZGdyb3VwIG1pZ2h0IGhlbHAgdGhlc2Ugc3R1ZGVudHMgd2l0aCB1bmRlcnN0YW5kaW5nIHRoZSB1bml2ZXJzaXR5DQpub3JtcyBiZXR0ZXIgYW5kIHRoaXMgbWlnaHQgbWFrZSB0aGVtIGZpdCBpbiBtb3JlLiAoc291cmNlcyBhbHNvIHN0aWxsDQpuZWVkZWQgb24gdGhpcykuIA0KDQpUaGlzIGxlYWRzIHVzIHRvIG91ciBzZWNvbmQgcXVlc3Rpb246IFRvIHdoYXQgZXh0ZW50DQpkb2VzIGZyaWVuZGdyb3VwIGhvbW9waGlseSBiYXNlZCBvbiBwYXJlbnRhbCBlZHVjYXRpb25hbCBiYWNrZ3JvdW5kDQphZmZlY3Qgc29jaWFsIHNhdGlzZmFjdGlvbj8NCi0tPiBzaG91bGQgUlEgYmUgbW9yZSBicm9hZD8gQWRkIG1vcmU/IA0KDQpXZSBjb3VsZCBhbHNvIGFzayB3aGV0aGVyIGl0IG1pZ2h0IG5vdCBkZXBlbmQgb24gZnJpZW5kZ3JvdXAsIGJ1dCBvbg0Kc3R1ZHlncm91cCwgaGVuY2UgdGhlIHRoaXJkIHJlc2VhcmNoIHF1ZXN0aW9uOiBUbyB3aGF0IGV4dGVudCBkb2VzDQpzdHVkeWdyb3VwIGhvbW9waGlseSBiYXNlZCBvbiBwYXJlbnRhbCBlZHVjYXRpb25hbCBiYWNrZ3JvdW5kIGFmZmVjdA0Kc29jaWFsIHNhdGlzZmFjdGlvbj8NCg0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQoNCiMgUmVmZXJlbmNlcw0KDQo6OjogOjo6Og0K</div>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("introduction.Rmd");
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

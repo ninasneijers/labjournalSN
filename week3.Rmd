@@ -2,7 +2,7 @@
 title: "week3"
 author: "by: Nina Sneijers"
 bibliography: references.bib
-version: "16-9-2026"
+version: "20-9-2026"
 ---
 
 # Week 3
@@ -297,11 +297,86 @@ View(network)
 
 ```
 
+Creating a dataframe with Aschwin's data: 
 ```{r}
-as.numeric(gender[[1]][,1])
+require(tidyverse)
+#replace NAs of gender 1 with the value of gender2
+gender1 <- gender[[1]][,1]
+gender2 <- gender[[1]][,2]
+gender_test <- coalesce(gender1, gender2)
+head(gender_test)
+#what do I use this for genderrsiena <- coCovar(as.numeric(gender_test))
 
-genderrsiena <- coCovar(as.numeric(gender[[1]][,1]))
+head(parentedu)
+parent1 <- coalesce(parentedu[[1]][,1],parentedu[[1]][,3])
+parent2 <- coalesce(parentedu[[1]][,2], parentedu[[1]][,4])
+head(parent2)
+
+df_klooien <- data.frame(gender_test, parent1, parent2)
+head(df_klooien)
+
+?coCovar
+df_klooien$rsiena_gender <- coCovar(as.numeric(df_klooien$gender_test))
+df_klooien$rsiena_parent1 <- coCovar(as.numeric(df_klooien$parent1))
+df_klooien$rsiena_parent2 <- coCovar(as.numeric(df_klooien$parent2))
+head(df_klooien)
+
 ```
+
+Attempts for something with a network. I am looking at the variable 'hanging'
+```{r}
+#inspection
+hanging[[1]][[1]]
+hanging[[1]][[2]]
+hanging[[1]][[3]]
+#confusion! I thought there were two waves, what is the third about? 
+
+hangingw1 <- na_if(hanging[[1]][[1]], 9)
+hangingw2 <- na_if(hanging[[1]][[2]], 9)
+
+#What do I do with NAs in my matrix? 
+
+#copying the tutorial for now. No clue if that is correct
+diag(hangingw1) <- 0
+diag(hangingw2) <- 0
+hangingw1[hangingw1 > 1] <- 1
+hangingw2[hangingw2 > 1] <- 1
+net_klooien_array <- array(data = c(hangingw1, hangingw2), dim = c(dim(hangingw1), 2))
+net <- sienaDependent(net_klooien_array)
+#how do I check if this is what I want and whether it is not trash?
+
+klooien2 <- sienaDataCreate(net, df_klooien$rsiena_gender, df_klooien$rsiena_parent1, df_klooien$rsiena_parent2)
+head(klooien2)
+#I get output, but is this what I want? 
+
+myeff <- getEffects(klooien2)
+ifelse(!dir.exists("results"), dir.create("results"), FALSE)
+print01Report(klooien2, modelname = "./results/klooien2")
+#what to do with missings? and is this what the output is supposed to look like? 
+```
+
+Okay, so I got something out of it! Whether it is actually useful is a second question, but anyways... I am going to add some effects
+```{r}
+packages = c("RSiena", "tidyverse", "stringdist", "stringi")
+fpackage.check(packages)
+
+#I want to know something about popularity, reciprocity and transitivity
+myeff1 <- includeEffects(myeff, ts_recip, inPop, transTrip)
+myeff1 #how to interpret this? Is this what I am supposed to get out of it?
+
+#looking at gender, because for parental education I still have to figure out what is the best way to classify
+myeff2 <- includeEffects(myeff, sameX, egoX, altX, interaction1 = "rsiena_gender")
+#so this one does not work. Ask in class
+myeff2 
+
+myAlgorithm <- sienaAlgorithmCreate(projname = "klooien2")
+(ans <- siena07(myAlgorithm, data = klooien2, effects = myeff1, prevAns = ans, returnDeps = TRUE))
+ans
+```
+ans is not working for me so I am going to quit my attempt for now. I might come back to it later today
+
+## Questions
+I have a lot of questions. Firstly about the project I want to do, but for that I have prepared my presentation for in class. I also have some questions about the readings and additionally a couple about the problems that occurred while trying it myself. 
 ------------------------------------------------------------------------
 
 # References

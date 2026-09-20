@@ -1,11 +1,12 @@
 ---
 title: "week2"
-author: "byL Nina Sneijers"
+author: "by: Nina Sneijers"
 bibliography: references.bib
-version: "7-9-2026"
+version: "10-9-2026"
 ---
 
 # Week 2 
+Last compiled on `r format(Sys.time(), '%B, %Y')`
 This week, I have read the relevant chapters, started with an introduction for my research project and thought about the type of data I will need for the research project. Additionally, I have 'geklooid' with some data in order to learn how to inspect social networks. 
 
 ## Workshop inspecting Social Networks (klooien)

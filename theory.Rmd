@@ -1,0 +1,26 @@
+---
+title: "Lab journal"
+author: "by: Nina Sneijers"
+bibliography: references.bib
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+# Theory
+
+macro: Something something with cultural norms and codes at university 
+
+
+More / less friendship homophily --> higher scorings of social satisfaction 
+
+
+could go two ways: 
+1.	More social satisfaction if students from family with lower educational background are in mixed friendgroups BECAUSE they learn the cultural codes/norms from their friends
+2.	Less social satisfaction because different cultural norms, feel like they belong less, imposter syndrome maybe? While with other first gen they can level
+Which one most plausible and does anyone have theories? 
+
+------------------------------------------------------------------------
+
+# References
+:::
+::::

@@ -1,0 +1,309 @@
+---
+title: "week3"
+author: "by: Nina Sneijers"
+bibliography: references.bib
+version: "16-9-2026"
+---
+
+# Week 3
+Last compiled on `r format(Sys.time(), '%B, %Y')`
+
+This week, we have received explanation about the workings of RSiena. Additionally, we started with an RSiena tutorial that I would like to use to experiment on the dataset I am going to use for my final analysis. At home, I reread the chapters from the RSiena Manual and the Sunbelt 2024 tutorial. Additionally, I read a paper by [@FRANKEN2023], which was very insightful for thinking about what covariates I should include in my final project. As I still have some questions for the theory I want to use and the variables, I have also prepared a small 'presentation' about this. 
+
+
+##RSiena Tutorial
+
+```{r}
+fpackage.check <- function(packages) {
+    lapply(packages, FUN = function(x) {
+        if (!require(x, character.only = TRUE)) {
+            install.packages(x, dependencies = TRUE)
+            library(x, character.only = TRUE)
+        }
+    })
+}
+
+fsave <- function(x, file = NULL, location = "./data/processed/") {
+    ifelse(!dir.exists("data"), dir.create("data"), FALSE)
+    ifelse(!dir.exists("data/processed"), dir.create("data/processed"), FALSE)
+    if (is.null(file))
+        file = deparse(substitute(x))
+    datename <- substr(gsub("[:-]", "", Sys.time()), 1, 8)
+    totalname <- paste(location, datename, file, ".rda", sep = "")
+    save(x, file = totalname)  #need to fix if file is reloaded as input name, not as x. 
+}
+
+fload <- function(filename) {
+    load(filename)
+    get(ls()[ls() != "filename"])
+}
+
+fshowdf <- function(x, ...) {
+    knitr::kable(x, digits = 2, "html", ...) %>%
+        kableExtra::kable_styling(bootstrap_options = c("striped", "hover")) %>%
+        kableExtra::scroll_box(width = "100%", height = "300px")
+}
+
+colorize <- function(x, color) {
+    sprintf("<span style='color: %s;'>%s</span>", color, x)
+}
+packages = c("RSiena", "devtools", "igraph")
+fpackage.check(packages)
+#devtools::install_github('JochemTolsma/RsienaTwoStep', build_vignettes=TRUE)
+packages = c("RsienaTwoStep")
+fpackage.check(packages)
+```
+
+
+This method tries to recreate the evolution of a network.
+```{r}
+ts_net1
+net1g <- graph_from_adjacency_matrix(ts_net1, mode = "directed")
+coords <- layout_(net1g, nicely())  #let us keep the layout
+par(mar = c(0.1, 0.1, 0.1, 0.1))
+{
+    plot.igraph(net1g, layout = coords)
+    graphics::box()
+}
+
+#based on this net we are going to sample an ego. This happens with a rate function in RSiena. 
+
+#random selecteren kan via ts_select: 
+set.seed(24553253)
+ego <- ts_select(net = ts_net1)
+ego
+
+#je hoeft in RSiena niet altijd een seed zetten omdat je als het goed is en je theorie klopt je wel bijna dezelfde resultaten krijgt
+options <- ts_alternatives_ministep(net = ts_net1, ego = ego)
+options
+plots <- lapply(options, graph_from_adjacency_matrix, mode = "directed")
+par(mar = c(0, 0, 0, 0) + 0.1)
+par(mfrow = c(2, 2))
+
+fplot <- function(x) {
+    plot.igraph(x, layout = coords, margin = 0)
+    graphics::box()
+}
+
+#met deze functie vraag je R om het allemaal tegelijk te plotten, met alle mogelijke opties vna 4
+lapply(plots, fplot)
+
+#ik tel voor optie 4 hoe vaak komt die voor. hoeveel ties heeft die 
+option <- 4
+ts_degree(options[[option]], ego = ego) * -1 + ts_recip(options[[option]], ego = ego) * 1.5
+```
+
+Let's get to some analyses. First, the practicalities:  
+```{r}
+df <- fload("C:\\Users\\ninas\\OneDrive - Radboud Universiteit\\RSCS\\Social Networks\\labjournalSN\\data\\20230621df_complete.rda")
+publications <- fload("C:\\Users\\ninas\\OneDrive - Radboud Universiteit\\RSCS\\Social Networks\\labjournalSN\\data\\20230621list_publications_jt.rda")
+
+packages = c("stringdist", "stringi", "tidyverse")
+fpackage.check(packages)
+
+fpackage.check <- function(packages) {
+    lapply(packages, FUN = function(x) {
+        if (!require(x, character.only = TRUE)) {
+            install.packages(x, dependencies = TRUE)
+            library(x, character.only = TRUE)
+        }
+    })
+}
+
+fsave <- function(x, file = NULL, location = "./data/processed/") {
+    ifelse(!dir.exists("data"), dir.create("data"), FALSE)
+    ifelse(!dir.exists("data/processed"), dir.create("data/processed"), FALSE)
+    if (is.null(file))
+        file = deparse(substitute(x))
+    datename <- substr(gsub("[:-]", "", Sys.time()), 1, 8)
+    totalname <- paste(location, datename, file, ".rda", sep = "")
+    save(x, file = totalname)  #need to fix if file is reloaded as input name, not as x. 
+}
+
+fload <- function(filename) {
+    load(filename)
+    get(ls()[ls() != "filename"])
+}
+
+fshowdf <- function(x, ...) {
+    knitr::kable(x, digits = 2, "html", ...) %>%
+        kableExtra::kable_styling(bootstrap_options = c("striped", "hover")) %>%
+        kableExtra::scroll_box(width = "100%", height = "300px")
+}
+
+publications <- publications %>%
+    bind_rows() %>%
+    distinct(title, .keep_all = TRUE)
+f_pubnets <- function(df_scholars = df, list_publications = publications, discip = "sociology", affiliation = "RU",
+    waves = list(wave1 = c(2018, 2019, 2020), wave2 = c(2021, 2022, 2023))) {
+
+    publications <- list_publications %>%
+        bind_rows() %>%
+        distinct(title, .keep_all = TRUE)
+
+    df_scholars %>%
+        filter(affil1 == affiliation | affil2 == affiliation) %>%
+        filter(discipline == discip) -> df_sel
+
+    networklist <- list()
+    for (wave in 1:length(waves)) {
+        networklist[[wave]] <- matrix(0, nrow = nrow(df_sel), ncol = nrow(df_sel))
+    }
+
+    publicationlist <- list()
+    for (wave in 1:length(waves)) {
+        publicationlist[[wave]] <- publications %>%
+            filter(gs_id %in% df_sel$gs_id) %>%
+            filter(year %in% waves[[wave]]) %>%
+            select(author) %>%
+            lapply(str_split, pattern = ",")
+    }
+
+    publicationlist2 <- list()
+    for (wave in 1:length(waves)) {
+        publicationlist2[[wave]] <- publicationlist[[wave]]$author %>%
+            # lowercase
+        lapply(tolower) %>%
+            # Removing diacritics
+        lapply(stri_trans_general, id = "latin-ascii") %>%
+            # only last name
+        lapply(word, start = -1, sep = " ") %>%
+            # only last last name
+        lapply(word, start = -1, sep = "-")
+    }
+
+    for (wave in 1:length(waves)) {
+        # let us remove all publications with only one author
+        remove <- which(sapply(publicationlist2[[wave]], FUN = function(x) length(x) == 1) == TRUE)
+        publicationlist2[[wave]] <- publicationlist2[[wave]][-remove]
+    }
+
+    for (wave in 1:length(waves)) {
+        pubs <- publicationlist2[[wave]]
+        for (ego in 1:nrow(df_sel)) {
+            # which ego?
+            lastname_ego <- df_sel$lastname[ego]
+            # for all publications
+            for (pub in 1:length(pubs)) {
+                # only continue if ego is author of pub
+                if (lastname_ego %in% pubs[[pub]]) {
+                  aut_pot <- which.max(pubs[[pub]] %in% lastname_ego)
+                  # only continue if ego is first author of pub
+                  if (aut_pot == 1) {
+                    # check all alters/co-authors
+                    for (alter in 1:nrow(df_sel)) {
+                      # which alter
+                      lastname_alter <- df_sel$lastname[alter]
+                      if (lastname_alter %in% pubs[[pub]]) {
+                        networklist[[wave]][ego, alter] <- networklist[[wave]][ego, alter] + 1
+                      }
+                    }
+                  }
+                }
+            }
+        }
+    }
+    return(list(df = df_sel, network = networklist))
+}
+packages = c("RSiena", "tidyverse", "stringdist", "stringi")
+fpackage.check(packages)
+```
+
+The analysis methods exists of 6 to 7 methods. First five now always need to come back. Your input should be variables and matrices. If done, your network should be defined. Start with dependent data (should be put in separate waves):
+```{r}
+#dependent data
+output <- f_pubnets()
+df_soc <- output[[1]] #sociology scholars of radboud
+df_network <- output[[2]] #matrix, so a network. this is our y
+
+length(df_network)
+wave1 <- df_network[[1]]
+wave2 <- df_network[[2]]
+# let us put the diagonal to zero
+diag(wave1) <- 0
+diag(wave2) <- 0
+# we want a binary tie (not a weighted tie), because we use a 1-0 variabel 
+wave1[wave1 > 1] <- 1
+wave2[wave2 > 1] <- 1
+# put the nets in an array
+net_soc_array <- array(data = c(wave1, wave2), dim = c(dim(wave1), 2))
+# done. now you have to make a dependent variable: 
+
+net <- sienaDependent(net_soc_array)
+#network needs at least 2 waves 
+```
+
+Now independent variables and creating the data object: 
+```{r}
+#if you are female, you get a 1, and if you are a male, you get a 0
+gender <- as.numeric(df_soc$gender == "female")
+gender <- coCovar(gender) #means constant covariate. Time variables also exist and dyad variables. etc.
+
+#now, add independent and dependent together
+mydata <- sienaDataCreate(net, gender)
+```
+
+Now we are going to decide the effect objects (our statistics/variables)
+```{r}
+myeff <- getEffects(mydata)
+effectsDocumentation(myeff)
+#these are all the effects you can take into account for this very simple uniplex network
+#all statistics we use are about evaluation
+```
+What does our data look like? 
+```{r}
+ifelse(!dir.exists("results"), dir.create("results"), FALSE)
+print01Report(mydata, modelname = "./results/soc_init")
+```
+
+Now, we start the theoretical complexities. These are your hypotheses. This you do with include effects: 
+```{r}
+myeff <- includeEffects(myeff, isolateNet, inPop, outAct, inAct, transTrip)  #we know that quite a lot of staff has not published with someone else
+
+# it is recommended to make a separate line for every effect. like this: 
+#myeff <- includeEffects(myeff, isolateNet)
+#myeff <- includeEffects(myeff, inPop)
+#etc...
+myeff <- includeEffects(myeff, sameX, egoX, altX, interaction1 = "gender")
+#interaction has nothing to interaction. It is X = gender. 
+
+```
+
+Now we are going to estimate: 
+```{r}
+myAlgorithm <- sienaAlgorithmCreate(projname = "soc_init")
+(ans <- siena07(myAlgorithm, data = mydata, effects = myeff))
+# (the outer parentheses lead to printing the obtained result on the screen) if necessary, estimate
+# further
+(ans <- siena07(myAlgorithm, data = mydata, effects = myeff, prevAns = ans, returnDeps = TRUE))
+ans
+
+#so on average, there are 4 ministeps taken per agent (rate parameter)
+#like we saw in our print report, there is a very low density 
+#high reciprocity: if I collaborate with you, you want to collaborate with me
+#sterk network isolate effects. veel mensen die niet met anderen gepubliceerd hebben
+```
+
+##Klungelen
+- netwerk effect toevoegen
+- extra variabelen toevoegen
+- wat gebeurt er allemaal
+- goodness-of-fit aansturen 
+```{r}
+df <- load("./All-ListedData_MRCP_Wave12_Ind.RData")
+network <- load("C:\\Users\\ninas\\OneDrive - Radboud Universiteit\\RSCS\\Social Networks\\labjournalSN\\data\\All-ListedData_MRCP_Wave12_Net.RData")
+View(df)
+View(network)
+
+```
+
+```{r}
+as.numeric(gender[[1]][,1])
+
+genderrsiena <- coCovar(as.numeric(gender[[1]][,1]))
+```
+------------------------------------------------------------------------
+
+# References
+:::
+::::

@@ -12,7 +12,7 @@
 <meta name="author" content="by: Nina Sneijers" />
 
 
-<title>week2</title>
+<title>Lab journal</title>
 
 <script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -70,28 +70,6 @@ if (window.hljs) {
 }
 </style>
 
-<style type="text/css">
-/* for pandoc --citeproc since 2.11 */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
-</style>
 
 <link rel="stylesheet" href="tweaks.css" type="text/css" />
 
@@ -444,95 +422,32 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">week2</h1>
+<h1 class="title toc-ignore">Lab journal</h1>
 <h4 class="author">by: Nina Sneijers</h4>
 
 </div>
 
 
-<div id="week-2" class="section level1" number="1">
-<h1><span class="header-section-number">1</span> Week 2</h1>
-<p>Last compiled on september, 2026 This week, I have read the relevant
-chapters, started with an introduction for my research project and
-thought about the type of data I will need for the research project.
-Additionally, I have ‘geklooid’ with some data in order to learn how to
-inspect social networks.</p>
-<div id="workshop-inspecting-social-networks-klooien"
-class="section level2" number="1.1">
-<h2><span class="header-section-number">1.1</span> Workshop inspecting
-Social Networks (klooien)</h2>
-<pre class="r"><code>library(igraph)</code></pre>
-<pre><code>## Warning: package &#39;igraph&#39; was built under R version 4.5.3</code></pre>
-<pre><code>## 
-## Attaching package: &#39;igraph&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     decompose, spectrum</code></pre>
-<pre><code>## The following object is masked from &#39;package:base&#39;:
-## 
-##     union</code></pre>
-<pre class="r"><code>library(RSiena)</code></pre>
-<pre><code>## Warning: package &#39;RSiena&#39; was built under R version 4.5.3</code></pre>
-<pre class="r"><code>graph1 &lt;- graph_from_adjacency_matrix(s501, mode = &quot;directed&quot;)
-
-dyad_census(graph1)</code></pre>
-<pre><code>## $mut
-## [1] 39
-## 
-## $asym
-## [1] 35
-## 
-## $null
-## [1] 1151</code></pre>
-<pre class="r"><code>#mut --&gt; number of pairs with mutual connections
-#asym --&gt; number of pairs no mutual connections
-#null --&gt; number of no pairs 
-
-#?triad_census
-triad_census(graph1)</code></pre>
-<pre><code>##  [1] 16243  1470  1724     5    18    21    42    30     5     0    15     6     5     2     9     5</code></pre>
-<pre class="r"><code>#this tells me how much each of the triad option occurs. The 003 (no ties) occurs the most (16243 times), followed by the 102 (one tie in both directions, 1724 times) and 012 (one tie in one direction, 1470 times). Hereafter, the numbers shrink a lot, with 021D (42 times) and 021U (30 times) occurring the most after this. </code></pre>
-</div>
-<div id="homework" class="section level2" number="1.2">
-<h2><span class="header-section-number">1.2</span> Homework</h2>
-<p>I have written a first version of my introduction (see: Final Project
-- Introduction) and inspected some relevant papers regarding the topic.
-Based on that, this is my list of the type of data I think I need.</p>
-<div id="type-of-data-need" class="section level3" number="1.2.1">
-<h3><span class="header-section-number">1.2.1</span> Type of data
-need</h3>
-<p>Actor attributes: - Parental educational level I think the last two
-variables might be important to take into account as control
-variables.</p>
-<p>Relational attributes/dyadic relations: - Friendship relations -
-Studygroup relations I have seen that the data I want to use not only
-has looked into friendship relations, but also into studygroup relations
-so I think it is good to take both of these into account.</p>
-<p>Control variables on actor level: - Ethnic/migration background -
-Parental income level - Popularity</p>
-<p>I saw that a paper by <span class="citation">(Jeroense et al.
-2024)</span> (might be familiar to the course coordinator;) used dyad
-characteristics and network characteristics as control variables and now
-I am wondering whether this is something important to take into account
-as well.</p>
-</div>
-</div>
+<div id="theory" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Theory</h1>
+<p>macro: Something something with cultural norms and codes at
+university</p>
+<p>More / less friendship homophily –&gt; higher scorings of social
+satisfaction</p>
+<p>could go two ways: 1. More social satisfaction if students from
+family with lower educational background are in mixed friendgroups
+BECAUSE they learn the cultural codes/norms from their friends 2. Less
+social satisfaction because different cultural norms, feel like they
+belong less, imposter syndrome maybe? While with other first gen they
+can level Which one most plausible and does anyone have theories?</p>
+<hr />
 </div>
 <div id="references" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> References</h1>
 <p>::: ::::</p>
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div id="ref-JEROENSE2024135" class="csl-entry">
-Jeroense, Thijmen, Niels Spierings, and Jochem Tolsma. 2024.
-<span>“Similarity and Differences in Age, Gender, Ethnicity, and
-Education as Explanatory Factors of Tie Loss in the Core Discussion
-Network.”</span> <em>Social Networks</em> 76: 135–49. https://doi.org/<a
-href="https://doi.org/10.1016/j.socnet.2023.09.003">https://doi.org/10.1016/j.socnet.2023.09.003</a>.
-</div>
-</div>
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIndlZWsyIg0KYXV0aG9yOiAiYnk6IE5pbmEgU25laWplcnMiDQpiaWJsaW9ncmFwaHk6IHJlZmVyZW5jZXMuYmliDQp2ZXJzaW9uOiAiMTAtOS0yMDI2Ig0KLS0tDQoNCiMgV2VlayAyIA0KTGFzdCBjb21waWxlZCBvbiBgciBmb3JtYXQoU3lzLnRpbWUoKSwgJyVCLCAlWScpYA0KVGhpcyB3ZWVrLCBJIGhhdmUgcmVhZCB0aGUgcmVsZXZhbnQgY2hhcHRlcnMsIHN0YXJ0ZWQgd2l0aCBhbiBpbnRyb2R1Y3Rpb24gZm9yIG15IHJlc2VhcmNoIHByb2plY3QgYW5kIHRob3VnaHQgYWJvdXQgdGhlIHR5cGUgb2YgZGF0YSBJIHdpbGwgbmVlZCBmb3IgdGhlIHJlc2VhcmNoIHByb2plY3QuIEFkZGl0aW9uYWxseSwgSSBoYXZlICdnZWtsb29pZCcgd2l0aCBzb21lIGRhdGEgaW4gb3JkZXIgdG8gbGVhcm4gaG93IHRvIGluc3BlY3Qgc29jaWFsIG5ldHdvcmtzLiANCg0KIyMgV29ya3Nob3AgaW5zcGVjdGluZyBTb2NpYWwgTmV0d29ya3MgKGtsb29pZW4pDQoNCmBgYHtyfQ0KbGlicmFyeShpZ3JhcGgpDQpsaWJyYXJ5KFJTaWVuYSkNCmBgYA0KDQpgYGB7cn0NCmdyYXBoMSA8LSBncmFwaF9mcm9tX2FkamFjZW5jeV9tYXRyaXgoczUwMSwgbW9kZSA9ICJkaXJlY3RlZCIpDQoNCmR5YWRfY2Vuc3VzKGdyYXBoMSkNCg0KI211dCAtLT4gbnVtYmVyIG9mIHBhaXJzIHdpdGggbXV0dWFsIGNvbm5lY3Rpb25zDQojYXN5bSAtLT4gbnVtYmVyIG9mIHBhaXJzIG5vIG11dHVhbCBjb25uZWN0aW9ucw0KI251bGwgLS0+IG51bWJlciBvZiBubyBwYWlycyANCg0KIz90cmlhZF9jZW5zdXMNCnRyaWFkX2NlbnN1cyhncmFwaDEpDQojdGhpcyB0ZWxscyBtZSBob3cgbXVjaCBlYWNoIG9mIHRoZSB0cmlhZCBvcHRpb24gb2NjdXJzLiBUaGUgMDAzIChubyB0aWVzKSBvY2N1cnMgdGhlIG1vc3QgKDE2MjQzIHRpbWVzKSwgZm9sbG93ZWQgYnkgdGhlIDEwMiAob25lIHRpZSBpbiBib3RoIGRpcmVjdGlvbnMsIDE3MjQgdGltZXMpIGFuZCAwMTIgKG9uZSB0aWUgaW4gb25lIGRpcmVjdGlvbiwgMTQ3MCB0aW1lcykuIEhlcmVhZnRlciwgdGhlIG51bWJlcnMgc2hyaW5rIGEgbG90LCB3aXRoIDAyMUQgKDQyIHRpbWVzKSBhbmQgMDIxVSAoMzAgdGltZXMpIG9jY3VycmluZyB0aGUgbW9zdCBhZnRlciB0aGlzLiANCmBgYA0KDQojIyBIb21ld29yaw0KSSBoYXZlIHdyaXR0ZW4gYSBmaXJzdCB2ZXJzaW9uIG9mIG15IGludHJvZHVjdGlvbiAoc2VlOiBGaW5hbCBQcm9qZWN0IC0gSW50cm9kdWN0aW9uKSBhbmQgaW5zcGVjdGVkIHNvbWUgcmVsZXZhbnQgcGFwZXJzIHJlZ2FyZGluZyB0aGUgdG9waWMuIEJhc2VkIG9uIHRoYXQsIHRoaXMgaXMgbXkgbGlzdCBvZiB0aGUgdHlwZSBvZiBkYXRhIEkgdGhpbmsgSSBuZWVkLiANCg0KIyMjIFR5cGUgb2YgZGF0YSBuZWVkDQpBY3RvciBhdHRyaWJ1dGVzOiANCi0gUGFyZW50YWwgZWR1Y2F0aW9uYWwgbGV2ZWwgDQpJIHRoaW5rIHRoZSBsYXN0IHR3byB2YXJpYWJsZXMgbWlnaHQgYmUgaW1wb3J0YW50IHRvIHRha2UgaW50byBhY2NvdW50IGFzIGNvbnRyb2wgdmFyaWFibGVzLiANCg0KUmVsYXRpb25hbCBhdHRyaWJ1dGVzL2R5YWRpYyByZWxhdGlvbnM6IA0KLSBGcmllbmRzaGlwIHJlbGF0aW9ucw0KLSBTdHVkeWdyb3VwIHJlbGF0aW9ucw0KSSBoYXZlIHNlZW4gdGhhdCB0aGUgZGF0YSBJIHdhbnQgdG8gdXNlIG5vdCBvbmx5IGhhcyBsb29rZWQgaW50byBmcmllbmRzaGlwIHJlbGF0aW9ucywgYnV0IGFsc28gaW50byBzdHVkeWdyb3VwIHJlbGF0aW9ucyBzbyBJIHRoaW5rIGl0IGlzIGdvb2QgdG8gdGFrZSBib3RoIG9mIHRoZXNlIGludG8gYWNjb3VudC4gDQoNCkNvbnRyb2wgdmFyaWFibGVzIG9uIGFjdG9yIGxldmVsOiANCi0gRXRobmljL21pZ3JhdGlvbiBiYWNrZ3JvdW5kDQotIFBhcmVudGFsIGluY29tZSBsZXZlbA0KLSBQb3B1bGFyaXR5DQoNCkkgc2F3IHRoYXQgYSBwYXBlciBieSBbQEpFUk9FTlNFMjAyNDEzNV0gKG1pZ2h0IGJlIGZhbWlsaWFyIHRvIHRoZSBjb3Vyc2UgY29vcmRpbmF0b3I7KSB1c2VkIGR5YWQgY2hhcmFjdGVyaXN0aWNzIGFuZCBuZXR3b3JrIGNoYXJhY3RlcmlzdGljcyBhcyBjb250cm9sIHZhcmlhYmxlcyBhbmQgbm93IEkgYW0gd29uZGVyaW5nIHdoZXRoZXIgdGhpcyBpcyBzb21ldGhpbmcgaW1wb3J0YW50IHRvIHRha2UgaW50byBhY2NvdW50IGFzIHdlbGwuIA0KDQojIFJlZmVyZW5jZXMNCjo6Og0KOjo6Og0K</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkxhYiBqb3VybmFsIg0KYXV0aG9yOiAiYnk6IE5pbmEgU25laWplcnMiDQpiaWJsaW9ncmFwaHk6IHJlZmVyZW5jZXMuYmliDQplZGl0b3Jfb3B0aW9uczogDQogIG1hcmtkb3duOiANCiAgICB3cmFwOiA3Mg0KLS0tDQojIFRoZW9yeQ0KDQptYWNybzogU29tZXRoaW5nIHNvbWV0aGluZyB3aXRoIGN1bHR1cmFsIG5vcm1zIGFuZCBjb2RlcyBhdCB1bml2ZXJzaXR5IA0KDQoNCk1vcmUgLyBsZXNzIGZyaWVuZHNoaXAgaG9tb3BoaWx5IC0tPiBoaWdoZXIgc2NvcmluZ3Mgb2Ygc29jaWFsIHNhdGlzZmFjdGlvbiANCg0KDQpjb3VsZCBnbyB0d28gd2F5czogDQoxLglNb3JlIHNvY2lhbCBzYXRpc2ZhY3Rpb24gaWYgc3R1ZGVudHMgZnJvbSBmYW1pbHkgd2l0aCBsb3dlciBlZHVjYXRpb25hbCBiYWNrZ3JvdW5kIGFyZSBpbiBtaXhlZCBmcmllbmRncm91cHMgQkVDQVVTRSB0aGV5IGxlYXJuIHRoZSBjdWx0dXJhbCBjb2Rlcy9ub3JtcyBmcm9tIHRoZWlyIGZyaWVuZHMNCjIuCUxlc3Mgc29jaWFsIHNhdGlzZmFjdGlvbiBiZWNhdXNlIGRpZmZlcmVudCBjdWx0dXJhbCBub3JtcywgZmVlbCBsaWtlIHRoZXkgYmVsb25nIGxlc3MsIGltcG9zdGVyIHN5bmRyb21lIG1heWJlPyBXaGlsZSB3aXRoIG90aGVyIGZpcnN0IGdlbiB0aGV5IGNhbiBsZXZlbA0KV2hpY2ggb25lIG1vc3QgcGxhdXNpYmxlIGFuZCBkb2VzIGFueW9uZSBoYXZlIHRoZW9yaWVzPyANCg0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQoNCiMgUmVmZXJlbmNlcw0KOjo6DQo6Ojo6DQo=</div>
 
 
 </div>
@@ -570,7 +485,7 @@ $(document).ready(function () {
 <!-- code folding -->
 <script>
 $(document).ready(function () {
-  window.initializeSourceEmbed("week2.Rmd");
+  window.initializeSourceEmbed("theory.Rmd");
   window.initializeCodeFolding("show" === "show");
 });
 </script>

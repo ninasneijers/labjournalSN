@@ -285,20 +285,19 @@ ans
 ```
 
 ##Klungelen
-- netwerk effect toevoegen
-- extra variabelen toevoegen
-- wat gebeurt er allemaal
-- goodness-of-fit aansturen 
-```{r}
+I encountered the same issue as Lauren, so I also deleted the {r} marks so I could still publish the work. Sorry for the mess!
+
+```
 df <- load("./All-ListedData_MRCP_Wave12_Ind.RData")
 network <- load("C:\\Users\\ninas\\OneDrive - Radboud Universiteit\\RSCS\\Social Networks\\labjournalSN\\data\\All-ListedData_MRCP_Wave12_Net.RData")
 View(df)
 View(network)
-
 ```
 
 Creating a dataframe with Aschwin's data: 
-```{r}
+
+```
+load()
 require(tidyverse)
 #replace NAs of gender 1 with the value of gender2
 gender1 <- gender[[1]][,1]
@@ -320,11 +319,11 @@ df_klooien$rsiena_gender <- coCovar(as.numeric(df_klooien$gender_test))
 df_klooien$rsiena_parent1 <- coCovar(as.numeric(df_klooien$parent1))
 df_klooien$rsiena_parent2 <- coCovar(as.numeric(df_klooien$parent2))
 head(df_klooien)
-
 ```
 
 Attempts for something with a network. I am looking at the variable 'hanging'
-```{r}
+
+```
 #inspection
 hanging[[1]][[1]]
 hanging[[1]][[2]]
@@ -356,7 +355,8 @@ print01Report(klooien2, modelname = "./results/klooien2")
 ```
 
 Okay, so I got something out of it! Whether it is actually useful is a second question, but anyways... I am going to add some effects
-```{r}
+
+```
 packages = c("RSiena", "tidyverse", "stringdist", "stringi")
 fpackage.check(packages)
 

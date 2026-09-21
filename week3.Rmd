@@ -6,12 +6,12 @@ version: "20-9-2026"
 ---
 
 # Week 3
+
 Last compiled on `r format(Sys.time(), '%B, %Y')`
 
-This week, we have received explanation about the workings of RSiena. Additionally, we started with an RSiena tutorial that I would like to use to experiment on the dataset I am going to use for my final analysis. At home, I reread the chapters from the RSiena Manual and the Sunbelt 2024 tutorial. Additionally, I read a paper by [@FRANKEN2023], which was very insightful for thinking about what covariates I should include in my final project. As I still have some questions for the theory I want to use and the variables, I have also prepared a small 'presentation' about this. 
+This week, we have received explanation about the workings of RSiena. Additionally, we started with an RSiena tutorial that I would like to use to experiment on the dataset I am going to use for my final analysis. At home, I reread the chapters from the RSiena Manual and the Sunbelt 2024 tutorial. Additionally, I read a paper by [@FRANKEN2023], which was very insightful for thinking about what covariates I should include in my final project. As I still have some questions for the theory I want to use and the variables, I have also prepared a small 'presentation' about this.
 
-
-##RSiena Tutorial
+## RSiena Tutorial
 
 ```{r}
 fpackage.check <- function(packages) {
@@ -54,8 +54,8 @@ packages = c("RsienaTwoStep")
 fpackage.check(packages)
 ```
 
-
 This method tries to recreate the evolution of a network.
+
 ```{r}
 ts_net1
 net1g <- graph_from_adjacency_matrix(ts_net1, mode = "directed")
@@ -93,7 +93,8 @@ option <- 4
 ts_degree(options[[option]], ego = ego) * -1 + ts_recip(options[[option]], ego = ego) * 1.5
 ```
 
-Let's get to some analyses. First, the practicalities:  
+Let's get to some analyses. First, the practicalities:
+
 ```{r}
 df <- fload("C:\\Users\\ninas\\OneDrive - Radboud Universiteit\\RSCS\\Social Networks\\labjournalSN\\data\\20230621df_complete.rda")
 publications <- fload("C:\\Users\\ninas\\OneDrive - Radboud Universiteit\\RSCS\\Social Networks\\labjournalSN\\data\\20230621list_publications_jt.rda")
@@ -210,6 +211,7 @@ fpackage.check(packages)
 ```
 
 The analysis methods exists of 6 to 7 methods. First five now always need to come back. Your input should be variables and matrices. If done, your network should be defined. Start with dependent data (should be put in separate waves):
+
 ```{r}
 #dependent data
 output <- f_pubnets()
@@ -233,7 +235,8 @@ net <- sienaDependent(net_soc_array)
 #network needs at least 2 waves 
 ```
 
-Now independent variables and creating the data object: 
+Now independent variables and creating the data object:
+
 ```{r}
 #if you are female, you get a 1, and if you are a male, you get a 0
 gender <- as.numeric(df_soc$gender == "female")
@@ -244,19 +247,23 @@ mydata <- sienaDataCreate(net, gender)
 ```
 
 Now we are going to decide the effect objects (our statistics/variables)
+
 ```{r}
 myeff <- getEffects(mydata)
 effectsDocumentation(myeff)
 #these are all the effects you can take into account for this very simple uniplex network
 #all statistics we use are about evaluation
 ```
-What does our data look like? 
+
+What does our data look like?
+
 ```{r}
 ifelse(!dir.exists("results"), dir.create("results"), FALSE)
 print01Report(mydata, modelname = "./results/soc_init")
 ```
 
-Now, we start the theoretical complexities. These are your hypotheses. This you do with include effects: 
+Now, we start the theoretical complexities. These are your hypotheses. This you do with include effects:
+
 ```{r}
 myeff <- includeEffects(myeff, isolateNet, inPop, outAct, inAct, transTrip)  #we know that quite a lot of staff has not published with someone else
 
@@ -269,7 +276,8 @@ myeff <- includeEffects(myeff, sameX, egoX, altX, interaction1 = "gender")
 
 ```
 
-Now we are going to estimate: 
+Now we are going to estimate:
+
 ```{r}
 myAlgorithm <- sienaAlgorithmCreate(projname = "soc_init")
 (ans <- siena07(myAlgorithm, data = mydata, effects = myeff))
@@ -284,20 +292,18 @@ ans
 #sterk network isolate effects. veel mensen die niet met anderen gepubliceerd hebben
 ```
 
-##Klungelen
-I encountered the same issue as Lauren, so I also deleted the {r} marks so I could still publish the work. Sorry for the mess!
+## Klungelen 
 
-```
+```{r}
 df <- load("./All-ListedData_MRCP_Wave12_Ind.RData")
 network <- load("C:\\Users\\ninas\\OneDrive - Radboud Universiteit\\RSCS\\Social Networks\\labjournalSN\\data\\All-ListedData_MRCP_Wave12_Net.RData")
 View(df)
 View(network)
 ```
 
-Creating a dataframe with Aschwin's data: 
+Creating a dataframe with Aschwin's data:
 
-```
-load()
+```{r}
 require(tidyverse)
 #replace NAs of gender 1 with the value of gender2
 gender1 <- gender[[1]][,1]
@@ -313,17 +319,18 @@ head(parent2)
 
 df_klooien <- data.frame(gender_test, parent1, parent2)
 head(df_klooien)
+save(df_klooien, file = "klooien.Rdata")
 
-?coCovar
 df_klooien$rsiena_gender <- coCovar(as.numeric(df_klooien$gender_test))
 df_klooien$rsiena_parent1 <- coCovar(as.numeric(df_klooien$parent1))
 df_klooien$rsiena_parent2 <- coCovar(as.numeric(df_klooien$parent2))
+save(df_klooien, file = "klooien.Rdata")
 head(df_klooien)
 ```
 
 Attempts for something with a network. I am looking at the variable 'hanging'
 
-```
+```{r}
 #inspection
 hanging[[1]][[1]]
 hanging[[1]][[2]]
@@ -356,7 +363,7 @@ print01Report(klooien2, modelname = "./results/klooien2")
 
 Okay, so I got something out of it! Whether it is actually useful is a second question, but anyways... I am going to add some effects
 
-```
+```{r}
 packages = c("RSiena", "tidyverse", "stringdist", "stringi")
 fpackage.check(packages)
 
@@ -373,14 +380,7 @@ myAlgorithm <- sienaAlgorithmCreate(projname = "klooien2")
 (ans <- siena07(myAlgorithm, data = klooien2, effects = myeff1, prevAns = ans, returnDeps = TRUE))
 ans
 ```
-ans is not working for me so I am going to quit my attempt for now. I might come back to it later today
-
-## Questions
-
-
-I have a lot of questions. Firstly about the project I want to do, but for that I have prepared my presentation for in class. I also have some questions about the readings and additionally a couple about the problems that occurred while trying it myself. 
-------------------------------------------------------------------------
 
 # References
-:::
-::::
+
+::: ::::

@@ -34,10 +34,12 @@ navbar:
         href: theory.html
       - text: "Data & Methods"
         href: dm.html
+      - text: "Data Construction"
+        href: dc.html  
       - text: "Descriptive Results"
         href: desr.html
-      - text: "RSiena Results"
-        href: Rsr.html
+      - text: "Exploratory Results"
+        href: expl.html
       - text: "Conclusion"
         href: conclusion.html
         # here, other .Rmds can be added

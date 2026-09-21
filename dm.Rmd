@@ -6,43 +6,46 @@ editor_options:
   markdown: 
     wrap: 72
 ---
+
 # Data & Methods
 
 ## Data Description
 
 ### Variables
-What do you think? 
+
+What do you think?
 
 Dependent variable: social satisfaction (= university belonging)
 
-Independent variables(?): friendship homogeneity in terms of parental educational level
-(Is this correct?)
+Independent variables(?): friendship homogeneity in terms of parental
+educational level (Is this correct?)
 
-Constant covariates: 
-Gender, ethnicity
+Constant covariates: Gender, ethnicity
 
-Time-varying covariate:
-Popularity (Measured by amount of in-degrees)
--> Is this possible, can I write it like this? 
+Time-varying covariate: Popularity (Measured by amount of in-degrees)
+-\> Is this possible, can I write it like this?
 
-Dyad covariates: 
-- Same-sex friendships
-- Studying together (once again, is this possible?)
+Dyad covariates: - Same-sex friendships - Studying together (once again,
+is this possible?)
 
 Two tie functions identified, based on: [@FRANKEN2023]
 
-1: Parental education level tie formation function
-Structural effects to use: trial-and-error? [@FRANKEN2023] uses outdegree, reciprocity and transitivity but maybe this is for later
+1: Parental education level tie formation function Structural effects to
+use: trial-and-error? [@FRANKEN2023] uses outdegree, reciprocity and
+transitivity but maybe this is for later
 
-Or popularity here? 
+Or popularity here?
 
-2: Social satisfaction function 
-Maybe social satisfaction of alter, is this something to be included? And that would be a time-varying covariate right? 
+2: Social satisfaction function Maybe social satisfaction of alter, is
+this something to be included? And that would be a time-varying
+covariate right?
 
-Additionally: 
-How to work with social satisfaction? Do I look at social satisfaction in the first or second wave? Or do I look at whether it has improved or not? And how do I take that into account? 
+Additionally: How to work with social satisfaction? Do I look at social
+satisfaction in the first or second wave? Or do I look at whether it has
+improved or not? And how do I take that into account?
+
 ------------------------------------------------------------------------
 
 # References
-:::
-::::
+
+::: ::::

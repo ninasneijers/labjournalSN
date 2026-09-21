@@ -1,0 +1,283 @@
+---
+title: "week4"
+author: "by: Nina Sneijers"
+bibliography: references.bib
+version: "21-9-2026"
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+fpackage.check <- function(packages) {
+    lapply(packages, FUN = function(x) {
+        if (!require(x, character.only = TRUE)) {
+            install.packages(x, dependencies = TRUE)
+            library(x, character.only = TRUE)
+        }
+    })
+}
+
+fsave <- function(x, file = NULL, location = "./data/processed/") {
+    ifelse(!dir.exists("data"), dir.create("data"), FALSE)
+    ifelse(!dir.exists("data/processed"), dir.create("data/processed"), FALSE)
+    if (is.null(file))
+        file = deparse(substitute(x))
+    datename <- substr(gsub("[:-]", "", Sys.time()), 1, 8)
+    totalname <- paste(location, datename, file, ".rda", sep = "")
+    save(x, file = totalname)  #need to fix if file is reloaded as input name, not as x. 
+}
+
+fload <- function(filename) {
+    load(filename)
+    get(ls()[ls() != "filename"])
+}
+
+fshowdf <- function(x, ...) {
+    knitr::kable(x, digits = 2, "html", ...) %>%
+        kableExtra::kable_styling(bootstrap_options = c("striped", "hover")) %>%
+        kableExtra::scroll_box(width = "100%", height = "300px")
+}
+
+colorize <- function(x, color) {
+    sprintf("<span style='color: %s;'>%s</span>", color, x)
+}
+packages = c("RSiena", "devtools", "igraph")
+fpackage.check(packages)
+#devtools::install_github('JochemTolsma/RsienaTwoStep', build_vignettes=TRUE)
+packages = c("RsienaTwoStep")
+fpackage.check(packages)
+```
+
+# Experimenting
+```{r}
+require(igraph)
+g <- make_graph("Zachary")
+plot(g)
+
+#not the same pictures, but centres are the same
+#centre of the graph is decided by amount of ties 
+```
+
+Description: 
+Network exists of 34 people. Relations are non-directed (or is this the default of igraph?)
+```{r}
+gmat <- as_adjacency_matrix(g, type = "both", sparse = FALSE)
+gmat
+isSymmetric(gmat) 
+#symmetric is true so the network is undirected
+```
+
+## Descriptives
+```{r}
+#size
+# number of nodes
+vcount(g)
+# number of edges
+ecount(g)
+
+#degree
+igraph::degree(g)
+# hist(table(degree(g)), xlab='indegree', main= 'Histogram of indegree')
+
+#transitivity
+# be aware that directed graphs are considered as undirected. but g is undirected.
+igraph::transitivity(g, type = c("localundirected"), isolates = c("NaN", "zero")) 
+
+#betweenness
+igraph::betweenness(g, directed = FALSE)
+
+#1 and 34 should be stressed a bit more as they have higher betweenness. You could give them a colour with you palette or make them bigger
+
+
+```
+
+```{r}
+igraph::dyad_census(g)
+
+igraph::triad.census(g)
+# I will use sna because it shows the names of the triads as well.
+sna::triad.census(gmat)
+unloadNamespace("sna")  #I will detach this package again, otherwise it will interfere with all kind of functions from igraph, and my students will hate me for that.
+transitivity(
+  g,
+  type = c("globalundirected"),
+  vids = NULL,
+  weights = NULL,
+  isolates = c("NaN", "zero")
+)
+```
+
+visualisatie - we maken de grootte van de netwerken afhankelijk van iets anders: 
+```{r}
+# changing V(ertices)
+# if you want to change the edges ((pijltjes)) use E 
+V(g)$size = betweenness(g, normalized = T, directed = FALSE) * 60 + 12 #after some trial and error
+plot(g, mode = "undirected")
+
+#set the nodes a bit further apart
+set.seed(2345)
+l <- layout_with_mds(g)  #https://igraph.org/r/doc/layout_with_mds.html
+plot(g, layout = l)
+
+
+l  #let us take a look at the coordinates
+l[1, 1] <- 4
+l[34, 1] <- -3.5
+plot(g, layout = l)
+#this graph might make you interpret it like there is polarisation, fight, that 1 and 34 the network apart
+```
+
+Questions: is this data manipulation or not? Is it illustrating the story more clearly or not? Is it ethical? 
+!!!! It is important to be open about this !!!
+In this case you would mention in the article that you placed 1 and 34 on the outsides of your picture 
+
+# Experimenting on own data
+```{r}
+
+load("C:\\Users\\ninas\\OneDrive - Radboud Universiteit\\RSCS\\Social Networks\\labjournalSN\\klooien.Rdata")
+load("C:\\Users\\ninas\\OneDrive - Radboud Universiteit\\RSCS\\Social Networks\\labjournalSN\\data\\All-ListedData_MRCP_Wave12_Net.RData")
+
+hanging[[1]][[1]]
+hanging[[1]][[2]]
+hanging[[1]][[3]]
+#confusion! I thought there were two waves, what is the third about? 
+hangingw1 <- na_if(hanging[[1]][[1]], 9)
+hangingw2 <- na_if(hanging[[1]][[2]], 9)
+
+hangingw1_nona <- na_if(hanging[[1]][[1]], 9)
+#checking if one misses in rows
+rowhangingw1 <- rowSums(is.na(hangingw1_nona)) == nrow(hangingw1_nona)
+#checking if one misses in cols
+colhangingw1 <- colSums(is.na(hangingw1_nona)) == ncol(hangingw1_nona)
+hangingw1_nona[which(rowhangingw1) , ] <- 0
+hangingw1_nona
+```
+
+Okay let's try something! 
+
+```{r}
+require(igraph)
+gw1 <- igraph::graph_from_adjacency_matrix(hangingw1_nona, mode = "directed", weighted = NULL, diag = TRUE, add.colnames = NA,
+    add.rownames = NA)
+plot(gw1)
+#ugly!
+simplify(gw1)
+#bit better... but still ugly
+```
+
+New attempt for wave 1 (looked at Jochem's plot):
+```{r}
+igraph::betweenness(gw1, directed = TRUE)
+V(gw1)$size = betweenness(gw1, normalized = T, directed = TRUE) * 100 + 10
+plot(gw1,
+     vertex.color = "orange", # nice color for the vertices
+     vertex.size = 5,  # we'll vertices a bit smaller
+     vertex.frame.color = "gray",  # we'll put a gray frame around vertices
+     vertex.label.color = "black",  # not that ugly blue color for the labels (names)
+     vertex.label.cex = 0.5,  # make the label a bit smaller too
+     vertex.label.dist = 0.9,  # we'll pull the labels a bit away from the vertices
+     edge.curved = 0.2, # curved edges is always a nice touch
+     edge.arrow.size = 0.1) # make arrow size (direction of edge) smaller
+```
+
+
+Let's compare to wave 2 and colour the men/women 
+```{r}
+hangingw2_nona <- na_if(hanging[[1]][[1]], 9)
+#checking if one misses in rows
+rowhangingw2 <- rowSums(is.na(hangingw2_nona)) == nrow(hangingw2_nona)
+#checking if one misses in cols
+colhangingw2 <- colSums(is.na(hangingw2_nona)) == ncol(hangingw2_nona)
+hangingw2_nona[which(rowhangingw2) , ] <- 0
+
+igraph::betweenness(gw2, directed = TRUE)
+V(gw2)$size = betweenness(gw2, normalized = T, directed = TRUE) * 100 + 10
+gw2 <- igraph::graph_from_adjacency_matrix(hangingw1_nona, mode = "directed", weighted = NULL, diag = TRUE, add.colnames = NA,
+    add.rownames = NA)
+
+kleurtje <- ifelse(gender_test==2, "orange", "purple")
+plot(gw2,
+     vertex.color = kleurtje, # nice color for the vertices
+     vertex.size = 5,  # we'll vertices a bit smaller
+     vertex.frame.color = "gray",  # we'll put a gray frame around vertices
+     vertex.label.color = "black",  # not that ugly blue color for the labels (names)
+     vertex.label.cex = 0.5,  # make the label a bit smaller too
+     vertex.label.dist = 0.9,  # we'll pull the labels a bit away from the vertices
+     edge.curved = 0.2, # curved edges is always a nice touch
+     edge.arrow.size = 0.1)
+
+gw2
+```
+
+### Intermezzo: Panicking about NAs
+```{r}
+testm <- matrix(NA, nrow = 4, ncol = 4)
+testm[1,1] <- 0 
+testm[1,2] <- 1
+testm[1,4] <- 1 
+testm[3,1] <- 0 
+testm[3,2] <- 1
+testm[3,4] <- 1
+testm[4,1] <- 1
+testm[4,2] <- 0 
+testm[4,4] <- 1 
+
+#checking if one misses in rows
+missrow <- rowSums(is.na(testm)) == nrow(testm)
+#checking if one misses in cols
+misscol <- colSums(is.na(testm)) == ncol(testm)
+#checking if missing in both
+misstotal <- which(missrow & misscol)
+
+testm[which(missrow) , ] <- 0 
+testm
+```
+
+# Webscraping
+```{r}
+# start with clean workspace
+rm(list = ls())
+
+# install.packages('data.table')
+library(data.table)  # mainly for faster data handling
+library(tidyverse)  # I assume you already installed this one!
+# install.packages('httr') # we don't need this for now require(httr)
+#install.packages("xml2")
+require(xml2)
+#install.packages("rvest")
+require(rvest)
+#install.packages("devtools")
+require(devtools)
+# Note we're doing something different here. We're installing a *latest* version directly from
+# GitHub This is because the released version of this packages contains some errors!
+devtools::install_github("jkeirstead/scholar")
+
+require(scholar)
+
+# define workdirectory, note the double *backslashes* if you're on windows setwd('/yourpathhere)'
+
+url<- "https://nos.nl/zoeken?q=nprz&page=1"
+nos_nprz <- read_html(url)
+nos_nprz
+
+lijst <- nos_nprz %>% html_elements("main") %>% html_elements("ul") %>% html_elements("li")
+```
+
+
+```{r}
+titel <- nos |>
+
+lijst[1] %>% html_children %>% html_attr(name="href")
+lijst[1] %>% html_element("time") %>% html_text
+
+url <- paste0("https://nos.nl", artikel1) 
+tekst1 <- read_html(url)
+html_text2(tekst1)
+
+#via element you go deeper into a page. you can also look into this via children 
+```
+
+
+------------------------------------------------------------------------
+
+# References
+:::
+::::

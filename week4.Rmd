@@ -275,6 +275,145 @@ html_text2(tekst1)
 #via element you go deeper into a page. you can also look into this via children 
 ```
 
+# Some more Klooien
+## Descriptives 
+
+I created a neat dataframe (yay!) from the data I want to use in the end. As I want to look into parental education level, I now want to construct some networks based on that.
+
+#### Wave 1
+First, some descriptives for w1: 
+```{r}
+graphw1 <- graph_from_adjacency_matrix(hangingw1_nona, mode = "directed")
+networkw1 <- as.network(hangingw1_nona)
+
+#degree / density 
+network.density(networkw1)
+#reciprocity
+reciprocity(graphw1, ignore.loops = T, mode = c("default", "ratio"))
+#dyad configurations
+dyad_census(graphw1)
+#triad configurations
+triad_census(graphw1)
+?triad_census
+# transitivity 
+transitivity(graphw1)
+
+# betweenness
+igraph::betweenness(graphw1, directed = TRUE)
+```
+
+
+What does this tell me about wave 1? It tells me that the network in wave 1 has a very low density, meaning that only a few of the connections that could have been made, were made.
+
+In terms of dyads, 93 ties were mutual and thus reciprocated I think, 209 were not only one-sided and 6958 ties have not been made. 
+When looking at triads, the empty triad was the most common (253.808), followed by the triad with one single, directed tie (22.549) and the graph with mutual connection between two nodes (10.101). Then, there were also quite a few out-stars (235), in-stars (243), directed lines (219)... I am not sure how much I should write about this? 
+
+The transitivity in W1 is 0.36, but I do not know whether this is high or low. But I think with this formula transitivity might be considered undirected? 
+
+When looking at betweenness, there can be seen that there are a couple of nodes with a very high betweenness centrality, when looking at 30092, 300059 and 30008. Would be nice if I could single those out a bit more. 
+
+But first, look at W2!
+
+#### Wave 2
+
+```{r}
+graphw2 <- graph_from_adjacency_matrix(hangingw2_nona, mode = "directed")
+networkw2 <- as.network(hangingw2_nona)
+
+#degree / density 
+network.density(networkw2)
+#reciprocity
+reciprocity(graphw2, ignore.loops = T, mode = c("default", "ratio"))
+#dyad configurations
+dyad_census(graphw2)
+#triad configurations
+triad_census(graphw2)
+
+# transitivity 
+transitivity(graphw2)
+
+# betweenness
+igraph::betweenness(graphw2, directed = TRUE)
+```
+Compared to wave 1, wave 2 has an even lower network density. What does this mean? I am not sure, but interesting...
+
+Also the reciprocity is slightly lower, but I don't think the numbers are that distinctive
+
+Then, there also seem to be less mutual dyads in wave 2, I think that's a bit sad? Some friendships broke up I think. The number of asymmetrical ties is also lower. While the number of no dyad is higher. 
+
+Triads I find harder to compare but from first insights it seems that the amount of triads that have a direction or are mutual are also lower. 
+
+Then, let's look at our popular nodes. Are they still popular? 30008 and 300059 have 0 betweenness centrality now, what does this mean? Generally, I don't see the high numbers from the previous wave coming back here at all. 
+
+## Visualisation
+Maybe we can understand it a bit more with some visualisation? Let's see, some graphs based on betweenness
+
+#### Betweenness
+```{r}
+graphw1_nice <- graphw1
+V(graphw1_nice)$size = betweenness(graphw1, normalized = T, directed = T) * 1000 + 30
+
+plot(graphw1_nice,
+     vertex.color = "lightblue",
+     vertex.frame.color = "gray",
+     vertex.label.color = "black",
+     vertex.label.cex = 0.3,
+     vertex.label.dist = 0.5, 
+     edge.curved = 0.2,
+     edge.arrow.size = 0.075,
+     margin = 0.01,
+     rescale = FALSE, ylim = c(-9,9))
+```
+
+Okay and then comparing this to the second wave
+```{r}
+graphw2_nice <- graphw2
+V(graphw2_nice)$size = betweenness(graphw2, normalized = T, directed = T) * 1000 + 30
+
+plot(graphw2_nice,
+     vertex.color = "lightblue",
+     vertex.frame.color = "gray",
+     vertex.label.color = "black",
+     vertex.label.cex = 0.3,
+     vertex.label.dist = 0.5, 
+     edge.curved = 0.2,
+     edge.arrow.size = 0.075,
+     margin = 0.01,
+     rescale = FALSE, ylim = c(-9,9))
+```
+Maybe it's because of the way R has visualised it, but there seems to be a sort of split up? Interesting? And the network seems to be more split up, here there seem to be two groups (maybe friendgroups) and less ties.
+
+#### On parental education level
+```{r}
+kleurtje <- ifelse(df1$parentshigh==1, "lightblue", "darkblue")
+#dark blue is higher educated, light blue is lower educated parents
+
+#Wave 1
+plot(graphw1_nice,
+     vertex.color = kleurtje,
+     vertex.frame.color = "gray",
+     vertex.label.color = "black",
+     vertex.label.cex = 0.3,
+     vertex.label.dist = 0.5, 
+     edge.curved = 0.2,
+     edge.arrow.size = 0.075,
+     margin = 0.01,
+     rescale = FALSE, ylim = c(-9,9))
+#Wave 2
+plot(graphw2_nice,
+     vertex.color = kleurtje,
+     vertex.frame.color = "gray",
+     vertex.label.color = "black",
+     vertex.label.cex = 0.3,
+     vertex.label.dist = 0.5, 
+     edge.curved = 0.2,
+     edge.arrow.size = 0.075,
+     margin = 0.01,
+     rescale = FALSE, ylim = c(-9,9))
+
+#with the side note that maybe something is not entirely yet correct in coding, and I do not know how to deal with the NAs! 
+
+```
 
 ------------------------------------------------------------------------
 

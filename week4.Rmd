@@ -317,6 +317,7 @@ But first, look at W2!
 #### Wave 2
 
 ```{r}
+#structural effects
 graphw2 <- graph_from_adjacency_matrix(hangingw2_nona, mode = "directed")
 networkw2 <- as.network(hangingw2_nona)
 
@@ -387,7 +388,7 @@ Maybe it's because of the way R has visualised it, but there seems to be a sort 
 ```{r}
 kleurtje <- ifelse(df1$parentshigh==1, "lightblue", "darkblue")
 #dark blue is higher educated, light blue is lower educated parents
-
+#add as png so you can decide how big your png is
 #Wave 1
 plot(graphw1_nice,
      vertex.color = kleurtje,

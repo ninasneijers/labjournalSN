@@ -48,7 +48,7 @@ fpackage.check(packages)
 packages = c("RsienaTwoStep")
 fpackage.check(packages)
 ```
-
+# Dataframe
 Dataframe with the students characteristics for now: 
 ```{r}
 df1 <- as.data.frame(matrix(ncol=0, nrow=121))
@@ -72,6 +72,7 @@ df1$parent2high <- car::recode(df1$parent2edu, "0:5 = 0; 6:10 = 1")
 df1$parentshigh <- with(df1, ifelse(parent1high == parent2high, parent1high, 0))
 ```
 
+# Hanging NAs 
 Dealing with NAs in my networkdata called 'hanging'. I am going to use the joiners/leavers method, so in the first wave it will be assumed that participants have send out no ties if they were absent, and if they joined later, the numbers from the first wave will be copied. 
 ```{r}
 #so for wave 1: 
@@ -96,5 +97,45 @@ rowhangingw2
 colhangingw2 <- colSums(is.na(hangingw2_nona)) == ncol(hangingw2_nona)
 hangingw2_nona[which(rowhangingw2) , ] <- 0
 hangingw2_nona
+```
+
+# Factor analysis
+
+```{r}
+#factor analyse voor wave 1
+head(T1socsat)
+df_socsat1 <- as.data.frame(T1socsat[[1]])
+df_socsat1$T1SOCSAT1_s <- scale(df_socsat1$T1SOCSAT1)
+df_socsat1$T1SOCSAT2_s <- scale(df_socsat1$T1SOCSAT2)
+df_socsat1$T1SOCSAT3_s <- scale(df_socsat1$T1SOCSAT3)
+df_socsat1$T1SOCSAT4_s <- scale(df_socsat1$T1SOCSAT4)
+df_socsat1$T1SOCSAT5_s <- scale(df_socsat1$T1SOCSAT5)
+
+# Scale the data
+socsat1_scaled <- scale(df_socsat1[,1:5])
+library(psych)
+fa1 <- fa(r = socsat1_scaled,
+         nfactors = 4,
+         rotate = "varimax")
+summary(fa1)
+fa1$loadings
+
+#factor analysis voor wave 2
+head(T2socsat)
+df_socsat2 <- as.data.frame(T2socsat[[1]])
+df_socsat1$T2SOCSAT1_s <- scale(df_socsat2$T2SOCSAT1)
+df_socsat1$T2SOCSAT2_s <- scale(df_socsat2$T2SOCSAT2)
+df_socsat1$T2SOCSAT3_s <- scale(df_socsat2$T2SOCSAT3)
+df_socsat1$T2SOCSAT4_s <- scale(df_socsat2$T2SOCSAT4)
+df_socsat1$T2SOCSAT5_s <- scale(df_socsat2$T2SOCSAT5)
+
+# Scale the data
+socsat2_scaled <- scale(df_socsat2[,1:5])
+library(psych)
+fa2 <- fa(r = socsat2_scaled,
+         nfactors = 4,
+         rotate = "varimax")
+summary(fa2)
+fa2$loadings
 ```
 

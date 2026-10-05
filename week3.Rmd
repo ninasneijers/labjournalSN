@@ -292,7 +292,7 @@ ans
 #sterk network isolate effects. veel mensen die niet met anderen gepubliceerd hebben
 ```
 
-## Klungelen 
+## Klungelen
 
 ```{r}
 df <- load("./All-ListedData_MRCP_Wave12_Ind.RData")
@@ -384,3 +384,4 @@ ans
 # References
 
 ::: ::::
+:::

@@ -62,7 +62,8 @@ require(tidyverse)
 df1$gender <- coalesce(gender[[1]][,1], gender[[1]][,2])
 #add ethnicity 
 df1$ethnicity <- coalesce(ethnic[[1]][,1], ethnic[[1]][,2])
-#parentID 
+
+#parent_edu
 view(parentedu)
 df1$parent1edu <- coalesce(parentedu[[1]][,1], parentedu[[1]][,3])
 df1$parent2edu <- coalesce(parentedu[[1]][,2], parentedu[[1]][,4])
@@ -72,15 +73,10 @@ library("car")
 df1$parent1high <- car::recode(df1$parent1edu, "0:5 = 0; 6:10 = 1") #CHECK for 10 --> might be NA 
 df1$parent2high <- car::recode(df1$parent2edu, "0:5 = 0; 6:10 = 1") 
 
-df1$parentshigh <- with(df1, ifelse(parent1high == parent2high, parent1high, 0))
-save(df1, file = "parentedudata.Rdata")
+df1$parentshigh <- with(df1, ifelse(parent1high == 1 | parent2high == 1, 1, ifelse(
+  parent1high == 0 & parent2high == 0, 0, NaN)))
 ```
 
-df <- df |>
-    mutate(
-    parent_norm = ifelse(conditie, a, ifelse(conditie2, b, NaN),
-    parent_norm = ifelse (wat))
-)
 
 # Hanging NAs 
 Dealing with NAs in my networkdata called 'hanging'. I am going to use the joiners/leavers method, so in the first wave it will be assumed that participants have send out no ties if they were absent, and if they joined later, the numbers from the first wave will be copied. 
@@ -89,63 +85,74 @@ Dealing with NAs in my networkdata called 'hanging'. I am going to use the joine
 hangingw1 <- na_if(hanging[[1]][[1]], 9)
 hangingw2 <- na_if(hanging[[1]][[2]], 9)
 
-hangingw1_nona <- na_if(hanging[[1]][[1]], 9)
+wave1 <- na_if(hanging[[1]][[1]], 9)
 #checking if one misses in rows
-rowhangingw1 <- rowSums(is.na(hangingw1_nona)) == nrow(hangingw1_nona)
+rowhangingw1 <- rowSums(is.na(wave1)) == nrow(wave1)
 rowhangingw1
 #checking if one misses in cols
-colhangingw1 <- colSums(is.na(hangingw1_nona)) == ncol(hangingw1_nona)
-hangingw1_nona[which(rowhangingw1) , ] <- 0
-hangingw1_nona
+colhangingw1 <- colSums(is.na(wave1)) == ncol(wave1)
+wave1[which(rowhangingw1) , ] <- 0
+
+save(wave1, file = "wave1.Rdata")
 
 #CHANGE: for w2, I want the leavers to remain at the same value as they had in the previous wave, but I do not understand how to do this. Ask in class... for now, I will give them the 0 value. 
-hangingw2
-hangingw2_nona <- na_if(hanging[[1]][[2]], 9)
-rowhangingw2 <- rowSums(is.na(hangingw2_nona)) == nrow(hangingw2_nona)
+wave2 <- na_if(hanging[[1]][[2]], 9)
+rowhangingw2 <- rowSums(is.na(wave2)) == nrow(wave2)
 rowhangingw2
 #checking if one misses in cols
-colhangingw2 <- colSums(is.na(hangingw2_nona)) == ncol(hangingw2_nona)
-hangingw2_nona[which(rowhangingw2) , ] <- 0
-hangingw2_nona
+colhangingw2 <- colSums(is.na(wave2)) == ncol(wave2)
+wave2[which(rowhangingw2) , ] <- 0
+
+save(wave2, file = "wave2.Rdata")
 ```
 
-# Factor analysis
+# Social satisfaction
+I should have done this beforehand, but I did it afterwards and then I saw that question 2 and 3 were about negative feelings while the other three are about positive feelings. This is also shown from the factor analysis: 
 
 ```{r}
 #factor analyse voor wave 1
-head(T1socsat)
 df_socsat1 <- as.data.frame(T1socsat[[1]])
+df_socsat1v2 <- subset(df_socsat1, select = c(T1SOCSAT1, T1SOCSAT4, T1SOCSAT5))
+
 df_socsat1$T1SOCSAT1_s <- scale(df_socsat1$T1SOCSAT1)
-df_socsat1$T1SOCSAT2_s <- scale(df_socsat1$T1SOCSAT2)
-df_socsat1$T1SOCSAT3_s <- scale(df_socsat1$T1SOCSAT3)
 df_socsat1$T1SOCSAT4_s <- scale(df_socsat1$T1SOCSAT4)
 df_socsat1$T1SOCSAT5_s <- scale(df_socsat1$T1SOCSAT5)
 
 # Scale the data
-socsat1_scaled <- scale(df_socsat1[,1:5])
+socsat1_scaled <- scale(df_socsat1v2[,1:3])
 library(psych)
 fa1 <- fa(r = socsat1_scaled,
-         nfactors = 4,
+         nfactors = 3,
          rotate = "varimax")
 summary(fa1)
 fa1$loadings
 
 #factor analysis voor wave 2
-head(T2socsat)
 df_socsat2 <- as.data.frame(T2socsat[[1]])
+df_socsat2v2 <- subset(df_socsat2, select = c(T2SOCSAT1, T2SOCSAT4, T2SOCSAT5))
+
 df_socsat1$T2SOCSAT1_s <- scale(df_socsat2$T2SOCSAT1)
-df_socsat1$T2SOCSAT2_s <- scale(df_socsat2$T2SOCSAT2)
-df_socsat1$T2SOCSAT3_s <- scale(df_socsat2$T2SOCSAT3)
 df_socsat1$T2SOCSAT4_s <- scale(df_socsat2$T2SOCSAT4)
 df_socsat1$T2SOCSAT5_s <- scale(df_socsat2$T2SOCSAT5)
 
 # Scale the data
-socsat2_scaled <- scale(df_socsat2[,1:5])
+socsat2_scaled <- scale(df_socsat2v2[,1:3])
 library(psych)
 fa2 <- fa(r = socsat2_scaled,
-         nfactors = 4,
+         nfactors = 3,
          rotate = "varimax")
 summary(fa2)
 fa2$loadings
 ```
+
+Okay honestly, no clue exactly what this means, I am going to ask my classmates for help at some later point. For now, I will just craft a social satisfaction variable from the average of these three.
+```{r}
+df1$socsatw1 <-mutate(df_socsat1v2, socsatw1 = rowMeans(select(df_socsat1v2, T1SOCSAT1:T1SOCSAT5), na.rm = TRUE))
+df1$socsatw2 <-mutate(df_socsat2v2, socsatw2 = rowMeans(select(df_socsat2v2, T2SOCSAT1:T2SOCSAT5), na.rm = TRUE))
+
+df2 <- subset(df1, select = c(studentid, gender, ethnicity, parentshigh, socsatw1, socsatw2))
+
+save(df2, file = "parentedudata.Rdata")
+```
+
 

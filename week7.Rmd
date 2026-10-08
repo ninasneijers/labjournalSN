@@ -1,0 +1,266 @@
+---
+title: "Week 7"
+output: html_document
+date: "2026-10-12"
+---
+
+For this week I prepared my presentation, which includes my final research question and hypotheses, the variables and effects I included and two RSiena models. Throughout the presentation I have put the questions that I have so I will address them when I get to it.
+
+# Final Research Questions:
+
+Descriptive research question 1: "To what extent do reciprocated friendships among students with parents with the same educational level occur?"
+
+*H1: Reciprocated friendships are more likely to occur among students with parents with the same educational level*
+
+Descriptive research question 2: "To what extent do reciprocated friendships affect students' social satisfaction throughout the year?"
+
+*H2: Reciprocated friendships positively affect students' social satisfaction throughout the year*
+
+Explanatory "To what extent do reciprocated friendships among students with parents with the same education level affect their social satisfaction throughout the year?"
+
+*H3: Reciprocated friendships among students with parents with the same educational level increase the positive effect of reciprocated friendships on social satisfaction*
+
+**Questions and comments:**
+
+- Are my hypotheses okay formulated like this? I am a bit in doubt about the last one, if I formulated that correctly.
+
+- For H1, I will be controlling for gender and ethnicity
+
+- For H2 and H3, I will be controlling for an assimilation effect, which is about that alter and ego mimic each other. Is it correct if I explain it like this, or should I formulate that differently?
+
+# Variables of interest
+
+**Ego-level:**
+
+- Educational level of parents (high/low)
+
+- Gender (control)
+
+- Ethnicity (control)
+
+- Social satisfaction (dependent variable)
+
+**On dyadic level:**
+
+- social satisfaction assimilation
+
+- dyadic similarity based on gender, ethnicity and parental education level
+
+**On a network level:**
+
+- Homogeneity based on parental education level
+
+**Question:** Have I understood it correct like this or should I write it up differently? I feel like I might be missing some things.
+
+# Included RSiena Effects
+
+**Structural effects:**
+
+- Density effect (density)
+
+- Reciprocity effect (recip)
+
+- Transitivity effect (transTrip)
+
+- Network-Isolate Effect (isolateNet)
+
+- In-degree related popularity effect (inPop)
+
+- Out-degree activity (outAct)
+
+*I based this on [@FRANKEN2023] and Chapter 7 of SNAS [\@SNASS]. Are these the ones that should always be included?*
+
+**For hypothesis 1:**
+
+- sameX \> defines number of ties of i to all actors j with the same covariate
+
+- sameXRecip \> defines the number of reciprocated ties of i to all actors j with the same covariate
+
+I will do this in my first model for only parental education level and in my second model gender and ethnicity will be included as control variables.
+
+**For hypothesis 2:**
+
+- Effects of H1 –\> *I have to include effects of H1 as well right?*
+- RecipDeg \> Reciprocated degree effect on behaviour (social satisfaction)
+- avRecAlt \> Average reciprocated alter effect, so this takes into account how i's behaviour is affected by the average behaviour of his reciprocated alters
+
+The third model will include only the RecipDeg and it will then be compared with the fourth model that includes how ego is affected by behaviour of alter.
+
+**For hypothesis 3:**
+
+- Effects of H1 + H2
+
+- avSameXRecAlt \> effect on behaviour of i as influenced by the reciprocated ties of i that share the same covariate
+
+- avRecAltSameX \> average reciprocated alter for same covariate, which looks at the effect of the average behaviour of alter to whom i has a reciprocated tie and where they also share the same covariate value (so in this case their parents have the same educational level)
+
+The fifth model will include avSameXRecAlt and the sixth model will be compared with this to see if the effect (if it is present) would still be present when the average behaviour of alter is taken into account.
+
+# Let's go build some models
+
+## Loading the packages
+
+```{r}
+#loading packages
+fpackage.check <- function(packages) {
+    lapply(packages, FUN = function(x) {
+        if (!require(x, character.only = TRUE)) {
+            install.packages(x, dependencies = TRUE)
+            library(x, character.only = TRUE)
+        }
+    })
+}
+
+fsave <- function(x, file = NULL, location = "./data/processed/") {
+    ifelse(!dir.exists("data"), dir.create("data"), FALSE)
+    ifelse(!dir.exists("data/processed"), dir.create("data/processed"), FALSE)
+    if (is.null(file))
+        file = deparse(substitute(x))
+    datename <- substr(gsub("[:-]", "", Sys.time()), 1, 8)
+    totalname <- paste(location, datename, file, ".rda", sep = "")
+    save(x, file = totalname)  #need to fix if file is reloaded as input name, not as x. 
+}
+
+fload <- function(filename) {
+    load(filename)
+    get(ls()[ls() != "filename"])
+}
+
+fshowdf <- function(x, ...) {
+    knitr::kable(x, digits = 2, "html", ...) %>%
+        kableExtra::kable_styling(bootstrap_options = c("striped", "hover")) %>%
+        kableExtra::scroll_box(width = "100%", height = "300px")
+}
+
+colorize <- function(x, color) {
+    sprintf("<span style='color: %s;'>%s</span>", color, x)
+}
+packages = c("RSiena", "devtools", "igraph")
+fpackage.check(packages)
+#devtools::install_github('JochemTolsma/RsienaTwoStep', build_vignettes=TRUE)
+packages = c("RsienaTwoStep")
+fpackage.check(packages)
+
+packages = c("stringdist", "stringi", "tidyverse")
+
+fpackage.check(packages)
+```
+
+## Loading in the data
+
+```{r}
+load("C:\\Users\\ninas\\OneDrive - Radboud Universiteit\\RSCS\\Social Networks\\labjournalSN\\parentedudata.Rdata")
+load("C:\\Users\\ninas\\OneDrive - Radboud Universiteit\\RSCS\\Social Networks\\labjournalSN\\wave1.Rdata")
+load("C:\\Users\\ninas\\OneDrive - Radboud Universiteit\\RSCS\\Social Networks\\labjournalSN\\wave2.Rdata")
+```
+
+Taking this over from the Sunbelt Workshop. I am first going to focus on my first hypothesis and then I will try to figure out how to deal with behaviour
+
+```{r}
+# let us put the diagonal to zero
+diag(wave1) <- 0
+diag(wave2) <- 0
+# we want a binary tie (not a weighted tie)
+wave1[wave1 > 1] <- 1
+wave2[wave2 > 1] <- 1
+# put the nets in an array
+network_array <- array(data = c(wave1, wave2), dim = c(dim(wave1), 2))
+# dependent
+mynet <- sienaDependent(network_array)
+
+#independent variables
+covar_gender <- coCovar(as.numeric(df2$gender))
+covar_ethnicity <- coCovar(as.numeric(df2$ethnicity))
+covar_parentedu <- coCovar(as.numeric(df2$parentshigh))
+mydata <- make_data_rsiena(mynet, covar_gender, covar_ethnicity, covar_parentedu)
+```
+
+## Adding effects
+
+I wanted to add in ethnicity and gender as well, but I got some errors for some reason. For now I will stick to the first two models.
+
+```{r}
+#step 2 in Sunbelt
+myeff <- getEffects(mydata)
+
+#step 3 in sunbelt
+myeff #shows that density and reciprocity are already in there
+ifelse(!dir.exists("results"), dir.create("results"), FALSE)
+print01Report(mydata, modelname = "./results/MLC_initial")
+
+#Step 4: Specifiying some models 
+#adding in some structural effects
+myeff_basis <- set_effect(myeff, transTrip, depvar="mynet")
+myeff_basis <- set_effect(myeff_basis, isolateNet, depvar="mynet")
+myeff_basis <- set_effect(myeff_basis, inPop, depvar="mynet")
+myeff_basis <- set_effect(myeff_basis, outAct, depvar="mynet")
+myeff_basis
+
+#adding parental education
+myeff_edu <- set_effect(myeff_basis, egoX, covar1="covar_parentedu", depvar = "mynet")
+myeff_edu <- set_effect(myeff_edu, altX, covar1="covar_parentedu", depvar = "mynet")
+myeff_edu <- set_effect(myeff_edu, sameX, covar1="covar_parentedu", depvar = "mynet")
+myeff_edu <- set_effect(myeff_edu, sameXRecip, covar1="covar_parentedu", depvar = "mynet")
+myeff_edu
+
+#adding gender - should this be added separately from ethnicity? 
+#myeff_gender <- set_effect(myeff_edu, egoX, covar1="covar_parentedu", covar2="covar_gender", depvar = "mynet")
+#myeff_gender <- set_effect(myeff_gender, altX, covar2="covar_gender", depvar = "mynet")
+#myeff_gender <- set_effect(myeff_gender, sameX, covar2="covar_gender", depvar = "mynet")
+#myeff_gender <- set_effect(myeff_gender, sameXRecip, covar2="covar_gender", depvar = "mynet")
+#myeff_gender
+
+#adding ethnicity
+#myeff_eth <- set_effect(myeff_gender, egoX, covar3="covar_ethnicity", depvar = "mynet")
+#myeff_eth  <- set_effect(myeff_eth, altX, covar3="covar_ethnicity", depvar = "mynet")
+#myeff_eth  <- set_effect(myeff_eth, sameX, covar3="covar_ethnicity", depvar = "mynet")
+#myeff_eth  <- set_effect(myeff_eth, sameXRecip, covar3="covar_ethnicity", depvar = "mynet")
+#myeff_eth 
+```
+
+Let's run the models and see what happens
+
+```{r}
+myAlgorithm <- sienaAlgorithmCreate(projname = "MLC_initial")
+(ans_M0 <- siena07(myAlgorithm, data = mydata, effects = myeff_basis, thetaBound = 10000, returnDeps = T))
+myAlgorithm <- sienaAlgorithmCreate(projname = "MLC_edu")
+(ans_M1 <- siena07(myAlgorithm, data = mydata, effects = myeff_edu, thetaBound = 10000, returnDeps = T))
+#myAlgorithm <- sienaAlgorithmCreate(projname = "MLC_gender")
+#(ans_M2 <- siena07(myAlgorithm, data = mydata, effects = myeff_gender, thetaBound = 1000, returnDeps = T))
+#myAlgorithm <- sienaAlgorithmCreate(projname = "MLC_eth")
+#(ans_M3 <- siena07(myAlgorithm, data = mydata, effects = myeff_eth, thetaBound = 1000, returnDeps = T))
+
+save(ans_M0, file = "ansM0.RData")
+save(ans_M1, file = "ansM1.RData")
+#save(ans_M2, file = "ansM2.RData")
+#save(ans_M3, file = "ansM3.RData")
+```
+
+## Interpretation
+
+**Questions and comments** For my interpretation I based myself on Mylene's interpretations of her models. However, my convergence rates seem to be much much higher, which makes me wonder whether I did something wrong or whether I should have perhaps standardised some things? I also checked some other blogs, my convergence rate seems very high, I don't understand why, but maybe it is the dataset. Also where can I see whether something is significant, do I have to look at the t-ratio?
+
+I am generally very unsure about the interpretation overall so I think it would be nice to take a look at it together.
+
+### Model 0
+
+```{r}
+ans_M0
+```
+
+This null model has a very high convergence ratio of 20.96. I am not sure whether this is expected or very strange. The RSiena model results indicate that the network is sparse, as a negative density effect is seen (b = -0.74, SE = 0.4). The students overall thus form relatively few ties within their community. However, ties seem to be relatively reciprocal, because the effect is positive (b = 2.14, SE = .26).
+
+(*Now follows how I think inPop and outAct should be interpreted).* Relatively few nodes seem to receive many degrees, as indegree popularity is relatively low and negative (b = 0.85, SE = 0.19) and out-degree activity also seems to be relatively low (b = -0.08, SE = 0.05). I think this can be explained by the high ratio of network isolates (b = 636.65, SE = 230.39).
+
+### Model 1
+
+```{r}
+ans_M1
+```
+
+------------------------------------------------------------------------
+
+# References
+
+::: ::::
+:::

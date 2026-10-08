@@ -418,3 +418,143 @@ covariance/correlation matrix of X can be found using
 summary(ans) within R, or by using the 'verbose' option in Siena07.
  
 Total computation time 14.32 seconds.
+
+
+-----------------------------------
+New Analysis started.
+Date and time: 08/10/2026 16:47:19
+New results follow.
+-----------------------------------
+
+RSiena version 1.6.6 (20 apr 26)
+
+
+@1
+Estimation by stochastic approximation algorithm.
+=================================================
+
+Random initialization of random number stream.
+Effects object used: effects 
+Model Type:
+ Standard actor-oriented model 
+Behavioral Model Type:
+ Standard behavior actor-oriented model ('restrict')
+Estimation method: unconditional moment estimation
+.
+
+Time duration for simulations in each period is 1.0.
+Standard errors are estimated with the likelihood ratio method.
+Dolby method (regression on scores) is used.
+Initial value of gain parameter is  0.2000000.
+Reduction factor for gain parameter is  0.5000000.
+Number of subphases in Phase 2 is 4.
+
+Initial parameter values are 
+  1. rate:  constant mynet rate (period 1)                  4.6960
+  2. rate:  constant mynet rate (period 2)                  4.3288
+  3. eval:  outdegree (density)                            -1.4677
+  4. eval:  reciprocity                                     0.0000
+  5. eval:  same covar                                      0.0000
+  6. eval:  same covar x reciprocity                        0.0000
+  7. rate:  rate mybeh (period 1)                           0.7057
+  8. rate:  rate mybeh (period 2)                           0.8494
+  9. eval:  mybeh linear shape                              0.3224
+ 10. eval:  mybeh quadratic shape                           0.0000
+ 11. eval:  mybeh reciprocated degree                       0.0000
+
+
+Values of target statistics are
+  1. Amount of network change in period 1                               115.0000
+  2. Amount of network change in period 2                               106.0000
+  3. Number of ties                                                     238.0000
+  4. Number of reciprocated ties                                        160.0000
+  5. Same values on covar                                               155.0000
+  6. Same values on covar x reciprocity                                 102.0000
+  7. Amount of behavioral change in period 1 on mybeh                    27.0000
+  8. Amount of behavioral change in period 2 on mybeh                    33.0000
+  9. mybeh centered sum                                                  11.6667
+ 10. mybeh sum of cent. squares                                         121.0711
+ 11. mybeh reciprocated degrees                                          15.2267
+These were calculated from the data.
+
+ 11 parameters, 11 statistics
+
+Estimation of derivatives by the LR method (type 1).
+
+
+@2
+End of stochastic approximation algorithm, phase 3.
+---------------------------------------------------
+
+Total of 3007 iterations.
+Parameter estimates based on 2007 iterations,
+convergence diagnostics, covariance and derivative matrices based on 1000 iterations.
+
+Information for convergence diagnosis.
+Averages, standard deviations, and t-ratios for deviations from targets:
+  1.  -0.1910   9.5297  -0.0200 
+  2.   0.5040   8.9600   0.0562 
+  3.   0.8410  14.6849   0.0573 
+  4.   0.5280  13.6318   0.0387 
+  5.   0.5960  11.9626   0.0498 
+  6.   0.7560  10.9276   0.0692 
+  7.  -0.1720   4.5342  -0.0379 
+  8.  -0.0240   5.0451  -0.0048 
+  9.  -0.3200   7.8705  -0.0407 
+ 10.   0.5485  11.9883   0.0458 
+ 11.  -0.9860  13.5015  -0.0730 
+
+Good convergence is indicated by the t-ratios being close to zero.
+
+Overall maximum convergence ratio =  0.1669 .
+
+
+
+@2
+Estimation Results.
+-------------------
+
+Regular end of estimation algorithm.
+Total of 3007 iteration steps.
+
+
+@3
+Estimates and standard errors
+                             
+Network Dynamics
+ 1. rate:  constant mynet rate (period 1)                          5.8365  (   0.8810)
+ 2. rate:  constant mynet rate (period 2)                          4.5198  (   0.6693)
+ 3. eval:  outdegree (density)                                    -2.4388  (   0.1586)
+ 4. eval:  reciprocity                                             3.0415  (   0.3015)
+ 5. eval:  same covar                                              0.1279  (   0.1768)
+ 6. eval:  same covar x reciprocity                               -0.3375  (   0.3669)
+
+Behavior Dynamics
+ 7. rate:  rate mybeh (period 1)                                   1.1745  (   0.3024)
+ 8. rate:  rate mybeh (period 2)                                   1.6406  (   0.4226)
+ 9. eval:  mybeh linear shape                                      0.4881  (   0.3290)
+10. eval:  mybeh quadratic shape                                  -0.1976  (   0.0879)
+11. eval:  mybeh reciprocated degree                              -0.0786  (   0.1791)
+
+
+@3
+Covariance matrices
+                   
+Covariance matrix of estimates (correlations below diagonal):
+     0.776     -0.038     -0.005     -0.006      0.003      0.020     -0.003      0.003      0.001      0.000     -0.003
+    -0.065      0.448      0.005     -0.007      0.001      0.001     -0.010     -0.013      0.005     -0.007      0.000
+    -0.036      0.048      0.025     -0.033     -0.021      0.027     -0.002     -0.002      0.005      0.000     -0.002
+    -0.024     -0.034     -0.683      0.091      0.030     -0.090      0.005      0.008     -0.006      0.001      0.002
+     0.022      0.010     -0.756      0.554      0.031     -0.042      0.001      0.000     -0.002      0.000      0.000
+     0.061      0.005      0.469     -0.814     -0.652      0.135     -0.003     -0.006      0.000     -0.001      0.002
+    -0.010     -0.048     -0.037      0.059      0.023     -0.023      0.091      0.009     -0.016      0.002      0.005
+     0.007     -0.046     -0.030      0.066     -0.007     -0.037      0.073      0.179     -0.031      0.003      0.007
+     0.005      0.024      0.103     -0.062     -0.035      0.001     -0.166     -0.220      0.108     -0.004     -0.053
+     0.003     -0.125      0.000      0.042     -0.017     -0.046      0.075      0.092     -0.125      0.008      0.001
+    -0.019      0.004     -0.083      0.041      0.015      0.023      0.083      0.093     -0.902      0.035      0.032
+
+Derivative matrix of expected statistics X by parameters and
+covariance/correlation matrix of X can be found using
+summary(ans) within R, or by using the 'verbose' option in Siena07.
+ 
+Total computation time 19.85 seconds.

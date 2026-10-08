@@ -455,7 +455,7 @@ div.tocify {
 
 <div id="week-2" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Week 2</h1>
-<p>Last compiled on september, 2026 This week, I have read the relevant
+<p>Last compiled on oktober, 2026 This week, I have read the relevant
 chapters, started with an introduction for my research project and
 thought about the type of data I will need for the research project.
 Additionally, I have ‘geklooid’ with some data in order to learn how to
@@ -464,18 +464,8 @@ inspect social networks.</p>
 class="section level2" number="1.1">
 <h2><span class="header-section-number">1.1</span> Workshop inspecting
 Social Networks (klooien)</h2>
-<pre class="r"><code>library(igraph)</code></pre>
-<pre><code>## Warning: package &#39;igraph&#39; was built under R version 4.5.3</code></pre>
-<pre><code>## 
-## Attaching package: &#39;igraph&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     decompose, spectrum</code></pre>
-<pre><code>## The following object is masked from &#39;package:base&#39;:
-## 
-##     union</code></pre>
-<pre class="r"><code>library(RSiena)</code></pre>
-<pre><code>## Warning: package &#39;RSiena&#39; was built under R version 4.5.3</code></pre>
+<pre class="r"><code>library(igraph)
+library(RSiena)</code></pre>
 <pre class="r"><code>graph1 &lt;- graph_from_adjacency_matrix(s501, mode = &quot;directed&quot;)
 
 dyad_census(graph1)</code></pre>

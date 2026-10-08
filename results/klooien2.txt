@@ -6,7 +6,7 @@ Filename is ./results/klooien2.txt.
 
 This file contains basic descriptives for SIENA data set <<./results/klooien2>>.
 
-Date and time: 20/09/2026 13:53:38 
+Date and time: 08/10/2026 10:28:52 
 
 RSiena version 1.6.6 (20 04 2026)
 

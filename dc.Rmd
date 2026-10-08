@@ -51,6 +51,9 @@ fpackage.check(packages)
 # Dataframe
 Dataframe with the students characteristics for now: 
 ```{r}
+load("C:/Users/ninas/OneDrive - Radboud Universiteit/RSCS/Social Networks/labjournalSN/data/All-ListedData_MRCP_Wave12_Ind.RData")
+load("C:/Users/ninas/OneDrive - Radboud Universiteit/RSCS/Social Networks/labjournalSN/data/All-ListedData_MRCP_Wave12_Net.RData")
+
 df1 <- as.data.frame(matrix(ncol=0, nrow=121))
 #add student ID
 df1$studentid <- studentids[[1]]
@@ -70,7 +73,14 @@ df1$parent1high <- car::recode(df1$parent1edu, "0:5 = 0; 6:10 = 1") #CHECK for 1
 df1$parent2high <- car::recode(df1$parent2edu, "0:5 = 0; 6:10 = 1") 
 
 df1$parentshigh <- with(df1, ifelse(parent1high == parent2high, parent1high, 0))
+save(df1, file = "parentedudata.Rdata")
 ```
+
+df <- df |>
+    mutate(
+    parent_norm = ifelse(conditie, a, ifelse(conditie2, b, NaN),
+    parent_norm = ifelse (wat))
+)
 
 # Hanging NAs 
 Dealing with NAs in my networkdata called 'hanging'. I am going to use the joiners/leavers method, so in the first wave it will be assumed that participants have send out no ties if they were absent, and if they joined later, the numbers from the first wave will be copied. 

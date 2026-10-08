@@ -295,10 +295,8 @@ ans
 ## Klungelen
 
 ```{r}
-df <- load("./All-ListedData_MRCP_Wave12_Ind.RData")
-network <- load("C:\\Users\\ninas\\OneDrive - Radboud Universiteit\\RSCS\\Social Networks\\labjournalSN\\data\\All-ListedData_MRCP_Wave12_Net.RData")
-View(df)
-View(network)
+load("C:/Users/ninas/OneDrive - Radboud Universiteit/RSCS/Social Networks/labjournalSN/data/All-ListedData_MRCP_Wave12_Ind.RData")
+load("C:/Users/ninas/OneDrive - Radboud Universiteit/RSCS/Social Networks/labjournalSN/data/All-ListedData_MRCP_Wave12_Net.RData")
 ```
 
 Creating a dataframe with Aschwin's data:
@@ -368,16 +366,20 @@ packages = c("RSiena", "tidyverse", "stringdist", "stringi")
 fpackage.check(packages)
 
 #I want to know something about popularity, reciprocity and transitivity
-myeff1 <- includeEffects(myeff, ts_recip, inPop, transTrip)
-myeff1 #how to interpret this? Is this what I am supposed to get out of it?
+myeff <- includeEffects(myeff, inPop, transTrip)
+myeff #how to interpret this? Is this what I am supposed to get out of it?
 
-#looking at gender, because for parental education I still have to figure out what is the best way to classify
-myeff2 <- includeEffects(myeff, sameX, egoX, altX, interaction1 = "rsiena_gender")
+#looking at gender, because for parental education I still have to figure out what is the best way to classifyn 
+myeff <- includeEffects(myeff, sameX, egoX, altX, interaction1 = "rsiena_gender")
+
+myeff <- includeEffects(myeff, sameX, egoX, altX, interaction1 = "rsiena_gender")
+
+myeff2 <- includeEffects(myeff, sameX, egoX, altX, interaction1 = "etni")
 #so this one does not work. Ask in class
 myeff2 
 
 myAlgorithm <- sienaAlgorithmCreate(projname = "klooien2")
-(ans <- siena07(myAlgorithm, data = klooien2, effects = myeff1, prevAns = ans, returnDeps = TRUE))
+(ans <- siena07(myAlgorithm, data = klooien2, effects = myeff, prevAns = ans, returnDeps = TRUE))
 ans
 ```
 

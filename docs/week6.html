@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+<meta name="date" content="2026-10-05" />
+
+<title>week6</title>
+
+<script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+<style type="text/css">
+#rmd-source-code {
+  display: none;
+}
+</style>
+
+
+<link rel="stylesheet" href="tweaks.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    My journal
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="week1.html">Week 1: 31-8-2026</a>
+    </li>
+    <li>
+      <a href="week2.html">Week 2: 7-9-2026</a>
+    </li>
+    <li>
+      <a href="week3.html">Week 3: 14-9-2026</a>
+    </li>
+    <li>
+      <a href="week4.html">Week 4: 21-9-2026</a>
+    </li>
+    <li>
+      <a href="week5.html">Week 5: 28-9-2026</a>
+    </li>
+    <li>
+      <a href="week6.html">Week 6: 5-10-2026</a>
+    </li>
+    <li>
+      <a href="week7.html">Week 7: 12-10-2026</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Final Project
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="introduction.html">Introduction</a>
+    </li>
+    <li>
+      <a href="theory.html">Theory</a>
+    </li>
+    <li>
+      <a href="dm.html">Data &amp; Methods</a>
+    </li>
+    <li>
+      <a href="dc.html">Data Construction</a>
+    </li>
+    <li>
+      <a href="desr.html">Descriptive Results</a>
+    </li>
+    <li>
+      <a href="expl.html">Exploratory Results</a>
+    </li>
+    <li>
+      <a href="conclusion.html">Conclusion</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/ninasneijers/labjournalSN">
+    <span class="fab fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+<li role="separator" class="divider"></li>
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">week6</h1>
+<h4 class="date">2026-10-05</h4>
+
+</div>
+
+
+<div id="experimenting" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Experimenting</h1>
+<p>I am trying out some things on the 501 dataset so I might be able to
+use it for my own dataset. However, the interaction is not working,
+which is a problem. Might be due to the effect being dyadic.</p>
+<pre class="r"><code>library(RSiena)</code></pre>
+<pre class="r"><code>mynet &lt;- as_dependent_rsiena(array(c(s501, s502, s503), dim=c(50, 50, 3)))
+mybeh &lt;- as_dependent_rsiena(s50a, type = &quot;behavior&quot;)
+covar &lt;- coCovar(as.numeric(s50a[,1]==3))
+mydata &lt;- make_data_rsiena(mynet, mybeh, covar)</code></pre>
+<p>I wanted to do something with interactions, but discovered it is not
+working. Now here the attempts can be seen, and in week 7 I will show
+what effects I am including.</p>
+<pre class="r"><code>myeff &lt;- getEffects(mydata)
+myeff &lt;- set_effect(myeff, sameX, covar1=&quot;covar&quot;, depvar=&quot;mynet&quot;)</code></pre>
+<pre><code>##   effectNumber effectName shortName include fix   test  initialValue parm
+## 1 335          same covar sameX     TRUE    FALSE FALSE          0   0</code></pre>
+<pre class="r"><code>myeff &lt;- set_effect(myeff, sameXRecip, covar1=&quot;covar&quot;, depvar = &quot;mynet&quot;)</code></pre>
+<pre><code>##   effectNumber effectName               shortName  include fix   test  initialValue parm
+## 1 341          same covar x reciprocity sameXRecip TRUE    FALSE FALSE          0   0</code></pre>
+<pre class="r"><code>myeff &lt;- set_effect(myeff, recipDeg, covar1=&quot;mynet&quot;, depvar = &quot;mybeh&quot;)</code></pre>
+<pre><code>##   effectNumber effectName                shortName include fix   test  initialValue parm
+## 1 829          mybeh reciprocated degree recipDeg  TRUE    FALSE FALSE          0   0</code></pre>
+<pre class="r"><code>#myeff &lt;- set_interaction(myeff, list(sameX, recipDeg), depvar=&quot;mybeh&quot;, covar1=c(&quot;&quot;, &quot;mynet&quot;))
+
+myeff &lt;- set_effect(myeff, recipDeg, depvar=&quot;mybeh&quot;, covar1=&quot;mynet&quot;)</code></pre>
+<pre><code>##   effectNumber effectName                shortName include fix   test  initialValue parm
+## 1 829          mybeh reciprocated degree recipDeg  TRUE    FALSE FALSE          0   0</code></pre>
+<pre class="r"><code>myeff &lt;- set_effect(myeff, sameX, depvar=&quot;mynet&quot;, covar1=&quot;covar&quot;)</code></pre>
+<pre><code>##   effectNumber effectName shortName include fix   test  initialValue parm
+## 1 335          same covar sameX     TRUE    FALSE FALSE          0   0</code></pre>
+<pre class="r"><code>print(myeff)</code></pre>
+<pre><code>##    name  effectName                     include fix   test  initialValue parm
+## 1  mynet constant mynet rate (period 1) TRUE    FALSE FALSE    4.69604   0   
+## 2  mynet constant mynet rate (period 2) TRUE    FALSE FALSE    4.32885   0   
+## 3  mynet outdegree (density)            TRUE    FALSE FALSE   -1.46770   0   
+## 4  mynet reciprocity                    TRUE    FALSE FALSE    0.00000   0   
+## 5  mynet same covar                     TRUE    FALSE FALSE    0.00000   0   
+## 6  mynet same covar x reciprocity       TRUE    FALSE FALSE    0.00000   0   
+## 7  mybeh rate mybeh (period 1)          TRUE    FALSE FALSE    0.70571   0   
+## 8  mybeh rate mybeh (period 2)          TRUE    FALSE FALSE    0.84939   0   
+## 9  mybeh mybeh linear shape             TRUE    FALSE FALSE    0.32237   0   
+## 10 mybeh mybeh quadratic shape          TRUE    FALSE FALSE    0.00000   0   
+## 11 mybeh mybeh reciprocated degree      TRUE    FALSE FALSE    0.00000   0</code></pre>
+<pre class="r"><code>#myeff &lt;- set_interaction(myeff, list(recipDeg, sameX),
+#depvar=&quot;mybeh&quot;, covar1=c(&quot;mynet&quot;, &quot;covar&quot;))
+# if depvar is mynet then sameX is not recognised, if depvar is mybeh then recipDeg is not recognised
+# sameX is dyadic, this might be a problem: &quot;all interactionsareallowedwithother&quot;dyadic&quot;effects&quot;
+#myeff2 &lt;- includeInteraction(myeff, sameX, recipDeg)</code></pre>
+<pre class="r"><code>ans &lt;- siena(data=mydata, effects = myeff)</code></pre>
+<pre><code>## siena will create/use an output file mydata_out.txt .</code></pre>
+<pre class="r"><code>ans</code></pre>
+<pre><code>## Estimates, standard errors and convergence t-ratios
+## 
+##                                           Estimate   Standard   Convergence 
+##                                                        Error      t-ratio   
+## Network Dynamics 
+##    1. rate constant mynet rate (period 1)  5.8365  ( 0.8810   )   -0.0200   
+##    2. rate constant mynet rate (period 2)  4.5198  ( 0.6693   )    0.0562   
+##    3. eval outdegree (density)            -2.4388  ( 0.1586   )    0.0573   
+##    4. eval reciprocity                     3.0415  ( 0.3015   )    0.0387   
+##    5. eval same covar                      0.1279  ( 0.1768   )    0.0498   
+##    6. eval same covar x reciprocity       -0.3375  ( 0.3669   )    0.0692   
+## 
+## Behavior Dynamics
+##    7. rate rate mybeh (period 1)           1.1745  ( 0.3024   )   -0.0379   
+##    8. rate rate mybeh (period 2)           1.6406  ( 0.4226   )   -0.0048   
+##    9. eval mybeh linear shape              0.4881  ( 0.3290   )   -0.0407   
+##   10. eval mybeh quadratic shape          -0.1976  ( 0.0879   )    0.0458   
+##   11. eval mybeh reciprocated degree      -0.0786  ( 0.1791   )   -0.0730   
+## 
+## Overall maximum convergence ratio:    0.1669 
+## 
+## 
+## Total of 3007 iteration steps.</code></pre>
+</div>
+
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIndlZWs2Ig0Kb3V0cHV0OiBodG1sX2RvY3VtZW50DQpkYXRlOiAiMjAyNi0xMC0wNSINCi0tLQ0KDQojIEV4cGVyaW1lbnRpbmcNCkkgYW0gdHJ5aW5nIG91dCBzb21lIHRoaW5ncyBvbiB0aGUgNTAxIGRhdGFzZXQgc28gSSBtaWdodCBiZSBhYmxlIHRvIHVzZSBpdCBmb3IgbXkgb3duIGRhdGFzZXQuIEhvd2V2ZXIsIHRoZSBpbnRlcmFjdGlvbiBpcyBub3Qgd29ya2luZywgd2hpY2ggaXMgYSBwcm9ibGVtLiBNaWdodCBiZSBkdWUgdG8gdGhlIGVmZmVjdCBiZWluZyBkeWFkaWMuIA0KDQpgYGB7cn0NCmxpYnJhcnkoUlNpZW5hKQ0KYGBgDQoNCmBgYHtyfQ0KbXluZXQgPC0gYXNfZGVwZW5kZW50X3JzaWVuYShhcnJheShjKHM1MDEsIHM1MDIsIHM1MDMpLCBkaW09Yyg1MCwgNTAsIDMpKSkNCm15YmVoIDwtIGFzX2RlcGVuZGVudF9yc2llbmEoczUwYSwgdHlwZSA9ICJiZWhhdmlvciIpDQpjb3ZhciA8LSBjb0NvdmFyKGFzLm51bWVyaWMoczUwYVssMV09PTMpKQ0KbXlkYXRhIDwtIG1ha2VfZGF0YV9yc2llbmEobXluZXQsIG15YmVoLCBjb3ZhcikNCg0KYGBgDQoNCg0KSSB3YW50ZWQgdG8gZG8gc29tZXRoaW5nIHdpdGggaW50ZXJhY3Rpb25zLCBidXQgZGlzY292ZXJlZCBpdCBpcyBub3Qgd29ya2luZy4gTm93IGhlcmUgdGhlIGF0dGVtcHRzIGNhbiBiZSBzZWVuLCBhbmQgaW4gd2VlayA3IEkgd2lsbCBzaG93IHdoYXQgZWZmZWN0cyBJIGFtIGluY2x1ZGluZy4NCmBgYHtyfQ0KbXllZmYgPC0gZ2V0RWZmZWN0cyhteWRhdGEpDQpteWVmZiA8LSBzZXRfZWZmZWN0KG15ZWZmLCBzYW1lWCwgY292YXIxPSJjb3ZhciIsIGRlcHZhcj0ibXluZXQiKQ0KbXllZmYgPC0gc2V0X2VmZmVjdChteWVmZiwgc2FtZVhSZWNpcCwgY292YXIxPSJjb3ZhciIsIGRlcHZhciA9ICJteW5ldCIpDQpteWVmZiA8LSBzZXRfZWZmZWN0KG15ZWZmLCByZWNpcERlZywgY292YXIxPSJteW5ldCIsIGRlcHZhciA9ICJteWJlaCIpDQoNCiNteWVmZiA8LSBzZXRfaW50ZXJhY3Rpb24obXllZmYsIGxpc3Qoc2FtZVgsIHJlY2lwRGVnKSwgZGVwdmFyPSJteWJlaCIsIGNvdmFyMT1jKCIiLCAibXluZXQiKSkNCg0KbXllZmYgPC0gc2V0X2VmZmVjdChteWVmZiwgcmVjaXBEZWcsIGRlcHZhcj0ibXliZWgiLCBjb3ZhcjE9Im15bmV0IikNCm15ZWZmIDwtIHNldF9lZmZlY3QobXllZmYsIHNhbWVYLCBkZXB2YXI9Im15bmV0IiwgY292YXIxPSJjb3ZhciIpDQpwcmludChteWVmZikNCiNteWVmZiA8LSBzZXRfaW50ZXJhY3Rpb24obXllZmYsIGxpc3QocmVjaXBEZWcsIHNhbWVYKSwNCiNkZXB2YXI9Im15YmVoIiwgY292YXIxPWMoIm15bmV0IiwgImNvdmFyIikpDQojIGlmIGRlcHZhciBpcyBteW5ldCB0aGVuIHNhbWVYIGlzIG5vdCByZWNvZ25pc2VkLCBpZiBkZXB2YXIgaXMgbXliZWggdGhlbiByZWNpcERlZyBpcyBub3QgcmVjb2duaXNlZA0KIyBzYW1lWCBpcyBkeWFkaWMsIHRoaXMgbWlnaHQgYmUgYSBwcm9ibGVtOiAiYWxsIGludGVyYWN0aW9uc2FyZWFsbG93ZWR3aXRob3RoZXIiZHlhZGljImVmZmVjdHMiDQojbXllZmYyIDwtIGluY2x1ZGVJbnRlcmFjdGlvbihteWVmZiwgc2FtZVgsIHJlY2lwRGVnKQ0KDQpgYGANCg0KYGBge3J9DQphbnMgPC0gc2llbmEoZGF0YT1teWRhdGEsIGVmZmVjdHMgPSBteWVmZikNCmFucw0KYGBg</div>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("week6.Rmd");
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+---
+title: "week6"
+output: html_document
+date: "2026-10-05"
+---
+
+# Experimenting
+I am trying out some things on the 501 dataset so I might be able to use it for my own dataset. However, the interaction is not working, which is a problem. Might be due to the effect being dyadic. 
+
+```{r}
+library(RSiena)
+```
+
+```{r}
+mynet <- as_dependent_rsiena(array(c(s501, s502, s503), dim=c(50, 50, 3)))
+mybeh <- as_dependent_rsiena(s50a, type = "behavior")
+covar <- coCovar(as.numeric(s50a[,1]==3))
+mydata <- make_data_rsiena(mynet, mybeh, covar)
+
+```
+
+
+I wanted to do something with interactions, but discovered it is not working. Now here the attempts can be seen, and in week 7 I will show what effects I am including.
+```{r}
+myeff <- getEffects(mydata)
+myeff <- set_effect(myeff, sameX, covar1="covar", depvar="mynet")
+myeff <- set_effect(myeff, sameXRecip, covar1="covar", depvar = "mynet")
+myeff <- set_effect(myeff, recipDeg, covar1="mynet", depvar = "mybeh")
+
+#myeff <- set_interaction(myeff, list(sameX, recipDeg), depvar="mybeh", covar1=c("", "mynet"))
+
+myeff <- set_effect(myeff, recipDeg, depvar="mybeh", covar1="mynet")
+myeff <- set_effect(myeff, sameX, depvar="mynet", covar1="covar")
+print(myeff)
+#myeff <- set_interaction(myeff, list(recipDeg, sameX),
+#depvar="mybeh", covar1=c("mynet", "covar"))
+# if depvar is mynet then sameX is not recognised, if depvar is mybeh then recipDeg is not recognised
+# sameX is dyadic, this might be a problem: "all interactionsareallowedwithother"dyadic"effects"
+#myeff2 <- includeInteraction(myeff, sameX, recipDeg)
+
+```
+
+```{r}
+ans <- siena(data=mydata, effects = myeff)
+ans
+```

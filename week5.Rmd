@@ -1,0 +1,279 @@
+---
+title: "week5"
+author: "by: Nina Sneijers"
+bibliography: references.bib
+version: "21-9-2026"
+---
+# Graph visualisation from week 4
+
+For some reason in Week 4 it won't knit, while in my dataprep file it knits and it is exactly the same code. Oh well... I will try it here. 
+
+Package check: 
+```{r}
+#loading packages
+fpackage.check <- function(packages) {
+    lapply(packages, FUN = function(x) {
+        if (!require(x, character.only = TRUE)) {
+            install.packages(x, dependencies = TRUE)
+            library(x, character.only = TRUE)
+        }
+    })
+}
+
+fsave <- function(x, file = NULL, location = "./data/processed/") {
+    ifelse(!dir.exists("data"), dir.create("data"), FALSE)
+    ifelse(!dir.exists("data/processed"), dir.create("data/processed"), FALSE)
+    if (is.null(file))
+        file = deparse(substitute(x))
+    datename <- substr(gsub("[:-]", "", Sys.time()), 1, 8)
+    totalname <- paste(location, datename, file, ".rda", sep = "")
+    save(x, file = totalname)  #need to fix if file is reloaded as input name, not as x. 
+}
+
+fload <- function(filename) {
+    load(filename)
+    get(ls()[ls() != "filename"])
+}
+
+fshowdf <- function(x, ...) {
+    knitr::kable(x, digits = 2, "html", ...) %>%
+        kableExtra::kable_styling(bootstrap_options = c("striped", "hover")) %>%
+        kableExtra::scroll_box(width = "100%", height = "300px")
+}
+
+colorize <- function(x, color) {
+    sprintf("<span style='color: %s;'>%s</span>", color, x)
+}
+packages = c("RSiena", "devtools", "igraph")
+fpackage.check(packages)
+#devtools::install_github('JochemTolsma/RsienaTwoStep', build_vignettes=TRUE)
+packages = c("RsienaTwoStep")
+fpackage.check(packages)
+library("car")
+library("dplyr")
+```
+
+```{r}
+load("C:/Users/ninas/OneDrive - Radboud Universiteit/RSCS/Social Networks/labjournalSN/data/All-ListedData_MRCP_Wave12_Ind.RData")
+load("C:/Users/ninas/OneDrive - Radboud Universiteit/RSCS/Social Networks/labjournalSN/data/All-ListedData_MRCP_Wave12_Net.RData")
+load("C:\\Users\\ninas\\OneDrive - Radboud Universiteit\\RSCS\\Social Networks\\labjournalSN\\klooien.Rdata")
+
+# attempt 10.000 to deal with this hanging, I don't know why it won't work
+#so for wave 1: 
+hangingw1 <- na_if(hanging[[1]][[1]], 9)
+hangingw2 <- na_if(hanging[[1]][[2]], 9)
+
+hangingw1_nona <- na_if(hanging[[1]][[1]], 9)
+#checking if one misses in rows
+rowhangingw1 <- rowSums(is.na(hangingw1_nona)) == nrow(hangingw1_nona)
+rowhangingw1
+#checking if one misses in cols
+colhangingw1 <- colSums(is.na(hangingw1_nona)) == ncol(hangingw1_nona)
+hangingw1_nona[which(rowhangingw1) , ] <- 0
+hangingw1_nona
+
+#CHANGE: for w2, I want the leavers to remain at the same value as they had in the previous wave, but I do not understand how to do this. Ask in class... for now, I will give them the 0 value. 
+hangingw2
+hangingw2_nona <- na_if(hanging[[1]][[2]], 9)
+rowhangingw2 <- rowSums(is.na(hangingw2_nona)) == nrow(hangingw2_nona)
+rowhangingw2
+#checking if one misses in cols
+colhangingw2 <- colSums(is.na(hangingw2_nona)) == ncol(hangingw2_nona)
+hangingw2_nona[which(rowhangingw2) , ] <- 0
+hangingw2_nona
+```
+
+Let's see if this works: 
+```{r}
+require(igraph)
+gw1 <- igraph::graph_from_adjacency_matrix(hangingw1_nona, mode = "directed", weighted = NULL, diag = TRUE, add.colnames = NA,
+    add.rownames = NA)
+plot(gw1)
+#ugly!
+simplify(gw1)
+#bit better... but still ugly
+```
+
+New attempt for wave 1 (looked at Jochem's plot):
+```{r}
+igraph::betweenness(gw1, directed = TRUE)
+V(gw1)$size = betweenness(gw1, normalized = T, directed = TRUE) * 100 + 10
+plot(gw1,
+     vertex.color = "orange", # nice color for the vertices
+     vertex.size = 5,  # we'll vertices a bit smaller
+     vertex.frame.color = "gray",  # we'll put a gray frame around vertices
+     vertex.label.color = "black",  # not that ugly blue color for the labels (names)
+     vertex.label.cex = 0.5,  # make the label a bit smaller too
+     vertex.label.dist = 0.9,  # we'll pull the labels a bit away from the vertices
+     edge.curved = 0.2, # curved edges is always a nice touch
+     edge.arrow.size = 0.1) # make arrow size (direction of edge) smaller
+```
+
+
+Let's compare to wave 2 and colour the men/women 
+```{r}
+#checking if one misses in rows
+rowhangingw2 <- rowSums(is.na(hangingw2_nona)) == nrow(hangingw2_nona)
+#checking if one misses in cols
+colhangingw2 <- colSums(is.na(hangingw2)) == ncol(hangingw2_nona)
+hangingw2_nona[which(rowhangingw2) , ] <- 0
+
+gw2 <- igraph::graph_from_adjacency_matrix(hangingw2_nona, mode = "directed", weighted = NULL, diag = TRUE, add.colnames = NA,
+    add.rownames = NA)
+
+igraph::betweenness(gw2, directed = TRUE)
+V(gw2)$size = betweenness(gw2, normalized = T, directed = TRUE) * 100 + 10
+
+kleurtje <- ifelse(df_klooien$gender_test==2, "orange", "purple")
+plot(gw2,
+     vertex.color = kleurtje, # nice color for the vertices
+     vertex.size = 5,  # we'll vertices a bit smaller
+     vertex.frame.color = "gray",  # we'll put a gray frame around vertices
+     vertex.label.color = "black",  # not that ugly blue color for the labels (names)
+     vertex.label.cex = 0.5,  # make the label a bit smaller too
+     vertex.label.dist = 0.9,  # we'll pull the labels a bit away from the vertices
+     edge.curved = 0.2, # curved edges is always a nice touch
+     edge.arrow.size = 0.1)
+
+gw2
+```
+
+# Some more Klooien
+## Descriptives 
+
+I created a neat dataframe (yay!) from the data I want to use in the end. As I want to look into parental education level, I now want to construct some networks based on that.
+
+#### Wave 1
+First, some descriptives for w1: 
+```{r}
+graphw1 <- graph_from_adjacency_matrix(hangingw1_nona, mode = "directed")
+
+#reciprocity
+reciprocity(graphw1, ignore.loops = T, mode = c("default", "ratio"))
+#dyad configurations
+dyad_census(graphw1)
+#triad configurations
+triad_census(graphw1)
+?triad_census
+# transitivity 
+transitivity(graphw1)
+
+# betweenness
+igraph::betweenness(graphw1, directed = TRUE)
+```
+
+
+What does this tell me about wave 1? It tells me that the network in wave 1 has a very low density, meaning that only a few of the connections that could have been made, were made.
+
+In terms of dyads, 93 ties were mutual and thus reciprocated I think, 209 were not only one-sided and 6958 ties have not been made. 
+When looking at triads, the empty triad was the most common (253.808), followed by the triad with one single, directed tie (22.549) and the graph with mutual connection between two nodes (10.101). Then, there were also quite a few out-stars (235), in-stars (243), directed lines (219)... I am not sure how much I should write about this? 
+
+The transitivity in W1 is 0.36, but I do not know whether this is high or low. But I think with this formula transitivity might be considered undirected? 
+
+When looking at betweenness, there can be seen that there are a couple of nodes with a very high betweenness centrality, when looking at 30092, 300059 and 30008. Would be nice if I could single those out a bit more. 
+
+But first, look at W2!
+
+#### Wave 2
+
+```{r}
+#structural effects
+graphw2 <- graph_from_adjacency_matrix(hangingw2_nona, mode = "directed")
+
+#reciprocity
+reciprocity(graphw2, ignore.loops = T, mode = c("default", "ratio"))
+#dyad configurations
+dyad_census(graphw2)
+#triad configurations
+triad_census(graphw2)
+
+# transitivity 
+transitivity(graphw2)
+
+# betweenness
+igraph::betweenness(graphw2, directed = TRUE)
+```
+Compared to wave 1, wave 2 has an even lower network density. What does this mean? I am not sure, but interesting...
+
+Also the reciprocity is slightly lower, but I don't think the numbers are that distinctive
+
+Then, there also seem to be less mutual dyads in wave 2, I think that's a bit sad? Some friendships broke up I think. The number of asymmetrical ties is also lower. While the number of no dyad is higher. 
+
+Triads I find harder to compare but from first insights it seems that the amount of triads that have a direction or are mutual are also lower. 
+
+Then, let's look at our popular nodes. Are they still popular? 30008 and 300059 have 0 betweenness centrality now, what does this mean? Generally, I don't see the high numbers from the previous wave coming back here at all. 
+
+## Visualisation
+Maybe we can understand it a bit more with some visualisation? Let's see, some graphs based on betweenness
+
+#### Betweenness
+```{r}
+graphw1_nice <- graphw1
+V(graphw1_nice)$size = betweenness(graphw1, normalized = T, directed = T) * 1000 + 30
+
+plot(graphw1_nice,
+     vertex.color = "lightblue",
+     vertex.frame.color = "gray",
+     vertex.label.color = "black",
+     vertex.label.cex = 0.3,
+     vertex.label.dist = 0.5, 
+     edge.curved = 0.2,
+     edge.arrow.size = 0.075,
+     margin = 0.01,
+     rescale = FALSE, ylim = c(-9,9))
+```
+
+Okay and then comparing this to the second wave
+```{r}
+graphw2_nice <- graphw2
+V(graphw2_nice)$size = betweenness(graphw2, normalized = T, directed = T) * 1000 + 30
+
+plot(graphw2_nice,
+     vertex.color = "lightblue",
+     vertex.frame.color = "gray",
+     vertex.label.color = "black",
+     vertex.label.cex = 0.3,
+     vertex.label.dist = 0.5, 
+     edge.curved = 0.2,
+     edge.arrow.size = 0.075,
+     margin = 0.01,
+     rescale = FALSE, ylim = c(-9,9))
+```
+Maybe it's because of the way R has visualised it, but there seems to be a sort of split up? Interesting? And the network seems to be more split up, here there seem to be two groups (maybe friendgroups) and less ties.
+
+#### On parental education level
+```{r}
+load("C:\\Users\\ninas\\OneDrive - Radboud Universiteit\\RSCS\\Social Networks\\labjournalSN\\parentedudata.Rdata")
+kleurtje <- ifelse(df_klooien$parentshigh==1, "lightblue", "darkblue")
+#dark blue is higher educated, light blue is lower educated parents
+#add as png so you can decide how big your png is
+#Wave 1
+plot(graphw1_nice,
+     vertex.color = kleurtje,
+     vertex.frame.color = "gray",
+     vertex.label.color = "black",
+     vertex.label.cex = 0.3,
+     vertex.label.dist = 0.5, 
+     edge.curved = 0.2,
+     edge.arrow.size = 0.075,
+     margin = 0.01,
+     rescale = FALSE, ylim = c(-9,9))
+#Wave 2
+plot(graphw2_nice,
+     vertex.color = kleurtje,
+     vertex.frame.color = "gray",
+     vertex.label.color = "black",
+     vertex.label.cex = 0.3,
+     vertex.label.dist = 0.5, 
+     edge.curved = 0.2,
+     edge.arrow.size = 0.075,
+     margin = 0.01,
+     rescale = FALSE, ylim = c(-9,9))
+
+#with the side note that maybe something is not entirely yet correct in coding, and I do not know how to deal with the NAs! 
+
+```
+
+
+# What have I done this week
+This week I have worked mainly on getting my research questions and hypotheses sharp. So I have read up on some articles and tried to understand my dataset a bit better. I have not done a lot in R, because I was sick. 

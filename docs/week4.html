@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="by: Nina Sneijers" />
+
+
+<title>week4</title>
+
+<script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+<style type="text/css">
+#rmd-source-code {
+  display: none;
+}
+</style>
+
+
+<link rel="stylesheet" href="tweaks.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    My journal
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="week1.html">Week 1: 31-8-2026</a>
+    </li>
+    <li>
+      <a href="week2.html">Week 2: 7-9-2026</a>
+    </li>
+    <li>
+      <a href="week3.html">Week 3: 14-9-2026</a>
+    </li>
+    <li>
+      <a href="week4.html">Week 4: 21-9-2026</a>
+    </li>
+    <li>
+      <a href="week5.html">Week 5: 28-9-2026</a>
+    </li>
+    <li>
+      <a href="week6.html">Week 6: 5-10-2026</a>
+    </li>
+    <li>
+      <a href="week7.html">Week 7: 12-10-2026</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Final Project
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="introduction.html">Introduction</a>
+    </li>
+    <li>
+      <a href="theory.html">Theory</a>
+    </li>
+    <li>
+      <a href="dm.html">Data &amp; Methods</a>
+    </li>
+    <li>
+      <a href="dc.html">Data Construction</a>
+    </li>
+    <li>
+      <a href="desr.html">Descriptive Results</a>
+    </li>
+    <li>
+      <a href="expl.html">Exploratory Results</a>
+    </li>
+    <li>
+      <a href="conclusion.html">Conclusion</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/ninasneijers/labjournalSN">
+    <span class="fab fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+<li role="separator" class="divider"></li>
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">week4</h1>
+<h4 class="author">by: Nina Sneijers</h4>
+
+</div>
+
+
+<p>This week I have worked on graphs and webscraping. My R was messing
+with me, so the graphs can now be found in week 5, because for some
+reason in week 4, the file won’t knit and in week 5, it will.</p>
+<pre class="r"><code>#loading packages
+fpackage.check &lt;- function(packages) {
+    lapply(packages, FUN = function(x) {
+        if (!require(x, character.only = TRUE)) {
+            install.packages(x, dependencies = TRUE)
+            library(x, character.only = TRUE)
+        }
+    })
+}
+
+fsave &lt;- function(x, file = NULL, location = &quot;./data/processed/&quot;) {
+    ifelse(!dir.exists(&quot;data&quot;), dir.create(&quot;data&quot;), FALSE)
+    ifelse(!dir.exists(&quot;data/processed&quot;), dir.create(&quot;data/processed&quot;), FALSE)
+    if (is.null(file))
+        file = deparse(substitute(x))
+    datename &lt;- substr(gsub(&quot;[:-]&quot;, &quot;&quot;, Sys.time()), 1, 8)
+    totalname &lt;- paste(location, datename, file, &quot;.rda&quot;, sep = &quot;&quot;)
+    save(x, file = totalname)  #need to fix if file is reloaded as input name, not as x. 
+}
+
+fload &lt;- function(filename) {
+    load(filename)
+    get(ls()[ls() != &quot;filename&quot;])
+}
+
+fshowdf &lt;- function(x, ...) {
+    knitr::kable(x, digits = 2, &quot;html&quot;, ...) %&gt;%
+        kableExtra::kable_styling(bootstrap_options = c(&quot;striped&quot;, &quot;hover&quot;)) %&gt;%
+        kableExtra::scroll_box(width = &quot;100%&quot;, height = &quot;300px&quot;)
+}
+
+colorize &lt;- function(x, color) {
+    sprintf(&quot;&lt;span style=&#39;color: %s;&#39;&gt;%s&lt;/span&gt;&quot;, color, x)
+}
+packages = c(&quot;RSiena&quot;, &quot;devtools&quot;, &quot;igraph&quot;)
+fpackage.check(packages)</code></pre>
+<pre><code>## [[1]]
+## NULL
+## 
+## [[2]]
+## NULL
+## 
+## [[3]]
+## NULL</code></pre>
+<pre class="r"><code>#devtools::install_github(&#39;JochemTolsma/RsienaTwoStep&#39;, build_vignettes=TRUE)
+packages = c(&quot;RsienaTwoStep&quot;)
+fpackage.check(packages)</code></pre>
+<pre><code>## [[1]]
+## NULL</code></pre>
+<div id="experimenting" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Experimenting</h1>
+<pre class="r"><code>require(igraph)
+g &lt;- make_graph(&quot;Zachary&quot;)
+plot(g)</code></pre>
+<p><img src="week4_files/figure-html/unnamed-chunk-2-1.png" alt="" width="672" /></p>
+<pre class="r"><code>#not the same pictures, but centres are the same
+#centre of the graph is decided by amount of ties </code></pre>
+<p>Description: Network exists of 34 people. Relations are non-directed
+(or is this the default of igraph?)</p>
+<pre class="r"><code>gmat &lt;- as_adjacency_matrix(g, type = &quot;both&quot;, sparse = FALSE)
+gmat</code></pre>
+<pre><code>##       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11] [,12] [,13] [,14] [,15] [,16] [,17]
+##  [1,]    0    1    1    1    1    1    1    1    1     0     1     1     1     1     0     0     0
+##  [2,]    1    0    1    1    0    0    0    1    0     0     0     0     0     1     0     0     0
+##  [3,]    1    1    0    1    0    0    0    1    1     1     0     0     0     1     0     0     0
+##  [4,]    1    1    1    0    0    0    0    1    0     0     0     0     1     1     0     0     0
+##  [5,]    1    0    0    0    0    0    1    0    0     0     1     0     0     0     0     0     0
+##  [6,]    1    0    0    0    0    0    1    0    0     0     1     0     0     0     0     0     1
+##  [7,]    1    0    0    0    1    1    0    0    0     0     0     0     0     0     0     0     1
+##  [8,]    1    1    1    1    0    0    0    0    0     0     0     0     0     0     0     0     0
+##  [9,]    1    0    1    0    0    0    0    0    0     0     0     0     0     0     0     0     0
+## [10,]    0    0    1    0    0    0    0    0    0     0     0     0     0     0     0     0     0
+## [11,]    1    0    0    0    1    1    0    0    0     0     0     0     0     0     0     0     0
+## [12,]    1    0    0    0    0    0    0    0    0     0     0     0     0     0     0     0     0
+## [13,]    1    0    0    1    0    0    0    0    0     0     0     0     0     0     0     0     0
+## [14,]    1    1    1    1    0    0    0    0    0     0     0     0     0     0     0     0     0
+## [15,]    0    0    0    0    0    0    0    0    0     0     0     0     0     0     0     0     0
+## [16,]    0    0    0    0    0    0    0    0    0     0     0     0     0     0     0     0     0
+## [17,]    0    0    0    0    0    1    1    0    0     0     0     0     0     0     0     0     0
+## [18,]    1    1    0    0    0    0    0    0    0     0     0     0     0     0     0     0     0
+## [19,]    0    0    0    0    0    0    0    0    0     0     0     0     0     0     0     0     0
+## [20,]    1    1    0    0    0    0    0    0    0     0     0     0     0     0     0     0     0
+## [21,]    0    0    0    0    0    0    0    0    0     0     0     0     0     0     0     0     0
+## [22,]    1    1    0    0    0    0    0    0    0     0     0     0     0     0     0     0     0
+## [23,]    0    0    0    0    0    0    0    0    0     0     0     0     0     0     0     0     0
+## [24,]    0    0    0    0    0    0    0    0    0     0     0     0     0     0     0     0     0
+## [25,]    0    0    0    0    0    0    0    0    0     0     0     0     0     0     0     0     0
+## [26,]    0    0    0    0    0    0    0    0    0     0     0     0     0     0     0     0     0
+## [27,]    0    0    0    0    0    0    0    0    0     0     0     0     0     0     0     0     0
+## [28,]    0    0    1    0    0    0    0    0    0     0     0     0     0     0     0     0     0
+## [29,]    0    0    1    0    0    0    0    0    0     0     0     0     0     0     0     0     0
+## [30,]    0    0    0    0    0    0    0    0    0     0     0     0     0     0     0     0     0
+## [31,]    0    1    0    0    0    0    0    0    1     0     0     0     0     0     0     0     0
+## [32,]    1    0    0    0    0    0    0    0    0     0     0     0     0     0     0     0     0
+## [33,]    0    0    1    0    0    0    0    0    1     0     0     0     0     0     1     1     0
+## [34,]    0    0    0    0    0    0    0    0    1     1     0     0     0     1     1     1     0
+##       [,18] [,19] [,20] [,21] [,22] [,23] [,24] [,25] [,26] [,27] [,28] [,29] [,30] [,31] [,32]
+##  [1,]     1     0     1     0     1     0     0     0     0     0     0     0     0     0     1
+##  [2,]     1     0     1     0     1     0     0     0     0     0     0     0     0     1     0
+##  [3,]     0     0     0     0     0     0     0     0     0     0     1     1     0     0     0
+##  [4,]     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+##  [5,]     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+##  [6,]     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+##  [7,]     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+##  [8,]     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+##  [9,]     0     0     0     0     0     0     0     0     0     0     0     0     0     1     0
+## [10,]     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+## [11,]     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+## [12,]     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+## [13,]     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+## [14,]     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+## [15,]     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+## [16,]     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+## [17,]     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+## [18,]     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+## [19,]     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+## [20,]     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+## [21,]     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+## [22,]     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+## [23,]     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+## [24,]     0     0     0     0     0     0     0     0     1     0     1     0     1     0     0
+## [25,]     0     0     0     0     0     0     0     0     1     0     1     0     0     0     1
+## [26,]     0     0     0     0     0     0     1     1     0     0     0     0     0     0     1
+## [27,]     0     0     0     0     0     0     0     0     0     0     0     0     1     0     0
+## [28,]     0     0     0     0     0     0     1     1     0     0     0     0     0     0     0
+## [29,]     0     0     0     0     0     0     0     0     0     0     0     0     0     0     1
+## [30,]     0     0     0     0     0     0     1     0     0     1     0     0     0     0     0
+## [31,]     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+## [32,]     0     0     0     0     0     0     0     1     1     0     0     1     0     0     0
+## [33,]     0     1     0     1     0     1     1     0     0     0     0     0     1     1     1
+## [34,]     0     1     1     1     0     1     1     0     0     1     1     1     1     1     1
+##       [,33] [,34]
+##  [1,]     0     0
+##  [2,]     0     0
+##  [3,]     1     0
+##  [4,]     0     0
+##  [5,]     0     0
+##  [6,]     0     0
+##  [7,]     0     0
+##  [8,]     0     0
+##  [9,]     1     1
+## [10,]     0     1
+## [11,]     0     0
+## [12,]     0     0
+## [13,]     0     0
+## [14,]     0     1
+## [15,]     1     1
+## [16,]     1     1
+## [17,]     0     0
+## [18,]     0     0
+## [19,]     1     1
+## [20,]     0     1
+## [21,]     1     1
+## [22,]     0     0
+## [23,]     1     1
+## [24,]     1     1
+## [25,]     0     0
+## [26,]     0     0
+## [27,]     0     1
+## [28,]     0     1
+## [29,]     0     1
+## [30,]     1     1
+## [31,]     1     1
+## [32,]     1     1
+## [33,]     0     1
+## [34,]     1     0</code></pre>
+<pre class="r"><code>isSymmetric(gmat) </code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code>#symmetric is true so the network is undirected</code></pre>
+<div id="descriptives" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Descriptives</h2>
+<pre class="r"><code>#size
+# number of nodes
+vcount(g)</code></pre>
+<pre><code>## [1] 34</code></pre>
+<pre class="r"><code># number of edges
+ecount(g)</code></pre>
+<pre><code>## [1] 78</code></pre>
+<pre class="r"><code>#degree
+igraph::degree(g)</code></pre>
+<pre><code>##  [1] 16  9 10  6  3  4  4  4  5  2  3  1  2  5  2  2  2  2  2  3  2  2  2  5  3  3  2  4  3  4  4  6
+## [33] 12 17</code></pre>
+<pre class="r"><code># hist(table(degree(g)), xlab=&#39;indegree&#39;, main= &#39;Histogram of indegree&#39;)
+
+#transitivity
+# be aware that directed graphs are considered as undirected. but g is undirected.
+igraph::transitivity(g, type = c(&quot;localundirected&quot;), isolates = c(&quot;NaN&quot;, &quot;zero&quot;)) </code></pre>
+<pre><code>##  [1] 0.1500000 0.3333333 0.2444444 0.6666667 0.6666667 0.5000000 0.5000000 1.0000000 0.5000000
+## [10] 0.0000000 0.6666667       NaN 1.0000000 0.6000000 1.0000000 1.0000000 1.0000000 1.0000000
+## [19] 1.0000000 0.3333333 1.0000000 1.0000000 1.0000000 0.4000000 0.3333333 0.3333333 1.0000000
+## [28] 0.1666667 0.3333333 0.6666667 0.5000000 0.2000000 0.1969697 0.1102941</code></pre>
+<pre class="r"><code>#betweenness
+igraph::betweenness(g, directed = FALSE)</code></pre>
+<pre><code>##  [1] 231.0714286  28.4785714  75.8507937   6.2880952   0.3333333  15.8333333  15.8333333   0.0000000
+##  [9]  29.5293651   0.4476190   0.3333333   0.0000000   0.0000000  24.2158730   0.0000000   0.0000000
+## [17]   0.0000000   0.0000000   0.0000000  17.1468254   0.0000000   0.0000000   0.0000000   9.3000000
+## [25]   1.1666667   2.0277778   0.0000000  11.7920635   0.9476190   1.5428571   7.6095238  73.0095238
+## [33]  76.6904762 160.5515873</code></pre>
+<pre class="r"><code>#1 and 34 should be stressed a bit more as they have higher betweenness. You could give them a colour with you palette or make them bigger</code></pre>
+<pre class="r"><code>igraph::dyad_census(g)</code></pre>
+<pre><code>## Warning: `dyad_census()` requires a directed graph.</code></pre>
+<pre><code>## $mut
+## [1] 78
+## 
+## $asym
+## [1] 0
+## 
+## $null
+## [1] 483</code></pre>
+<pre class="r"><code>igraph::triad.census(g)</code></pre>
+<pre><code>## Warning: `triad.census()` was deprecated in igraph 2.0.0.
+## ℹ Please use `triad_census()` instead.
+## This warning is displayed once per session.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning
+## was generated.</code></pre>
+<pre><code>## Warning in triad_census_impl(graph = graph): Triad census called on an undirected graph. All connections will be treated as mutual.
+## Source: misc/motifs.c:1157</code></pre>
+<pre><code>##  [1] 3971    0 1575    0    0    0    0    0    0    0  393    0    0    0    0   45</code></pre>
+<pre class="r"><code># I will use sna because it shows the names of the triads as well.
+sna::triad.census(gmat)</code></pre>
+<pre><code>##       003 012  102 021D 021U 021C 111D 111U 030T 030C 201 120D 120U 120C 210 300
+## [1,] 3971   0 1575    0    0    0    0    0    0    0 393    0    0    0   0  45</code></pre>
+<pre class="r"><code>unloadNamespace(&quot;sna&quot;)  #I will detach this package again, otherwise it will interfere with all kind of functions from igraph, and my students will hate me for that.
+transitivity(
+  g,
+  type = c(&quot;globalundirected&quot;),
+  vids = NULL,
+  weights = NULL,
+  isolates = c(&quot;NaN&quot;, &quot;zero&quot;)
+)</code></pre>
+<pre><code>## [1] 0.2556818</code></pre>
+<p>visualisatie - we maken de grootte van de netwerken afhankelijk van
+iets anders:</p>
+<pre class="r"><code># changing V(ertices)
+# if you want to change the edges ((pijltjes)) use E 
+V(g)$size = betweenness(g, normalized = T, directed = FALSE) * 60 + 12 #after some trial and error
+plot(g, mode = &quot;undirected&quot;)</code></pre>
+<p><img src="week4_files/figure-html/unnamed-chunk-6-1.png" alt="" width="672" /></p>
+<pre class="r"><code>#set the nodes a bit further apart
+set.seed(2345)
+l &lt;- layout_with_mds(g)  #https://igraph.org/r/doc/layout_with_mds.html
+plot(g, layout = l)</code></pre>
+<p><img src="week4_files/figure-html/unnamed-chunk-6-2.png" alt="" width="672" /></p>
+<pre class="r"><code>l  #let us take a look at the coordinates</code></pre>
+<pre><code>##               [,1]         [,2]
+##  [1,]  1.070931935 -0.172458113
+##  [2,]  0.732844464  0.754023309
+##  [3,]  0.100582299  0.397693607
+##  [4,]  0.708246655  0.570205545
+##  [5,]  1.816293170 -0.120778206
+##  [6,]  1.881329566 -0.135518854
+##  [7,]  1.881329566 -0.135518854
+##  [8,]  0.812606714  0.472619437
+##  [9,] -0.003769996  0.615513628
+## [10,] -0.685680315  0.621065149
+## [11,]  1.816293170 -0.120778206
+## [12,]  1.621247830 -0.065820692
+## [13,]  1.637845123  0.001789972
+## [14,]  0.067317230  0.681421148
+## [15,] -1.796316404  0.351417630
+## [16,] -1.796316404  0.351417630
+## [17,]  2.775260452 -0.124317652
+## [18,]  1.616210024  0.182510197
+## [19,] -1.796316404  0.351417630
+## [20,]  0.048362858  0.566654982
+## [21,] -1.796316404  0.351417630
+## [22,]  1.616210024  0.182510197
+## [23,] -1.796316404  0.351417630
+## [24,] -1.891240567 -0.799574907
+## [25,] -0.258345165 -2.006346563
+## [26,] -0.360530857 -2.131642875
+## [27,] -1.865177401  0.128596564
+## [28,] -0.760226022 -0.529392331
+## [29,] -0.710979936 -0.299960128
+## [30,] -1.898426916 -0.149398746
+## [31,] -0.568691923  0.804189411
+## [32,] -0.048136037 -0.870967614
+## [33,] -1.023681000 -0.035802363
+## [34,] -1.146442924 -0.037605192</code></pre>
+<pre class="r"><code>l[1, 1] &lt;- 4
+l[34, 1] &lt;- -3.5
+plot(g, layout = l)</code></pre>
+<p><img src="week4_files/figure-html/unnamed-chunk-6-3.png" alt="" width="672" /></p>
+<pre class="r"><code>#this graph might make you interpret it like there is polarisation, fight, that 1 and 34 the network apart</code></pre>
+<p>Questions: is this data manipulation or not? Is it illustrating the
+story more clearly or not? Is it ethical? !!!! It is important to be
+open about this !!! In this case you would mention in the article that
+you placed 1 and 34 on the outsides of your picture</p>
+<div id="intermezzo-panicking-about-nas" class="section level3"
+number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> Intermezzo:
+Panicking about NAs</h3>
+<pre class="r"><code>testm &lt;- matrix(NA, nrow = 4, ncol = 4)
+testm[1,1] &lt;- 0 
+testm[1,2] &lt;- 1
+testm[1,4] &lt;- 1 
+testm[3,1] &lt;- 0 
+testm[3,2] &lt;- 1
+testm[3,4] &lt;- 1
+testm[4,1] &lt;- 1
+testm[4,2] &lt;- 0 
+testm[4,4] &lt;- 1 
+
+#checking if one misses in rows
+missrow &lt;- rowSums(is.na(testm)) == nrow(testm)
+#checking if one misses in cols
+misscol &lt;- colSums(is.na(testm)) == ncol(testm)
+#checking if missing in both
+misstotal &lt;- which(missrow &amp; misscol)
+
+testm[which(missrow) , ] &lt;- 0 
+testm</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    0    1   NA    1
+## [2,]    0    0    0    0
+## [3,]    0    1   NA    1
+## [4,]    1    0   NA    1</code></pre>
+</div>
+</div>
+</div>
+<div id="webscraping" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Webscraping</h1>
+<pre class="r"><code># start with clean workspace
+rm(list = ls())
+
+# install.packages(&#39;data.table&#39;)
+library(data.table)  # mainly for faster data handling</code></pre>
+<pre><code>## Warning: package &#39;data.table&#39; was built under R version 4.5.2</code></pre>
+<pre><code>## 
+## Attaching package: &#39;data.table&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:lubridate&#39;:
+## 
+##     hour, isoweek, isoyear, mday, minute, month, quarter, second, wday, week, yday, year</code></pre>
+<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
+## 
+##     between, first, last</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     transpose</code></pre>
+<pre class="r"><code>library(tidyverse)  # I assume you already installed this one!
+# install.packages(&#39;httr&#39;) # we don&#39;t need this for now require(httr)
+#install.packages(&quot;xml2&quot;)
+require(xml2)</code></pre>
+<pre><code>## Loading required package: xml2</code></pre>
+<pre><code>## Warning: package &#39;xml2&#39; was built under R version 4.5.3</code></pre>
+<pre class="r"><code>#install.packages(&quot;rvest&quot;)
+require(rvest)</code></pre>
+<pre><code>## Loading required package: rvest</code></pre>
+<pre><code>## Warning: package &#39;rvest&#39; was built under R version 4.5.3</code></pre>
+<pre><code>## 
+## Attaching package: &#39;rvest&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:readr&#39;:
+## 
+##     guess_encoding</code></pre>
+<pre class="r"><code>#install.packages(&quot;devtools&quot;)
+require(devtools)
+# Note we&#39;re doing something different here. We&#39;re installing a *latest* version directly from
+# GitHub This is because the released version of this packages contains some errors!
+devtools::install_github(&quot;jkeirstead/scholar&quot;)</code></pre>
+<pre><code>## Warning: `install_github()` was deprecated in devtools 2.5.0.
+## ℹ Please use pak::pak(&quot;user/repo&quot;) instead.
+## This warning is displayed once per session.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning
+## was generated.</code></pre>
+<pre><code>## Using GitHub PAT from the git credential store.</code></pre>
+<pre><code>## Skipping install of &#39;scholar&#39; from a github remote, the SHA1 (2e0a4ca0) has not changed since last install.
+##   Use `force = TRUE` to force installation</code></pre>
+<pre class="r"><code>require(scholar)</code></pre>
+<pre><code>## Loading required package: scholar</code></pre>
+<pre class="r"><code># define workdirectory, note the double *backslashes* if you&#39;re on windows setwd(&#39;/yourpathhere)&#39;
+
+url&lt;- &quot;https://nos.nl/zoeken?q=nprz&amp;page=1&quot;
+nos_nprz &lt;- read_html(url)
+nos_nprz</code></pre>
+<pre><code>## {html_document}
+## &lt;html data-theme=&quot;light&quot; lang=&quot;nl&quot;&gt;
+## [1] &lt;head&gt;\n&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;\n&lt;meta charset=&quot;u ...
+## [2] &lt;body&gt;\n&lt;div id=&quot;__next&quot;&gt;\n&lt;nav data-tracking=&quot;nestType1=header&quot; aria-label=&quot;Hoofdnavigatie&quot;  ...</code></pre>
+<pre class="r"><code>#lijst &lt;- nos_nprz %&gt;% html_elements(&quot;main&quot;) %&gt;% html_elements(&quot;ul&quot;) %&gt;% html_elements(&quot;li&quot;)</code></pre>
+<pre class="r"><code>#titel &lt;- nos |&gt;
+
+#lijst[1] %&gt;% html_children %&gt;% html_attr(name=&quot;href&quot;)
+#lijst[1] %&gt;% html_element(&quot;time&quot;) %&gt;% html_text
+
+#url &lt;- paste0(&quot;https://nos.nl&quot;, artikel1) 
+#tekst1 &lt;- read_html(url)
+#html_text2(tekst1)
+
+#via element you go deeper into a page. you can also look into this via children </code></pre>
+<hr />
+</div>
+<div id="references" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> References</h1>
+<p>::: ::::</p>
+</div>
+
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIndlZWs0Ig0KYXV0aG9yOiAiYnk6IE5pbmEgU25laWplcnMiDQpiaWJsaW9ncmFwaHk6IHJlZmVyZW5jZXMuYmliDQp2ZXJzaW9uOiAiMjEtOS0yMDI2Ig0KLS0tDQpUaGlzIHdlZWsgSSBoYXZlIHdvcmtlZCBvbiBncmFwaHMgYW5kIHdlYnNjcmFwaW5nLiBNeSBSIHdhcyBtZXNzaW5nIHdpdGggbWUsIHNvIHRoZSBncmFwaHMgY2FuIG5vdyBiZSBmb3VuZCBpbiB3ZWVrIDUsIGJlY2F1c2UgZm9yIHNvbWUgcmVhc29uIGluIHdlZWsgNCwgdGhlIGZpbGUgd29uJ3Qga25pdCBhbmQgaW4gd2VlayA1LCBpdCB3aWxsLiANCg0KYGBge3J9DQojbG9hZGluZyBwYWNrYWdlcw0KZnBhY2thZ2UuY2hlY2sgPC0gZnVuY3Rpb24ocGFja2FnZXMpIHsNCiAgICBsYXBwbHkocGFja2FnZXMsIEZVTiA9IGZ1bmN0aW9uKHgpIHsNCiAgICAgICAgaWYgKCFyZXF1aXJlKHgsIGNoYXJhY3Rlci5vbmx5ID0gVFJVRSkpIHsNCiAgICAgICAgICAgIGluc3RhbGwucGFja2FnZXMoeCwgZGVwZW5kZW5jaWVzID0gVFJVRSkNCiAgICAgICAgICAgIGxpYnJhcnkoeCwgY2hhcmFjdGVyLm9ubHkgPSBUUlVFKQ0KICAgICAgICB9DQogICAgfSkNCn0NCg0KZnNhdmUgPC0gZnVuY3Rpb24oeCwgZmlsZSA9IE5VTEwsIGxvY2F0aW9uID0gIi4vZGF0YS9wcm9jZXNzZWQvIikgew0KICAgIGlmZWxzZSghZGlyLmV4aXN0cygiZGF0YSIpLCBkaXIuY3JlYXRlKCJkYXRhIiksIEZBTFNFKQ0KICAgIGlmZWxzZSghZGlyLmV4aXN0cygiZGF0YS9wcm9jZXNzZWQiKSwgZGlyLmNyZWF0ZSgiZGF0YS9wcm9jZXNzZWQiKSwgRkFMU0UpDQogICAgaWYgKGlzLm51bGwoZmlsZSkpDQogICAgICAgIGZpbGUgPSBkZXBhcnNlKHN1YnN0aXR1dGUoeCkpDQogICAgZGF0ZW5hbWUgPC0gc3Vic3RyKGdzdWIoIls6LV0iLCAiIiwgU3lzLnRpbWUoKSksIDEsIDgpDQogICAgdG90YWxuYW1lIDwtIHBhc3RlKGxvY2F0aW9uLCBkYXRlbmFtZSwgZmlsZSwgIi5yZGEiLCBzZXAgPSAiIikNCiAgICBzYXZlKHgsIGZpbGUgPSB0b3RhbG5hbWUpICAjbmVlZCB0byBmaXggaWYgZmlsZSBpcyByZWxvYWRlZCBhcyBpbnB1dCBuYW1lLCBub3QgYXMgeC4gDQp9DQoNCmZsb2FkIDwtIGZ1bmN0aW9uKGZpbGVuYW1lKSB7DQogICAgbG9hZChmaWxlbmFtZSkNCiAgICBnZXQobHMoKVtscygpICE9ICJmaWxlbmFtZSJdKQ0KfQ0KDQpmc2hvd2RmIDwtIGZ1bmN0aW9uKHgsIC4uLikgew0KICAgIGtuaXRyOjprYWJsZSh4LCBkaWdpdHMgPSAyLCAiaHRtbCIsIC4uLikgJT4lDQogICAgICAgIGthYmxlRXh0cmE6OmthYmxlX3N0eWxpbmcoYm9vdHN0cmFwX29wdGlvbnMgPSBjKCJzdHJpcGVkIiwgImhvdmVyIikpICU+JQ0KICAgICAgICBrYWJsZUV4dHJhOjpzY3JvbGxfYm94KHdpZHRoID0gIjEwMCUiLCBoZWlnaHQgPSAiMzAwcHgiKQ0KfQ0KDQpjb2xvcml6ZSA8LSBmdW5jdGlvbih4LCBjb2xvcikgew0KICAgIHNwcmludGYoIjxzcGFuIHN0eWxlPSdjb2xvcjogJXM7Jz4lczwvc3Bhbj4iLCBjb2xvciwgeCkNCn0NCnBhY2thZ2VzID0gYygiUlNpZW5hIiwgImRldnRvb2xzIiwgImlncmFwaCIpDQpmcGFja2FnZS5jaGVjayhwYWNrYWdlcykNCiNkZXZ0b29sczo6aW5zdGFsbF9naXRodWIoJ0pvY2hlbVRvbHNtYS9Sc2llbmFUd29TdGVwJywgYnVpbGRfdmlnbmV0dGVzPVRSVUUpDQpwYWNrYWdlcyA9IGMoIlJzaWVuYVR3b1N0ZXAiKQ0KZnBhY2thZ2UuY2hlY2socGFja2FnZXMpDQpgYGANCg0KIyBFeHBlcmltZW50aW5nDQpgYGB7cn0NCnJlcXVpcmUoaWdyYXBoKQ0KZyA8LSBtYWtlX2dyYXBoKCJaYWNoYXJ5IikNCnBsb3QoZykNCg0KI25vdCB0aGUgc2FtZSBwaWN0dXJlcywgYnV0IGNlbnRyZXMgYXJlIHRoZSBzYW1lDQojY2VudHJlIG9mIHRoZSBncmFwaCBpcyBkZWNpZGVkIGJ5IGFtb3VudCBvZiB0aWVzIA0KYGBgDQoNCkRlc2NyaXB0aW9uOiANCk5ldHdvcmsgZXhpc3RzIG9mIDM0IHBlb3BsZS4gUmVsYXRpb25zIGFyZSBub24tZGlyZWN0ZWQgKG9yIGlzIHRoaXMgdGhlIGRlZmF1bHQgb2YgaWdyYXBoPykNCmBgYHtyfQ0KZ21hdCA8LSBhc19hZGphY2VuY3lfbWF0cml4KGcsIHR5cGUgPSAiYm90aCIsIHNwYXJzZSA9IEZBTFNFKQ0KZ21hdA0KaXNTeW1tZXRyaWMoZ21hdCkgDQojc3ltbWV0cmljIGlzIHRydWUgc28gdGhlIG5ldHdvcmsgaXMgdW5kaXJlY3RlZA0KYGBgDQoNCiMjIERlc2NyaXB0aXZlcw0KYGBge3J9DQojc2l6ZQ0KIyBudW1iZXIgb2Ygbm9kZXMNCnZjb3VudChnKQ0KIyBudW1iZXIgb2YgZWRnZXMNCmVjb3VudChnKQ0KDQojZGVncmVlDQppZ3JhcGg6OmRlZ3JlZShnKQ0KIyBoaXN0KHRhYmxlKGRlZ3JlZShnKSksIHhsYWI9J2luZGVncmVlJywgbWFpbj0gJ0hpc3RvZ3JhbSBvZiBpbmRlZ3JlZScpDQoNCiN0cmFuc2l0aXZpdHkNCiMgYmUgYXdhcmUgdGhhdCBkaXJlY3RlZCBncmFwaHMgYXJlIGNvbnNpZGVyZWQgYXMgdW5kaXJlY3RlZC4gYnV0IGcgaXMgdW5kaXJlY3RlZC4NCmlncmFwaDo6dHJhbnNpdGl2aXR5KGcsIHR5cGUgPSBjKCJsb2NhbHVuZGlyZWN0ZWQiKSwgaXNvbGF0ZXMgPSBjKCJOYU4iLCAiemVybyIpKSANCg0KI2JldHdlZW5uZXNzDQppZ3JhcGg6OmJldHdlZW5uZXNzKGcsIGRpcmVjdGVkID0gRkFMU0UpDQoNCiMxIGFuZCAzNCBzaG91bGQgYmUgc3RyZXNzZWQgYSBiaXQgbW9yZSBhcyB0aGV5IGhhdmUgaGlnaGVyIGJldHdlZW5uZXNzLiBZb3UgY291bGQgZ2l2ZSB0aGVtIGEgY29sb3VyIHdpdGggeW91IHBhbGV0dGUgb3IgbWFrZSB0aGVtIGJpZ2dlcg0KDQoNCmBgYA0KDQpgYGB7cn0NCmlncmFwaDo6ZHlhZF9jZW5zdXMoZykNCg0KaWdyYXBoOjp0cmlhZC5jZW5zdXMoZykNCiMgSSB3aWxsIHVzZSBzbmEgYmVjYXVzZSBpdCBzaG93cyB0aGUgbmFtZXMgb2YgdGhlIHRyaWFkcyBhcyB3ZWxsLg0Kc25hOjp0cmlhZC5jZW5zdXMoZ21hdCkNCnVubG9hZE5hbWVzcGFjZSgic25hIikgICNJIHdpbGwgZGV0YWNoIHRoaXMgcGFja2FnZSBhZ2Fpbiwgb3RoZXJ3aXNlIGl0IHdpbGwgaW50ZXJmZXJlIHdpdGggYWxsIGtpbmQgb2YgZnVuY3Rpb25zIGZyb20gaWdyYXBoLCBhbmQgbXkgc3R1ZGVudHMgd2lsbCBoYXRlIG1lIGZvciB0aGF0Lg0KdHJhbnNpdGl2aXR5KA0KICBnLA0KICB0eXBlID0gYygiZ2xvYmFsdW5kaXJlY3RlZCIpLA0KICB2aWRzID0gTlVMTCwNCiAgd2VpZ2h0cyA9IE5VTEwsDQogIGlzb2xhdGVzID0gYygiTmFOIiwgInplcm8iKQ0KKQ0KYGBgDQoNCnZpc3VhbGlzYXRpZSAtIHdlIG1ha2VuIGRlIGdyb290dGUgdmFuIGRlIG5ldHdlcmtlbiBhZmhhbmtlbGlqayB2YW4gaWV0cyBhbmRlcnM6IA0KYGBge3J9DQojIGNoYW5naW5nIFYoZXJ0aWNlcykNCiMgaWYgeW91IHdhbnQgdG8gY2hhbmdlIHRoZSBlZGdlcyAoKHBpamx0amVzKSkgdXNlIEUgDQpWKGcpJHNpemUgPSBiZXR3ZWVubmVzcyhnLCBub3JtYWxpemVkID0gVCwgZGlyZWN0ZWQgPSBGQUxTRSkgKiA2MCArIDEyICNhZnRlciBzb21lIHRyaWFsIGFuZCBlcnJvcg0KcGxvdChnLCBtb2RlID0gInVuZGlyZWN0ZWQiKQ0KDQojc2V0IHRoZSBub2RlcyBhIGJpdCBmdXJ0aGVyIGFwYXJ0DQpzZXQuc2VlZCgyMzQ1KQ0KbCA8LSBsYXlvdXRfd2l0aF9tZHMoZykgICNodHRwczovL2lncmFwaC5vcmcvci9kb2MvbGF5b3V0X3dpdGhfbWRzLmh0bWwNCnBsb3QoZywgbGF5b3V0ID0gbCkNCg0KDQpsICAjbGV0IHVzIHRha2UgYSBsb29rIGF0IHRoZSBjb29yZGluYXRlcw0KbFsxLCAxXSA8LSA0DQpsWzM0LCAxXSA8LSAtMy41DQpwbG90KGcsIGxheW91dCA9IGwpDQojdGhpcyBncmFwaCBtaWdodCBtYWtlIHlvdSBpbnRlcnByZXQgaXQgbGlrZSB0aGVyZSBpcyBwb2xhcmlzYXRpb24sIGZpZ2h0LCB0aGF0IDEgYW5kIDM0IHRoZSBuZXR3b3JrIGFwYXJ0DQpgYGANCg0KUXVlc3Rpb25zOiBpcyB0aGlzIGRhdGEgbWFuaXB1bGF0aW9uIG9yIG5vdD8gSXMgaXQgaWxsdXN0cmF0aW5nIHRoZSBzdG9yeSBtb3JlIGNsZWFybHkgb3Igbm90PyBJcyBpdCBldGhpY2FsPyANCiEhISEgSXQgaXMgaW1wb3J0YW50IHRvIGJlIG9wZW4gYWJvdXQgdGhpcyAhISENCkluIHRoaXMgY2FzZSB5b3Ugd291bGQgbWVudGlvbiBpbiB0aGUgYXJ0aWNsZSB0aGF0IHlvdSBwbGFjZWQgMSBhbmQgMzQgb24gdGhlIG91dHNpZGVzIG9mIHlvdXIgcGljdHVyZSANCg0KIyMjIEludGVybWV6em86IFBhbmlja2luZyBhYm91dCBOQXMNCmBgYHtyfQ0KdGVzdG0gPC0gbWF0cml4KE5BLCBucm93ID0gNCwgbmNvbCA9IDQpDQp0ZXN0bVsxLDFdIDwtIDAgDQp0ZXN0bVsxLDJdIDwtIDENCnRlc3RtWzEsNF0gPC0gMSANCnRlc3RtWzMsMV0gPC0gMCANCnRlc3RtWzMsMl0gPC0gMQ0KdGVzdG1bMyw0XSA8LSAxDQp0ZXN0bVs0LDFdIDwtIDENCnRlc3RtWzQsMl0gPC0gMCANCnRlc3RtWzQsNF0gPC0gMSANCg0KI2NoZWNraW5nIGlmIG9uZSBtaXNzZXMgaW4gcm93cw0KbWlzc3JvdyA8LSByb3dTdW1zKGlzLm5hKHRlc3RtKSkgPT0gbnJvdyh0ZXN0bSkNCiNjaGVja2luZyBpZiBvbmUgbWlzc2VzIGluIGNvbHMNCm1pc3Njb2wgPC0gY29sU3Vtcyhpcy5uYSh0ZXN0bSkpID09IG5jb2wodGVzdG0pDQojY2hlY2tpbmcgaWYgbWlzc2luZyBpbiBib3RoDQptaXNzdG90YWwgPC0gd2hpY2gobWlzc3JvdyAmIG1pc3Njb2wpDQoNCnRlc3RtW3doaWNoKG1pc3Nyb3cpICwgXSA8LSAwIA0KdGVzdG0NCmBgYA0KDQojIFdlYnNjcmFwaW5nDQpgYGB7cn0NCiMgc3RhcnQgd2l0aCBjbGVhbiB3b3Jrc3BhY2UNCnJtKGxpc3QgPSBscygpKQ0KDQojIGluc3RhbGwucGFja2FnZXMoJ2RhdGEudGFibGUnKQ0KbGlicmFyeShkYXRhLnRhYmxlKSAgIyBtYWlubHkgZm9yIGZhc3RlciBkYXRhIGhhbmRsaW5nDQpsaWJyYXJ5KHRpZHl2ZXJzZSkgICMgSSBhc3N1bWUgeW91IGFscmVhZHkgaW5zdGFsbGVkIHRoaXMgb25lIQ0KIyBpbnN0YWxsLnBhY2thZ2VzKCdodHRyJykgIyB3ZSBkb24ndCBuZWVkIHRoaXMgZm9yIG5vdyByZXF1aXJlKGh0dHIpDQojaW5zdGFsbC5wYWNrYWdlcygieG1sMiIpDQpyZXF1aXJlKHhtbDIpDQojaW5zdGFsbC5wYWNrYWdlcygicnZlc3QiKQ0KcmVxdWlyZShydmVzdCkNCiNpbnN0YWxsLnBhY2thZ2VzKCJkZXZ0b29scyIpDQpyZXF1aXJlKGRldnRvb2xzKQ0KIyBOb3RlIHdlJ3JlIGRvaW5nIHNvbWV0aGluZyBkaWZmZXJlbnQgaGVyZS4gV2UncmUgaW5zdGFsbGluZyBhICpsYXRlc3QqIHZlcnNpb24gZGlyZWN0bHkgZnJvbQ0KIyBHaXRIdWIgVGhpcyBpcyBiZWNhdXNlIHRoZSByZWxlYXNlZCB2ZXJzaW9uIG9mIHRoaXMgcGFja2FnZXMgY29udGFpbnMgc29tZSBlcnJvcnMhDQpkZXZ0b29sczo6aW5zdGFsbF9naXRodWIoImprZWlyc3RlYWQvc2Nob2xhciIpDQoNCnJlcXVpcmUoc2Nob2xhcikNCg0KIyBkZWZpbmUgd29ya2RpcmVjdG9yeSwgbm90ZSB0aGUgZG91YmxlICpiYWNrc2xhc2hlcyogaWYgeW91J3JlIG9uIHdpbmRvd3Mgc2V0d2QoJy95b3VycGF0aGhlcmUpJw0KDQp1cmw8LSAiaHR0cHM6Ly9ub3Mubmwvem9la2VuP3E9bnByeiZwYWdlPTEiDQpub3NfbnByeiA8LSByZWFkX2h0bWwodXJsKQ0Kbm9zX25wcnoNCg0KI2xpanN0IDwtIG5vc19ucHJ6ICU+JSBodG1sX2VsZW1lbnRzKCJtYWluIikgJT4lIGh0bWxfZWxlbWVudHMoInVsIikgJT4lIGh0bWxfZWxlbWVudHMoImxpIikNCmBgYA0KDQoNCmBgYHtyfQ0KI3RpdGVsIDwtIG5vcyB8Pg0KDQojbGlqc3RbMV0gJT4lIGh0bWxfY2hpbGRyZW4gJT4lIGh0bWxfYXR0cihuYW1lPSJocmVmIikNCiNsaWpzdFsxXSAlPiUgaHRtbF9lbGVtZW50KCJ0aW1lIikgJT4lIGh0bWxfdGV4dA0KDQojdXJsIDwtIHBhc3RlMCgiaHR0cHM6Ly9ub3MubmwiLCBhcnRpa2VsMSkgDQojdGVrc3QxIDwtIHJlYWRfaHRtbCh1cmwpDQojaHRtbF90ZXh0Mih0ZWtzdDEpDQoNCiN2aWEgZWxlbWVudCB5b3UgZ28gZGVlcGVyIGludG8gYSBwYWdlLiB5b3UgY2FuIGFsc28gbG9vayBpbnRvIHRoaXMgdmlhIGNoaWxkcmVuIA0KYGBgDQoNCg0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQoNCiMgUmVmZXJlbmNlcw0KOjo6DQo6Ojo6DQo=</div>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("week4.Rmd");
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

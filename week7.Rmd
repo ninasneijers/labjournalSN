@@ -169,9 +169,9 @@ network_array <- array(data = c(wave1, wave2), dim = c(dim(wave1), 2))
 mynet <- sienaDependent(network_array)
 
 #independent variables
-covar_gender <- coCovar(as.numeric(df2$gender))
-covar_ethnicity <- coCovar(as.numeric(df2$ethnicity))
-covar_parentedu <- coCovar(as.numeric(df2$parentshigh))
+covar_gender <- coCovar(as.numeric(df2$genderf))
+covar_ethnicity <- coCovar(as.numeric(df2$ethnicityf))
+covar_parentedu <- coCovar(as.numeric(df2$parentshighf))
 mydata <- make_data_rsiena(mynet, covar_gender, covar_ethnicity, covar_parentedu)
 ```
 

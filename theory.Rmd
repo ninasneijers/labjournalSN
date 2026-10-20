@@ -1,5 +1,5 @@
 ---
-title: "Lab journal"
+title: "Final Project"
 author: "by: Nina Sneijers"
 bibliography: references.bib
 editor_options: 
@@ -9,20 +9,56 @@ editor_options:
 
 # Theory
 
-macro: Something something with cultural norms and codes at university
+**Homophily**
 
-More / less friendship homophily --\> higher scorings of social
-satisfaction
+Homophily is a concept that addresses the fact that "a contact between
+similar people occurs at a higher rate than among dissimilar people"
+[@SNASS]. It thus is about if we share similar characteristics, such as
+gender or ethnicity, we are more likely to befriend one another. Studies
+show that this is also likely to occur on a socioeconomic level, and
+that students are more likely to connect with students that have the
+same socio-economic status [@ZWIER2023127]. Socioeconomic status is both
+about educational level and income-level, but this study solely looks at
+parental educational level. We expect that on this level, homophily is
+also likely to occur, where students group alongside parental
+educational level lines, even when controlling for gender and ethnicity.
 
-could go two ways: 1. More social satisfaction if students from family
-with lower educational background are in mixed friendgroups BECAUSE they
-learn the cultural codes/norms from their friends 2. Less social
-satisfaction because different cultural norms, feel like they belong
-less, imposter syndrome maybe? While with other first gen they can level
-Which one most plausible and does anyone have theories?
+*Hypothesis 1:* Reciprocated ties are more likely to exist among
+students with parents with the same educational level
+
+**Redirected ties**
+
+That person A sees person B as a friend, does not necessarily have to
+mean that person B sees person A as a friend as well. However, one can
+imagine that if a friendship is answered, this creates more social
+satisfaction than if ties are only sent, but not answered. Therefore, it
+is expected that:
+
+*Hypothesis 2:* Reciprocated ties positively affect students' social
+satisfaction throughout the year
+
+**Cultural values**
+
+The family one grows up in influences the values one has and what world
+one is prepared for. Stephens et al. (2014) show that there is a
+difference in how working class families and middle class families
+prepare their children for the world, they, in fact, prepare their
+children for different types of worlds. First generation students are
+often guided by more interdependent motives than continuing-generation
+students and these norms remain the same over time in college
+[@phillips2020]. Not having to navigate between different cultural
+contexts is likely to be less demanding for students, therefore, it is
+expected that if students befriend people who have parents with a
+similar educational level, they have probably similar expectations in
+terms of friendships and it increases their social satisfaction.
+
+*Hypothesis 3*: If reciprocated ties occur between students with parents
+with the same educational level, this increases the positive effect of
+reciprocated ties on social satisfaction
 
 ------------------------------------------------------------------------
 
 # References
 
 ::: ::::
+:::

@@ -6,7 +6,7 @@ Filename is ./results/MLC_initial.txt.
 
 This file contains basic descriptives for SIENA data set <<./results/MLC_initial>>.
 
-Date and time: 08/10/2026 16:47:40 
+Date and time: 20/10/2026 17:20:36 
 
 RSiena version 1.6.6 (20 04 2026)
 
@@ -125,7 +125,7 @@ Information about covariates:
               minimum  maximum	  mean  centered 
 covar_gender      1.0     2.0      1.653    Y 
 covar_ethnicity      1.0     6.0      2.471    Y 
-covar_parentedu      0.0     1.0      0.750    Y 
+covar_parentedu      1.0     2.0      1.750    Y 
 The mean values are subtracted from the covariates.
 
 

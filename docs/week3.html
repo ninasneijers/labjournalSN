@@ -415,10 +415,10 @@ div.tocify {
     <li>
       <a href="conclusion.html">Conclusion</a>
     </li>
-    <li>
-      <a href="dc.html">Data Construction</a>
-    </li>
   </ul>
+</li>
+<li>
+  <a href="dc.html">Data Construction Final Project</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -933,24 +933,24 @@ myeff &lt;- includeEffects(myeff, sameX, egoX, altX, interaction1 = &quot;gender
 ##                                                Error      t-ratio   
 ## 
 ## Rate parameters: 
-##   0        Rate parameter          4.0135  ( 0.9875   )             
+##   0        Rate parameter          4.0152  ( 1.0102   )             
 ## 
 ## Other parameters: 
-##    1. eval outdegree (density)    -2.4620  ( 0.7746   )    0.0241   
-##    2. eval reciprocity             2.3428  ( 0.6454   )    0.0040   
-##    3. eval transitive triplets     0.7770  ( 0.3742   )    0.0267   
-##    4. eval indegree - popularity   0.2227  ( 0.0638   )    0.0539   
-##    5. eval outdegree - activity    0.0155  ( 0.1092   )    0.0047   
-##    6. eval indegree - activity(1) -0.4102  ( 0.3092   )    0.0039   
-##    7. eval network-isolate         2.4322  ( 1.3960   )    0.0062   
-##    8. eval gender alter           -0.3957  ( 0.2869   )   -0.0233   
-##    9. eval gender ego              0.1565  ( 0.3601   )   -0.0200   
-##   10. eval same gender             0.1529  ( 0.2782   )    0.0036   
+##    1. eval outdegree (density)    -2.4505  ( 0.6639   )    0.0315   
+##    2. eval reciprocity             2.3396  ( 0.6071   )   -0.0711   
+##    3. eval transitive triplets     0.7868  ( 0.4521   )   -0.0323   
+##    4. eval indegree - popularity   0.2211  ( 0.0569   )    0.0046   
+##    5. eval outdegree - activity    0.0153  ( 0.0924   )    0.0214   
+##    6. eval indegree - activity(1) -0.4256  ( 0.2751   )   -0.0277   
+##    7. eval network-isolate         2.4724  ( 1.1310   )   -0.0847   
+##    8. eval gender alter           -0.4065  ( 0.3020   )    0.0049   
+##    9. eval gender ego              0.1547  ( 0.3470   )    0.0574   
+##   10. eval same gender             0.1565  ( 0.2711   )    0.0277   
 ## 
-## Overall maximum convergence ratio:    0.0969 
+## Overall maximum convergence ratio:    0.1289 
 ## 
 ## 
-## Total of 2353 iteration steps.</code></pre>
+## Total of 2459 iteration steps.</code></pre>
 <pre class="r"><code># (the outer parentheses lead to printing the obtained result on the screen) if necessary, estimate
 # further
 (ans &lt;- siena07(myAlgorithm, data = mydata, effects = myeff, prevAns = ans, returnDeps = TRUE))</code></pre>
@@ -960,24 +960,24 @@ myeff &lt;- includeEffects(myeff, sameX, egoX, altX, interaction1 = &quot;gender
 ##                                                Error      t-ratio   
 ## 
 ## Rate parameters: 
-##   0        Rate parameter          4.0913  ( 0.9773   )             
+##   0        Rate parameter          4.1585  ( 1.0626   )             
 ## 
 ## Other parameters: 
-##    1. eval outdegree (density)    -2.4589  ( 0.7197   )   -0.0048   
-##    2. eval reciprocity             2.3521  ( 0.5901   )    0.0545   
-##    3. eval transitive triplets     0.7880  ( 0.3535   )   -0.0255   
-##    4. eval indegree - popularity   0.2185  ( 0.0641   )   -0.0401   
-##    5. eval outdegree - activity    0.0170  ( 0.1017   )   -0.0262   
-##    6. eval indegree - activity(1) -0.4178  ( 0.2842   )    0.0068   
-##    7. eval network-isolate         2.4362  ( 1.2451   )   -0.0264   
-##    8. eval gender alter           -0.4065  ( 0.3130   )    0.0458   
-##    9. eval gender ego              0.1578  ( 0.3518   )    0.0515   
-##   10. eval same gender             0.1526  ( 0.2682   )   -0.0191   
+##    1. eval outdegree (density)    -2.4477  ( 0.8297   )   -0.0093   
+##    2. eval reciprocity             2.3435  ( 0.5919   )   -0.0044   
+##    3. eval transitive triplets     0.7773  ( 0.3665   )    0.0211   
+##    4. eval indegree - popularity   0.2183  ( 0.0548   )   -0.0126   
+##    5. eval outdegree - activity    0.0180  ( 0.1067   )    0.0303   
+##    6. eval indegree - activity(1) -0.4220  ( 0.3031   )    0.0233   
+##    7. eval network-isolate         2.5047  ( 1.6032   )    0.0599   
+##    8. eval gender alter           -0.4055  ( 0.3030   )   -0.0193   
+##    9. eval gender ego              0.1555  ( 0.3706   )    0.0184   
+##   10. eval same gender             0.1547  ( 0.2664   )    0.0165   
 ## 
-## Overall maximum convergence ratio:    0.1158 
+## Overall maximum convergence ratio:    0.1258 
 ## 
 ## 
-## Total of 2876 iteration steps.</code></pre>
+## Total of 2709 iteration steps.</code></pre>
 <pre class="r"><code>ans</code></pre>
 <pre><code>## Estimates, standard errors and convergence t-ratios
 ## 
@@ -985,24 +985,24 @@ myeff &lt;- includeEffects(myeff, sameX, egoX, altX, interaction1 = &quot;gender
 ##                                                Error      t-ratio   
 ## 
 ## Rate parameters: 
-##   0        Rate parameter          4.0913  ( 0.9773   )             
+##   0        Rate parameter          4.1585  ( 1.0626   )             
 ## 
 ## Other parameters: 
-##    1. eval outdegree (density)    -2.4589  ( 0.7197   )   -0.0048   
-##    2. eval reciprocity             2.3521  ( 0.5901   )    0.0545   
-##    3. eval transitive triplets     0.7880  ( 0.3535   )   -0.0255   
-##    4. eval indegree - popularity   0.2185  ( 0.0641   )   -0.0401   
-##    5. eval outdegree - activity    0.0170  ( 0.1017   )   -0.0262   
-##    6. eval indegree - activity(1) -0.4178  ( 0.2842   )    0.0068   
-##    7. eval network-isolate         2.4362  ( 1.2451   )   -0.0264   
-##    8. eval gender alter           -0.4065  ( 0.3130   )    0.0458   
-##    9. eval gender ego              0.1578  ( 0.3518   )    0.0515   
-##   10. eval same gender             0.1526  ( 0.2682   )   -0.0191   
+##    1. eval outdegree (density)    -2.4477  ( 0.8297   )   -0.0093   
+##    2. eval reciprocity             2.3435  ( 0.5919   )   -0.0044   
+##    3. eval transitive triplets     0.7773  ( 0.3665   )    0.0211   
+##    4. eval indegree - popularity   0.2183  ( 0.0548   )   -0.0126   
+##    5. eval outdegree - activity    0.0180  ( 0.1067   )    0.0303   
+##    6. eval indegree - activity(1) -0.4220  ( 0.3031   )    0.0233   
+##    7. eval network-isolate         2.5047  ( 1.6032   )    0.0599   
+##    8. eval gender alter           -0.4055  ( 0.3030   )   -0.0193   
+##    9. eval gender ego              0.1555  ( 0.3706   )    0.0184   
+##   10. eval same gender             0.1547  ( 0.2664   )    0.0165   
 ## 
-## Overall maximum convergence ratio:    0.1158 
+## Overall maximum convergence ratio:    0.1258 
 ## 
 ## 
-## Total of 2876 iteration steps.</code></pre>
+## Total of 2709 iteration steps.</code></pre>
 <pre class="r"><code>#so on average, there are 4 ministeps taken per agent (rate parameter)
 #like we saw in our print report, there is a very low density 
 #high reciprocity: if I collaborate with you, you want to collaborate with me
@@ -4745,18 +4745,18 @@ myeff2 </code></pre>
 ##                                              Error      t-ratio   
 ## 
 ## Rate parameters: 
-##   0       Rate parameter         7.8270  ( 0.7373   )             
+##   0       Rate parameter         7.7938  ( 0.7293   )             
 ## 
 ## Other parameters: 
-##   1. eval outdegree (density)   -2.7247  ( 0.1295   )   -0.0252   
-##   2. eval reciprocity            1.8619  ( 0.1878   )   -0.1291   
-##   3. eval transitive triplets    0.2985  ( 0.0489   )   -0.1032   
-##   4. eval indegree - popularity -0.0052  ( 0.0283   )    0.4039   
+##   1. eval outdegree (density)   -2.6099  ( 0.1342   )   -0.0150   
+##   2. eval reciprocity            1.8448  ( 0.1796   )   -0.1399   
+##   3. eval transitive triplets    0.3243  ( 0.0496   )   -0.0753   
+##   4. eval indegree - popularity -0.0375  ( 0.0315   )    0.0403   
 ## 
-## Overall maximum convergence ratio:    1.1859 
+## Overall maximum convergence ratio:    0.2514 
 ## 
 ## 
-## Total of 2228 iteration steps.</code></pre>
+## Total of 1899 iteration steps.</code></pre>
 <pre class="r"><code>ans</code></pre>
 <pre><code>## Estimates, standard errors and convergence t-ratios
 ## 
@@ -4764,18 +4764,18 @@ myeff2 </code></pre>
 ##                                              Error      t-ratio   
 ## 
 ## Rate parameters: 
-##   0       Rate parameter         7.8270  ( 0.7373   )             
+##   0       Rate parameter         7.7938  ( 0.7293   )             
 ## 
 ## Other parameters: 
-##   1. eval outdegree (density)   -2.7247  ( 0.1295   )   -0.0252   
-##   2. eval reciprocity            1.8619  ( 0.1878   )   -0.1291   
-##   3. eval transitive triplets    0.2985  ( 0.0489   )   -0.1032   
-##   4. eval indegree - popularity -0.0052  ( 0.0283   )    0.4039   
+##   1. eval outdegree (density)   -2.6099  ( 0.1342   )   -0.0150   
+##   2. eval reciprocity            1.8448  ( 0.1796   )   -0.1399   
+##   3. eval transitive triplets    0.3243  ( 0.0496   )   -0.0753   
+##   4. eval indegree - popularity -0.0375  ( 0.0315   )    0.0403   
 ## 
-## Overall maximum convergence ratio:    1.1859 
+## Overall maximum convergence ratio:    0.2514 
 ## 
 ## 
-## Total of 2228 iteration steps.</code></pre>
+## Total of 1899 iteration steps.</code></pre>
 </div>
 </div>
 <div id="references" class="section level1" number="2">

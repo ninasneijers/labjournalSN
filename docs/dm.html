@@ -12,7 +12,7 @@
 <meta name="author" content="by: Nina Sneijers" />
 
 
-<title>Lab journal</title>
+<title>Final Project</title>
 
 <script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -70,28 +70,6 @@ if (window.hljs) {
 }
 </style>
 
-<style type="text/css">
-/* for pandoc --citeproc since 2.11 */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
-</style>
 
 <link rel="stylesheet" href="tweaks.css" type="text/css" />
 
@@ -415,10 +393,10 @@ div.tocify {
     <li>
       <a href="conclusion.html">Conclusion</a>
     </li>
-    <li>
-      <a href="dc.html">Data Construction</a>
-    </li>
   </ul>
+</li>
+<li>
+  <a href="dc.html">Data Construction Final Project</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -447,7 +425,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Lab journal</h1>
+<h1 class="title toc-ignore">Final Project</h1>
 <h4 class="author">by: Nina Sneijers</h4>
 
 </div>
@@ -455,52 +433,87 @@ div.tocify {
 
 <div id="data-methods" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Data &amp; Methods</h1>
-<div id="data-description" class="section level2" number="1.1">
-<h2><span class="header-section-number">1.1</span> Data Description</h2>
-<div id="variables" class="section level3" number="1.1.1">
-<h3><span class="header-section-number">1.1.1</span> Variables</h3>
-<p>What do you think?</p>
-<p>Dependent variable: social satisfaction (= university belonging)</p>
-<p>Independent variables(?): friendship homogeneity in terms of parental
-educational level (Is this correct?)</p>
-<p>Constant covariates: Gender, ethnicity</p>
-<p>Time-varying covariate: Popularity (Measured by amount of in-degrees)
--&gt; Is this possible, can I write it like this?</p>
-<p>Dyad covariates: - Same-sex friendships - Studying together (once
-again, is this possible?)</p>
-<p>Two tie functions identified, based on: <span
-class="citation">(Franken et al. 2023)</span></p>
-<p>1: Parental education level tie formation function Structural effects
-to use: trial-and-error? <span class="citation">(Franken et al.
-2023)</span> uses outdegree, reciprocity and transitivity but maybe this
-is for later</p>
-<p>Or popularity here?</p>
-<p>2: Social satisfaction function Maybe social satisfaction of alter,
-is this something to be included? And that would be a time-varying
-covariate right?</p>
-<p>Additionally: How to work with social satisfaction? Do I look at
-social satisfaction in the first or second wave? Or do I look at whether
-it has improved or not? And how do I take that into account?</p>
-<hr />
+</div>
+<div id="data-description" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Data Description</h1>
+<p>For this research, the dataset of the Michigan Residential Community
+Survey was used. This survey was used to evaluate the Michigan Learning
+Communities and focussed, among other things, on the social satisfaction
+of their first-year students. For the sake of this course, only the data
+of one of the programs was used, from the first cohort (2022-2023). The
+pre-survey (Wave 1) could be answered from October 19 to November 19 and
+the post-survey (Wave 2) could be answered from March 3th to April
+10th.</p>
+<p>This specific program contained 121 students who answered at least
+one of these surveys. The response rate for the first wave was 91,474%
+and for the second wave it was 94,21%. Eleven students only answered the
+questions of the second wave and thirteen students only answered the
+questions of the first wave.</p>
+<div id="variables" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Variables</h2>
+<div id="hanging-out" class="section level3" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Hanging out</h3>
+<p>The reciprocated ties of the ‘hanging out’ variable are the dependent
+variable for the first hypothesis and an independent variable for the
+second and third hypothesis. The question asked for this variable was
+‘Which students in your MLC do you hang around with and talk to the
+most?’. Students could nominate up to ten of their fellow students.</p>
+<p>For the students that only participated in one of the two waves, it
+meant that if they were nominated by their fellow students anyways, this
+was still coded as a non-nomination (0), because they did not consent to
+participating in that specific wave. Additionally, their own nominations
+(which was an NA), were also coded as 0. This means that there could be
+some bias in the network structures.</p>
+</div>
+<div id="social-satisfaction" class="section level3" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> Social
+satisfaction</h3>
+<p>Social satisfaction is the dependent variable for the second and
+third hypothesis.</p>
+<p>Five questions were asked to measure the social satisfaction of the
+students. As two of these questions were asked as a negative (I feel
+left out of things, I am lonely), only the three positive questions (I
+have made some good friends at the U of M, I am happy with my friends at
+the U of M, I like how my social life is going this year) were taken
+into account for the sake of this course. Answered were proposed on a
+scale from 1 (Strongly disagree) to 7 (Strongly agree). The average of
+these three positives was taken to measure the social satisfaction of
+students.</p>
 </div>
 </div>
+<div id="covariate-parental-education-level" class="section level2"
+number="2.2">
+<h2><span class="header-section-number">2.2</span> Covariate: Parental
+Education Level</h2>
+<p>Parental education level is one of the independent variables for the
+first and third hypothesis. Students had to answer what the highest
+education level was for both of their parents. For this study, these
+responses were first binary coded for both of the parents. If the
+highest education the parent had completed was
+‘trade/technical/vocational training’ or less than this, the response
+was coded as 0, anything above that was coded as 1. Followingly,
+responses for parent 1 and parent 2 were taken together. If at least one
+of the parents had completed higher education, the variable was coded as
+1 for the student.</p>
 </div>
-<div id="references" class="section level1" number="2">
-<h1><span class="header-section-number">2</span> References</h1>
+<div id="control-covariates" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Control
+covariates</h2>
+<p>To account for the influence of other factors on the hypotheses,
+gender and ethnicity were taken into account as control variables.</p>
+</div>
+<div id="methods" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> # Methods</h2>
+</div>
+</div>
+<div id="references" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> References</h1>
 <div class="::::">
 
 </div>
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div id="ref-FRANKEN2023" class="csl-entry">
-Franken, Rob, Hidde Bekhuis, and Jochem Tolsma. 2023. <span>“Kudos Make
-You Run! How Runners Influence Each Other on the Online Social Network
-Strava.”</span> <em>Social Networks</em> 72: 151–64. https://doi.org/<a
-href="https://doi.org/10.1016/j.socnet.2022.10.001">https://doi.org/10.1016/j.socnet.2022.10.001</a>.
-</div>
-</div>
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIkxhYiBqb3VybmFsIg0KYXV0aG9yOiAiYnk6IE5pbmEgU25laWplcnMiDQpiaWJsaW9ncmFwaHk6IHJlZmVyZW5jZXMuYmliDQplZGl0b3Jfb3B0aW9uczogDQogIG1hcmtkb3duOiANCiAgICB3cmFwOiA3Mg0KLS0tDQoNCiMgRGF0YSAmIE1ldGhvZHMNCg0KIyMgRGF0YSBEZXNjcmlwdGlvbg0KDQojIyMgVmFyaWFibGVzDQoNCldoYXQgZG8geW91IHRoaW5rPw0KDQpEZXBlbmRlbnQgdmFyaWFibGU6IHNvY2lhbCBzYXRpc2ZhY3Rpb24gKD0gdW5pdmVyc2l0eSBiZWxvbmdpbmcpDQoNCkluZGVwZW5kZW50IHZhcmlhYmxlcyg/KTogZnJpZW5kc2hpcCBob21vZ2VuZWl0eSBpbiB0ZXJtcyBvZiBwYXJlbnRhbA0KZWR1Y2F0aW9uYWwgbGV2ZWwgKElzIHRoaXMgY29ycmVjdD8pDQoNCkNvbnN0YW50IGNvdmFyaWF0ZXM6IEdlbmRlciwgZXRobmljaXR5DQoNClRpbWUtdmFyeWluZyBjb3ZhcmlhdGU6IFBvcHVsYXJpdHkgKE1lYXN1cmVkIGJ5IGFtb3VudCBvZiBpbi1kZWdyZWVzKQ0KLVw+IElzIHRoaXMgcG9zc2libGUsIGNhbiBJIHdyaXRlIGl0IGxpa2UgdGhpcz8NCg0KRHlhZCBjb3ZhcmlhdGVzOiAtIFNhbWUtc2V4IGZyaWVuZHNoaXBzIC0gU3R1ZHlpbmcgdG9nZXRoZXIgKG9uY2UgYWdhaW4sDQppcyB0aGlzIHBvc3NpYmxlPykNCg0KVHdvIHRpZSBmdW5jdGlvbnMgaWRlbnRpZmllZCwgYmFzZWQgb246IFtARlJBTktFTjIwMjNdDQoNCjE6IFBhcmVudGFsIGVkdWNhdGlvbiBsZXZlbCB0aWUgZm9ybWF0aW9uIGZ1bmN0aW9uIFN0cnVjdHVyYWwgZWZmZWN0cyB0bw0KdXNlOiB0cmlhbC1hbmQtZXJyb3I/IFtARlJBTktFTjIwMjNdIHVzZXMgb3V0ZGVncmVlLCByZWNpcHJvY2l0eSBhbmQNCnRyYW5zaXRpdml0eSBidXQgbWF5YmUgdGhpcyBpcyBmb3IgbGF0ZXINCg0KT3IgcG9wdWxhcml0eSBoZXJlPw0KDQoyOiBTb2NpYWwgc2F0aXNmYWN0aW9uIGZ1bmN0aW9uIE1heWJlIHNvY2lhbCBzYXRpc2ZhY3Rpb24gb2YgYWx0ZXIsIGlzDQp0aGlzIHNvbWV0aGluZyB0byBiZSBpbmNsdWRlZD8gQW5kIHRoYXQgd291bGQgYmUgYSB0aW1lLXZhcnlpbmcNCmNvdmFyaWF0ZSByaWdodD8NCg0KQWRkaXRpb25hbGx5OiBIb3cgdG8gd29yayB3aXRoIHNvY2lhbCBzYXRpc2ZhY3Rpb24/IERvIEkgbG9vayBhdCBzb2NpYWwNCnNhdGlzZmFjdGlvbiBpbiB0aGUgZmlyc3Qgb3Igc2Vjb25kIHdhdmU/IE9yIGRvIEkgbG9vayBhdCB3aGV0aGVyIGl0IGhhcw0KaW1wcm92ZWQgb3Igbm90PyBBbmQgaG93IGRvIEkgdGFrZSB0aGF0IGludG8gYWNjb3VudD8NCg0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQoNCiMgUmVmZXJlbmNlcw0KDQo6OjogOjo6Og0K</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkZpbmFsIFByb2plY3QiDQphdXRob3I6ICJieTogTmluYSBTbmVpamVycyINCmJpYmxpb2dyYXBoeTogcmVmZXJlbmNlcy5iaWINCmVkaXRvcl9vcHRpb25zOiANCiAgbWFya2Rvd246IA0KICAgIHdyYXA6IDcyDQotLS0NCg0KIyBEYXRhICYgTWV0aG9kcw0KDQojIERhdGEgRGVzY3JpcHRpb24NCkZvciB0aGlzIHJlc2VhcmNoLCB0aGUgZGF0YXNldCBvZiB0aGUgTWljaGlnYW4gUmVzaWRlbnRpYWwgQ29tbXVuaXR5IFN1cnZleSB3YXMgdXNlZC4gVGhpcyBzdXJ2ZXkgd2FzIHVzZWQgdG8gZXZhbHVhdGUgdGhlIE1pY2hpZ2FuIExlYXJuaW5nIENvbW11bml0aWVzIGFuZCBmb2N1c3NlZCwgYW1vbmcgb3RoZXIgdGhpbmdzLCBvbiB0aGUgc29jaWFsIHNhdGlzZmFjdGlvbiBvZiB0aGVpciBmaXJzdC15ZWFyIHN0dWRlbnRzLiBGb3IgdGhlIHNha2Ugb2YgdGhpcyBjb3Vyc2UsIG9ubHkgdGhlIGRhdGEgb2Ygb25lIG9mIHRoZSBwcm9ncmFtcyB3YXMgdXNlZCwgZnJvbSB0aGUgZmlyc3QgY29ob3J0ICgyMDIyLTIwMjMpLiBUaGUgcHJlLXN1cnZleSAoV2F2ZSAxKSBjb3VsZCBiZSBhbnN3ZXJlZCBmcm9tIE9jdG9iZXIgMTkgdG8gTm92ZW1iZXIgMTkgYW5kIHRoZSBwb3N0LXN1cnZleSAoV2F2ZSAyKSBjb3VsZCBiZSBhbnN3ZXJlZCBmcm9tIE1hcmNoIDN0aCB0byBBcHJpbCAxMHRoLiANCg0KVGhpcyBzcGVjaWZpYyBwcm9ncmFtIGNvbnRhaW5lZCAxMjEgc3R1ZGVudHMgd2hvIGFuc3dlcmVkIGF0IGxlYXN0IG9uZSBvZiB0aGVzZSBzdXJ2ZXlzLiBUaGUgcmVzcG9uc2UgcmF0ZSBmb3IgdGhlIGZpcnN0IHdhdmUgd2FzIDkxLDQ3NCUgYW5kIGZvciB0aGUgc2Vjb25kIHdhdmUgaXQgd2FzIDk0LDIxJS4gRWxldmVuIHN0dWRlbnRzIG9ubHkgYW5zd2VyZWQgdGhlIHF1ZXN0aW9ucyBvZiB0aGUgc2Vjb25kIHdhdmUgYW5kIHRoaXJ0ZWVuIHN0dWRlbnRzIG9ubHkgYW5zd2VyZWQgdGhlIHF1ZXN0aW9ucyBvZiB0aGUgZmlyc3Qgd2F2ZS4NCg0KIyMgVmFyaWFibGVzDQoNCiMjIyBIYW5naW5nIG91dA0KVGhlIHJlY2lwcm9jYXRlZCB0aWVzIG9mIHRoZSAnaGFuZ2luZyBvdXQnIHZhcmlhYmxlIGFyZSB0aGUgZGVwZW5kZW50IHZhcmlhYmxlIGZvciB0aGUgZmlyc3QgaHlwb3RoZXNpcyBhbmQgYW4gaW5kZXBlbmRlbnQgdmFyaWFibGUgZm9yIHRoZSBzZWNvbmQgYW5kIHRoaXJkIGh5cG90aGVzaXMuIFRoZSBxdWVzdGlvbiBhc2tlZCBmb3IgdGhpcyB2YXJpYWJsZSB3YXMgJ1doaWNoIHN0dWRlbnRzIGluIHlvdXIgTUxDIGRvIHlvdSBoYW5nIGFyb3VuZCB3aXRoIGFuZCB0YWxrIHRvIHRoZSBtb3N0PycuIFN0dWRlbnRzIGNvdWxkIG5vbWluYXRlIHVwIHRvIHRlbiBvZiB0aGVpciBmZWxsb3cgc3R1ZGVudHMuIA0KDQpGb3IgdGhlIHN0dWRlbnRzIHRoYXQgb25seSBwYXJ0aWNpcGF0ZWQgaW4gb25lIG9mIHRoZSB0d28gd2F2ZXMsIGl0IG1lYW50IHRoYXQgaWYgdGhleSB3ZXJlIG5vbWluYXRlZCBieSB0aGVpciBmZWxsb3cgc3R1ZGVudHMgYW55d2F5cywgdGhpcyB3YXMgc3RpbGwgY29kZWQgYXMgYSBub24tbm9taW5hdGlvbiAoMCksIGJlY2F1c2UgdGhleSBkaWQgbm90IGNvbnNlbnQgdG8gcGFydGljaXBhdGluZyBpbiB0aGF0IHNwZWNpZmljIHdhdmUuIEFkZGl0aW9uYWxseSwgdGhlaXIgb3duIG5vbWluYXRpb25zICh3aGljaCB3YXMgYW4gTkEpLCB3ZXJlIGFsc28gY29kZWQgYXMgMC4gVGhpcyBtZWFucyB0aGF0IHRoZXJlIGNvdWxkIGJlIHNvbWUgYmlhcyBpbiB0aGUgbmV0d29yayBzdHJ1Y3R1cmVzLiANCg0KIyMjIFNvY2lhbCBzYXRpc2ZhY3Rpb24NClNvY2lhbCBzYXRpc2ZhY3Rpb24gaXMgdGhlIGRlcGVuZGVudCB2YXJpYWJsZSBmb3IgdGhlIHNlY29uZCBhbmQgdGhpcmQgaHlwb3RoZXNpcy4gDQoNCkZpdmUgcXVlc3Rpb25zIHdlcmUgYXNrZWQgdG8gbWVhc3VyZSB0aGUgc29jaWFsIHNhdGlzZmFjdGlvbiBvZiB0aGUgc3R1ZGVudHMuIEFzIHR3byBvZiB0aGVzZSBxdWVzdGlvbnMgd2VyZSBhc2tlZCBhcyBhIG5lZ2F0aXZlIChJIGZlZWwgbGVmdCBvdXQgb2YgdGhpbmdzLCBJIGFtIGxvbmVseSksIG9ubHkgdGhlIHRocmVlIHBvc2l0aXZlIHF1ZXN0aW9ucyAoSSBoYXZlIG1hZGUgc29tZSBnb29kIGZyaWVuZHMgYXQgdGhlIFUgb2YgTSwgSSBhbSBoYXBweSB3aXRoIG15IGZyaWVuZHMgYXQgdGhlIFUgb2YgTSwgSSBsaWtlIGhvdyBteSBzb2NpYWwgbGlmZSBpcyBnb2luZyB0aGlzIHllYXIpIHdlcmUgdGFrZW4gaW50byBhY2NvdW50IGZvciB0aGUgc2FrZSBvZiB0aGlzIGNvdXJzZS4gQW5zd2VyZWQgd2VyZSBwcm9wb3NlZCBvbiBhIHNjYWxlIGZyb20gMSAoU3Ryb25nbHkgZGlzYWdyZWUpIHRvIDcgKFN0cm9uZ2x5IGFncmVlKS4gVGhlIGF2ZXJhZ2Ugb2YgdGhlc2UgdGhyZWUgcG9zaXRpdmVzIHdhcyB0YWtlbiB0byBtZWFzdXJlIHRoZSBzb2NpYWwgc2F0aXNmYWN0aW9uIG9mIHN0dWRlbnRzLiANCg0KIyMgQ292YXJpYXRlOiBQYXJlbnRhbCBFZHVjYXRpb24gTGV2ZWwNClBhcmVudGFsIGVkdWNhdGlvbiBsZXZlbCBpcyBvbmUgb2YgdGhlIGluZGVwZW5kZW50IHZhcmlhYmxlcyBmb3IgdGhlIGZpcnN0IGFuZCB0aGlyZCBoeXBvdGhlc2lzLiBTdHVkZW50cyBoYWQgdG8gYW5zd2VyIHdoYXQgdGhlIGhpZ2hlc3QgZWR1Y2F0aW9uIGxldmVsIHdhcyBmb3IgYm90aCBvZiB0aGVpciBwYXJlbnRzLiBGb3IgdGhpcyBzdHVkeSwgdGhlc2UgcmVzcG9uc2VzIHdlcmUgZmlyc3QgYmluYXJ5IGNvZGVkIGZvciBib3RoIG9mIHRoZSBwYXJlbnRzLiBJZiB0aGUgaGlnaGVzdCBlZHVjYXRpb24gdGhlIHBhcmVudCBoYWQgY29tcGxldGVkIHdhcyAndHJhZGUvdGVjaG5pY2FsL3ZvY2F0aW9uYWwgdHJhaW5pbmcnIG9yIGxlc3MgdGhhbiB0aGlzLCB0aGUgcmVzcG9uc2Ugd2FzIGNvZGVkIGFzIDAsIGFueXRoaW5nIGFib3ZlIHRoYXQgd2FzIGNvZGVkIGFzIDEuIEZvbGxvd2luZ2x5LCByZXNwb25zZXMgZm9yIHBhcmVudCAxIGFuZCBwYXJlbnQgMiB3ZXJlIHRha2VuIHRvZ2V0aGVyLiBJZiBhdCBsZWFzdCBvbmUgb2YgdGhlIHBhcmVudHMgaGFkIGNvbXBsZXRlZCBoaWdoZXIgZWR1Y2F0aW9uLCB0aGUgdmFyaWFibGUgd2FzIGNvZGVkIGFzIDEgZm9yIHRoZSBzdHVkZW50LiANCg0KIyMgQ29udHJvbCBjb3ZhcmlhdGVzDQpUbyBhY2NvdW50IGZvciB0aGUgaW5mbHVlbmNlIG9mIG90aGVyIGZhY3RvcnMgb24gdGhlIGh5cG90aGVzZXMsIGdlbmRlciBhbmQgZXRobmljaXR5IHdlcmUgdGFrZW4gaW50byBhY2NvdW50IGFzIGNvbnRyb2wgdmFyaWFibGVzLiANCg0KIyBNZXRob2RzDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCg0KIyBSZWZlcmVuY2VzDQoNCjo6OiA6Ojo6DQo=</div>
 
 
 </div>

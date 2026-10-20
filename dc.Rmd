@@ -1,5 +1,5 @@
 ---
-title: "Lab journal"
+title: "Final Project"
 author: "by: Nina Sneijers"
 bibliography: references.bib
 editor_options: 
@@ -7,6 +7,7 @@ editor_options:
     wrap: 72
 ---
 
+# Dataprep
 ```{r}
 #loading packages
 fpackage.check <- function(packages) {
@@ -93,8 +94,6 @@ rowhangingw1
 colhangingw1 <- colSums(is.na(wave1)) == ncol(wave1)
 wave1[which(rowhangingw1) , ] <- 0
 
-save(wave1, file = "wave1.Rdata")
-
 #CHANGE: for w2, I want the leavers to remain at the same value as they had in the previous wave, but I do not understand how to do this. Ask in class... for now, I will give them the 0 value. 
 wave2 <- na_if(hanging[[1]][[2]], 9)
 rowhangingw2 <- rowSums(is.na(wave2)) == nrow(wave2)
@@ -103,6 +102,28 @@ rowhangingw2
 colhangingw2 <- colSums(is.na(wave2)) == ncol(wave2)
 wave2[which(rowhangingw2) , ] <- 0
 
+#making sure the matrix is correct
+
+# filter out the waves of the object: we need to check our input
+dim(wave1)
+dim(wave2)
+
+# you need to have 0 missing values:
+sum(is.na(wave1))
+sum(is.na(wave2))
+
+#check the diagonal: all places should be 0
+sum(diag(wave1)==0)
+sum(diag(wave2)==0)
+
+sum(wave1>1)
+sum(wave2>1)
+
+# check if it's not empty: there are people with 1's
+sum(wave1>0)
+sum(wave2>0)
+
+save(wave1, file = "wave1.Rdata")
 save(wave2, file = "wave2.Rdata")
 ```
 
@@ -145,14 +166,21 @@ summary(fa2)
 fa2$loadings
 ```
 
-Okay honestly, no clue exactly what this means, I am going to ask my classmates for help at some later point. For now, I will just craft a social satisfaction variable from the average of these three.
+I crafted a social satisfaction average from these three.
 ```{r}
 df1$socsatw1 <-mutate(df_socsat1v2, socsatw1 = rowMeans(select(df_socsat1v2, T1SOCSAT1:T1SOCSAT5), na.rm = TRUE))
 df1$socsatw2 <-mutate(df_socsat2v2, socsatw2 = rowMeans(select(df_socsat2v2, T2SOCSAT1:T2SOCSAT5), na.rm = TRUE))
 
-df2 <- subset(df1, select = c(studentid, gender, ethnicity, parentshigh, socsatw1, socsatw2))
+df1$socsatw1n <- as.numeric(df1$socsatw1$socsatw1)
+df1$socsatw2n <- as.numeric(df1$socsatw2$socsatw2)
+
+df1$genderf <- as.factor(df1$gender)
+df1$ethnicityf <- as.factor(df1$ethnicity)
+df1$parentshighf <- as.factor(df1$parentshigh)
+
+df2 <- subset(df1, select = c(studentid, genderf, ethnicityf, parentshighf, socsatw1n, socsatw2n))
 
 save(df2, file = "parentedudata.Rdata")
 ```
-
+# Population characteristics
 

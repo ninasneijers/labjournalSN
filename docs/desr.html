@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="by: Nina Sneijers" />
+
+
+<title>Descriptive Results</title>
+
+<script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+<style type="text/css">
+#rmd-source-code {
+  display: none;
+}
+</style>
+
+<style type="text/css">
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="tweaks.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    My journal
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="week1.html">Week 1: 31-8-2026</a>
+    </li>
+    <li>
+      <a href="week2.html">Week 2: 7-9-2026</a>
+    </li>
+    <li>
+      <a href="week3.html">Week 3: 14-9-2026</a>
+    </li>
+    <li>
+      <a href="week4.html">Week 4: 21-9-2026</a>
+    </li>
+    <li>
+      <a href="week5.html">Week 5: 28-9-2026</a>
+    </li>
+    <li>
+      <a href="week6.html">Week 6: 5-10-2026</a>
+    </li>
+    <li>
+      <a href="week7.html">Week 7: 12-10-2026</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Final Project
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="introduction.html">Introduction</a>
+    </li>
+    <li>
+      <a href="theory.html">Theory</a>
+    </li>
+    <li>
+      <a href="dm.html">Data &amp; Methods</a>
+    </li>
+    <li>
+      <a href="desr.html">Descriptive Results</a>
+    </li>
+    <li>
+      <a href="expl.html">Exploratory Results</a>
+    </li>
+    <li>
+      <a href="conclusion.html">Conclusion</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="dc.html">Data Construction Final Project</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/ninasneijers/labjournalSN">
+    <span class="fab fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+<li role="separator" class="divider"></li>
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Descriptive Results</h1>
+<h4 class="author">by: Nina Sneijers</h4>
+
+</div>
+
+
+<div id="descriptive-results" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Descriptive
+Results</h1>
+<div id="population-characteristics" class="section level2"
+number="1.1">
+<h2><span class="header-section-number">1.1</span> Population
+characteristics</h2>
+<p>From the population of 121 students, 34.7% of the students was male
+and 65.3% was female. No one said they identified as non-binary. In
+terms of parental education level, 75% of the students had at least one
+parents that had enjoyed higher education.</p>
+<p>Average social satisfaction in the first wave was a 5.6 and for the
+second wave it was a 5.7.</p>
+</div>
+<div id="network-characteristics" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> Network
+characteristics</h2>
+<p>The network has 395 ties in wave 1 and 270 ties in wave 2, which
+indicates that students hang out less with other students from their
+community later in the year than they did in the beginning of the year.
+The network is also less dense in wave 2 (0.018) than in wave 1 (0.027),
+which confirms that there are fewer overall ties within the community.
+Generally, the density of both waves can be considered very low, which
+is interesting. Perhaps this is due to the fact that this is only one
+community and there is a possibility that students also connect with
+people from outside of their own community. Those ties cannot be taken
+into account.</p>
+<p>In terms of reciprocity, this seems to remain relatively stable
+across the waves, although it was slightly higher in wave 1 (0.47) than
+it was in wave 2 (0.44). This can also be seen back in the number of
+mutual dyads, which was 93 in wave 1 and 60 in wave 2, indicating that
+some of the reciprocated dyads of wave 1 have been broken in wave 2. In
+terms of the number of isolates in the network, meaning people who have
+not send out ties, nor received any ties, this also remains relatively
+stable, with 15 isolates in wave 1 and 17 in wave 2. For all these three
+statistics, it should be taken into account that if students were not
+present in one of the waves, their incoming ties were also put to 0.
+Therefore, some of these statistics might be slightly biased.</p>
+<p>Lastly, I have looked into whether segregation on parental education
+level overall seems to occur. Coleman’s homophily index describes the
+extent to which similar people are more likely to be connected <span
+class="citation">(Tolsma and Hofstra 2022)</span>. When looking at the
+results of wave 1, there can be seen that for both groups, the value is
+close to 0, (0.01 for the no higher-educated parents group and -0.01 for
+the higher-educated parent(s) group). For wave 2, the values are still
+very low, but for students with at least one higher-educated parent
+there is a bit more likelihood to connect with other students that have
+higher-educated parents (0.13), whereas for the no higher-educated
+parents group, there is a bit more of a likelihood that they send out
+ties to students who have at least one higher educated parent (-0.12),
+thus to students who are dissimilar to them.</p>
+<p>To look a bit further into the homophily, I have also calculated
+Moran’s I for both waves. This statistic look at whether nodes who are
+closer to one another in the network are more alike <span
+class="citation">(Tolsma and Hofstra 2022)</span>. To calculate Moran’s
+I, I have made use of the ape package in R. This package
+row-standardises by default, but because parental education level is a
+fixed characteristic, the amount of neighbours does not influence it.
+For Wave 1, Moran’s I yielded no significant results, (Moran’s I =
+-0.01, SD = .07, p = .93), confirming what Coleman’s homophily index has
+also shown, namely that there is no clear segregation based on parental
+education level. Wave 2 also did not yield a significant result (Moran’s
+I = 0.05, SD = .08, p = .48).</p>
+</div>
+<div id="network-visualisation" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> Network
+visualisation</h2>
+<p><strong>Figure 1</strong> <em>Evolution of the hanging out ties of
+students of the Michigan Learning Community</em> <img
+src="plotje2.png" /></p>
+<p>Figure 1 depicts the network evolution of the Michigan Learning
+Community from the beginning to the year towards the middle of the year.
+What was already concluded from the descriptives can also be seen back
+in the Figure, namely, that the network is not very dense, especially
+not in the second wave. Additionally, what can be seen is that the first
+wave entails a lot more ties between students than the second wave.
+However, there has to be noted that a couple of the nodes that sent out
+many ties in the first wave, seem to not have been participating in the
+survey in the second wave, because there nodes have become very small
+and there are no in- or out-degree ties present towards their nodes.
+This might influence what the network looks like.</p>
+<p>Moreover, although Moran’s I and Coleman’s homophily index do not
+indicate that segregation has been taking place, when looking at the
+reciprocated ties, in the first wave homophily does seem to occur, as
+the violet ties are more present than the black ties. This indicates
+that while someone’s parental education might not matter for sending out
+a tie, it potentially does matter for receiving this tie back or
+not.</p>
+<p>When looking at how the nodes are divided, there can be seen that
+some friendgroups seem to have emerged. On the bottom-left, a
+friendgroup is present that seems very homogene, only consisting of
+students whose parents are higher educated. Quite close to this
+friendgroup, somewhere in the bottom-middle, more of a mixed friendgroup
+seems to have emerged. When moving to the top-right, fully at the top
+another more homogene friendgroup is present, again mostly consisting of
+students with higher educated parents, while a bit more below that,
+again a more mixed friendgroup is present. Homogene friendgroups of
+students whose parents have not enjoyed higher education seem to not
+really be present.</p>
+<p>When looking at social satisfaction, it is difficult to clearly see
+which nodes have been decreasing or increasing in their social
+satisfaction, except for those who are missing in one of the two rounds.
+Therefore, running a model might be more helpful in understanding
+whether there has been an effect of reciprocity on social satisfaction
+and whether this is strengthened by the fact that parental education
+level is the same.</p>
+</div>
+</div>
+<div id="rcode" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> RCode</h1>
+<div id="basics" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Basics</h2>
+<pre class="r"><code>#Loading the data
+rm(list =ls())
+load(&quot;C:\\Users\\ninas\\OneDrive - Radboud Universiteit\\RSCS\\Social Networks\\labjournalSN\\parentedudata.Rdata&quot;)
+load(&quot;C:\\Users\\ninas\\OneDrive - Radboud Universiteit\\RSCS\\Social Networks\\labjournalSN\\wave1.Rdata&quot;)
+load(&quot;C:\\Users\\ninas\\OneDrive - Radboud Universiteit\\RSCS\\Social Networks\\labjournalSN\\wave2.Rdata&quot;)</code></pre>
+<pre class="r"><code>library(&quot;car&quot;)
+library(&quot;dplyr&quot;)
+library(&quot;ape&quot;)</code></pre>
+<pre><code>## Warning: package &#39;ape&#39; was built under R version 4.5.3</code></pre>
+<pre><code>## 
+## Attaching package: &#39;ape&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     where</code></pre>
+<pre><code>## The following objects are masked from &#39;package:igraph&#39;:
+## 
+##     degree, edges, mst, ring</code></pre>
+<pre class="r"><code>library(&quot;sna&quot;)</code></pre>
+<pre><code>## Warning: package &#39;sna&#39; was built under R version 4.5.3</code></pre>
+<pre><code>## Loading required package: statnet.common</code></pre>
+<pre><code>## Warning: package &#39;statnet.common&#39; was built under R version 4.5.3</code></pre>
+<pre><code>## 
+## Attaching package: &#39;statnet.common&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     attr, order, replace</code></pre>
+<pre><code>## Loading required package: network</code></pre>
+<pre><code>## Warning: package &#39;network&#39; was built under R version 4.5.3</code></pre>
+<pre><code>## 
+## &#39;network&#39; 1.20.0 (2026-02-06), part of the Statnet Project
+## * &#39;news(package=&quot;network&quot;)&#39; for changes since last version
+## * &#39;citation(&quot;network&quot;)&#39; for citation information
+## * &#39;https://statnet.org&#39; for help, support, and other information</code></pre>
+<pre><code>## 
+## Attaching package: &#39;network&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:igraph&#39;:
+## 
+##     %c%, %s%, add.edges, add.vertices, delete.edges, delete.vertices,
+##     get.edge.attribute, get.edges, get.vertex.attribute, is.bipartite,
+##     is.directed, list.edge.attributes, list.vertex.attributes,
+##     set.edge.attribute, set.vertex.attribute</code></pre>
+<pre><code>## sna: Tools for Social Network Analysis
+## Version 2.8 created on 2024-09-07.
+## copyright (c) 2005, Carter T. Butts, University of California-Irvine
+##  For citation information, type citation(&quot;sna&quot;).
+##  Type help(package=&quot;sna&quot;) to get started.</code></pre>
+<pre><code>## 
+## Attaching package: &#39;sna&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:ape&#39;:
+## 
+##     consensus, degree</code></pre>
+<pre><code>## The following objects are masked from &#39;package:igraph&#39;:
+## 
+##     betweenness, bonpow, closeness, components, degree, dyad.census,
+##     evcent, hierarchy, is.connected, neighborhood, triad.census</code></pre>
+<pre class="r"><code>library(&quot;RSiena&quot;)
+library(&quot;RsienaTwoStep&quot;)
+library(&quot;devtools&quot;)
+library(&quot;netseg&quot;)</code></pre>
+<pre><code>## Warning: package &#39;netseg&#39; was built under R version 4.5.3</code></pre>
+<pre><code>## 
+## Attaching package: &#39;netseg&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:sna&#39;:
+## 
+##     symmetrize</code></pre>
+<pre class="r"><code>library(&quot;igraph&quot;)</code></pre>
+<pre class="r"><code>#creating graphs and networks: 
+netw1 &lt;- network::as.network(wave1)
+netw2 &lt;- network::as.network(wave2)
+
+gw1 &lt;- igraph:: graph_from_adjacency_matrix(wave1, mode = &quot;directed&quot;)
+gw2 &lt;- igraph:: graph_from_adjacency_matrix(wave2, mode = &quot;directed&quot;)</code></pre>
+</div>
+<div id="descriptives" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Descriptives</h2>
+<pre class="r"><code>mean(df2$socsatw1n, na.rm = T)</code></pre>
+<pre><code>## [1] 5.669697</code></pre>
+<pre class="r"><code>mean(df2$socsatw2n, na.rm = T)</code></pre>
+<pre><code>## [1] 5.74537</code></pre>
+<pre class="r"><code>#ties
+ecount(gw1)</code></pre>
+<pre><code>## [1] 395</code></pre>
+<pre class="r"><code>ecount(gw2)</code></pre>
+<pre><code>## [1] 270</code></pre>
+<pre class="r"><code># density 
+network.density(netw1)</code></pre>
+<pre><code>## [1] 0.02720386</code></pre>
+<pre class="r"><code>network.density(netw2)</code></pre>
+<pre><code>## [1] 0.01859504</code></pre>
+<pre class="r"><code># reciprocated ties
+reciprocity(gw1, ignore.loops = TRUE, mode = c(&quot;default&quot;, &quot;ratio&quot;))</code></pre>
+<pre><code>## [1] 0.4708861</code></pre>
+<pre class="r"><code>reciprocity(gw2, ignore.loops = TRUE, mode = c(&quot;default&quot;, &quot;ratio&quot;))</code></pre>
+<pre><code>## [1] 0.4444444</code></pre>
+<pre class="r"><code>#dyads
+igraph::dyad_census(gw1)</code></pre>
+<pre><code>## $mut
+## [1] 93
+## 
+## $asym
+## [1] 209
+## 
+## $null
+## [1] 6958</code></pre>
+<pre class="r"><code>igraph::dyad_census(gw2)</code></pre>
+<pre><code>## $mut
+## [1] 60
+## 
+## $asym
+## [1] 150
+## 
+## $null
+## [1] 7050</code></pre>
+<pre class="r"><code># isolates
+row_sums1 &lt;- rowSums(wave1)
+col_sums1 &lt;- colSums(wave1)
+sum(row_sums1 == 0 &amp; col_sums1 == 0)</code></pre>
+<pre><code>## [1] 15</code></pre>
+<pre class="r"><code>row_sums2 &lt;- rowSums(wave2)
+col_sums2 &lt;- colSums(wave2)
+sum(row_sums2 == 0 &amp; col_sums2 == 0)</code></pre>
+<pre><code>## [1] 17</code></pre>
+<pre class="r"><code>#segregation on parental education level 
+coleman(gw1, df2$parentshighf)</code></pre>
+<pre><code>##           0           1 
+##  0.01225212 -0.01806402</code></pre>
+<pre class="r"><code>coleman(gw2, df2$parentshighf)</code></pre>
+<pre><code>##         0         1 
+## -0.119898  0.137931</code></pre>
+<pre class="r"><code>#Moran&#39;s I
+geodistances &lt;- geodist(netw1, count.paths = TRUE)
+geodistances &lt;- geodistances$gdist
+
+weights1 &lt;- geodistances == 1 #Means that only direct ties are taken into account for segregation
+ape::Moran.I(as.numeric(df2$parentshighf), scaled = FALSE, weight = weights1, na.rm = TRUE)</code></pre>
+<pre><code>## $observed
+## [1] -0.01443857
+## 
+## $expected
+## [1] -0.008333333
+## 
+## $sd
+## [1] 0.07949196
+## 
+## $p.value
+## [1] 0.9387802</code></pre>
+<pre class="r"><code>geodistances &lt;- geodist(netw2, count.paths = TRUE)
+geodistances &lt;- geodistances$gdist
+
+weights2 &lt;- geodistances == 1 #Means that only direct ties are taken into account for segregation
+ape::Moran.I(as.numeric(df2$parentshighf), scaled = FALSE, weight = weights2, na.rm = TRUE)</code></pre>
+<pre><code>## $observed
+## [1] 0.05328992
+## 
+## $expected
+## [1] -0.008333333
+## 
+## $sd
+## [1] 0.08807407
+## 
+## $p.value
+## [1] 0.4841301</code></pre>
+</div>
+<div id="visualisation" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Visualisation</h2>
+<pre class="r"><code>parentedu &lt;- ifelse(is.na(df2$parentshighf), &quot;grey75&quot;, ifelse(df2$parentshigh==1, &quot;navy&quot;, &quot;skyblue2&quot;))
+
+mutual_edges1 &lt;- is.mutual(gw1)</code></pre>
+<pre><code>## Warning: `is.mutual()` was deprecated in igraph 2.0.0.
+## ℹ Please use `which_mutual()` instead.
+## This warning is displayed once per session.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
+<pre class="r"><code>edgelist1 &lt;- as_edgelist(gw1, names = F) 
+colourrec1 &lt;- ifelse(mutual_edges1, ifelse(df2$parentshighf[edgelist1[,1]] == df2$parentshighf[edgelist1[,2]], &quot;violet&quot;, &quot;black&quot;), &quot;#0000004B&quot;)
+
+mutual_edges2 &lt;- is.mutual(gw2)
+edgelist2 &lt;- as_edgelist(gw2, names = F) 
+colourrec2 &lt;- ifelse(mutual_edges2, ifelse(df2$parentshighf[edgelist2[,1]] == df2$parentshighf[edgelist2[,2]], &quot;violet&quot;, &quot;black&quot;), &quot;#0000004B&quot;)
+
+df2$socsatw1n[is.na(df2$socsatw1n)] &lt;- 0 
+df2$socsatw2n[is.na(df2$socsatw2n)] &lt;- 0 
+V(gw1)$size = df2$socsatw1n * 1.25 + 0.9
+V(gw2)$size = df2$socsatw2n * 1.25 + 0.9
+layout = layout.fruchterman.reingold.grid(gw2)</code></pre>
+<pre><code>## Warning: `layout.fruchterman.reingold.grid()` was deprecated in igraph 2.1.0.
+## ℹ Please use `layout_with_fr()` instead.
+## This warning is displayed once per session.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
+<pre class="r"><code>{png(&quot;plotje2.png&quot;, width = 24, height = 14, units = &quot;in&quot;, res = 600)
+par(mfrow = c(1, 2))
+  plot.igraph(gw1,
+     vertex.color = adjustcolor(parentedu, alpha.f = .5),
+    vertex.frame.width = 1.5,
+     vertex.frame.color = adjustcolor(parentedu,alpha.f = .8),
+     vertex.label = NA,
+     edge.curved = 0.1, 
+     edge.arrow.size = 0.06,
+     edge.color = colourrec1, 
+     layout = layout,
+    main = &quot;Wave 1&quot;)
+    title(sub = &quot;Note 1: Edge colour is black when reciprocated tie occurs between students with parents with different educational backgrounds and\nis violet when reciprocated tie occurs between students with parents with the same educational background.\nNote 2: Node size is based on social satisfaction, a small node indicates that social satisfaction was missing&quot;,
+          cex.sub = 1.1, 
+          font.sub = 3, 
+          )
+legend(&quot;topleft&quot;, c(&quot;Higher educated parent(s)&quot;, &quot;No higher educated parents&quot;, &quot;Missing&quot;), pch = 21, col = &quot;#777777&quot;, pt.bg = c(&quot;navy&quot;, &quot;skyblue2&quot;, &quot;grey75&quot;), pt.cex = 2,
+    cex = 1.5, bty = &quot;n&quot;, ncol = 1)
+  plot.igraph(gw2,
+     vertex.color = adjustcolor(parentedu, alpha.f = .5),
+     vertex.frame.width = 1.5,
+     vertex.frame.color = adjustcolor(parentedu,alpha.f = .8),
+     vertex.label = NA,
+     edge.curved = 0.1, 
+     edge.arrow.size = 0.06,
+     edge.color = colourrec2, 
+     layout = layout,
+    main = &quot;Wave 2&quot;)
+dev.off()}</code></pre>
+<pre><code>## png 
+##   2</code></pre>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-SNASS" class="csl-entry">
+Tolsma, Jochem, and Bas Hofstra. 2022. <em>Social Network Analysis for
+Social Scientists</em>. <a
+href="https://jtolsma.nl/SNASS/">https://jtolsma.nl/SNASS/</a>.
+</div>
+</div>
+</div>
+</div>
+
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkRlc2NyaXB0aXZlIFJlc3VsdHMiDQphdXRob3I6ICJieTogTmluYSBTbmVpamVycyINCmJpYmxpb2dyYXBoeTogcmVmZXJlbmNlcy5iaWINCmVkaXRvcl9vcHRpb25zOiANCiAgbWFya2Rvd246IA0KICAgIHdyYXA6IDcyDQotLS0NCiMgRGVzY3JpcHRpdmUgUmVzdWx0cw0KDQojIyBQb3B1bGF0aW9uIGNoYXJhY3RlcmlzdGljcw0KDQpGcm9tIHRoZSBwb3B1bGF0aW9uIG9mIDEyMSBzdHVkZW50cywgMzQuNyUgb2YgdGhlIHN0dWRlbnRzIHdhcyBtYWxlIGFuZA0KNjUuMyUgd2FzIGZlbWFsZS4gTm8gb25lIHNhaWQgdGhleSBpZGVudGlmaWVkIGFzIG5vbi1iaW5hcnkuIEluIHRlcm1zIG9mDQpwYXJlbnRhbCBlZHVjYXRpb24gbGV2ZWwsIDc1JSBvZiB0aGUgc3R1ZGVudHMgaGFkIGF0IGxlYXN0IG9uZSBwYXJlbnRzDQp0aGF0IGhhZCBlbmpveWVkIGhpZ2hlciBlZHVjYXRpb24uDQoNCkF2ZXJhZ2Ugc29jaWFsIHNhdGlzZmFjdGlvbiBpbiB0aGUgZmlyc3Qgd2F2ZSB3YXMgYSA1LjYgYW5kIGZvciB0aGUNCnNlY29uZCB3YXZlIGl0IHdhcyBhIDUuNy4NCg0KIyMgTmV0d29yayBjaGFyYWN0ZXJpc3RpY3MNCg0KVGhlIG5ldHdvcmsgaGFzIDM5NSB0aWVzIGluIHdhdmUgMSBhbmQgMjcwIHRpZXMgaW4gd2F2ZSAyLCB3aGljaCBpbmRpY2F0ZXMgdGhhdCBzdHVkZW50cyBoYW5nIG91dCBsZXNzIHdpdGggb3RoZXIgc3R1ZGVudHMgZnJvbSB0aGVpciBjb21tdW5pdHkgbGF0ZXIgaW4gdGhlIHllYXIgdGhhbiB0aGV5IGRpZCBpbiB0aGUgYmVnaW5uaW5nIG9mIHRoZSB5ZWFyLiBUaGUgbmV0d29yayBpcyBhbHNvIGxlc3MgZGVuc2UgaW4gd2F2ZSAyICgwLjAxOCkgdGhhbiBpbiB3YXZlIDEgKDAuMDI3KSwgd2hpY2ggY29uZmlybXMgdGhhdCB0aGVyZSBhcmUgZmV3ZXIgb3ZlcmFsbCB0aWVzIHdpdGhpbiB0aGUgY29tbXVuaXR5LiBHZW5lcmFsbHksIHRoZSBkZW5zaXR5IG9mIGJvdGggd2F2ZXMgY2FuIGJlIGNvbnNpZGVyZWQgdmVyeSBsb3csIHdoaWNoIGlzIGludGVyZXN0aW5nLiBQZXJoYXBzIHRoaXMgaXMgZHVlIHRvIHRoZSBmYWN0IHRoYXQgdGhpcyBpcyBvbmx5IG9uZSBjb21tdW5pdHkgYW5kIHRoZXJlIGlzIGEgcG9zc2liaWxpdHkgdGhhdCBzdHVkZW50cyBhbHNvIGNvbm5lY3Qgd2l0aCBwZW9wbGUgZnJvbSBvdXRzaWRlIG9mIHRoZWlyIG93biBjb21tdW5pdHkuIFRob3NlIHRpZXMgY2Fubm90IGJlIHRha2VuIGludG8gYWNjb3VudC4gDQoNCkluIHRlcm1zIG9mIHJlY2lwcm9jaXR5LCB0aGlzIHNlZW1zIHRvIHJlbWFpbiByZWxhdGl2ZWx5IHN0YWJsZSBhY3Jvc3MgdGhlIHdhdmVzLCBhbHRob3VnaCBpdCB3YXMgc2xpZ2h0bHkgaGlnaGVyIGluIHdhdmUgMSAoMC40NykgdGhhbiBpdCB3YXMgaW4gd2F2ZSAyICgwLjQ0KS4gVGhpcyBjYW4gYWxzbyBiZSBzZWVuIGJhY2sgaW4gdGhlIG51bWJlciBvZiBtdXR1YWwgZHlhZHMsIHdoaWNoIHdhcyA5MyBpbiB3YXZlIDEgYW5kIDYwIGluIHdhdmUgMiwgaW5kaWNhdGluZyB0aGF0IHNvbWUgb2YgdGhlIHJlY2lwcm9jYXRlZCBkeWFkcyBvZiB3YXZlIDEgaGF2ZSBiZWVuIGJyb2tlbiBpbiB3YXZlIDIuIA0KSW4gdGVybXMgb2YgdGhlIG51bWJlciBvZiBpc29sYXRlcyBpbiB0aGUgbmV0d29yaywgbWVhbmluZyBwZW9wbGUgd2hvIGhhdmUgbm90IHNlbmQgb3V0IHRpZXMsIG5vciByZWNlaXZlZCBhbnkgdGllcywgdGhpcyBhbHNvIHJlbWFpbnMgcmVsYXRpdmVseSBzdGFibGUsIHdpdGggMTUgaXNvbGF0ZXMgaW4gd2F2ZSAxIGFuZCAxNyBpbiB3YXZlIDIuIEZvciBhbGwgdGhlc2UgdGhyZWUgc3RhdGlzdGljcywgaXQgc2hvdWxkIGJlIHRha2VuIGludG8gYWNjb3VudCB0aGF0IGlmIHN0dWRlbnRzIHdlcmUgbm90IHByZXNlbnQgaW4gb25lIG9mIHRoZSB3YXZlcywgdGhlaXIgaW5jb21pbmcgdGllcyB3ZXJlIGFsc28gcHV0IHRvIDAuIFRoZXJlZm9yZSwgc29tZSBvZiB0aGVzZSBzdGF0aXN0aWNzIG1pZ2h0IGJlIHNsaWdodGx5IGJpYXNlZC4gDQoNCkxhc3RseSwgSSBoYXZlIGxvb2tlZCBpbnRvIHdoZXRoZXIgc2VncmVnYXRpb24gb24gcGFyZW50YWwgZWR1Y2F0aW9uIGxldmVsIG92ZXJhbGwgc2VlbXMgdG8gb2NjdXIuIENvbGVtYW4ncyBob21vcGhpbHkgaW5kZXggZGVzY3JpYmVzIHRoZSBleHRlbnQgdG8gd2hpY2ggc2ltaWxhciBwZW9wbGUgYXJlIG1vcmUgbGlrZWx5IHRvIGJlIGNvbm5lY3RlZCBbQFNOQVNTXS4gV2hlbiBsb29raW5nIGF0IHRoZSByZXN1bHRzIG9mIHdhdmUgMSwgdGhlcmUgY2FuIGJlIHNlZW4gdGhhdCBmb3IgYm90aCBncm91cHMsIHRoZSB2YWx1ZSBpcyBjbG9zZSB0byAwLCAoMC4wMSBmb3IgdGhlIG5vIGhpZ2hlci1lZHVjYXRlZCBwYXJlbnRzIGdyb3VwIGFuZCAtMC4wMSBmb3IgdGhlIGhpZ2hlci1lZHVjYXRlZCBwYXJlbnQocykgZ3JvdXApLiBGb3Igd2F2ZSAyLCB0aGUgdmFsdWVzIGFyZSBzdGlsbCB2ZXJ5IGxvdywgYnV0IGZvciBzdHVkZW50cyB3aXRoIGF0IGxlYXN0IG9uZSBoaWdoZXItZWR1Y2F0ZWQgcGFyZW50IHRoZXJlIGlzIGEgYml0IG1vcmUgbGlrZWxpaG9vZCB0byBjb25uZWN0IHdpdGggb3RoZXIgc3R1ZGVudHMgdGhhdCBoYXZlIGhpZ2hlci1lZHVjYXRlZCBwYXJlbnRzICgwLjEzKSwgd2hlcmVhcyBmb3IgdGhlIG5vIGhpZ2hlci1lZHVjYXRlZCBwYXJlbnRzIGdyb3VwLCB0aGVyZSBpcyBhIGJpdCBtb3JlIG9mIGEgbGlrZWxpaG9vZCB0aGF0IHRoZXkgc2VuZCBvdXQgdGllcyB0byBzdHVkZW50cyB3aG8gaGF2ZSBhdCBsZWFzdCBvbmUgaGlnaGVyIGVkdWNhdGVkIHBhcmVudCAoLTAuMTIpLCB0aHVzIHRvIHN0dWRlbnRzIHdobyBhcmUgZGlzc2ltaWxhciB0byB0aGVtLiANCg0KVG8gbG9vayBhIGJpdCBmdXJ0aGVyIGludG8gdGhlIGhvbW9waGlseSwgSSBoYXZlIGFsc28gY2FsY3VsYXRlZCBNb3JhbuKAmXMgSSBmb3IgYm90aCB3YXZlcy4gVGhpcyBzdGF0aXN0aWMgbG9vayBhdCB3aGV0aGVyIG5vZGVzIHdobyBhcmUgY2xvc2VyIHRvIG9uZSBhbm90aGVyIGluIHRoZSBuZXR3b3JrIGFyZSBtb3JlIGFsaWtlIFtAU05BU1NdLiBUbyBjYWxjdWxhdGUgTW9yYW7igJlzIEksIEkgaGF2ZSBtYWRlIHVzZSBvZiB0aGUgYXBlIHBhY2thZ2UgaW4gUi4gVGhpcyBwYWNrYWdlIHJvdy1zdGFuZGFyZGlzZXMgYnkgZGVmYXVsdCwgYnV0IGJlY2F1c2UgcGFyZW50YWwgZWR1Y2F0aW9uIGxldmVsIGlzIGEgZml4ZWQgY2hhcmFjdGVyaXN0aWMsIHRoZSBhbW91bnQgb2YgbmVpZ2hib3VycyBkb2VzIG5vdCBpbmZsdWVuY2UgaXQuIEZvciBXYXZlIDEsIE1vcmFu4oCZcyBJIHlpZWxkZWQgbm8gc2lnbmlmaWNhbnQgcmVzdWx0cywgKE1vcmFu4oCZcyBJID0gLTAuMDEsIFNEID0gLjA3LCBwID0gLjkzKSwgY29uZmlybWluZyB3aGF0IENvbGVtYW7igJlzIGhvbW9waGlseSBpbmRleCBoYXMgYWxzbyBzaG93biwgbmFtZWx5IHRoYXQgdGhlcmUgaXMgbm8gY2xlYXIgc2VncmVnYXRpb24gYmFzZWQgb24gcGFyZW50YWwgZWR1Y2F0aW9uIGxldmVsLiBXYXZlIDIgYWxzbyBkaWQgbm90IHlpZWxkIGEgc2lnbmlmaWNhbnQgcmVzdWx0IChNb3JhbuKAmXMgSSA9IDAuMDUsIFNEID0gLjA4LCBwID0gLjQ4KS4gDQoNCiMjIE5ldHdvcmsgdmlzdWFsaXNhdGlvbg0KDQoqKkZpZ3VyZSAxKiogDQoqRXZvbHV0aW9uIG9mIHRoZSBoYW5naW5nIG91dCB0aWVzIG9mIHN0dWRlbnRzIG9mIHRoZSBNaWNoaWdhbiBMZWFybmluZyBDb21tdW5pdHkqDQohW10oQzpcVXNlcnNcbmluYXNcT25lRHJpdmUgLSBSYWRib3VkIFVuaXZlcnNpdGVpdFxSU0NTXFNvY2lhbCBOZXR3b3Jrc1xsYWJqb3VybmFsU05ccGxvdGplMi5wbmcpDQoNCkZpZ3VyZSAxIGRlcGljdHMgdGhlIG5ldHdvcmsgZXZvbHV0aW9uIG9mIHRoZSBNaWNoaWdhbiBMZWFybmluZyBDb21tdW5pdHkgZnJvbSB0aGUgYmVnaW5uaW5nIHRvIHRoZSB5ZWFyIHRvd2FyZHMgdGhlIG1pZGRsZSBvZiB0aGUgeWVhci4gV2hhdCB3YXMgYWxyZWFkeSBjb25jbHVkZWQgZnJvbSB0aGUgZGVzY3JpcHRpdmVzIGNhbiBhbHNvIGJlIHNlZW4gYmFjayBpbiB0aGUgRmlndXJlLCBuYW1lbHksIHRoYXQgdGhlIG5ldHdvcmsgaXMgbm90IHZlcnkgZGVuc2UsIGVzcGVjaWFsbHkgbm90IGluIHRoZSBzZWNvbmQgd2F2ZS4gQWRkaXRpb25hbGx5LCB3aGF0IGNhbiBiZSBzZWVuIGlzIHRoYXQgdGhlIGZpcnN0IHdhdmUgZW50YWlscyBhIGxvdCBtb3JlIHRpZXMgYmV0d2VlbiBzdHVkZW50cyB0aGFuIHRoZSBzZWNvbmQgd2F2ZS4gSG93ZXZlciwgdGhlcmUgaGFzIHRvIGJlIG5vdGVkIHRoYXQgYSBjb3VwbGUgb2YgdGhlIG5vZGVzIHRoYXQgc2VudCBvdXQgbWFueSB0aWVzIGluIHRoZSBmaXJzdCB3YXZlLCBzZWVtIHRvIG5vdCBoYXZlIGJlZW4gcGFydGljaXBhdGluZyBpbiB0aGUgc3VydmV5IGluIHRoZSBzZWNvbmQgd2F2ZSwgYmVjYXVzZSB0aGVyZSBub2RlcyBoYXZlIGJlY29tZSB2ZXJ5IHNtYWxsIGFuZCB0aGVyZSBhcmUgbm8gaW4tIG9yIG91dC1kZWdyZWUgdGllcyBwcmVzZW50IHRvd2FyZHMgdGhlaXIgbm9kZXMuIFRoaXMgbWlnaHQgaW5mbHVlbmNlIHdoYXQgdGhlIG5ldHdvcmsgbG9va3MgbGlrZS4gDQoNCk1vcmVvdmVyLCBhbHRob3VnaCBNb3JhbidzIEkgYW5kIENvbGVtYW4ncyBob21vcGhpbHkgaW5kZXggZG8gbm90IGluZGljYXRlIHRoYXQgc2VncmVnYXRpb24gaGFzIGJlZW4gdGFraW5nIHBsYWNlLCB3aGVuIGxvb2tpbmcgYXQgdGhlIHJlY2lwcm9jYXRlZCB0aWVzLCBpbiB0aGUgZmlyc3Qgd2F2ZSBob21vcGhpbHkgZG9lcyBzZWVtIHRvIG9jY3VyLCBhcyB0aGUgdmlvbGV0IHRpZXMgYXJlIG1vcmUgcHJlc2VudCB0aGFuIHRoZSBibGFjayB0aWVzLiBUaGlzIGluZGljYXRlcyB0aGF0IHdoaWxlIHNvbWVvbmUncyBwYXJlbnRhbCBlZHVjYXRpb24gbWlnaHQgbm90IG1hdHRlciBmb3Igc2VuZGluZyBvdXQgYSB0aWUsIGl0IHBvdGVudGlhbGx5IGRvZXMgbWF0dGVyIGZvciByZWNlaXZpbmcgdGhpcyB0aWUgYmFjayBvciBub3QuIA0KDQpXaGVuIGxvb2tpbmcgYXQgaG93IHRoZSBub2RlcyBhcmUgZGl2aWRlZCwgdGhlcmUgY2FuIGJlIHNlZW4gdGhhdCBzb21lIGZyaWVuZGdyb3VwcyBzZWVtIHRvIGhhdmUgZW1lcmdlZC4gT24gdGhlIGJvdHRvbS1sZWZ0LCBhIGZyaWVuZGdyb3VwIGlzIHByZXNlbnQgdGhhdCBzZWVtcyB2ZXJ5IGhvbW9nZW5lLCBvbmx5IGNvbnNpc3Rpbmcgb2Ygc3R1ZGVudHMgd2hvc2UgcGFyZW50cyBhcmUgaGlnaGVyIGVkdWNhdGVkLiBRdWl0ZSBjbG9zZSB0byB0aGlzIGZyaWVuZGdyb3VwLCBzb21ld2hlcmUgaW4gdGhlIGJvdHRvbS1taWRkbGUsIG1vcmUgb2YgYSBtaXhlZCBmcmllbmRncm91cCBzZWVtcyB0byBoYXZlIGVtZXJnZWQuIFdoZW4gbW92aW5nIHRvIHRoZSB0b3AtcmlnaHQsIGZ1bGx5IGF0IHRoZSB0b3AgYW5vdGhlciBtb3JlIGhvbW9nZW5lIGZyaWVuZGdyb3VwIGlzIHByZXNlbnQsIGFnYWluIG1vc3RseSBjb25zaXN0aW5nIG9mIHN0dWRlbnRzIHdpdGggaGlnaGVyIGVkdWNhdGVkIHBhcmVudHMsIHdoaWxlIGEgYml0IG1vcmUgYmVsb3cgdGhhdCwgYWdhaW4gYSBtb3JlIG1peGVkIGZyaWVuZGdyb3VwIGlzIHByZXNlbnQuIEhvbW9nZW5lIGZyaWVuZGdyb3VwcyBvZiBzdHVkZW50cyB3aG9zZSBwYXJlbnRzIGhhdmUgbm90IGVuam95ZWQgaGlnaGVyIGVkdWNhdGlvbiBzZWVtIHRvIG5vdCByZWFsbHkgYmUgcHJlc2VudC4NCg0KV2hlbiBsb29raW5nIGF0IHNvY2lhbCBzYXRpc2ZhY3Rpb24sIGl0IGlzIGRpZmZpY3VsdCB0byBjbGVhcmx5IHNlZSB3aGljaCBub2RlcyBoYXZlIGJlZW4gZGVjcmVhc2luZyBvciBpbmNyZWFzaW5nIGluIHRoZWlyIHNvY2lhbCBzYXRpc2ZhY3Rpb24sIGV4Y2VwdCBmb3IgdGhvc2Ugd2hvIGFyZSBtaXNzaW5nIGluIG9uZSBvZiB0aGUgdHdvIHJvdW5kcy4gVGhlcmVmb3JlLCBydW5uaW5nIGEgbW9kZWwgbWlnaHQgYmUgbW9yZSBoZWxwZnVsIGluIHVuZGVyc3RhbmRpbmcgd2hldGhlciB0aGVyZSBoYXMgYmVlbiBhbiBlZmZlY3Qgb2YgcmVjaXByb2NpdHkgb24gc29jaWFsIHNhdGlzZmFjdGlvbiBhbmQgd2hldGhlciB0aGlzIGlzIHN0cmVuZ3RoZW5lZCBieSB0aGUgZmFjdCB0aGF0IHBhcmVudGFsIGVkdWNhdGlvbiBsZXZlbCBpcyB0aGUgc2FtZS4gDQoNCg0KDQoNCiMgUkNvZGUNCiMjIEJhc2ljcw0KDQpgYGB7cn0NCiNMb2FkaW5nIHRoZSBkYXRhDQpybShsaXN0ID1scygpKQ0KbG9hZCgiQzpcXFVzZXJzXFxuaW5hc1xcT25lRHJpdmUgLSBSYWRib3VkIFVuaXZlcnNpdGVpdFxcUlNDU1xcU29jaWFsIE5ldHdvcmtzXFxsYWJqb3VybmFsU05cXHBhcmVudGVkdWRhdGEuUmRhdGEiKQ0KbG9hZCgiQzpcXFVzZXJzXFxuaW5hc1xcT25lRHJpdmUgLSBSYWRib3VkIFVuaXZlcnNpdGVpdFxcUlNDU1xcU29jaWFsIE5ldHdvcmtzXFxsYWJqb3VybmFsU05cXHdhdmUxLlJkYXRhIikNCmxvYWQoIkM6XFxVc2Vyc1xcbmluYXNcXE9uZURyaXZlIC0gUmFkYm91ZCBVbml2ZXJzaXRlaXRcXFJTQ1NcXFNvY2lhbCBOZXR3b3Jrc1xcbGFiam91cm5hbFNOXFx3YXZlMi5SZGF0YSIpDQpgYGANCg0KYGBge3J9DQpsaWJyYXJ5KCJjYXIiKQ0KbGlicmFyeSgiZHBseXIiKQ0KbGlicmFyeSgiYXBlIikNCmxpYnJhcnkoInNuYSIpDQpsaWJyYXJ5KCJSU2llbmEiKQ0KbGlicmFyeSgiUnNpZW5hVHdvU3RlcCIpDQpsaWJyYXJ5KCJkZXZ0b29scyIpDQpsaWJyYXJ5KCJuZXRzZWciKQ0KbGlicmFyeSgiaWdyYXBoIikNCmBgYA0KDQpgYGB7cn0NCiNjcmVhdGluZyBncmFwaHMgYW5kIG5ldHdvcmtzOiANCm5ldHcxIDwtIG5ldHdvcms6OmFzLm5ldHdvcmsod2F2ZTEpDQpuZXR3MiA8LSBuZXR3b3JrOjphcy5uZXR3b3JrKHdhdmUyKQ0KDQpndzEgPC0gaWdyYXBoOjogZ3JhcGhfZnJvbV9hZGphY2VuY3lfbWF0cml4KHdhdmUxLCBtb2RlID0gImRpcmVjdGVkIikNCmd3MiA8LSBpZ3JhcGg6OiBncmFwaF9mcm9tX2FkamFjZW5jeV9tYXRyaXgod2F2ZTIsIG1vZGUgPSAiZGlyZWN0ZWQiKQ0KYGBgDQoNCiMjIERlc2NyaXB0aXZlcw0KDQpgYGB7cn0NCm1lYW4oZGYyJHNvY3NhdHcxbiwgbmEucm0gPSBUKQ0KbWVhbihkZjIkc29jc2F0dzJuLCBuYS5ybSA9IFQpDQpgYGANCg0KYGBge3J9DQojdGllcw0KZWNvdW50KGd3MSkNCmVjb3VudChndzIpDQojIGRlbnNpdHkgDQpuZXR3b3JrLmRlbnNpdHkobmV0dzEpDQpuZXR3b3JrLmRlbnNpdHkobmV0dzIpDQojIHJlY2lwcm9jYXRlZCB0aWVzDQpyZWNpcHJvY2l0eShndzEsIGlnbm9yZS5sb29wcyA9IFRSVUUsIG1vZGUgPSBjKCJkZWZhdWx0IiwgInJhdGlvIikpDQpyZWNpcHJvY2l0eShndzIsIGlnbm9yZS5sb29wcyA9IFRSVUUsIG1vZGUgPSBjKCJkZWZhdWx0IiwgInJhdGlvIikpDQojZHlhZHMNCmlncmFwaDo6ZHlhZF9jZW5zdXMoZ3cxKQ0KaWdyYXBoOjpkeWFkX2NlbnN1cyhndzIpDQojIGlzb2xhdGVzDQpyb3dfc3VtczEgPC0gcm93U3Vtcyh3YXZlMSkNCmNvbF9zdW1zMSA8LSBjb2xTdW1zKHdhdmUxKQ0Kc3VtKHJvd19zdW1zMSA9PSAwICYgY29sX3N1bXMxID09IDApDQoNCnJvd19zdW1zMiA8LSByb3dTdW1zKHdhdmUyKQ0KY29sX3N1bXMyIDwtIGNvbFN1bXMod2F2ZTIpDQpzdW0ocm93X3N1bXMyID09IDAgJiBjb2xfc3VtczIgPT0gMCkNCg0KI3NlZ3JlZ2F0aW9uIG9uIHBhcmVudGFsIGVkdWNhdGlvbiBsZXZlbCANCmNvbGVtYW4oZ3cxLCBkZjIkcGFyZW50c2hpZ2hmKQ0KY29sZW1hbihndzIsIGRmMiRwYXJlbnRzaGlnaGYpDQoNCiNNb3JhbidzIEkNCmdlb2Rpc3RhbmNlcyA8LSBnZW9kaXN0KG5ldHcxLCBjb3VudC5wYXRocyA9IFRSVUUpDQpnZW9kaXN0YW5jZXMgPC0gZ2VvZGlzdGFuY2VzJGdkaXN0DQoNCndlaWdodHMxIDwtIGdlb2Rpc3RhbmNlcyA9PSAxICNNZWFucyB0aGF0IG9ubHkgZGlyZWN0IHRpZXMgYXJlIHRha2VuIGludG8gYWNjb3VudCBmb3Igc2VncmVnYXRpb24NCmFwZTo6TW9yYW4uSShhcy5udW1lcmljKGRmMiRwYXJlbnRzaGlnaGYpLCBzY2FsZWQgPSBGQUxTRSwgd2VpZ2h0ID0gd2VpZ2h0czEsIG5hLnJtID0gVFJVRSkNCg0KZ2VvZGlzdGFuY2VzIDwtIGdlb2Rpc3QobmV0dzIsIGNvdW50LnBhdGhzID0gVFJVRSkNCmdlb2Rpc3RhbmNlcyA8LSBnZW9kaXN0YW5jZXMkZ2Rpc3QNCg0Kd2VpZ2h0czIgPC0gZ2VvZGlzdGFuY2VzID09IDEgI01lYW5zIHRoYXQgb25seSBkaXJlY3QgdGllcyBhcmUgdGFrZW4gaW50byBhY2NvdW50IGZvciBzZWdyZWdhdGlvbg0KYXBlOjpNb3Jhbi5JKGFzLm51bWVyaWMoZGYyJHBhcmVudHNoaWdoZiksIHNjYWxlZCA9IEZBTFNFLCB3ZWlnaHQgPSB3ZWlnaHRzMiwgbmEucm0gPSBUUlVFKQ0KYGBgDQoNCg0KIyMgVmlzdWFsaXNhdGlvbg0KDQpgYGB7cn0NCnBhcmVudGVkdSA8LSBpZmVsc2UoaXMubmEoZGYyJHBhcmVudHNoaWdoZiksICJncmV5NzUiLCBpZmVsc2UoZGYyJHBhcmVudHNoaWdoPT0xLCAibmF2eSIsICJza3libHVlMiIpKQ0KDQptdXR1YWxfZWRnZXMxIDwtIGlzLm11dHVhbChndzEpDQplZGdlbGlzdDEgPC0gYXNfZWRnZWxpc3QoZ3cxLCBuYW1lcyA9IEYpIA0KY29sb3VycmVjMSA8LSBpZmVsc2UobXV0dWFsX2VkZ2VzMSwgaWZlbHNlKGRmMiRwYXJlbnRzaGlnaGZbZWRnZWxpc3QxWywxXV0gPT0gZGYyJHBhcmVudHNoaWdoZltlZGdlbGlzdDFbLDJdXSwgInZpb2xldCIsICJibGFjayIpLCAiIzAwMDAwMDRCIikNCg0KbXV0dWFsX2VkZ2VzMiA8LSBpcy5tdXR1YWwoZ3cyKQ0KZWRnZWxpc3QyIDwtIGFzX2VkZ2VsaXN0KGd3MiwgbmFtZXMgPSBGKSANCmNvbG91cnJlYzIgPC0gaWZlbHNlKG11dHVhbF9lZGdlczIsIGlmZWxzZShkZjIkcGFyZW50c2hpZ2hmW2VkZ2VsaXN0MlssMV1dID09IGRmMiRwYXJlbnRzaGlnaGZbZWRnZWxpc3QyWywyXV0sICJ2aW9sZXQiLCAiYmxhY2siKSwgIiMwMDAwMDA0QiIpDQoNCmRmMiRzb2NzYXR3MW5baXMubmEoZGYyJHNvY3NhdHcxbildIDwtIDAgDQpkZjIkc29jc2F0dzJuW2lzLm5hKGRmMiRzb2NzYXR3Mm4pXSA8LSAwIA0KVihndzEpJHNpemUgPSBkZjIkc29jc2F0dzFuICogMS4yNSArIDAuOQ0KVihndzIpJHNpemUgPSBkZjIkc29jc2F0dzJuICogMS4yNSArIDAuOQ0KbGF5b3V0ID0gbGF5b3V0LmZydWNodGVybWFuLnJlaW5nb2xkLmdyaWQoZ3cyKQ0KDQp7cG5nKCJwbG90amUyLnBuZyIsIHdpZHRoID0gMjQsIGhlaWdodCA9IDE0LCB1bml0cyA9ICJpbiIsIHJlcyA9IDYwMCkNCnBhcihtZnJvdyA9IGMoMSwgMikpDQogIHBsb3QuaWdyYXBoKGd3MSwNCiAgICAgdmVydGV4LmNvbG9yID0gYWRqdXN0Y29sb3IocGFyZW50ZWR1LCBhbHBoYS5mID0gLjUpLA0KICAgIHZlcnRleC5mcmFtZS53aWR0aCA9IDEuNSwNCiAgICAgdmVydGV4LmZyYW1lLmNvbG9yID0gYWRqdXN0Y29sb3IocGFyZW50ZWR1LGFscGhhLmYgPSAuOCksDQogICAgIHZlcnRleC5sYWJlbCA9IE5BLA0KICAgICBlZGdlLmN1cnZlZCA9IDAuMSwgDQogICAgIGVkZ2UuYXJyb3cuc2l6ZSA9IDAuMDYsDQogICAgIGVkZ2UuY29sb3IgPSBjb2xvdXJyZWMxLCANCiAgICAgbGF5b3V0ID0gbGF5b3V0LA0KICAgIG1haW4gPSAiV2F2ZSAxIikNCiAgICB0aXRsZShzdWIgPSAiTm90ZSAxOiBFZGdlIGNvbG91ciBpcyBibGFjayB3aGVuIHJlY2lwcm9jYXRlZCB0aWUgb2NjdXJzIGJldHdlZW4gc3R1ZGVudHMgd2l0aCBwYXJlbnRzIHdpdGggZGlmZmVyZW50IGVkdWNhdGlvbmFsIGJhY2tncm91bmRzIGFuZFxuaXMgdmlvbGV0IHdoZW4gcmVjaXByb2NhdGVkIHRpZSBvY2N1cnMgYmV0d2VlbiBzdHVkZW50cyB3aXRoIHBhcmVudHMgd2l0aCB0aGUgc2FtZSBlZHVjYXRpb25hbCBiYWNrZ3JvdW5kLlxuTm90ZSAyOiBOb2RlIHNpemUgaXMgYmFzZWQgb24gc29jaWFsIHNhdGlzZmFjdGlvbiwgYSBzbWFsbCBub2RlIGluZGljYXRlcyB0aGF0IHNvY2lhbCBzYXRpc2ZhY3Rpb24gd2FzIG1pc3NpbmciLA0KICAgICAgICAgIGNleC5zdWIgPSAxLjEsIA0KICAgICAgICAgIGZvbnQuc3ViID0gMywgDQogICAgICAgICAgKQ0KbGVnZW5kKCJ0b3BsZWZ0IiwgYygiSGlnaGVyIGVkdWNhdGVkIHBhcmVudChzKSIsICJObyBoaWdoZXIgZWR1Y2F0ZWQgcGFyZW50cyIsICJNaXNzaW5nIiksIHBjaCA9IDIxLCBjb2wgPSAiIzc3Nzc3NyIsIHB0LmJnID0gYygibmF2eSIsICJza3libHVlMiIsICJncmV5NzUiKSwgcHQuY2V4ID0gMiwNCiAgICBjZXggPSAxLjUsIGJ0eSA9ICJuIiwgbmNvbCA9IDEpDQogIHBsb3QuaWdyYXBoKGd3MiwNCiAgICAgdmVydGV4LmNvbG9yID0gYWRqdXN0Y29sb3IocGFyZW50ZWR1LCBhbHBoYS5mID0gLjUpLA0KICAgICB2ZXJ0ZXguZnJhbWUud2lkdGggPSAxLjUsDQogICAgIHZlcnRleC5mcmFtZS5jb2xvciA9IGFkanVzdGNvbG9yKHBhcmVudGVkdSxhbHBoYS5mID0gLjgpLA0KICAgICB2ZXJ0ZXgubGFiZWwgPSBOQSwNCiAgICAgZWRnZS5jdXJ2ZWQgPSAwLjEsIA0KICAgICBlZGdlLmFycm93LnNpemUgPSAwLjA2LA0KICAgICBlZGdlLmNvbG9yID0gY29sb3VycmVjMiwgDQogICAgIGxheW91dCA9IGxheW91dCwNCiAgICBtYWluID0gIldhdmUgMiIpDQpkZXYub2ZmKCl9DQpgYGANCg==</div>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("desr.Rmd");
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

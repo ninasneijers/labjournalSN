@@ -40,8 +40,8 @@ navbar:
         href: expl.html
       - text: "Conclusion"
         href: conclusion.html
-      - text: "Data Construction"
-        href: dc.html 
+    - text: "Data Construction Final Project"  
+      href: dc.html
         # here, other .Rmds can be added
 
   right:

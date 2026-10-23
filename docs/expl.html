@@ -454,13 +454,13 @@ models for this model will indicate that the models do not fit well.
 Therefore, I will not plot them yet.</p>
 <p><strong>Table 1:</strong> <em>Results of Model 0</em></p>
 <pre class="r"><code>pander::pander(results_m0)</code></pre>
-<table style="width:83%;">
-<caption>Table continues below</caption>
+<table style="width:100%;">
 <colgroup>
 <col width="41%" />
 <col width="13%" />
 <col width="13%" />
-<col width="13%" />
+<col width="12%" />
+<col width="19%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -468,6 +468,7 @@ Therefore, I will not plot them yet.</p>
 <th align="center">b</th>
 <th align="center">se</th>
 <th align="center">t</th>
+<th align="center">p</th>
 </tr>
 </thead>
 <tbody>
@@ -476,66 +477,41 @@ Therefore, I will not plot them yet.</p>
 <td align="center">6.878</td>
 <td align="center">0.5339</td>
 <td align="center">12.88</td>
+<td align="center">5.645e-38</td>
 </tr>
 <tr class="even">
 <td align="center">outdegree (density)</td>
 <td align="center">-2.666</td>
 <td align="center">0.07295</td>
 <td align="center">-36.55</td>
+<td align="center">1.864e-292</td>
 </tr>
 <tr class="odd">
 <td align="center">reciprocity</td>
 <td align="center">2.096</td>
 <td align="center">0.1472</td>
 <td align="center">14.24</td>
+<td align="center">5.535e-46</td>
 </tr>
 <tr class="even">
 <td align="center">rate behMLC period 1</td>
 <td align="center">1.793</td>
 <td align="center">0.3801</td>
 <td align="center">4.718</td>
+<td align="center">0.000002385</td>
 </tr>
 <tr class="odd">
 <td align="center">behMLC linear shape</td>
 <td align="center">0.1742</td>
 <td align="center">0.1423</td>
 <td align="center">1.224</td>
+<td align="center">0.2208</td>
 </tr>
 <tr class="even">
 <td align="center">behMLC quadratic shape</td>
 <td align="center">-0.3374</td>
 <td align="center">0.1457</td>
 <td align="center">-2.316</td>
-</tr>
-</tbody>
-</table>
-<table style="width:75%;">
-<colgroup>
-<col width="75%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="center">p</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">0.00000000000000000000000000000000000005645</td>
-</tr>
-<tr class="even">
-<td align="center">1.864e-292</td>
-</tr>
-<tr class="odd">
-<td
-align="center">0.0000000000000000000000000000000000000000000005535</td>
-</tr>
-<tr class="even">
-<td align="center">0.000002385</td>
-</tr>
-<tr class="odd">
-<td align="center">0.2208</td>
-</tr>
-<tr class="even">
 <td align="center">0.02055</td>
 </tr>
 </tbody>
@@ -819,20 +795,20 @@ model1.1</code></pre>
 ##                                              Estimate   Standard   Convergence 
 ##                                                           Error      t-ratio   
 ## Network Dynamics 
-##    1. rate basic rate parameter netMLC        6.8318  ( 0.5016   )   -0.0636   
-##    2. eval outdegree (density)               -2.7266  ( 0.1172   )   -0.0200   
-##    3. eval reciprocity                        2.1954  ( 0.2248   )   -0.0173   
-##    4. eval parent_edu_ccv alter               0.1962  ( 0.1500   )   -0.0277   
-##    5. eval parent_edu_ccv ego                -0.2903  ( 0.1543   )   -0.0232   
-##    6. eval same parent_edu_ccv                0.0619  ( 0.1477   )   -0.0337   
-##    7. eval same parent_edu_ccv x reciprocity -0.0995  ( 0.2930   )   -0.0031   
+##    1. rate basic rate parameter netMLC        6.8770  ( 0.5522   )   -0.0251   
+##    2. eval outdegree (density)               -2.7312  ( 0.1275   )    0.0034   
+##    3. eval reciprocity                        2.2057  ( 0.2215   )    0.0019   
+##    4. eval parent_edu_ccv alter               0.2018  ( 0.1483   )    0.0293   
+##    5. eval parent_edu_ccv ego                -0.2922  ( 0.1726   )   -0.0016   
+##    6. eval same parent_edu_ccv                0.0669  ( 0.1481   )   -0.0201   
+##    7. eval same parent_edu_ccv x reciprocity -0.1074  ( 0.2861   )   -0.0246   
 ## 
 ## Behavior Dynamics
-##    8. rate rate behMLC period 1               1.7844  ( 0.3756   )    0.0479   
-##    9. eval behMLC linear shape                0.1734  ( 0.1375   )   -0.0040   
-##   10. eval behMLC quadratic shape            -0.3425  ( 0.1373   )   -0.0654   
+##    8. rate rate behMLC period 1               1.7788  ( 0.3411   )    0.0179   
+##    9. eval behMLC linear shape                0.1740  ( 0.1489   )   -0.0140   
+##   10. eval behMLC quadratic shape            -0.3439  ( 0.1509   )   -0.0127   
 ## 
-## Overall maximum convergence ratio:    0.1206 
+## Overall maximum convergence ratio:    0.0763 
 ## 
 ## 
 ## Total of 2926 iteration steps.</code></pre>
@@ -861,24 +837,24 @@ model1.2</code></pre>
 ##                                              Estimate   Standard   Convergence 
 ##                                                           Error      t-ratio   
 ## Network Dynamics 
-##    1. rate basic rate parameter netMLC        8.1442  ( 0.6749   )    0.0703   
-##    2. eval outdegree (density)               -2.7852  ( 0.1071   )    0.0114   
-##    3. eval reciprocity                        1.9417  ( 0.2504   )    0.0104   
-##    4. eval transitive triplets                0.2943  ( 0.0405   )   -0.0434   
-##    5. eval parent_edu_ccv alter               0.1573  ( 0.1460   )   -0.0586   
-##    6. eval parent_edu_ccv ego                -0.2829  ( 0.1454   )   -0.0269   
-##    7. eval same parent_edu_ccv                0.0274  ( 0.1404   )    0.0038   
-##    8. eval same parent_edu_ccv x reciprocity -0.3086  ( 0.3075   )    0.0143   
+##    1. rate basic rate parameter netMLC        8.1383  ( 0.6585   )   -0.0828   
+##    2. eval outdegree (density)               -2.7871  ( 0.1163   )    0.0175   
+##    3. eval reciprocity                        1.9452  ( 0.2595   )    0.0640   
+##    4. eval transitive triplets                0.2962  ( 0.0375   )    0.0639   
+##    5. eval parent_edu_ccv alter               0.1663  ( 0.1426   )    0.0555   
+##    6. eval parent_edu_ccv ego                -0.2843  ( 0.1490   )    0.0177   
+##    7. eval same parent_edu_ccv                0.0256  ( 0.1439   )    0.0361   
+##    8. eval same parent_edu_ccv x reciprocity -0.3133  ( 0.3143   )    0.0885   
 ## 
 ## Behavior Dynamics
-##    9. rate rate behMLC period 1               1.7658  ( 0.4231   )   -0.0120   
-##   10. eval behMLC linear shape                0.1794  ( 0.1432   )    0.0253   
-##   11. eval behMLC quadratic shape            -0.3474  ( 0.1626   )    0.0085   
+##    9. rate rate behMLC period 1               1.7935  ( 0.3409   )    0.0454   
+##   10. eval behMLC linear shape                0.1757  ( 0.1342   )   -0.0347   
+##   11. eval behMLC quadratic shape            -0.3351  ( 0.1593   )    0.0610   
 ## 
-## Overall maximum convergence ratio:    0.1299 
+## Overall maximum convergence ratio:    0.1546 
 ## 
 ## 
-## Total of 2968 iteration steps.</code></pre>
+## Total of 3007 iteration steps.</code></pre>
 <pre class="r"><code>gofi1.2 &lt;- sienaGOF(model1.2, IndegreeDistribution, verbose = FALSE, join = TRUE, varName = &quot;netMLC&quot;)
 gofo1.2 &lt;- sienaGOF(model1.2, OutdegreeDistribution, verbose = FALSE, join = TRUE, varName = &quot;netMLC&quot;)
 gof1.2.tc &lt;- sienaGOF(model1.1, TriadCensus, verbose = FALSE, join = TRUE, varName = &quot;netMLC&quot;)</code></pre>
@@ -905,24 +881,24 @@ model1.3</code></pre>
 ##                                              Estimate   Standard   Convergence 
 ##                                                           Error      t-ratio   
 ## Network Dynamics 
-##    1. rate basic rate parameter netMLC        9.9811  ( 1.1683   )    0.0117   
-##    2. eval outdegree (density)               -1.7940  ( 0.2315   )   -0.0325   
-##    3. eval reciprocity                        1.9260  ( 0.2551   )    0.0065   
-##    4. eval transitive triplets                0.2920  ( 0.0472   )   -0.0310   
-##    5. eval indegree - popularity             -0.0318  ( 0.0319   )   -0.0518   
-##    6. eval outdegree - activity              -0.0531  ( 0.0204   )   -0.0460   
-##    7. eval out-isolate                        3.4053  ( 0.4399   )    0.0114   
-##    8. eval parent_edu_ccv alter               0.1982  ( 0.1400   )   -0.0198   
-##    9. eval parent_edu_ccv ego                -0.1711  ( 0.1379   )   -0.0052   
-##   10. eval same parent_edu_ccv               -0.0225  ( 0.1481   )   -0.0131   
-##   11. eval same parent_edu_ccv x reciprocity -0.3697  ( 0.3299   )    0.0155   
+##    1. rate basic rate parameter netMLC        9.9145  ( 1.3039   )   -0.0582   
+##    2. eval outdegree (density)               -1.7916  ( 0.1966   )   -0.0427   
+##    3. eval reciprocity                        1.9295  ( 0.2482   )   -0.0312   
+##    4. eval transitive triplets                0.2922  ( 0.0518   )    0.0034   
+##    5. eval indegree - popularity             -0.0313  ( 0.0287   )   -0.0501   
+##    6. eval outdegree - activity              -0.0535  ( 0.0170   )   -0.0242   
+##    7. eval out-isolate                        3.4212  ( 0.4610   )    0.0609   
+##    8. eval parent_edu_ccv alter               0.2017  ( 0.1570   )    0.0083   
+##    9. eval parent_edu_ccv ego                -0.1678  ( 0.1406   )   -0.0634   
+##   10. eval same parent_edu_ccv               -0.0239  ( 0.1453   )   -0.0402   
+##   11. eval same parent_edu_ccv x reciprocity -0.3775  ( 0.3295   )   -0.0543   
 ## 
 ## Behavior Dynamics
-##   12. rate rate behMLC period 1               1.7861  ( 0.3161   )   -0.0357   
-##   13. eval behMLC linear shape                0.1771  ( 0.1384   )   -0.0384   
-##   14. eval behMLC quadratic shape            -0.3382  ( 0.1393   )    0.0587   
+##   12. rate rate behMLC period 1               1.7850  ( 0.3260   )    0.0284   
+##   13. eval behMLC linear shape                0.1810  ( 0.1496   )    0.0130   
+##   14. eval behMLC quadratic shape            -0.3406  ( 0.1445   )   -0.0745   
 ## 
-## Overall maximum convergence ratio:    0.1312 
+## Overall maximum convergence ratio:    0.1713 
 ## 
 ## 
 ## Total of 3194 iteration steps.</code></pre>
@@ -946,24 +922,24 @@ model1.5</code></pre>
 ##                                              Estimate   Standard   Convergence 
 ##                                                           Error      t-ratio   
 ## Network Dynamics 
-##    1. rate basic rate parameter netMLC        9.9491  ( 0.8382   )   -0.0512   
-##    2. eval outdegree (density)               -1.7969  ( 0.2176   )   -0.0548   
-##    3. eval reciprocity                        1.9202  ( 0.2470   )   -0.0032   
-##    4. eval transitive triplets                0.2909  ( 0.0495   )    0.0362   
-##    5. eval indegree - popularity             -0.0295  ( 0.0291   )   -0.0308   
-##    6. eval outdegree - activity              -0.0531  ( 0.0199   )   -0.0391   
-##    7. eval out-isolate                        3.3942  ( 0.4965   )    0.0272   
-##    8. eval parent_edu_ccv alter               0.1956  ( 0.1563   )   -0.0136   
-##    9. eval parent_edu_ccv ego                -0.1602  ( 0.1379   )    0.0439   
-##   10. eval same parent_edu_ccv               -0.0352  ( 0.1421   )   -0.0436   
-##   11. eval same parent_edu_ccv x reciprocity -0.3609  ( 0.3107   )    0.0292   
+##    1. rate basic rate parameter netMLC        9.9541  ( 0.8887   )    0.0218   
+##    2. eval outdegree (density)               -1.8064  ( 0.2317   )    0.0318   
+##    3. eval reciprocity                        1.9268  ( 0.2582   )   -0.0176   
+##    4. eval transitive triplets                0.2867  ( 0.0492   )   -0.0633   
+##    5. eval indegree - popularity             -0.0290  ( 0.0282   )    0.0173   
+##    6. eval outdegree - activity              -0.0523  ( 0.0203   )    0.0086   
+##    7. eval out-isolate                        3.3950  ( 0.4529   )   -0.0602   
+##    8. eval parent_edu_ccv alter               0.1840  ( 0.1438   )   -0.0673   
+##    9. eval parent_edu_ccv ego                -0.1621  ( 0.1259   )    0.0144   
+##   10. eval same parent_edu_ccv               -0.0194  ( 0.1463   )    0.0154   
+##   11. eval same parent_edu_ccv x reciprocity -0.3751  ( 0.3192   )   -0.0059   
 ## 
 ## Behavior Dynamics
-##   12. rate rate behMLC period 1               1.8022  ( 0.3465   )    0.0228   
-##   13. eval behMLC linear shape                0.1801  ( 0.1453   )    0.0052   
-##   14. eval behMLC quadratic shape            -0.3344  ( 0.1584   )    0.0220   
+##   12. rate rate behMLC period 1               1.7708  ( 0.3817   )   -0.0458   
+##   13. eval behMLC linear shape                0.1735  ( 0.1427   )   -0.0403   
+##   14. eval behMLC quadratic shape            -0.3432  ( 0.1506   )   -0.0071   
 ## 
-## Overall maximum convergence ratio:    0.1353 
+## Overall maximum convergence ratio:    0.1817 
 ## 
 ## 
 ## Total of 3194 iteration steps.</code></pre>
@@ -988,7 +964,7 @@ in reciprocated ties with control variables</h2>
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIkV4cGxvcmF0b3J5IFJlc3VsdHMiDQphdXRob3I6ICJieTogTmluYSBTbmVpamVycyINCmJpYmxpb2dyYXBoeTogcmVmZXJlbmNlcy5iaWINCmVkaXRvcl9vcHRpb25zOiANCiAgbWFya2Rvd246IA0KICAgIHdyYXA6IDcyDQotLS0NCg0KIyBFeHBsb3JhdG9yeSBSZXN1bHRzDQoNCmBgYHtyLCBpbmNsdWRlPSBGQUxTRX0NCmxpYnJhcnkoImNhciIpDQpsaWJyYXJ5KCJkcGx5ciIpDQpsaWJyYXJ5KCJhcGUiKQ0KbGlicmFyeSgic25hIikNCmxpYnJhcnkoIlJTaWVuYSIpDQpsaWJyYXJ5KCJSc2llbmFUd29TdGVwIikNCmxpYnJhcnkoImRldnRvb2xzIikNCmxpYnJhcnkoIm5ldHNlZyIpDQpsaWJyYXJ5KCJpZ3JhcGgiKQ0Kb3B0aW9ucyhzY2lwZW4gPSA1MCkNCmBgYA0KDQojIyBNb2RlbCAwOiBTaW1wbGUgTW9kZWwNCg0KYGBge3IsaW5jbHVkZT0gRkFMU0V9DQpsaWJyYXJ5KCJwYW5kZXIiKQ0Kc2ltcGxlX21vZGVsIDwtIHJlYWRSRFMoInNpbXBsZV9tb2RlbC5yZHMiKQ0KcmVzdWx0c19tMCA8LSBkYXRhLmZyYW1lKA0KICBlZmZlY3QgPSBzaW1wbGVfbW9kZWwkZWZmZWN0cyRlZmZlY3ROYW1lLA0KICBiID0gc2ltcGxlX21vZGVsJHRoZXRhLA0KICBzZSA9IHNpbXBsZV9tb2RlbCRzZSwNCiAgdCA9IHNpbXBsZV9tb2RlbCR0aGV0YSAvIHNpbXBsZV9tb2RlbCRzZSwNCiAgcCA9IDIgKiBwbm9ybSgtYWJzKHNpbXBsZV9tb2RlbCR0aGV0YSAvIHNpbXBsZV9tb2RlbCRzZSkpDQopDQpgYGANCg0KVGhlIG51bGwgbW9kZWwgY29udmVyZ2VzIGF0IDAuMTMsIHdoaWNoIGlzIGFjY2VwdGFibGUuIFRoZSBvdXRjb21lcyBvZg0KdGhlIHNpbXBsZSBtb2RlbCBzaG93IHRoaW5ncyB3ZSBoYXZlIGFscmVhZHkgbGVhcm5lZCBmcm9tIHRoZQ0KZGVzY3JpcHRpdmUgcmVzdWx0cyBhbmQgdGhlIG5ldHdvcmsgZ3JhcGgsIG5hbWVseSB0aGF0IHRoZXJlIGlzIGENCnNpZ25pZmljYW50IGNoYW5jZSB0aGF0IG9uZSBkb2VzIG5vdCBvYnNlcnZlIGEgdGllIGNvbXBhcmVkIHRvIHRoZQ0KY2hhbmNlIHRoYXQgb25lIG9ic2VydmVzIGEgdGllICgqYiogPSAtMi42NywgKlNFKiA9IDAuNTMsICpwKiBcPiAuMDEpLg0KDQpUaGUgcmF0ZSBmb3IgdGhlIGJlaGF2aW91cmFsIGlzIHNpZ25pZmljYW50LCBtZWFuaW5nIHRoYXQuLi4gQ2hhbmdlIGluDQpzb2NpYWwgc2F0aXNmYWN0aW9uIGlzIG5vdCBzaWduaWZpY2FudCBvbiBhIGxpbmVhciBsZXZlbCAoKmIqID0gMC4xNywNCipTRSogPSAwLjE0LCAqcCogPSAwLjIyKSwgYnV0IGl0IGlzIHNpZ25pZmljYW50IG9uIGEgcXVhZHJhdGljIGxldmVsDQooKmIqID0gLTAuMzQsICpTRSogPSAwLjE1LCAqcCA9KiAwLjAyKSBhbmQgZ29pbmcgaW50byBhIG5lZ2F0aXZlDQpkaXJlY3Rpb24sIHdoaWNoIGluZGljYXRlcyB0aGF0IC4uLg0KDQpIb3dldmVyLCB0aGVzZSBzdGF0aXN0aWNzIGRvIG5vdCB0ZWxsIG1lIGEgbG90IHlldCwgYXMgSSBoYXZlIG5vdCBhZGRlZA0KaXQgYW55IGFkZGl0aW9uYWwgc3RhdGlzdGljcy4gQmVjYXVzZSBvZiB0aGF0LCB0aGUgR29vZG5lc3MtT2YtRml0DQptb2RlbHMgZm9yIHRoaXMgbW9kZWwgd2lsbCBpbmRpY2F0ZSB0aGF0IHRoZSBtb2RlbHMgZG8gbm90IGZpdCB3ZWxsLg0KVGhlcmVmb3JlLCBJIHdpbGwgbm90IHBsb3QgdGhlbSB5ZXQuDQoNCioqVGFibGUgMToqKiAqUmVzdWx0cyBvZiBNb2RlbCAwKg0KDQpgYGB7cn0NCnBhbmRlcjo6cGFuZGVyKHJlc3VsdHNfbTApDQpgYGANCg0KIyMgTW9kZWwgMTogSG9tb2dlbmVpdHkgaW4gUmVjaXByb2NhdGVkIFRpZXMNCg0KYGBge3IsIGluY2x1ZGU9IEZBTFNFfQ0KbW9kZWwxIDwtIHJlYWRSRFMoIm1vZGVsMS5yZHMiKQ0KcmVzdWx0c19tMSA8LSBkYXRhLmZyYW1lKA0KICBlZmZlY3QgPSBtb2RlbDEkZWZmZWN0cyRlZmZlY3ROYW1lLA0KICBiID0gbW9kZWwxJHRoZXRhLA0KICBzZSA9IG1vZGVsMSRzZSwNCiAgdCA9IG1vZGVsMSR0aGV0YSAvIG1vZGVsMSRzZSwNCiAgcCA9IDIgKiBwbm9ybSgtYWJzKG1vZGVsMSR0aGV0YSAvIG1vZGVsMSRzZSkpDQopDQpgYGANCg0KVGhlIGZpcnN0IG1vZGVsIGlzIHVzZWQgdG8gbG9vayBhdCB3aGV0aGVyIHJlY2lwcm9jYXRlZCB0aWVzIGFyZSBtb3JlIGxpa2VseSB0byBvY2N1ciBhbW9uZyBzdHVkZW50cyB3aG9zZSBwYXJlbnRzIGhhdmUgdGhlIHNhbWUgZWR1Y2F0aW9uYWwgbGV2ZWwuIA0KDQoNCmBgYHtyfQ0KcmVzdWx0c19tMQ0KYGBgDQoNCg0KKipUYWJsZSAyOioqICpSZXN1bHRzIG9mIE1vZGVsIDEqDQoNCmBgYHtyfQ0KcGFuZGVyOjpwYW5kZXIocmVzdWx0c19tMSkNCmBgYA0KDQpgYGB7ciwgaW5jbHVkZT0gRkFMU0V9DQpnb2ZpMSA8LSBzaWVuYUdPRihtb2RlbDEsIEluZGVncmVlRGlzdHJpYnV0aW9uLCB2ZXJib3NlID0gRkFMU0UsIGpvaW4gPSBUUlVFLCB2YXJOYW1lID0gIm5ldE1MQyIpDQpnb2ZvMSA8LSBzaWVuYUdPRihtb2RlbDEsIE91dGRlZ3JlZURpc3RyaWJ1dGlvbiwgdmVyYm9zZSA9IEZBTFNFLCBqb2luID0gVFJVRSwgdmFyTmFtZSA9ICJuZXRNTEMiKQ0KZ29mMXRjIDwtIHNpZW5hR09GKG1vZGVsMSwgVHJpYWRDZW5zdXMsIHZlcmJvc2UgPSBGQUxTRSwgam9pbiA9IFRSVUUsIHZhck5hbWUgPSAibmV0TUxDIikNCmBgYA0KDQoqKkZpZ3VyZSAyKioNCg0KIyMjICpHb29kbmVzcyBPZiBGaXQgZm9yIE1vZGVsIDEqIHsudGFic2V0IC50YWJzZXQtZmFkZX0NCg0KIyMjIyBJbmRlZ3JlZSBkaXN0cmlidXRpb24NCg0KYGBge3J9DQpwbG90KGdvZmkxKQ0KYGBgDQoNCiMjIyMgT3V0ZGVncmVlIGRpc3RyaWJ1dGlvbg0KDQpgYGB7cn0NCnBsb3QoZ29mbzEpDQpgYGANCg0KIyMjIyBUcmlhZENlbnN1cw0KDQpgYGB7cn0NCnBsb3QoZ29mMXRjLCBjZW50ZXIgPSBULCBzY2FsZSA9IFQpDQpgYGANCg0KIyMjICB7LnVubGlzdGVkIC51bm51bWJlcmVkfQ0KDQojIFJDb2RlDQpUaGUgY29kaW5nIHByb2Nlc3MuLi4gYW5kIHNvbWUgdGhvdWdodHMgDQoNCiMjIFByZXBhcmF0aW9uDQoNCmBgYHtyLCBpbmNsdWRlPSBGQUxTRX0NCiNMb2FkaW5nIHRoZSBkYXRhDQpybShsaXN0ID1scygpKQ0KbG9hZCgiQzpcXFVzZXJzXFxuaW5hc1xcT25lRHJpdmUgLSBSYWRib3VkIFVuaXZlcnNpdGVpdFxcUlNDU1xcU29jaWFsIE5ldHdvcmtzXFxsYWJqb3VybmFsU05cXHBhcmVudGVkdWRhdGEuUmRhdGEiKQ0KbG9hZCgiQzpcXFVzZXJzXFxuaW5hc1xcT25lRHJpdmUgLSBSYWRib3VkIFVuaXZlcnNpdGVpdFxcUlNDU1xcU29jaWFsIE5ldHdvcmtzXFxsYWJqb3VybmFsU05cXHdhdmUxLlJkYXRhIikNCmxvYWQoIkM6XFxVc2Vyc1xcbmluYXNcXE9uZURyaXZlIC0gUmFkYm91ZCBVbml2ZXJzaXRlaXRcXFJTQ1NcXFNvY2lhbCBOZXR3b3Jrc1xcbGFiam91cm5hbFNOXFx3YXZlMi5SZGF0YSIpDQpgYGANCg0KYGBge3J9DQojZGVwZW5kZW50IHZhcmlhYmxlIA0KbmV0TUxDIDwtIHNpZW5hRGVwZW5kZW50KGFycmF5KGRhdGEgPSBjKHdhdmUxLCB3YXZlMiksIGRpbSA9IGMoZGltKHdhdmUxKSwgMikpKQ0KI2JlaGF2aW91cmFsIHZhcmlhYmxlDQpiZWh5IDwtIGRmMiAlPiUgDQogIGRwbHlyOjpzZWxlY3QoInNvY3NhdHcxbiIsICJzb2NzYXR3Mm4iKSAlPiUNCiAgYXMubWF0cml4KCkNCmJlaE1MQyA8LSBzaWVuYURlcGVuZGVudChiZWh5LCB0eXBlID0gYygiYmVoYXZpb3IiKSkNCiNpbmRlcGVuZGVudCB2YXJpYWJsZXMNCnBhcmVudF9lZHVfY2N2IDwtIGNvQ292YXIoYXMubnVtZXJpYyhkZjIkcGFyZW50c2hpZ2hmKSkNCmdlbmRlcl9jY3YgPC0gY29Db3Zhcihhcy5udW1lcmljKGRmMiRnZW5kZXJmKSkNCmV0aG5pY2l0eV9jY3YgPC0gY29Db3Zhcihhcy5udW1lcmljKGRmMiRldGhuaWNpdHlmKSkNCiNkYXRhDQpteWRhdGEgPC0gc2llbmFEYXRhQ3JlYXRlKG5ldE1MQywgYmVoTUxDLCBwYXJlbnRfZWR1X2NjdiwgZ2VuZGVyX2NjdiwgZXRobmljaXR5X2NjdikNCiNlZmZlY3RzIHN0cnVjdHVyZQ0KbXllZmYgPC0gZ2V0RWZmZWN0cyhteWRhdGEpDQojPw0KbXlBbGdvcml0aG0gPC0gKHNpZW5hQWxnb3JpdGhtQ3JlYXRlKHByb2puYW1lID0gInJlc3VsdHMiKSkNCmBgYA0KDQojIyBNb2RlbCAwOiBTaW1wbGUgTW9kZWwNCg0KYGBge3IsIGV2YWw9IEZBTFNFfQ0Kc2ltcGxlX21vZGVsIDwtIHNpZW5hMDcobXlBbGdvcml0aG0sIGRhdGEgPSBteWRhdGEsIGVmZmVjdHMgPSBteWVmZiwgdGhldGFCb3VuZCA9IDEwMDAwLCByZXR1cm5EZXBzID0gVCkNCmBgYA0KDQojIyBNb2RlbCAxOiBIb21vZ2VuZWl0eSBpbiByZWNpcHJvY2F0ZWQgdGllcw0KDQpgYGB7ciwgaW5jbHVkZT0gRkFMU0V9DQojZ29vZG5lc3Mgb2YgZml0IHByYWN0aWNhbGl0aWVzDQpHZW9kZXNpY0Rpc3RyaWJ1dGlvbiA8LSBmdW5jdGlvbihpLCBkYXRhLCBzaW1zLCBwZXJpb2QsIGdyb3VwTmFtZSwgdmFyTmFtZSwgbGV2bHMgPSBjKDE6NSwgSW5mKSwgY3VtdWxhdGl2ZSA9IFRSVUUsDQogICAgLi4uKSB7DQogICAgeCA8LSBuZXR3b3JrRXh0cmFjdGlvbihpLCBkYXRhLCBzaW1zLCBwZXJpb2QsIGdyb3VwTmFtZSwgdmFyTmFtZSkNCiAgICByZXF1aXJlKG5ldHdvcmspDQogICAgcmVxdWlyZShzbmEpDQogICAgYSA8LSBzbmE6Omdlb2Rpc3Qoc3ltbWV0cml6ZSh4KSkkZ2Rpc3QNCiAgICBpZiAoY3VtdWxhdGl2ZSkgew0KICAgICAgICBnZGkgPC0gc2FwcGx5KGxldmxzLCBmdW5jdGlvbihpKSB7DQogICAgICAgICAgICBzdW0oYSA8PSBpKQ0KICAgICAgICB9KQ0KICAgIH0gZWxzZSB7DQogICAgICAgIGdkaSA8LSBzYXBwbHkobGV2bHMsIGZ1bmN0aW9uKGkpIHsNCiAgICAgICAgICAgIHN1bShhID09IGkpDQogICAgICAgIH0pDQogICAgfQ0KICAgIG5hbWVzKGdkaSkgPC0gYXMuY2hhcmFjdGVyKGxldmxzKQ0KICAgIGdkaQ0KfQ0KDQojIFRoZSBmb2xsb3dpbmcgZnVuY3Rpb24gaXMgdGFrZW4gZnJvbSB0aGUgaGVscCBwYWdlIGZvciBzaWVuYVRlc3QNCg0KdGVzdGFsbCA8LSBmdW5jdGlvbihhbnMpIHsNCiAgICBmb3IgKGkgaW4gd2hpY2goYW5zJHRlc3QpKSB7DQogICAgICAgIHNjdCA8LSBzY29yZS5UZXN0KGFucywgaSkNCiAgICAgICAgY2F0KGFucyRyZXF1ZXN0ZWRFZmZlY3RzJGVmZmVjdE5hbWVbaV0sICJcbiIpDQogICAgICAgIHByaW50KHNjdCkNCiAgICB9DQogICAgaW52aXNpYmxlKHNjb3JlLlRlc3QoYW5zKSkNCn0NCmBgYA0KDQpgYGB7cn0NCm15ZWZmIDwtIGluY2x1ZGVFZmZlY3RzKG15ZWZmLCBlZ29YLCBhbHRYLCBzYW1lWCwgc2FtZVhSZWNpcCwgaW50ZXJhY3Rpb24xID0gInBhcmVudF9lZHVfY2N2IikgDQptb2RlbDEuMSA8LSBzaWVuYTA3KG15QWxnb3JpdGhtLCBkYXRhID0gbXlkYXRhLCBlZmZlY3RzID0gbXllZmYsIHRoZXRhQm91bmQgPSAxMDAwMCwgcmV0dXJuRGVwcyA9IFQpDQptb2RlbDEuMQ0KYGBgDQoNCmBgYHtyfQ0KZ29maTEuMSA8LSBzaWVuYUdPRihtb2RlbDEuMSwgSW5kZWdyZWVEaXN0cmlidXRpb24sIHZlcmJvc2UgPSBGQUxTRSwgam9pbiA9IFRSVUUsIHZhck5hbWUgPSAibmV0TUxDIikNCmdvZm8xLjEgPC0gc2llbmFHT0YobW9kZWwxLjEsIE91dGRlZ3JlZURpc3RyaWJ1dGlvbiwgdmVyYm9zZSA9IEZBTFNFLCBqb2luID0gVFJVRSwgdmFyTmFtZSA9ICJuZXRNTEMiKQ0KI2dvZjAuZ2QgPC0gc2llbmFHT0YobW9kZWwxLjEsIEdlb2Rlc2ljRGlzdHJpYnV0aW9uLCBjdW11bGF0aXZlID0gRkFMU0UsIHZlcmJvc2UgPSBGQUxTRSwgam9pbiA9IFRSVUUsIHZhck5hbWUgPSAibmV0TUxDIikNCiMgUTogd2F0IG1vZXQgZXIgZWVuIG1hdHJpeCB6aWpuIGRhbj8gSGlqIHJ1bnQgbmlldA0KZ29mMS4xLnRjIDwtIHNpZW5hR09GKG1vZGVsMS4xLCBUcmlhZENlbnN1cywgdmVyYm9zZSA9IEZBTFNFLCBqb2luID0gVFJVRSwgdmFyTmFtZSA9ICJuZXRNTEMiKQ0KYGBgDQoNCmBgYHtyfQ0KcGxvdChnb2ZpMS4xKQ0KcGxvdChnb2ZvMS4xKQ0KcGxvdChnb2YxLjEudGMsIGNlbnRlciA9IFQsIHNjYWxlID0gVCkNCmBgYA0KDQpXRUxMLCB0aGF0IGRvZXMgbm90IHZlcnkgZ29vZC4gQnV0IHRoYXQncyBub3Qgd2VpcmQsIGJlY2F1c2UgSSBoYXZlIG5vdA0KYWRkZWQgYW55IGFkZGl0aW9uYWwgZWZmZWN0cy4gTGV0J3MgYWRkIGEgdHJpYWQgZWZmZWN0IDopDQoNCmBgYHtyfQ0KbXllZmYgPC0gaW5jbHVkZUVmZmVjdHMobXllZmYsIHRyYW5zVHJpcCkgDQptb2RlbDEuMiA8LSBzaWVuYTA3KG15QWxnb3JpdGhtLCBkYXRhID0gbXlkYXRhLCBlZmZlY3RzID0gbXllZmYsIHRoZXRhQm91bmQgPSAxMDAwMCwgcmV0dXJuRGVwcyA9IFQpDQptb2RlbDEuMg0KYGBgDQoNCmBgYHtyfQ0KZ29maTEuMiA8LSBzaWVuYUdPRihtb2RlbDEuMiwgSW5kZWdyZWVEaXN0cmlidXRpb24sIHZlcmJvc2UgPSBGQUxTRSwgam9pbiA9IFRSVUUsIHZhck5hbWUgPSAibmV0TUxDIikNCmdvZm8xLjIgPC0gc2llbmFHT0YobW9kZWwxLjIsIE91dGRlZ3JlZURpc3RyaWJ1dGlvbiwgdmVyYm9zZSA9IEZBTFNFLCBqb2luID0gVFJVRSwgdmFyTmFtZSA9ICJuZXRNTEMiKQ0KZ29mMS4yLnRjIDwtIHNpZW5hR09GKG1vZGVsMS4xLCBUcmlhZENlbnN1cywgdmVyYm9zZSA9IEZBTFNFLCBqb2luID0gVFJVRSwgdmFyTmFtZSA9ICJuZXRNTEMiKQ0KYGBgDQoNCmBgYHtyfQ0KcGxvdChnb2ZpMS4yKQ0KcGxvdChnb2ZvMS4yKQ0KcGxvdChnb2YxLjIudGMsIGNlbnRlciA9IFQsIHNjYWxlID0gVCkNCmBgYA0KDQpBbm90aGVyIG9uZS4uLg0KDQpgYGB7cn0NCm15ZWZmMS4zIDwtIGluY2x1ZGVFZmZlY3RzKG15ZWZmLCBpblBvcCwgb3V0QWN0LCBvdXRJc28pIA0KbW9kZWwxLjMgPC0gc2llbmEwNyhteUFsZ29yaXRobSwgZGF0YSA9IG15ZGF0YSwgZWZmZWN0cyA9IG15ZWZmMS4zLCB0aGV0YUJvdW5kID0gMTAwMDAsIHJldHVybkRlcHMgPSBUKQ0KbW9kZWwxLjMNCmBgYA0KDQpgYGB7cn0NCmdvZmkxLjMgPC0gc2llbmFHT0YobW9kZWwxLjMsIEluZGVncmVlRGlzdHJpYnV0aW9uLCB2ZXJib3NlID0gRkFMU0UsIGpvaW4gPSBUUlVFLCB2YXJOYW1lID0gIm5ldE1MQyIpDQpnb2ZvMS4zIDwtIHNpZW5hR09GKG1vZGVsMS4zLCBPdXRkZWdyZWVEaXN0cmlidXRpb24sIHZlcmJvc2UgPSBGQUxTRSwgam9pbiA9IFRSVUUsIHZhck5hbWUgPSAibmV0TUxDIikNCmdvZjEuMy50YyA8LSBzaWVuYUdPRihtb2RlbDEuMywgVHJpYWRDZW5zdXMsIHZlcmJvc2UgPSBGQUxTRSwgam9pbiA9IFRSVUUsIHZhck5hbWUgPSAibmV0TUxDIikNCmBgYA0KDQpgYGB7cn0NCnBsb3QoZ29maTEuMykNCnBsb3QoZ29mbzEuMykNCnBsb3QoZ29mMS4zLnRjLCBjZW50ZXIgPSBULCBzY2FsZSA9IFQpDQpgYGANCg0KQW5vdGhlciBvbmU/DQoNCmBgYHtyfQ0KbXllZmYxLjUgPC0gaW5jbHVkZUVmZmVjdHMobXllZmYxLjMsIGJldHdlZW4pIA0KbW9kZWwxLjUgPC0gc2llbmEwNyhteUFsZ29yaXRobSwgZGF0YSA9IG15ZGF0YSwgZWZmZWN0cyA9IG15ZWZmMS4zLCB0aGV0YUJvdW5kID0gMTAwMDAsIHJldHVybkRlcHMgPSBUKQ0KbW9kZWwxLjUNCiNzYXZlUkRTKG1vZGVsMS41LCAibW9kZWwxLnJkcyIpDQpgYGANCg0KYGBge3J9DQpnb2ZpMS41IDwtIHNpZW5hR09GKG1vZGVsMS41LCBJbmRlZ3JlZURpc3RyaWJ1dGlvbiwgdmVyYm9zZSA9IEZBTFNFLCBqb2luID0gVFJVRSwgdmFyTmFtZSA9ICJuZXRNTEMiKQ0KZ29mbzEuNSA8LSBzaWVuYUdPRihtb2RlbDEuNSwgT3V0ZGVncmVlRGlzdHJpYnV0aW9uLCB2ZXJib3NlID0gRkFMU0UsIGpvaW4gPSBUUlVFLCB2YXJOYW1lID0gIm5ldE1MQyIpDQpnb2YxLjUudGMgPC0gc2llbmFHT0YobW9kZWwxLjUsIFRyaWFkQ2Vuc3VzLCB2ZXJib3NlID0gRkFMU0UsIGpvaW4gPSBUUlVFLCB2YXJOYW1lID0gIm5ldE1MQyIpDQpgYGANCg0KYGBge3J9DQpwbG90KGdvZmkxLjUpDQpwbG90KGdvZm8xLjUpDQpwbG90KGdvZjEuNS50YywgY2VudGVyID0gVCwgc2NhbGUgPSBUKQ0KYGBgDQoNCkkgZG8gbm90IHdhbnQgdG8gb3ZlciBjb250cm9sLCBzbyBldmVuIHRob3VnaCBteSBHb29kbmVzcy1vZi1GaXQgaXMNCnN0aWxsIG5vdCBzaWduaWZpY2FudCBJIHRoaW5rIEkgd2lsbCBnbyB3aXRoIHRoaXMgbW9kZWwuDQoNCiMjIE1vZGVsIDI6IEhvbW9nZW5laXR5IGluIHJlY2lwcm9jYXRlZCB0aWVzIHdpdGggY29udHJvbCB2YXJpYWJsZXMNCg==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkV4cGxvcmF0b3J5IFJlc3VsdHMiDQphdXRob3I6ICJieTogTmluYSBTbmVpamVycyINCmJpYmxpb2dyYXBoeTogcmVmZXJlbmNlcy5iaWINCmVkaXRvcl9vcHRpb25zOiANCiAgbWFya2Rvd246IA0KICAgIHdyYXA6IDcyDQotLS0NCg0KIyBFeHBsb3JhdG9yeSBSZXN1bHRzDQoNCmBgYHtyLCBpbmNsdWRlPSBGQUxTRX0NCmxpYnJhcnkoImNhciIpDQpsaWJyYXJ5KCJkcGx5ciIpDQpsaWJyYXJ5KCJhcGUiKQ0KbGlicmFyeSgic25hIikNCmxpYnJhcnkoIlJTaWVuYSIpDQpsaWJyYXJ5KCJSc2llbmFUd29TdGVwIikNCmxpYnJhcnkoImRldnRvb2xzIikNCmxpYnJhcnkoIm5ldHNlZyIpDQpsaWJyYXJ5KCJpZ3JhcGgiKQ0Kb3B0aW9ucyhzY2lwZW4gPSAyNSkNCmBgYA0KDQojIyBNb2RlbCAwOiBTaW1wbGUgTW9kZWwNCg0KYGBge3IsaW5jbHVkZT0gRkFMU0V9DQpsaWJyYXJ5KCJwYW5kZXIiKQ0Kc2ltcGxlX21vZGVsIDwtIHJlYWRSRFMoInNpbXBsZV9tb2RlbC5yZHMiKQ0KcmVzdWx0c19tMCA8LSBkYXRhLmZyYW1lKA0KICBlZmZlY3QgPSBzaW1wbGVfbW9kZWwkZWZmZWN0cyRlZmZlY3ROYW1lLA0KICBiID0gc2ltcGxlX21vZGVsJHRoZXRhLA0KICBzZSA9IHNpbXBsZV9tb2RlbCRzZSwNCiAgdCA9IHNpbXBsZV9tb2RlbCR0aGV0YSAvIHNpbXBsZV9tb2RlbCRzZSwNCiAgcCA9IDIgKiBwbm9ybSgtYWJzKHNpbXBsZV9tb2RlbCR0aGV0YSAvIHNpbXBsZV9tb2RlbCRzZSkpDQopDQpgYGANCg0KVGhlIG51bGwgbW9kZWwgY29udmVyZ2VzIGF0IDAuMTMsIHdoaWNoIGlzIGFjY2VwdGFibGUuIFRoZSBvdXRjb21lcyBvZg0KdGhlIHNpbXBsZSBtb2RlbCBzaG93IHRoaW5ncyB3ZSBoYXZlIGFscmVhZHkgbGVhcm5lZCBmcm9tIHRoZQ0KZGVzY3JpcHRpdmUgcmVzdWx0cyBhbmQgdGhlIG5ldHdvcmsgZ3JhcGgsIG5hbWVseSB0aGF0IHRoZXJlIGlzIGENCnNpZ25pZmljYW50IGNoYW5jZSB0aGF0IG9uZSBkb2VzIG5vdCBvYnNlcnZlIGEgdGllIGNvbXBhcmVkIHRvIHRoZQ0KY2hhbmNlIHRoYXQgb25lIG9ic2VydmVzIGEgdGllICgqYiogPSAtMi42NywgKlNFKiA9IDAuNTMsICpwKiBcPiAuMDEpLg0KDQpUaGUgcmF0ZSBmb3IgdGhlIGJlaGF2aW91cmFsIGlzIHNpZ25pZmljYW50LCBtZWFuaW5nIHRoYXQuLi4gQ2hhbmdlIGluDQpzb2NpYWwgc2F0aXNmYWN0aW9uIGlzIG5vdCBzaWduaWZpY2FudCBvbiBhIGxpbmVhciBsZXZlbCAoKmIqID0gMC4xNywNCipTRSogPSAwLjE0LCAqcCogPSAwLjIyKSwgYnV0IGl0IGlzIHNpZ25pZmljYW50IG9uIGEgcXVhZHJhdGljIGxldmVsDQooKmIqID0gLTAuMzQsICpTRSogPSAwLjE1LCAqcCA9KiAwLjAyKSBhbmQgZ29pbmcgaW50byBhIG5lZ2F0aXZlDQpkaXJlY3Rpb24sIHdoaWNoIGluZGljYXRlcyB0aGF0IC4uLg0KDQpIb3dldmVyLCB0aGVzZSBzdGF0aXN0aWNzIGRvIG5vdCB0ZWxsIG1lIGEgbG90IHlldCwgYXMgSSBoYXZlIG5vdCBhZGRlZA0KaXQgYW55IGFkZGl0aW9uYWwgc3RhdGlzdGljcy4gQmVjYXVzZSBvZiB0aGF0LCB0aGUgR29vZG5lc3MtT2YtRml0DQptb2RlbHMgZm9yIHRoaXMgbW9kZWwgd2lsbCBpbmRpY2F0ZSB0aGF0IHRoZSBtb2RlbHMgZG8gbm90IGZpdCB3ZWxsLg0KVGhlcmVmb3JlLCBJIHdpbGwgbm90IHBsb3QgdGhlbSB5ZXQuDQoNCioqVGFibGUgMToqKiAqUmVzdWx0cyBvZiBNb2RlbCAwKg0KDQpgYGB7cn0NCnBhbmRlcjo6cGFuZGVyKHJlc3VsdHNfbTApDQpgYGANCg0KIyMgTW9kZWwgMTogSG9tb2dlbmVpdHkgaW4gUmVjaXByb2NhdGVkIFRpZXMNCg0KYGBge3IsIGluY2x1ZGU9IEZBTFNFfQ0KbW9kZWwxIDwtIHJlYWRSRFMoIm1vZGVsMS5yZHMiKQ0KcmVzdWx0c19tMSA8LSBkYXRhLmZyYW1lKA0KICBlZmZlY3QgPSBtb2RlbDEkZWZmZWN0cyRlZmZlY3ROYW1lLA0KICBiID0gbW9kZWwxJHRoZXRhLA0KICBzZSA9IG1vZGVsMSRzZSwNCiAgdCA9IG1vZGVsMSR0aGV0YSAvIG1vZGVsMSRzZSwNCiAgcCA9IDIgKiBwbm9ybSgtYWJzKG1vZGVsMSR0aGV0YSAvIG1vZGVsMSRzZSkpDQopDQpgYGANCg0KVGhlIGZpcnN0IG1vZGVsIGlzIHVzZWQgdG8gbG9vayBhdCB3aGV0aGVyIHJlY2lwcm9jYXRlZCB0aWVzIGFyZSBtb3JlIGxpa2VseSB0byBvY2N1ciBhbW9uZyBzdHVkZW50cyB3aG9zZSBwYXJlbnRzIGhhdmUgdGhlIHNhbWUgZWR1Y2F0aW9uYWwgbGV2ZWwuIA0KDQoNCmBgYHtyfQ0KcmVzdWx0c19tMQ0KYGBgDQoNCg0KKipUYWJsZSAyOioqICpSZXN1bHRzIG9mIE1vZGVsIDEqDQoNCmBgYHtyfQ0KcGFuZGVyOjpwYW5kZXIocmVzdWx0c19tMSkNCmBgYA0KDQpgYGB7ciwgaW5jbHVkZT0gRkFMU0V9DQpnb2ZpMSA8LSBzaWVuYUdPRihtb2RlbDEsIEluZGVncmVlRGlzdHJpYnV0aW9uLCB2ZXJib3NlID0gRkFMU0UsIGpvaW4gPSBUUlVFLCB2YXJOYW1lID0gIm5ldE1MQyIpDQpnb2ZvMSA8LSBzaWVuYUdPRihtb2RlbDEsIE91dGRlZ3JlZURpc3RyaWJ1dGlvbiwgdmVyYm9zZSA9IEZBTFNFLCBqb2luID0gVFJVRSwgdmFyTmFtZSA9ICJuZXRNTEMiKQ0KZ29mMXRjIDwtIHNpZW5hR09GKG1vZGVsMSwgVHJpYWRDZW5zdXMsIHZlcmJvc2UgPSBGQUxTRSwgam9pbiA9IFRSVUUsIHZhck5hbWUgPSAibmV0TUxDIikNCmBgYA0KDQoqKkZpZ3VyZSAyKioNCg0KIyMjICpHb29kbmVzcyBPZiBGaXQgZm9yIE1vZGVsIDEqIHsudGFic2V0IC50YWJzZXQtZmFkZX0NCg0KIyMjIyBJbmRlZ3JlZSBkaXN0cmlidXRpb24NCg0KYGBge3J9DQpwbG90KGdvZmkxKQ0KYGBgDQoNCiMjIyMgT3V0ZGVncmVlIGRpc3RyaWJ1dGlvbg0KDQpgYGB7cn0NCnBsb3QoZ29mbzEpDQpgYGANCg0KIyMjIyBUcmlhZENlbnN1cw0KDQpgYGB7cn0NCnBsb3QoZ29mMXRjLCBjZW50ZXIgPSBULCBzY2FsZSA9IFQpDQpgYGANCg0KIyMjICB7LnVubGlzdGVkIC51bm51bWJlcmVkfQ0KDQojIFJDb2RlDQpUaGUgY29kaW5nIHByb2Nlc3MuLi4gYW5kIHNvbWUgdGhvdWdodHMgDQoNCiMjIFByZXBhcmF0aW9uDQoNCmBgYHtyLCBpbmNsdWRlPSBGQUxTRX0NCiNMb2FkaW5nIHRoZSBkYXRhDQpybShsaXN0ID1scygpKQ0KbG9hZCgiQzpcXFVzZXJzXFxuaW5hc1xcT25lRHJpdmUgLSBSYWRib3VkIFVuaXZlcnNpdGVpdFxcUlNDU1xcU29jaWFsIE5ldHdvcmtzXFxsYWJqb3VybmFsU05cXHBhcmVudGVkdWRhdGEuUmRhdGEiKQ0KbG9hZCgiQzpcXFVzZXJzXFxuaW5hc1xcT25lRHJpdmUgLSBSYWRib3VkIFVuaXZlcnNpdGVpdFxcUlNDU1xcU29jaWFsIE5ldHdvcmtzXFxsYWJqb3VybmFsU05cXHdhdmUxLlJkYXRhIikNCmxvYWQoIkM6XFxVc2Vyc1xcbmluYXNcXE9uZURyaXZlIC0gUmFkYm91ZCBVbml2ZXJzaXRlaXRcXFJTQ1NcXFNvY2lhbCBOZXR3b3Jrc1xcbGFiam91cm5hbFNOXFx3YXZlMi5SZGF0YSIpDQpgYGANCg0KYGBge3J9DQojZGVwZW5kZW50IHZhcmlhYmxlIA0KbmV0TUxDIDwtIHNpZW5hRGVwZW5kZW50KGFycmF5KGRhdGEgPSBjKHdhdmUxLCB3YXZlMiksIGRpbSA9IGMoZGltKHdhdmUxKSwgMikpKQ0KI2JlaGF2aW91cmFsIHZhcmlhYmxlDQpiZWh5IDwtIGRmMiAlPiUgDQogIGRwbHlyOjpzZWxlY3QoInNvY3NhdHcxbiIsICJzb2NzYXR3Mm4iKSAlPiUNCiAgYXMubWF0cml4KCkNCmJlaE1MQyA8LSBzaWVuYURlcGVuZGVudChiZWh5LCB0eXBlID0gYygiYmVoYXZpb3IiKSkNCiNpbmRlcGVuZGVudCB2YXJpYWJsZXMNCnBhcmVudF9lZHVfY2N2IDwtIGNvQ292YXIoYXMubnVtZXJpYyhkZjIkcGFyZW50c2hpZ2hmKSkNCmdlbmRlcl9jY3YgPC0gY29Db3Zhcihhcy5udW1lcmljKGRmMiRnZW5kZXJmKSkNCmV0aG5pY2l0eV9jY3YgPC0gY29Db3Zhcihhcy5udW1lcmljKGRmMiRldGhuaWNpdHlmKSkNCiNkYXRhDQpteWRhdGEgPC0gc2llbmFEYXRhQ3JlYXRlKG5ldE1MQywgYmVoTUxDLCBwYXJlbnRfZWR1X2NjdiwgZ2VuZGVyX2NjdiwgZXRobmljaXR5X2NjdikNCiNlZmZlY3RzIHN0cnVjdHVyZQ0KbXllZmYgPC0gZ2V0RWZmZWN0cyhteWRhdGEpDQojPw0KbXlBbGdvcml0aG0gPC0gKHNpZW5hQWxnb3JpdGhtQ3JlYXRlKHByb2puYW1lID0gInJlc3VsdHMiKSkNCmBgYA0KDQojIyBNb2RlbCAwOiBTaW1wbGUgTW9kZWwNCg0KYGBge3IsIGV2YWw9IEZBTFNFfQ0Kc2ltcGxlX21vZGVsIDwtIHNpZW5hMDcobXlBbGdvcml0aG0sIGRhdGEgPSBteWRhdGEsIGVmZmVjdHMgPSBteWVmZiwgdGhldGFCb3VuZCA9IDEwMDAwLCByZXR1cm5EZXBzID0gVCkNCmBgYA0KDQojIyBNb2RlbCAxOiBIb21vZ2VuZWl0eSBpbiByZWNpcHJvY2F0ZWQgdGllcw0KDQpgYGB7ciwgaW5jbHVkZT0gRkFMU0V9DQojZ29vZG5lc3Mgb2YgZml0IHByYWN0aWNhbGl0aWVzDQpHZW9kZXNpY0Rpc3RyaWJ1dGlvbiA8LSBmdW5jdGlvbihpLCBkYXRhLCBzaW1zLCBwZXJpb2QsIGdyb3VwTmFtZSwgdmFyTmFtZSwgbGV2bHMgPSBjKDE6NSwgSW5mKSwgY3VtdWxhdGl2ZSA9IFRSVUUsDQogICAgLi4uKSB7DQogICAgeCA8LSBuZXR3b3JrRXh0cmFjdGlvbihpLCBkYXRhLCBzaW1zLCBwZXJpb2QsIGdyb3VwTmFtZSwgdmFyTmFtZSkNCiAgICByZXF1aXJlKG5ldHdvcmspDQogICAgcmVxdWlyZShzbmEpDQogICAgYSA8LSBzbmE6Omdlb2Rpc3Qoc3ltbWV0cml6ZSh4KSkkZ2Rpc3QNCiAgICBpZiAoY3VtdWxhdGl2ZSkgew0KICAgICAgICBnZGkgPC0gc2FwcGx5KGxldmxzLCBmdW5jdGlvbihpKSB7DQogICAgICAgICAgICBzdW0oYSA8PSBpKQ0KICAgICAgICB9KQ0KICAgIH0gZWxzZSB7DQogICAgICAgIGdkaSA8LSBzYXBwbHkobGV2bHMsIGZ1bmN0aW9uKGkpIHsNCiAgICAgICAgICAgIHN1bShhID09IGkpDQogICAgICAgIH0pDQogICAgfQ0KICAgIG5hbWVzKGdkaSkgPC0gYXMuY2hhcmFjdGVyKGxldmxzKQ0KICAgIGdkaQ0KfQ0KDQojIFRoZSBmb2xsb3dpbmcgZnVuY3Rpb24gaXMgdGFrZW4gZnJvbSB0aGUgaGVscCBwYWdlIGZvciBzaWVuYVRlc3QNCg0KdGVzdGFsbCA8LSBmdW5jdGlvbihhbnMpIHsNCiAgICBmb3IgKGkgaW4gd2hpY2goYW5zJHRlc3QpKSB7DQogICAgICAgIHNjdCA8LSBzY29yZS5UZXN0KGFucywgaSkNCiAgICAgICAgY2F0KGFucyRyZXF1ZXN0ZWRFZmZlY3RzJGVmZmVjdE5hbWVbaV0sICJcbiIpDQogICAgICAgIHByaW50KHNjdCkNCiAgICB9DQogICAgaW52aXNpYmxlKHNjb3JlLlRlc3QoYW5zKSkNCn0NCmBgYA0KDQpgYGB7cn0NCm15ZWZmIDwtIGluY2x1ZGVFZmZlY3RzKG15ZWZmLCBlZ29YLCBhbHRYLCBzYW1lWCwgc2FtZVhSZWNpcCwgaW50ZXJhY3Rpb24xID0gInBhcmVudF9lZHVfY2N2IikgDQptb2RlbDEuMSA8LSBzaWVuYTA3KG15QWxnb3JpdGhtLCBkYXRhID0gbXlkYXRhLCBlZmZlY3RzID0gbXllZmYsIHRoZXRhQm91bmQgPSAxMDAwMCwgcmV0dXJuRGVwcyA9IFQpDQptb2RlbDEuMQ0KYGBgDQoNCmBgYHtyfQ0KZ29maTEuMSA8LSBzaWVuYUdPRihtb2RlbDEuMSwgSW5kZWdyZWVEaXN0cmlidXRpb24sIHZlcmJvc2UgPSBGQUxTRSwgam9pbiA9IFRSVUUsIHZhck5hbWUgPSAibmV0TUxDIikNCmdvZm8xLjEgPC0gc2llbmFHT0YobW9kZWwxLjEsIE91dGRlZ3JlZURpc3RyaWJ1dGlvbiwgdmVyYm9zZSA9IEZBTFNFLCBqb2luID0gVFJVRSwgdmFyTmFtZSA9ICJuZXRNTEMiKQ0KI2dvZjAuZ2QgPC0gc2llbmFHT0YobW9kZWwxLjEsIEdlb2Rlc2ljRGlzdHJpYnV0aW9uLCBjdW11bGF0aXZlID0gRkFMU0UsIHZlcmJvc2UgPSBGQUxTRSwgam9pbiA9IFRSVUUsIHZhck5hbWUgPSAibmV0TUxDIikNCiMgUTogd2F0IG1vZXQgZXIgZWVuIG1hdHJpeCB6aWpuIGRhbj8gSGlqIHJ1bnQgbmlldA0KZ29mMS4xLnRjIDwtIHNpZW5hR09GKG1vZGVsMS4xLCBUcmlhZENlbnN1cywgdmVyYm9zZSA9IEZBTFNFLCBqb2luID0gVFJVRSwgdmFyTmFtZSA9ICJuZXRNTEMiKQ0KYGBgDQoNCmBgYHtyfQ0KcGxvdChnb2ZpMS4xKQ0KcGxvdChnb2ZvMS4xKQ0KcGxvdChnb2YxLjEudGMsIGNlbnRlciA9IFQsIHNjYWxlID0gVCkNCmBgYA0KDQpXRUxMLCB0aGF0IGRvZXMgbm90IHZlcnkgZ29vZC4gQnV0IHRoYXQncyBub3Qgd2VpcmQsIGJlY2F1c2UgSSBoYXZlIG5vdA0KYWRkZWQgYW55IGFkZGl0aW9uYWwgZWZmZWN0cy4gTGV0J3MgYWRkIGEgdHJpYWQgZWZmZWN0IDopDQoNCmBgYHtyfQ0KbXllZmYgPC0gaW5jbHVkZUVmZmVjdHMobXllZmYsIHRyYW5zVHJpcCkgDQptb2RlbDEuMiA8LSBzaWVuYTA3KG15QWxnb3JpdGhtLCBkYXRhID0gbXlkYXRhLCBlZmZlY3RzID0gbXllZmYsIHRoZXRhQm91bmQgPSAxMDAwMCwgcmV0dXJuRGVwcyA9IFQpDQptb2RlbDEuMg0KYGBgDQoNCmBgYHtyfQ0KZ29maTEuMiA8LSBzaWVuYUdPRihtb2RlbDEuMiwgSW5kZWdyZWVEaXN0cmlidXRpb24sIHZlcmJvc2UgPSBGQUxTRSwgam9pbiA9IFRSVUUsIHZhck5hbWUgPSAibmV0TUxDIikNCmdvZm8xLjIgPC0gc2llbmFHT0YobW9kZWwxLjIsIE91dGRlZ3JlZURpc3RyaWJ1dGlvbiwgdmVyYm9zZSA9IEZBTFNFLCBqb2luID0gVFJVRSwgdmFyTmFtZSA9ICJuZXRNTEMiKQ0KZ29mMS4yLnRjIDwtIHNpZW5hR09GKG1vZGVsMS4xLCBUcmlhZENlbnN1cywgdmVyYm9zZSA9IEZBTFNFLCBqb2luID0gVFJVRSwgdmFyTmFtZSA9ICJuZXRNTEMiKQ0KYGBgDQoNCmBgYHtyfQ0KcGxvdChnb2ZpMS4yKQ0KcGxvdChnb2ZvMS4yKQ0KcGxvdChnb2YxLjIudGMsIGNlbnRlciA9IFQsIHNjYWxlID0gVCkNCmBgYA0KDQpBbm90aGVyIG9uZS4uLg0KDQpgYGB7cn0NCm15ZWZmMS4zIDwtIGluY2x1ZGVFZmZlY3RzKG15ZWZmLCBpblBvcCwgb3V0QWN0LCBvdXRJc28pIA0KbW9kZWwxLjMgPC0gc2llbmEwNyhteUFsZ29yaXRobSwgZGF0YSA9IG15ZGF0YSwgZWZmZWN0cyA9IG15ZWZmMS4zLCB0aGV0YUJvdW5kID0gMTAwMDAsIHJldHVybkRlcHMgPSBUKQ0KbW9kZWwxLjMNCmBgYA0KDQpgYGB7cn0NCmdvZmkxLjMgPC0gc2llbmFHT0YobW9kZWwxLjMsIEluZGVncmVlRGlzdHJpYnV0aW9uLCB2ZXJib3NlID0gRkFMU0UsIGpvaW4gPSBUUlVFLCB2YXJOYW1lID0gIm5ldE1MQyIpDQpnb2ZvMS4zIDwtIHNpZW5hR09GKG1vZGVsMS4zLCBPdXRkZWdyZWVEaXN0cmlidXRpb24sIHZlcmJvc2UgPSBGQUxTRSwgam9pbiA9IFRSVUUsIHZhck5hbWUgPSAibmV0TUxDIikNCmdvZjEuMy50YyA8LSBzaWVuYUdPRihtb2RlbDEuMywgVHJpYWRDZW5zdXMsIHZlcmJvc2UgPSBGQUxTRSwgam9pbiA9IFRSVUUsIHZhck5hbWUgPSAibmV0TUxDIikNCmBgYA0KDQpgYGB7cn0NCnBsb3QoZ29maTEuMykNCnBsb3QoZ29mbzEuMykNCnBsb3QoZ29mMS4zLnRjLCBjZW50ZXIgPSBULCBzY2FsZSA9IFQpDQpgYGANCg0KQW5vdGhlciBvbmU/DQoNCmBgYHtyfQ0KbXllZmYxLjUgPC0gaW5jbHVkZUVmZmVjdHMobXllZmYxLjMsIGJldHdlZW4pIA0KbW9kZWwxLjUgPC0gc2llbmEwNyhteUFsZ29yaXRobSwgZGF0YSA9IG15ZGF0YSwgZWZmZWN0cyA9IG15ZWZmMS4zLCB0aGV0YUJvdW5kID0gMTAwMDAsIHJldHVybkRlcHMgPSBUKQ0KbW9kZWwxLjUNCiNzYXZlUkRTKG1vZGVsMS41LCAibW9kZWwxLnJkcyIpDQpgYGANCg0KYGBge3J9DQpnb2ZpMS41IDwtIHNpZW5hR09GKG1vZGVsMS41LCBJbmRlZ3JlZURpc3RyaWJ1dGlvbiwgdmVyYm9zZSA9IEZBTFNFLCBqb2luID0gVFJVRSwgdmFyTmFtZSA9ICJuZXRNTEMiKQ0KZ29mbzEuNSA8LSBzaWVuYUdPRihtb2RlbDEuNSwgT3V0ZGVncmVlRGlzdHJpYnV0aW9uLCB2ZXJib3NlID0gRkFMU0UsIGpvaW4gPSBUUlVFLCB2YXJOYW1lID0gIm5ldE1MQyIpDQpnb2YxLjUudGMgPC0gc2llbmFHT0YobW9kZWwxLjUsIFRyaWFkQ2Vuc3VzLCB2ZXJib3NlID0gRkFMU0UsIGpvaW4gPSBUUlVFLCB2YXJOYW1lID0gIm5ldE1MQyIpDQpgYGANCg0KYGBge3J9DQpwbG90KGdvZmkxLjUpDQpwbG90KGdvZm8xLjUpDQpwbG90KGdvZjEuNS50YywgY2VudGVyID0gVCwgc2NhbGUgPSBUKQ0KYGBgDQoNCkkgZG8gbm90IHdhbnQgdG8gb3ZlciBjb250cm9sLCBzbyBldmVuIHRob3VnaCBteSBHb29kbmVzcy1vZi1GaXQgaXMNCnN0aWxsIG5vdCBzaWduaWZpY2FudCBJIHRoaW5rIEkgd2lsbCBnbyB3aXRoIHRoaXMgbW9kZWwuDQoNCiMjIE1vZGVsIDI6IEhvbW9nZW5laXR5IGluIHJlY2lwcm9jYXRlZCB0aWVzIHdpdGggY29udHJvbCB2YXJpYWJsZXMNCg==</div>
 
 
 </div>

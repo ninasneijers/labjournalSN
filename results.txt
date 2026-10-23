@@ -4628,3 +4628,592 @@ covariance/correlation matrix of X can be found using
 summary(ans) within R, or by using the 'verbose' option in Siena07.
  
 Total computation time 96.5 seconds.
+
+
+-----------------------------------
+New Analysis started.
+Date and time: 23/10/2026 17:02:42
+New results follow.
+-----------------------------------
+
+RSiena version 1.6.6 (20 apr 26)
+
+
+@1
+Estimation by stochastic approximation algorithm.
+=================================================
+
+Random initialization of random number stream.
+Current random number seed is 946309.
+Effects object used: myeff 
+Model Type:
+ Standard actor-oriented model 
+Behavioral Model Type:
+ Standard behavior actor-oriented model ('restrict')
+Estimation method: unconditional moment estimation
+.
+
+Time duration for simulations is 1.0.
+Standard errors are estimated with the likelihood ratio method.
+Dolby method (regression on scores) is used.
+Initial value of gain parameter is  0.2000000.
+Reduction factor for gain parameter is  0.5000000.
+Number of subphases in Phase 2 is 4.
+
+Initial parameter values are 
+  1. rate:  basic rate parameter netMLC                     6.2179
+  2. eval:  outdegree (density)                            -1.7253
+  3. eval:  reciprocity                                     0.0000
+  4. eval:  parent_edu_ccv alter                            0.0000
+  5. eval:  parent_edu_ccv ego                              0.0000
+  6. eval:  same parent_edu_ccv                             0.0000
+  7. eval:  same parent_edu_ccv x reciprocity               0.0000
+  8. rate:  rate behMLC period 1                            1.2036
+  9. eval:  behMLC linear shape                             0.0424
+ 10. eval:  behMLC quadratic shape                          0.0000
+
+
+Values of target statistics are
+  1. Amount of network change                                           373.0000
+  2. Number of ties                                                     270.0000
+  3. Number of reciprocated ties                                        120.0000
+  4. Sum indegrees x parent_edu_ccv                                       8.5000
+  5. Sum outdegrees x parent_edu_ccv                                     -7.5000
+  6. Same values on parent_edu_ccv                                      159.0000
+  7. Same values on parent_edu_ccv x reciprocity                         74.0000
+  8. Amount of behavioral change                                         64.0000
+  9. behMLC centered sum                                                  1.8409
+ 10. behMLC sum of cent. squares                                        101.1366
+These were calculated from the data.
+
+ 10 parameters, 10 statistics
+
+Estimation of derivatives by the LR method (type 1).
+
+
+@2
+End of stochastic approximation algorithm, phase 3.
+---------------------------------------------------
+
+Total of 2926 iterations.
+Parameter estimates based on 1926 iterations,
+convergence diagnostics, covariance and derivative matrices based on 1000 iterations.
+
+Information for convergence diagnosis.
+Averages, standard deviations, and t-ratios for deviations from targets:
+  1.  -0.3780  15.0781  -0.0251 
+  2.   0.0520  15.3407   0.0034 
+  3.   0.0240  12.4783   0.0019 
+  4.   0.1678   5.7319   0.0293 
+  5.  -0.0098   6.2046  -0.0016 
+  6.  -0.2310  11.5066  -0.0201 
+  7.  -0.2340   9.5117  -0.0246 
+  8.   0.1160   6.4633   0.0179 
+  9.  -0.1040   7.4204  -0.0140 
+ 10.  -0.1631  12.8776  -0.0127 
+
+Good convergence is indicated by the t-ratios being close to zero.
+
+Overall maximum convergence ratio =  0.0763 .
+
+
+
+@2
+Estimation Results.
+-------------------
+
+Regular end of estimation algorithm.
+Total of 2926 iteration steps.
+
+
+@3
+Estimates and standard errors
+                             
+Network Dynamics
+ 1. rate:  basic rate parameter netMLC                             6.8770  (   0.5522)
+ 2. eval:  outdegree (density)                                    -2.7312  (   0.1275)
+ 3. eval:  reciprocity                                             2.2057  (   0.2215)
+ 4. eval:  parent_edu_ccv alter                                    0.2018  (   0.1483)
+ 5. eval:  parent_edu_ccv ego                                     -0.2922  (   0.1726)
+ 6. eval:  same parent_edu_ccv                                     0.0669  (   0.1481)
+ 7. eval:  same parent_edu_ccv x reciprocity                      -0.1074  (   0.2861)
+
+Behavior Dynamics
+ 8. rate:  rate behMLC period 1                                    1.7788  (   0.3411)
+ 9. eval:  behMLC linear shape                                     0.1740  (   0.1489)
+10. eval:  behMLC quadratic shape                                 -0.3439  (   0.1509)
+
+
+@3
+Covariance matrices
+                   
+Covariance matrix of estimates (correlations below diagonal):
+     0.305      0.016      0.000      0.001      0.005     -0.006      0.004     -0.007     -0.003      0.001
+     0.234      0.016     -0.014      0.002      0.011     -0.014      0.010     -0.006     -0.003     -0.003
+     0.003     -0.496      0.049      0.004     -0.006      0.012     -0.044      0.003      0.003      0.000
+     0.015      0.094      0.125      0.022      0.001     -0.005     -0.005      0.000      0.001      0.001
+     0.048      0.491     -0.156      0.037      0.030     -0.012      0.001     -0.001     -0.002      0.000
+    -0.076     -0.726      0.356     -0.218     -0.457      0.022     -0.019      0.007      0.003      0.004
+     0.023      0.271     -0.696     -0.126      0.021     -0.438      0.082     -0.014     -0.003     -0.005
+    -0.040     -0.132      0.034      0.005     -0.024      0.143     -0.145      0.116      0.003      0.015
+    -0.033     -0.151      0.096      0.060     -0.081      0.129     -0.077      0.067      0.022      0.001
+     0.016     -0.133     -0.015      0.061     -0.003      0.161     -0.115      0.284      0.040      0.023
+
+Derivative matrix of expected statistics X by parameters and
+covariance/correlation matrix of X can be found using
+summary(ans) within R, or by using the 'verbose' option in Siena07.
+ 
+Total computation time 52.25 seconds.
+
+
+-----------------------------------
+New Analysis started.
+Date and time: 23/10/2026 17:03:54
+New results follow.
+-----------------------------------
+
+RSiena version 1.6.6 (20 apr 26)
+
+
+@1
+Estimation by stochastic approximation algorithm.
+=================================================
+
+Random initialization of random number stream.
+Current random number seed is 830810.
+Effects object used: myeff 
+Model Type:
+ Standard actor-oriented model 
+Behavioral Model Type:
+ Standard behavior actor-oriented model ('restrict')
+Estimation method: unconditional moment estimation
+.
+
+Time duration for simulations is 1.0.
+Standard errors are estimated with the likelihood ratio method.
+Dolby method (regression on scores) is used.
+Initial value of gain parameter is  0.2000000.
+Reduction factor for gain parameter is  0.5000000.
+Number of subphases in Phase 2 is 4.
+
+Initial parameter values are 
+  1. rate:  basic rate parameter netMLC                     6.2179
+  2. eval:  outdegree (density)                            -1.7253
+  3. eval:  reciprocity                                     0.0000
+  4. eval:  transitive triplets                             0.0000
+  5. eval:  parent_edu_ccv alter                            0.0000
+  6. eval:  parent_edu_ccv ego                              0.0000
+  7. eval:  same parent_edu_ccv                             0.0000
+  8. eval:  same parent_edu_ccv x reciprocity               0.0000
+  9. rate:  rate behMLC period 1                            1.2036
+ 10. eval:  behMLC linear shape                             0.0424
+ 11. eval:  behMLC quadratic shape                          0.0000
+
+
+Values of target statistics are
+  1. Amount of network change                                           373.0000
+  2. Number of ties                                                     270.0000
+  3. Number of reciprocated ties                                        120.0000
+  4. Number of transitive triplets                                      239.0000
+  5. Sum indegrees x parent_edu_ccv                                       8.5000
+  6. Sum outdegrees x parent_edu_ccv                                     -7.5000
+  7. Same values on parent_edu_ccv                                      159.0000
+  8. Same values on parent_edu_ccv x reciprocity                         74.0000
+  9. Amount of behavioral change                                         64.0000
+ 10. behMLC centered sum                                                  1.8409
+ 11. behMLC sum of cent. squares                                        101.1366
+These were calculated from the data.
+
+ 11 parameters, 11 statistics
+
+Estimation of derivatives by the LR method (type 1).
+
+
+@2
+End of stochastic approximation algorithm, phase 3.
+---------------------------------------------------
+
+Total of 3007 iterations.
+Parameter estimates based on 2007 iterations,
+convergence diagnostics, covariance and derivative matrices based on 1000 iterations.
+
+Information for convergence diagnosis.
+Averages, standard deviations, and t-ratios for deviations from targets:
+  1.  -1.2250  14.7950  -0.0828 
+  2.   0.3090  17.6406   0.0175 
+  3.   0.9020  14.1007   0.0640 
+  4.   3.8270  59.9097   0.0639 
+  5.   0.3113   5.6110   0.0555 
+  6.   0.1168   6.5908   0.0177 
+  7.   0.4510  12.4921   0.0361 
+  8.   0.9280  10.4862   0.0885 
+  9.   0.3070   6.7571   0.0454 
+ 10.  -0.2650   7.6443  -0.0347 
+ 11.   0.7764  12.7215   0.0610 
+
+Good convergence is indicated by the t-ratios being close to zero.
+
+Overall maximum convergence ratio =  0.1546 .
+
+
+
+@2
+Estimation Results.
+-------------------
+
+Regular end of estimation algorithm.
+Total of 3007 iteration steps.
+
+
+@3
+Estimates and standard errors
+                             
+Network Dynamics
+ 1. rate:  basic rate parameter netMLC                             8.1383  (   0.6585)
+ 2. eval:  outdegree (density)                                    -2.7871  (   0.1163)
+ 3. eval:  reciprocity                                             1.9452  (   0.2595)
+ 4. eval:  transitive triplets                                     0.2962  (   0.0375)
+ 5. eval:  parent_edu_ccv alter                                    0.1663  (   0.1426)
+ 6. eval:  parent_edu_ccv ego                                     -0.2843  (   0.1490)
+ 7. eval:  same parent_edu_ccv                                     0.0256  (   0.1439)
+ 8. eval:  same parent_edu_ccv x reciprocity                      -0.3133  (   0.3143)
+
+Behavior Dynamics
+ 9. rate:  rate behMLC period 1                                    1.7935  (   0.3409)
+10. eval:  behMLC linear shape                                     0.1757  (   0.1342)
+11. eval:  behMLC quadratic shape                                 -0.3351  (   0.1593)
+
+
+@3
+Covariance matrices
+                   
+Covariance matrix of estimates (correlations below diagonal):
+     0.434      0.011     -0.010      0.000     -0.017      0.004      0.005      0.026     -0.004     -0.009     -0.001
+     0.146      0.014     -0.016     -0.001      0.001      0.008     -0.012      0.014      0.007     -0.001      0.002
+    -0.058     -0.527      0.067     -0.001      0.003     -0.007      0.012     -0.060     -0.007      0.000      0.002
+     0.018     -0.138     -0.142      0.001      0.001      0.000      0.000     -0.001     -0.001      0.000      0.000
+    -0.185      0.090      0.090      0.094      0.020      0.002     -0.006     -0.004      0.001      0.000      0.000
+     0.039      0.475     -0.168     -0.036      0.101      0.022     -0.011      0.007      0.002     -0.001      0.002
+     0.055     -0.694      0.322     -0.067     -0.275     -0.491      0.021     -0.019     -0.003      0.001     -0.001
+     0.124      0.379     -0.740     -0.048     -0.089      0.144     -0.427      0.099      0.003     -0.001     -0.007
+    -0.019      0.185     -0.081     -0.071      0.025      0.036     -0.059      0.024      0.116      0.004      0.022
+    -0.098     -0.068     -0.013      0.082      0.008     -0.041      0.039     -0.017      0.091      0.018      0.000
+    -0.013      0.110      0.039     -0.051     -0.006      0.079     -0.048     -0.140      0.407     -0.006      0.025
+
+Derivative matrix of expected statistics X by parameters and
+covariance/correlation matrix of X can be found using
+summary(ans) within R, or by using the 'verbose' option in Siena07.
+ 
+Total computation time 67.5 seconds.
+
+
+-----------------------------------
+New Analysis started.
+Date and time: 23/10/2026 17:05:15
+New results follow.
+-----------------------------------
+
+RSiena version 1.6.6 (20 apr 26)
+
+
+@1
+Estimation by stochastic approximation algorithm.
+=================================================
+
+Random initialization of random number stream.
+Current random number seed is 888537.
+Effects object used: myeff1.3 
+Model Type:
+ Standard actor-oriented model 
+Behavioral Model Type:
+ Standard behavior actor-oriented model ('restrict')
+Estimation method: unconditional moment estimation
+.
+
+Time duration for simulations is 1.0.
+Standard errors are estimated with the likelihood ratio method.
+Dolby method (regression on scores) is used.
+Initial value of gain parameter is  0.2000000.
+Reduction factor for gain parameter is  0.5000000.
+Number of subphases in Phase 2 is 4.
+
+Initial parameter values are 
+  1. rate:  basic rate parameter netMLC                     6.2179
+  2. eval:  outdegree (density)                            -1.7253
+  3. eval:  reciprocity                                     0.0000
+  4. eval:  transitive triplets                             0.0000
+  5. eval:  indegree - popularity                           0.0000
+  6. eval:  outdegree - activity                            0.0000
+  7. eval:  out-isolate                                     0.0000
+  8. eval:  parent_edu_ccv alter                            0.0000
+  9. eval:  parent_edu_ccv ego                              0.0000
+ 10. eval:  same parent_edu_ccv                             0.0000
+ 11. eval:  same parent_edu_ccv x reciprocity               0.0000
+ 12. rate:  rate behMLC period 1                            1.2036
+ 13. eval:  behMLC linear shape                             0.0424
+ 14. eval:  behMLC quadratic shape                          0.0000
+
+
+Values of target statistics are
+  1. Amount of network change                                           373.0000
+  2. Number of ties                                                     270.0000
+  3. Number of reciprocated ties                                        120.0000
+  4. Number of transitive triplets                                      239.0000
+  5. Sum of squared indegrees                                          1096.0000
+  6. Sum of squared outdegrees                                         1260.0000
+  7. Number of out-isolates                                              43.0000
+  8. Sum indegrees x parent_edu_ccv                                       8.5000
+  9. Sum outdegrees x parent_edu_ccv                                     -7.5000
+ 10. Same values on parent_edu_ccv                                      159.0000
+ 11. Same values on parent_edu_ccv x reciprocity                         74.0000
+ 12. Amount of behavioral change                                         64.0000
+ 13. behMLC centered sum                                                  1.8409
+ 14. behMLC sum of cent. squares                                        101.1366
+These were calculated from the data.
+
+ 14 parameters, 14 statistics
+
+Estimation of derivatives by the LR method (type 1).
+
+
+@2
+End of stochastic approximation algorithm, phase 3.
+---------------------------------------------------
+
+Total of 3194 iterations.
+Parameter estimates based on 2194 iterations,
+convergence diagnostics, covariance and derivative matrices based on 1000 iterations.
+
+Information for convergence diagnosis.
+Averages, standard deviations, and t-ratios for deviations from targets:
+  1.  -0.8900  15.2959  -0.0582 
+  2.  -0.7980  18.6941  -0.0427 
+  3.  -0.4400  14.1089  -0.0312 
+  4.   0.1870  54.5599   0.0034 
+  5.  -6.7180 134.0276  -0.0501 
+  6.  -3.3520 138.2932  -0.0242 
+  7.   0.2890   4.7436   0.0609 
+  8.   0.0478   5.7508   0.0083 
+  9.  -0.4652   7.3398  -0.0634 
+ 10.  -0.5340  13.2818  -0.0402 
+ 11.  -0.5500  10.1234  -0.0543 
+ 12.   0.1930   6.7891   0.0284 
+ 13.   0.0950   7.2866   0.0130 
+ 14.  -0.9930  13.3378  -0.0745 
+
+Good convergence is indicated by the t-ratios being close to zero.
+
+Overall maximum convergence ratio =  0.1713 .
+
+
+
+@2
+Estimation Results.
+-------------------
+
+Regular end of estimation algorithm.
+Total of 3194 iteration steps.
+
+
+@3
+Estimates and standard errors
+                             
+Network Dynamics
+ 1. rate:  basic rate parameter netMLC                             9.9145  (   1.3039)
+ 2. eval:  outdegree (density)                                    -1.7916  (   0.1966)
+ 3. eval:  reciprocity                                             1.9295  (   0.2482)
+ 4. eval:  transitive triplets                                     0.2922  (   0.0518)
+ 5. eval:  indegree - popularity                                  -0.0313  (   0.0287)
+ 6. eval:  outdegree - activity                                   -0.0535  (   0.0170)
+ 7. eval:  out-isolate                                             3.4212  (   0.4610)
+ 8. eval:  parent_edu_ccv alter                                    0.2017  (   0.1570)
+ 9. eval:  parent_edu_ccv ego                                     -0.1678  (   0.1406)
+10. eval:  same parent_edu_ccv                                    -0.0239  (   0.1453)
+11. eval:  same parent_edu_ccv x reciprocity                      -0.3775  (   0.3295)
+Behavior Dynamics
+
+12. rate:  rate behMLC period 1                                    1.7850  (   0.3260)
+13. eval:  behMLC linear shape                                     0.1810  (   0.1496)
+14. eval:  behMLC quadratic shape                                 -0.3406  (   0.1445)
+
+
+@3
+Covariance matrices
+                   
+Covariance matrix of estimates (correlations below diagonal):
+     1.700      0.040     -0.018      0.014     -0.003      0.002      0.150     -0.006      0.061     -0.025      0.036     -0.073      0.043     -0.018
+     0.155      0.039     -0.009      0.004     -0.003     -0.002      0.038      0.005      0.009     -0.013      0.006     -0.005      0.004     -0.002
+    -0.055     -0.176      0.062     -0.004      0.001      0.000      0.030      0.007      0.001      0.005     -0.058      0.009      0.001     -0.002
+     0.205      0.398     -0.283      0.003     -0.001      0.000     -0.003     -0.001      0.001      0.000     -0.001     -0.002      0.001      0.000
+    -0.092     -0.467      0.115     -0.496      0.001      0.000      0.003      0.000      0.000      0.000     -0.001      0.000      0.000      0.000
+     0.108     -0.661      0.009     -0.306     -0.004      0.000     -0.003      0.000      0.000      0.000      0.000      0.001      0.000      0.000
+     0.250      0.422      0.264     -0.131      0.221     -0.413      0.212      0.017      0.016     -0.018     -0.023      0.003      0.015     -0.008
+    -0.030      0.175      0.187     -0.076      0.019     -0.038      0.238      0.025      0.004     -0.009     -0.004      0.004      0.002      0.000
+     0.335      0.338      0.026      0.086     -0.063      0.036      0.252      0.173      0.020     -0.011     -0.002      0.002      0.002      0.000
+    -0.130     -0.466      0.152     -0.040     -0.016      0.018     -0.271     -0.398     -0.560      0.021     -0.013      0.000     -0.002      0.000
+     0.084      0.098     -0.708     -0.039     -0.053      0.045     -0.153     -0.087     -0.040     -0.277      0.109     -0.008     -0.003      0.004
+    -0.172     -0.084      0.114     -0.104     -0.001      0.157      0.018      0.075      0.041     -0.002     -0.078      0.106     -0.001      0.017
+     0.219      0.129      0.038      0.074      0.045     -0.094      0.217      0.065      0.112     -0.111     -0.061     -0.022      0.022     -0.003
+    -0.097     -0.054     -0.045     -0.064     -0.027      0.078     -0.113      0.007      0.002      0.009      0.077      0.358     -0.122      0.021
+
+Derivative matrix of expected statistics X by parameters and
+covariance/correlation matrix of X can be found using
+summary(ans) within R, or by using the 'verbose' option in Siena07.
+ 
+Total computation time 62.97 seconds.
+
+
+-----------------------------------
+New Analysis started.
+Date and time: 23/10/2026 17:06:29
+New results follow.
+-----------------------------------
+
+RSiena version 1.6.6 (20 apr 26)
+
+
+@1
+Estimation by stochastic approximation algorithm.
+=================================================
+
+Random initialization of random number stream.
+Current random number seed is 426628.
+Effects object used: myeff1.3 
+Model Type:
+ Standard actor-oriented model 
+Behavioral Model Type:
+ Standard behavior actor-oriented model ('restrict')
+Estimation method: unconditional moment estimation
+.
+
+Time duration for simulations is 1.0.
+Standard errors are estimated with the likelihood ratio method.
+Dolby method (regression on scores) is used.
+Initial value of gain parameter is  0.2000000.
+Reduction factor for gain parameter is  0.5000000.
+Number of subphases in Phase 2 is 4.
+
+Initial parameter values are 
+  1. rate:  basic rate parameter netMLC                     6.2179
+  2. eval:  outdegree (density)                            -1.7253
+  3. eval:  reciprocity                                     0.0000
+  4. eval:  transitive triplets                             0.0000
+  5. eval:  indegree - popularity                           0.0000
+  6. eval:  outdegree - activity                            0.0000
+  7. eval:  out-isolate                                     0.0000
+  8. eval:  parent_edu_ccv alter                            0.0000
+  9. eval:  parent_edu_ccv ego                              0.0000
+ 10. eval:  same parent_edu_ccv                             0.0000
+ 11. eval:  same parent_edu_ccv x reciprocity               0.0000
+ 12. rate:  rate behMLC period 1                            1.2036
+ 13. eval:  behMLC linear shape                             0.0424
+ 14. eval:  behMLC quadratic shape                          0.0000
+
+
+Values of target statistics are
+  1. Amount of network change                                           373.0000
+  2. Number of ties                                                     270.0000
+  3. Number of reciprocated ties                                        120.0000
+  4. Number of transitive triplets                                      239.0000
+  5. Sum of squared indegrees                                          1096.0000
+  6. Sum of squared outdegrees                                         1260.0000
+  7. Number of out-isolates                                              43.0000
+  8. Sum indegrees x parent_edu_ccv                                       8.5000
+  9. Sum outdegrees x parent_edu_ccv                                     -7.5000
+ 10. Same values on parent_edu_ccv                                      159.0000
+ 11. Same values on parent_edu_ccv x reciprocity                         74.0000
+ 12. Amount of behavioral change                                         64.0000
+ 13. behMLC centered sum                                                  1.8409
+ 14. behMLC sum of cent. squares                                        101.1366
+These were calculated from the data.
+
+ 14 parameters, 14 statistics
+
+Estimation of derivatives by the LR method (type 1).
+
+
+@2
+End of stochastic approximation algorithm, phase 3.
+---------------------------------------------------
+
+Total of 3194 iterations.
+Parameter estimates based on 2194 iterations,
+convergence diagnostics, covariance and derivative matrices based on 1000 iterations.
+
+Information for convergence diagnosis.
+Averages, standard deviations, and t-ratios for deviations from targets:
+  1.   0.3160  14.5093   0.0218 
+  2.   0.6060  19.0419   0.0318 
+  3.  -0.2460  13.9809  -0.0176 
+  4.  -3.5930  56.7972  -0.0633 
+  5.   2.4560 142.3138   0.0173 
+  6.   1.2260 142.1138   0.0086 
+  7.  -0.2740   4.5508  -0.0602 
+  8.  -0.3850   5.7199  -0.0673 
+  9.   0.1055   7.3415   0.0144 
+ 10.   0.2120  13.7488   0.0154 
+ 11.  -0.0620  10.5375  -0.0059 
+ 12.  -0.3060   6.6764  -0.0458 
+ 13.  -0.3040   7.5419  -0.0403 
+ 14.  -0.0907  12.7109  -0.0071 
+
+Good convergence is indicated by the t-ratios being close to zero.
+
+Overall maximum convergence ratio =  0.1817 .
+
+
+
+@2
+Estimation Results.
+-------------------
+
+Regular end of estimation algorithm.
+Total of 3194 iteration steps.
+
+
+@3
+Estimates and standard errors
+                             
+Network Dynamics
+ 1. rate:  basic rate parameter netMLC                             9.9541  (   0.8887)
+ 2. eval:  outdegree (density)                                    -1.8064  (   0.2317)
+ 3. eval:  reciprocity                                             1.9268  (   0.2582)
+ 4. eval:  transitive triplets                                     0.2867  (   0.0492)
+ 5. eval:  indegree - popularity                                  -0.0290  (   0.0282)
+ 6. eval:  outdegree - activity                                   -0.0523  (   0.0203)
+ 7. eval:  out-isolate                                             3.3950  (   0.4529)
+ 8. eval:  parent_edu_ccv alter                                    0.1840  (   0.1438)
+ 9. eval:  parent_edu_ccv ego                                     -0.1621  (   0.1259)
+10. eval:  same parent_edu_ccv                                    -0.0194  (   0.1463)
+11. eval:  same parent_edu_ccv x reciprocity                      -0.3751  (   0.3192)
+Behavior Dynamics
+
+12. rate:  rate behMLC period 1                                    1.7708  (   0.3817)
+13. eval:  behMLC linear shape                                     0.1735  (   0.1427)
+14. eval:  behMLC quadratic shape                                 -0.3432  (   0.1506)
+
+
+@3
+Covariance matrices
+                   
+Covariance matrix of estimates (correlations below diagonal):
+     0.790     -0.015     -0.036      0.006      0.002      0.002     -0.012      0.008     -0.015      0.007      0.008      0.008     -0.001     -0.003
+    -0.072      0.054     -0.020      0.004     -0.003     -0.004      0.071      0.003      0.008     -0.016      0.019      0.002      0.002     -0.004
+    -0.157     -0.331      0.067     -0.004      0.000      0.001     -0.011      0.001     -0.002      0.013     -0.059     -0.008     -0.003      0.004
+     0.148      0.362     -0.278      0.002     -0.001      0.000      0.001      0.000      0.000     -0.001     -0.001      0.001      0.001      0.000
+     0.084     -0.412      0.021     -0.406      0.001      0.000     -0.001      0.000      0.000      0.000      0.000     -0.001      0.000      0.000
+     0.121     -0.777      0.158     -0.341      0.009      0.000     -0.006      0.000      0.000      0.001     -0.001      0.000      0.000      0.000
+    -0.029      0.674     -0.093      0.051     -0.060     -0.649      0.205     -0.002      0.005     -0.010      0.010      0.018      0.006     -0.005
+     0.061      0.075      0.032      0.020      0.044      0.004     -0.034      0.021      0.002     -0.007     -0.001     -0.010     -0.001     -0.003
+    -0.132      0.281     -0.056      0.026     -0.090     -0.053      0.095      0.086      0.016     -0.008      0.000      0.001      0.000      0.000
+     0.053     -0.479      0.357     -0.105     -0.006      0.171     -0.146     -0.333     -0.448      0.021     -0.021      0.002      0.000      0.003
+     0.029      0.259     -0.713     -0.038      0.004     -0.143      0.070     -0.023      0.004     -0.442      0.102      0.000     -0.001     -0.005
+     0.024      0.017     -0.082      0.068     -0.062      0.039      0.103     -0.188      0.022      0.027      0.000      0.146      0.010      0.020
+    -0.006      0.063     -0.079      0.125     -0.083     -0.025      0.093     -0.035     -0.015      0.003     -0.012      0.176      0.020     -0.001
+    -0.019     -0.120      0.095      0.047     -0.075      0.101     -0.074     -0.145     -0.026      0.152     -0.101      0.356     -0.043      0.023
+
+Derivative matrix of expected statistics X by parameters and
+covariance/correlation matrix of X can be found using
+summary(ans) within R, or by using the 'verbose' option in Siena07.
+ 
+Total computation time 59.95 seconds.

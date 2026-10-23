@@ -19,7 +19,7 @@ library("RsienaTwoStep")
 library("devtools")
 library("netseg")
 library("igraph")
-options(scipen = 50)
+options(scipen = 25)
 ```
 
 ## Model 0: Simple Model

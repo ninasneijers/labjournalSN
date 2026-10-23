@@ -64,13 +64,9 @@ Explanatory "To what extent do reciprocated friendships among students with pare
 
 - Network-Isolate Effect (isolateNet)
 
-- In-degree related popularity effect (inPop)
-
-- Out-degree activity (outAct)
-
 *I based this on [@FRANKEN2023] and Chapter 7 of SNAS [\@SNASS]. Are these the ones that should always be included?*
 
-**For hypothesis 1:**
+**For hypothesis 2:**
 
 - sameX \> defines number of ties of i to all actors j with the same covariate
 
@@ -78,7 +74,7 @@ Explanatory "To what extent do reciprocated friendships among students with pare
 
 I will do this in my first model for only parental education level and in my second model gender and ethnicity will be included as control variables.
 
-**For hypothesis 2:**
+**For hypothesis 3:**
 
 - Effects of H1 –\> *I have to include effects of H1 as well right?*
 - RecipDeg \> Reciprocated degree effect on behaviour (social satisfaction)
@@ -86,7 +82,7 @@ I will do this in my first model for only parental education level and in my sec
 
 The third model will include only the RecipDeg and it will then be compared with the fourth model that includes how ego is affected by behaviour of alter.
 
-**For hypothesis 3:**
+**For hypothesis 4:**
 
 - Effects of H1 + H2
 

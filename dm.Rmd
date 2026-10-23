@@ -33,6 +33,53 @@ Parental education level is one of the independent variables for the first and t
 To account for the influence of other factors on the hypotheses, gender and ethnicity were taken into account as control variables. 
 
 # Methods
+## Descriptives 
+As my first research question is about whether segregation based on parental education level occurs on the macro-level, I will look at two relevant segregation statistics for this: Coleman's homophily index and Moran's I. Additionally, I am interested in reciprocity, so I will also look into what that looks like for both of the waves and I will also report how many mutual dyads have occurred. Lastly, for some basic descriptives, the number of ties will be reported, as well as the density of the network in both waves. 
+
+## Explanatory
+I have done the exploratory analyses by making use of the Stochastic Actor-Oriented Models (SAOMs) with RSiena [@ripley2025].These model the evolution of network structures and in this case, also the behaviour of the agents. It does this through estimating 'rules' for the agents on how they change their ties or behaviour. These rules can be seen as the micro theory of action. Into my RSiena model, structural effects, covariate effects and behavioural effects have been taken into account. For each hypothesis, there are a couple of effects that will be taken into account.
+
+**Hypothesis 2** 
+The second research question aims to estimate to what extent reciprocated friendships occur between students whose parents have the same educational level and whether this is significant. For this model, I include sameX and sameXRecip and because the underlying mechanisms for sameX are egoX and altX, these are included as well. 
+
+*EgoX takes into account how many out-degrees ego sends and how this relates to the average amount of out-degrees that a node with the same covariate send out. AltX looks at how many of the actors that i has a tie to, have the same covariate.* SameX then looks at how many of the ties that i has send out to actors j, have exactly the same value on their covariate. So, in this case, SameX looks at if I send out a tie to for example, four people, how many of these people have parents with the same educational level as my parents? sameXRecip, followingly, then looks at how many of the reciprocated ties that i has, are with an actor that has the same covariate as them. 
+
+
+Hyp3: 
+- RecipDeg
+- avRecAlt
+
+Hyp4: 
+- avSameXRecAlt
+- avRecAltSameX 
+
+
+ - how models were constructed
+ (Maybe move a part of this to methodology). The construction of the first model resulted from a process of trial-and-error. After checking a couple of Goodness-of-Fit distributions (see the RCode-section), it turns out that the model with the most statistics seemed the best, although the Goodness-Of-Fit distribution is still significant. The first model is used to look at whether reciprocated ties are more likely to occur among students whose parents have the same educational level. The additional effects included were the transitive triplets effect, the indegree-popularity effect, the outdegree-activity effect and the out-isolate effect
+
+
+
+# Variables of interest
+
+**Ego-level:**
+
+- Educational level of parents (high/low)
+
+- Gender (control)
+
+- Ethnicity (control)
+
+- Social satisfaction (dependent variable)
+
+**On dyadic level:**
+
+- social satisfaction assimilation
+
+- dyadic similarity based on gender, ethnicity and parental education level
+
+**On a network level:**
+
+- Homogeneity based on parental education level
 ------------------------------------------------------------------------
 
 # References

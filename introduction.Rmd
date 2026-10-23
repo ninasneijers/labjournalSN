@@ -94,12 +94,12 @@ Thus, a social network perspective allows us to look into this topic in
 new and different ways than previous studies have done and different
 questions emerge from this. The study aims to answer three research
 questions:
-
-1.  "To what extent do reciprocated friendships among students with
+1.  "To what extent is the MLC network segregated based on parental education level?"
+2.  "To what extent do reciprocated friendships among students with
     parents with the same educational level occur?"
-2.  "To what extent do reciprocated friendships affect students' social
+3.  "To what extent do reciprocated friendships affect students' social
     satisfaction throughout the year?"
-3.  "To what extent do reciprocated friendships among students with
+4.  "To what extent do reciprocated friendships among students with
     parents with the same education level affect their social
     satisfaction throughout the year?"
 

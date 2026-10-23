@@ -9,6 +9,8 @@ editor_options:
 
 # Theory
 
+
+
 **Homophily**
 
 Homophily is a concept that addresses the fact that "a contact between
@@ -23,7 +25,9 @@ parental educational level. We expect that on this level, homophily is
 also likely to occur, where students group alongside parental
 educational level lines, even when controlling for gender and ethnicity.
 
-*Hypothesis 1:* Reciprocated ties are more likely to exist among
+*Hypothesis 1:* The MLC network is segregated on parental education level.
+
+*Hypothesis 2:* Reciprocated ties are more likely to exist among
 students with parents with the same educational level
 
 **Redirected ties**

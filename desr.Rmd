@@ -29,27 +29,29 @@ Lastly, I have looked into whether segregation on parental education level overa
 
 To look a bit further into the homophily, I have also calculated Moran’s I for both waves. This statistic look at whether nodes who are closer to one another in the network are more alike [@SNASS]. To calculate Moran’s I, I have made use of the ape package in R. This package row-standardises by default, but because parental education level is a fixed characteristic, the amount of neighbours does not influence it. For Wave 1, Moran’s I yielded no significant results, (Moran’s I = -0.01, SD = .07, p = .93), confirming what Coleman’s homophily index has also shown, namely that there is no clear segregation based on parental education level. Wave 2 also did not yield a significant result (Moran’s I = 0.05, SD = .08, p = .48). 
 
+Based on this there can be concluded that hypothesis 1 is rejected. 
+
 ## Network visualisation
+::: {.column width="120%"}
 
 **Figure 1** 
 *Evolution of the hanging out ties of students of the Michigan Learning Community*
-![](C:\Users\ninas\OneDrive - Radboud Universiteit\RSCS\Social Networks\labjournalSN\plotje2.png)
+![](C:\Users\ninas\OneDrive - Radboud Universiteit\RSCS\Social Networks\labjournalSN\plotje5.png)
+::: 
 
 Figure 1 depicts the network evolution of the Michigan Learning Community from the beginning to the year towards the middle of the year. What was already concluded from the descriptives can also be seen back in the Figure, namely, that the network is not very dense, especially not in the second wave. Additionally, what can be seen is that the first wave entails a lot more ties between students than the second wave. However, there has to be noted that a couple of the nodes that sent out many ties in the first wave, seem to not have been participating in the survey in the second wave, because there nodes have become very small and there are no in- or out-degree ties present towards their nodes. This might influence what the network looks like. 
 
-Moreover, although Moran's I and Coleman's homophily index do not indicate that segregation has been taking place, when looking at the reciprocated ties, in the first wave homophily does seem to occur, as the violet ties are more present than the black ties. This indicates that while someone's parental education might not matter for sending out a tie, it potentially does matter for receiving this tie back or not. 
+Moreover, although Moran's I and Coleman's homophily index do not indicate that segregation has been taking place, when looking at the reciprocated ties, in the first wave homophily does seem to occur among reciprocated ties, as the violet ties are more present than the black ties. This indicates that while someone's parental education might not matter for sending out a tie, it potentially does matter for receiving this tie back or not. 
 
-When looking at how the nodes are divided, there can be seen that some friendgroups seem to have emerged. On the bottom-left, a friendgroup is present that seems very homogene, only consisting of students whose parents are higher educated. Quite close to this friendgroup, somewhere in the bottom-middle, more of a mixed friendgroup seems to have emerged. When moving to the top-right, fully at the top another more homogene friendgroup is present, again mostly consisting of students with higher educated parents, while a bit more below that, again a more mixed friendgroup is present. Homogene friendgroups of students whose parents have not enjoyed higher education seem to not really be present.
+When looking at how the nodes are divided, three somewhat bigger friendgroups (a friendgroup being a group where multiple reciprocated ties occur) can be identified. One of these groups can be seen on the left side and seems to be quite homogeneous, mainly consisting of students whose parents have enjoyed higher education, as there a quite some violet ties occurring there. Also on the right-side at the bottom, a homogeneous friendgroup consisting of students whose parents have enjoyed higher education seems to occur. A bit more above that, also on the right side, a more mixed friendgroup seems to have emerged. Homogene friendgroups of students whose parents have not enjoyed higher education seem to not really be present. However, there should be looked into the exploratory analyses in order to discover whether these reciprocated ties between students are an actual pattern or not. 
 
 When looking at social satisfaction, it is difficult to clearly see which nodes have been decreasing or increasing in their social satisfaction, except for those who are missing in one of the two rounds. Therefore, running a model might be more helpful in understanding whether there has been an effect of reciprocity on social satisfaction and whether this is strengthened by the fact that parental education level is the same. 
-
-
 
 
 # RCode
 ## Basics
 
-```{r}
+```{r, include = FALSE}
 #Loading the data
 rm(list =ls())
 load("C:\\Users\\ninas\\OneDrive - Radboud Universiteit\\RSCS\\Social Networks\\labjournalSN\\parentedudata.Rdata")
@@ -57,7 +59,7 @@ load("C:\\Users\\ninas\\OneDrive - Radboud Universiteit\\RSCS\\Social Networks\\
 load("C:\\Users\\ninas\\OneDrive - Radboud Universiteit\\RSCS\\Social Networks\\labjournalSN\\wave2.Rdata")
 ```
 
-```{r}
+```{r, include = FALSE}
 library("car")
 library("dplyr")
 library("ape")
@@ -145,19 +147,20 @@ V(gw1)$size = df2$socsatw1n * 1.25 + 0.9
 V(gw2)$size = df2$socsatw2n * 1.25 + 0.9
 layout = layout.fruchterman.reingold.grid(gw2)
 
-{png("plotje2.png", width = 24, height = 14, units = "in", res = 600)
-par(mfrow = c(1, 2))
+
+#{png("plotje5.png", width = 22, height = 10, units = "in", res = 1000)
+  par(mfrow = c(1, 2))
   plot.igraph(gw1,
      vertex.color = adjustcolor(parentedu, alpha.f = .5),
     vertex.frame.width = 1.5,
      vertex.frame.color = adjustcolor(parentedu,alpha.f = .8),
      vertex.label = NA,
      edge.curved = 0.1, 
-     edge.arrow.size = 0.06,
+     edge.arrow.size = 0.1,
      edge.color = colourrec1, 
      layout = layout,
     main = "Wave 1")
-    title(sub = "Note 1: Edge colour is black when reciprocated tie occurs between students with parents with different educational backgrounds and\nis violet when reciprocated tie occurs between students with parents with the same educational background.\nNote 2: Node size is based on social satisfaction, a small node indicates that social satisfaction was missing",
+    title(sub = "Note 1: Edge colour is black when reciprocated tie occurs between students with parents with different educational backgrounds\n and is violet when reciprocated tie occurs between students with parents with the same educational background.\nNote 2: Node size is based on social satisfaction, a small node indicates that social satisfaction was missing",
           cex.sub = 1.1, 
           font.sub = 3, 
           )
@@ -169,9 +172,10 @@ legend("topleft", c("Higher educated parent(s)", "No higher educated parents", "
      vertex.frame.color = adjustcolor(parentedu,alpha.f = .8),
      vertex.label = NA,
      edge.curved = 0.1, 
-     edge.arrow.size = 0.06,
+     edge.arrow.size = 0.1,
      edge.color = colourrec2, 
      layout = layout,
     main = "Wave 2")
-dev.off()}
+#ev.off()}
+
 ```

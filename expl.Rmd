@@ -6,4 +6,273 @@ editor_options:
   markdown: 
     wrap: 72
 ---
+
 # Exploratory Results
+
+```{r, include= FALSE}
+library("car")
+library("dplyr")
+library("ape")
+library("sna")
+library("RSiena")
+library("RsienaTwoStep")
+library("devtools")
+library("netseg")
+library("igraph")
+options(scipen = 50)
+```
+
+## Model 0: Simple Model
+
+```{r,include= FALSE}
+library("pander")
+simple_model <- readRDS("simple_model.rds")
+results_m0 <- data.frame(
+  effect = simple_model$effects$effectName,
+  b = simple_model$theta,
+  se = simple_model$se,
+  t = simple_model$theta / simple_model$se,
+  p = 2 * pnorm(-abs(simple_model$theta / simple_model$se))
+)
+```
+
+The null model converges at 0.13, which is acceptable. The outcomes of
+the simple model show things we have already learned from the
+descriptive results and the network graph, namely that there is a
+significant chance that one does not observe a tie compared to the
+chance that one observes a tie (*b* = -2.67, *SE* = 0.53, *p* \> .01).
+
+The rate for the behavioural is significant, meaning that... Change in
+social satisfaction is not significant on a linear level (*b* = 0.17,
+*SE* = 0.14, *p* = 0.22), but it is significant on a quadratic level
+(*b* = -0.34, *SE* = 0.15, *p =* 0.02) and going into a negative
+direction, which indicates that ...
+
+However, these statistics do not tell me a lot yet, as I have not added
+it any additional statistics. Because of that, the Goodness-Of-Fit
+models for this model will indicate that the models do not fit well.
+Therefore, I will not plot them yet.
+
+**Table 1:** *Results of Model 0*
+
+```{r}
+pander::pander(results_m0)
+```
+
+## Model 1: Homogeneity in Reciprocated Ties
+
+```{r, include= FALSE}
+model1 <- readRDS("model1.rds")
+results_m1 <- data.frame(
+  effect = model1$effects$effectName,
+  b = model1$theta,
+  se = model1$se,
+  t = model1$theta / model1$se,
+  p = 2 * pnorm(-abs(model1$theta / model1$se))
+)
+```
+
+The first model is used to look at whether reciprocated ties are more likely to occur among students whose parents have the same educational level. 
+
+
+```{r}
+results_m1
+```
+
+
+**Table 2:** *Results of Model 1*
+
+```{r}
+pander::pander(results_m1)
+```
+
+```{r, include= FALSE}
+gofi1 <- sienaGOF(model1, IndegreeDistribution, verbose = FALSE, join = TRUE, varName = "netMLC")
+gofo1 <- sienaGOF(model1, OutdegreeDistribution, verbose = FALSE, join = TRUE, varName = "netMLC")
+gof1tc <- sienaGOF(model1, TriadCensus, verbose = FALSE, join = TRUE, varName = "netMLC")
+```
+
+**Figure 2**
+
+### *Goodness Of Fit for Model 1* {.tabset .tabset-fade}
+
+#### Indegree distribution
+
+```{r}
+plot(gofi1)
+```
+
+#### Outdegree distribution
+
+```{r}
+plot(gofo1)
+```
+
+#### TriadCensus
+
+```{r}
+plot(gof1tc, center = T, scale = T)
+```
+
+###  {.unlisted .unnumbered}
+
+# RCode
+The coding process... and some thoughts 
+
+## Preparation
+
+```{r, include= FALSE}
+#Loading the data
+rm(list =ls())
+load("C:\\Users\\ninas\\OneDrive - Radboud Universiteit\\RSCS\\Social Networks\\labjournalSN\\parentedudata.Rdata")
+load("C:\\Users\\ninas\\OneDrive - Radboud Universiteit\\RSCS\\Social Networks\\labjournalSN\\wave1.Rdata")
+load("C:\\Users\\ninas\\OneDrive - Radboud Universiteit\\RSCS\\Social Networks\\labjournalSN\\wave2.Rdata")
+```
+
+```{r}
+#dependent variable 
+netMLC <- sienaDependent(array(data = c(wave1, wave2), dim = c(dim(wave1), 2)))
+#behavioural variable
+behy <- df2 %>% 
+  dplyr::select("socsatw1n", "socsatw2n") %>%
+  as.matrix()
+behMLC <- sienaDependent(behy, type = c("behavior"))
+#independent variables
+parent_edu_ccv <- coCovar(as.numeric(df2$parentshighf))
+gender_ccv <- coCovar(as.numeric(df2$genderf))
+ethnicity_ccv <- coCovar(as.numeric(df2$ethnicityf))
+#data
+mydata <- sienaDataCreate(netMLC, behMLC, parent_edu_ccv, gender_ccv, ethnicity_ccv)
+#effects structure
+myeff <- getEffects(mydata)
+#?
+myAlgorithm <- (sienaAlgorithmCreate(projname = "results"))
+```
+
+## Model 0: Simple Model
+
+```{r, eval= FALSE}
+simple_model <- siena07(myAlgorithm, data = mydata, effects = myeff, thetaBound = 10000, returnDeps = T)
+```
+
+## Model 1: Homogeneity in reciprocated ties
+
+```{r, include= FALSE}
+#goodness of fit practicalities
+GeodesicDistribution <- function(i, data, sims, period, groupName, varName, levls = c(1:5, Inf), cumulative = TRUE,
+    ...) {
+    x <- networkExtraction(i, data, sims, period, groupName, varName)
+    require(network)
+    require(sna)
+    a <- sna::geodist(symmetrize(x))$gdist
+    if (cumulative) {
+        gdi <- sapply(levls, function(i) {
+            sum(a <= i)
+        })
+    } else {
+        gdi <- sapply(levls, function(i) {
+            sum(a == i)
+        })
+    }
+    names(gdi) <- as.character(levls)
+    gdi
+}
+
+# The following function is taken from the help page for sienaTest
+
+testall <- function(ans) {
+    for (i in which(ans$test)) {
+        sct <- score.Test(ans, i)
+        cat(ans$requestedEffects$effectName[i], "\n")
+        print(sct)
+    }
+    invisible(score.Test(ans))
+}
+```
+
+```{r}
+myeff <- includeEffects(myeff, egoX, altX, sameX, sameXRecip, interaction1 = "parent_edu_ccv") 
+model1.1 <- siena07(myAlgorithm, data = mydata, effects = myeff, thetaBound = 10000, returnDeps = T)
+model1.1
+```
+
+```{r}
+gofi1.1 <- sienaGOF(model1.1, IndegreeDistribution, verbose = FALSE, join = TRUE, varName = "netMLC")
+gofo1.1 <- sienaGOF(model1.1, OutdegreeDistribution, verbose = FALSE, join = TRUE, varName = "netMLC")
+#gof0.gd <- sienaGOF(model1.1, GeodesicDistribution, cumulative = FALSE, verbose = FALSE, join = TRUE, varName = "netMLC")
+# Q: wat moet er een matrix zijn dan? Hij runt niet
+gof1.1.tc <- sienaGOF(model1.1, TriadCensus, verbose = FALSE, join = TRUE, varName = "netMLC")
+```
+
+```{r}
+plot(gofi1.1)
+plot(gofo1.1)
+plot(gof1.1.tc, center = T, scale = T)
+```
+
+WELL, that does not very good. But that's not weird, because I have not
+added any additional effects. Let's add a triad effect :)
+
+```{r}
+myeff <- includeEffects(myeff, transTrip) 
+model1.2 <- siena07(myAlgorithm, data = mydata, effects = myeff, thetaBound = 10000, returnDeps = T)
+model1.2
+```
+
+```{r}
+gofi1.2 <- sienaGOF(model1.2, IndegreeDistribution, verbose = FALSE, join = TRUE, varName = "netMLC")
+gofo1.2 <- sienaGOF(model1.2, OutdegreeDistribution, verbose = FALSE, join = TRUE, varName = "netMLC")
+gof1.2.tc <- sienaGOF(model1.1, TriadCensus, verbose = FALSE, join = TRUE, varName = "netMLC")
+```
+
+```{r}
+plot(gofi1.2)
+plot(gofo1.2)
+plot(gof1.2.tc, center = T, scale = T)
+```
+
+Another one...
+
+```{r}
+myeff1.3 <- includeEffects(myeff, inPop, outAct, outIso) 
+model1.3 <- siena07(myAlgorithm, data = mydata, effects = myeff1.3, thetaBound = 10000, returnDeps = T)
+model1.3
+```
+
+```{r}
+gofi1.3 <- sienaGOF(model1.3, IndegreeDistribution, verbose = FALSE, join = TRUE, varName = "netMLC")
+gofo1.3 <- sienaGOF(model1.3, OutdegreeDistribution, verbose = FALSE, join = TRUE, varName = "netMLC")
+gof1.3.tc <- sienaGOF(model1.3, TriadCensus, verbose = FALSE, join = TRUE, varName = "netMLC")
+```
+
+```{r}
+plot(gofi1.3)
+plot(gofo1.3)
+plot(gof1.3.tc, center = T, scale = T)
+```
+
+Another one?
+
+```{r}
+myeff1.5 <- includeEffects(myeff1.3, between) 
+model1.5 <- siena07(myAlgorithm, data = mydata, effects = myeff1.3, thetaBound = 10000, returnDeps = T)
+model1.5
+#saveRDS(model1.5, "model1.rds")
+```
+
+```{r}
+gofi1.5 <- sienaGOF(model1.5, IndegreeDistribution, verbose = FALSE, join = TRUE, varName = "netMLC")
+gofo1.5 <- sienaGOF(model1.5, OutdegreeDistribution, verbose = FALSE, join = TRUE, varName = "netMLC")
+gof1.5.tc <- sienaGOF(model1.5, TriadCensus, verbose = FALSE, join = TRUE, varName = "netMLC")
+```
+
+```{r}
+plot(gofi1.5)
+plot(gofo1.5)
+plot(gof1.5.tc, center = T, scale = T)
+```
+
+I do not want to over control, so even though my Goodness-of-Fit is
+still not significant I think I will go with this model.
+
+## Model 2: Homogeneity in reciprocated ties with control variables

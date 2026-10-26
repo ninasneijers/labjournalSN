@@ -1,10 +1,10 @@
 ---
-title: "Final Project"
+title: "Final Project - Introduction"
 author: "by: Nina Sneijers"
 bibliography: references.bib
 editor_options: 
   markdown: 
-    wrap: 72
+    wrap: 100
 ---
 
 # Introduction
@@ -70,7 +70,7 @@ that do not have a university background. However, these students lack
 the social network perspective that this study will take into account.
 For example, Ramos et al. (2024) mention that their study is limited by
 the fact that friendship is a subjective experience. A social network
-perspective allows us to look into whether friendships are
+perspective makes it possible to look into whether friendships are
 *reciprocated*, meaning that if you see someone as your friend, there
 can be also considered whether you see this person as a friend. Taking
 this into account potentially yield a more complete picture between
@@ -82,17 +82,17 @@ Additionally, while Melian et al. (2025) have already looked into the
 influence of a socioeconomically diverse network on social satisfaction
 of first generation students, they did not take into account the
 interdependencies that a social network analysis can take into account.
-This perspective allows us to look into influence effects of social
+This perspective allows me to look into influence effects of social
 networks, because the people with whom we form social relations
 influence our attitudes, behaviours and also future relations [@SNASS].
-For this study, that means that a social network perspective allows us
+For this study, that means that a social network perspective allows me
 to control for assimilation effects of social satisfaction, meaning that
 the social satisfaction ratings of students befriended with each other
 may become more alike over time.
 
-Thus, a social network perspective allows us to look into this topic in
+Thus, a social network perspective allows me to look into this topic in
 new and different ways than previous studies have done and different
-questions emerge from this. The study aims to answer three research
+questions emerge from this. The study aims to answer four research
 questions:
 1.  "To what extent is the MLC network segregated based on parental education level?"
 2.  "To what extent do reciprocated friendships among students with

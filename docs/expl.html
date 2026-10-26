@@ -12,7 +12,7 @@
 <meta name="author" content="by: Nina Sneijers" />
 
 
-<title>Exploratory Results</title>
+<title>Exploratory Results - Exploratory</title>
 
 <script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -425,7 +425,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Exploratory Results</h1>
+<h1 class="title toc-ignore">Exploratory Results - Exploratory</h1>
 <h4 class="author">by: Nina Sneijers</h4>
 
 </div>
@@ -438,20 +438,24 @@ Results</h1>
 <h2><span class="header-section-number">1.1</span> Model 0: Simple
 Model</h2>
 <p>The null model converges at 0.13, which is acceptable. The outcomes
-of the simple model show things we have already learned from the
-descriptive results and the network graph, namely that there is a
-significant chance that one does not observe a tie compared to the
-chance that one observes a tie (<em>b</em> = -2.67, <em>SE</em> = 0.53,
-<em>p</em> &gt; .01).</p>
-<p>The rate for the behavioural is significant, meaning that… Change in
-social satisfaction is not significant on a linear level (<em>b</em> =
-0.17, <em>SE</em> = 0.14, <em>p</em> = 0.22), but it is significant on a
-quadratic level (<em>b</em> = -0.34, <em>SE</em> = 0.15, <em>p =</em>
-0.02) and going into a negative direction, which indicates that …</p>
-<p>However, these statistics do not tell me a lot yet, as I have not
-added it any additional statistics. Because of that, the Goodness-Of-Fit
-models for this model will indicate that the models do not fit well.
-Therefore, I will not plot them yet.</p>
+of the simple model (Table 1) show things we have already learned from
+the descriptive results and the network graph, namely that there is a
+significantly bigger chance that one does not observe a tie, compared to
+the chance that one would observe a tie, thus meaning that density is
+very low (<em>b</em> = -2.67, <em>SE</em> = 0.53, <em>p</em> &gt;.01).
+The reciprocity statistic is positive, indicating that the students in
+the network do tend to reciprocate their tie (<em>b</em> = 2.09,
+<em>SE</em> = 0.14, <em>p</em> &gt;.01)</p>
+<p>Change in social satisfaction is not significant on a linear level
+(<em>b</em> = 0.17, <em>SE</em> = 0.14, <em>p</em> = 0.22), but it is
+significant on a quadratic level (<em>b</em> = -0.34, <em>SE</em> =
+0.15, <em>p =</em> 0.02) and going into a negative direction, which
+indicates that students whose social satisfaction is below the mean have
+a stronger tendency to move towards to mean than students who are above
+the mean.</p>
+<p>However, these statistics on their own do not mean a lot yet, as the
+statistics as defined in the methodology need to be added to the models
+and some additional control statistics.</p>
 <p><strong>Table 1:</strong> <em>Results of Model 0</em></p>
 <pre class="r"><code>pander::pander(results_m0)</code></pre>
 <table style="width:100%;">
@@ -521,49 +525,18 @@ Therefore, I will not plot them yet.</p>
 class="section level2" number="1.2">
 <h2><span class="header-section-number">1.2</span> Model 1: Homogeneity
 in Reciprocated Ties</h2>
-<p>The first model is used to look at whether reciprocated ties are more
-likely to occur among students whose parents have the same educational
-level.</p>
-<pre class="r"><code>results_m1</code></pre>
-<pre><code>##                               effect           b         se          t
-## 1        basic rate parameter netMLC  9.85916781 1.04172890  9.4642356
-## 2                outdegree (density) -1.82003155 0.21274326 -8.5550608
-## 3                        reciprocity  1.92393090 0.25542769  7.5321940
-## 4                transitive triplets  0.28592387 0.04879150  5.8601168
-## 5              indegree - popularity -0.02869935 0.02803032 -1.0238679
-## 6               outdegree - activity -0.05107881 0.02010255 -2.5409123
-## 7                        out-isolate  3.37483748 0.50037134  6.7446658
-## 8               parent_edu_ccv alter  0.20594110 0.17124496  1.2026112
-## 9                 parent_edu_ccv ego -0.16840384 0.13212130 -1.2746153
-## 10               same parent_edu_ccv -0.02069589 0.14729929 -0.1405023
-## 11 same parent_edu_ccv x reciprocity -0.37206767 0.34473062 -1.0792998
-## 12              rate behMLC period 1  1.78347689 0.33180386  5.3750939
-## 13               behMLC linear shape  0.18031843 0.14160592  1.2733820
-## 14            behMLC quadratic shape -0.33775252 0.14941227 -2.2605408
-##                                p
-## 1  0.000000000000000000002957159
-## 2  0.000000000000000011780661474
-## 3  0.000000000000049894758824058
-## 4  0.000000004625417776830106967
-## 5  0.305897650264439935341442833
-## 6  0.011056365385816934246432375
-## 7  0.000000000015337963955565049
-## 8  0.229126825555282076507523925
-## 9  0.202445430667734238561195070
-## 10 0.888263113401613346731267029
-## 11 0.280454124001160043366809305
-## 12 0.000000076542801194620714170
-## 13 0.202882514480690695490849862
-## 14 0.023787706462121575856638600</code></pre>
+<p>The first model converges at 0.12, which is lower than the 0.25
+threshold and all convergence t-ratios are smaller than 0.1, with the
+maximum convergence t-ratio of -0.09.</p>
 <p><strong>Table 2:</strong> <em>Results of Model 1</em></p>
 <pre class="r"><code>pander::pander(results_m1)</code></pre>
-<table style="width:85%;">
-<caption>Table continues below</caption>
+<table style="width:100%;">
 <colgroup>
-<col width="41%" />
-<col width="15%" />
+<col width="37%" />
+<col width="14%" />
+<col width="12%" />
 <col width="13%" />
-<col width="13%" />
+<col width="22%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -571,211 +544,728 @@ level.</p>
 <th align="center">b</th>
 <th align="center">se</th>
 <th align="center">t</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">basic rate parameter netMLC</td>
-<td align="center">9.859</td>
-<td align="center">1.042</td>
-<td align="center">9.464</td>
-</tr>
-<tr class="even">
-<td align="center">outdegree (density)</td>
-<td align="center">-1.82</td>
-<td align="center">0.2127</td>
-<td align="center">-8.555</td>
-</tr>
-<tr class="odd">
-<td align="center">reciprocity</td>
-<td align="center">1.924</td>
-<td align="center">0.2554</td>
-<td align="center">7.532</td>
-</tr>
-<tr class="even">
-<td align="center">transitive triplets</td>
-<td align="center">0.2859</td>
-<td align="center">0.04879</td>
-<td align="center">5.86</td>
-</tr>
-<tr class="odd">
-<td align="center">indegree - popularity</td>
-<td align="center">-0.0287</td>
-<td align="center">0.02803</td>
-<td align="center">-1.024</td>
-</tr>
-<tr class="even">
-<td align="center">outdegree - activity</td>
-<td align="center">-0.05108</td>
-<td align="center">0.0201</td>
-<td align="center">-2.541</td>
-</tr>
-<tr class="odd">
-<td align="center">out-isolate</td>
-<td align="center">3.375</td>
-<td align="center">0.5004</td>
-<td align="center">6.745</td>
-</tr>
-<tr class="even">
-<td align="center">parent_edu_ccv alter</td>
-<td align="center">0.2059</td>
-<td align="center">0.1712</td>
-<td align="center">1.203</td>
-</tr>
-<tr class="odd">
-<td align="center">parent_edu_ccv ego</td>
-<td align="center">-0.1684</td>
-<td align="center">0.1321</td>
-<td align="center">-1.275</td>
-</tr>
-<tr class="even">
-<td align="center">same parent_edu_ccv</td>
-<td align="center">-0.0207</td>
-<td align="center">0.1473</td>
-<td align="center">-0.1405</td>
-</tr>
-<tr class="odd">
-<td align="center">same parent_edu_ccv x reciprocity</td>
-<td align="center">-0.3721</td>
-<td align="center">0.3447</td>
-<td align="center">-1.079</td>
-</tr>
-<tr class="even">
-<td align="center">rate behMLC period 1</td>
-<td align="center">1.783</td>
-<td align="center">0.3318</td>
-<td align="center">5.375</td>
-</tr>
-<tr class="odd">
-<td align="center">behMLC linear shape</td>
-<td align="center">0.1803</td>
-<td align="center">0.1416</td>
-<td align="center">1.273</td>
-</tr>
-<tr class="even">
-<td align="center">behMLC quadratic shape</td>
-<td align="center">-0.3378</td>
-<td align="center">0.1494</td>
-<td align="center">-2.261</td>
-</tr>
-</tbody>
-</table>
-<table style="width:40%;">
-<colgroup>
-<col width="40%" />
-</colgroup>
-<thead>
-<tr class="header">
 <th align="center">p</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">0.000000000000000000002957</td>
+<td align="center">basic rate parameter netMLC</td>
+<td align="center">11.09</td>
+<td align="center">1.267</td>
+<td align="center">8.755</td>
+<td align="center">2.035e-18</td>
 </tr>
 <tr class="even">
-<td align="center">0.00000000000000001178</td>
+<td align="center">outdegree (density)</td>
+<td align="center">-1.67</td>
+<td align="center">0.2586</td>
+<td align="center">-6.458</td>
+<td align="center">0.0000000001063</td>
 </tr>
 <tr class="odd">
-<td align="center">0.00000000000004989</td>
+<td align="center">reciprocity</td>
+<td align="center">1.896</td>
+<td align="center">0.2522</td>
+<td align="center">7.517</td>
+<td align="center">5.584e-14</td>
 </tr>
 <tr class="even">
-<td align="center">0.000000004625</td>
+<td align="center">GWESP I -&gt; K -&gt; J (69)</td>
+<td align="center">1.382</td>
+<td align="center">0.1545</td>
+<td align="center">8.941</td>
+<td align="center">3.858e-19</td>
 </tr>
 <tr class="odd">
-<td align="center">0.3059</td>
+<td align="center">indegree - popularity</td>
+<td align="center">-0.07991</td>
+<td align="center">0.03207</td>
+<td align="center">-2.492</td>
+<td align="center">0.0127</td>
 </tr>
 <tr class="even">
-<td align="center">0.01106</td>
+<td align="center">outdegree - activity</td>
+<td align="center">-0.07343</td>
+<td align="center">0.02427</td>
+<td align="center">-3.026</td>
+<td align="center">0.00248</td>
 </tr>
 <tr class="odd">
-<td align="center">0.00000000001534</td>
+<td align="center">out-isolate</td>
+<td align="center">3.281</td>
+<td align="center">0.5518</td>
+<td align="center">5.946</td>
+<td align="center">0.000000002741</td>
 </tr>
 <tr class="even">
-<td align="center">0.2291</td>
+<td align="center">parent_edu_ccv alter</td>
+<td align="center">0.1714</td>
+<td align="center">0.1594</td>
+<td align="center">1.075</td>
+<td align="center">0.2824</td>
 </tr>
 <tr class="odd">
-<td align="center">0.2024</td>
+<td align="center">parent_edu_ccv ego</td>
+<td align="center">-0.1784</td>
+<td align="center">0.1446</td>
+<td align="center">-1.234</td>
+<td align="center">0.2174</td>
 </tr>
 <tr class="even">
-<td align="center">0.8883</td>
+<td align="center">same parent_edu_ccv</td>
+<td align="center">-0.004642</td>
+<td align="center">0.15</td>
+<td align="center">-0.03094</td>
+<td align="center">0.9753</td>
 </tr>
 <tr class="odd">
-<td align="center">0.2805</td>
+<td align="center">same parent_edu_ccv x reciprocity</td>
+<td align="center">-0.3414</td>
+<td align="center">0.3079</td>
+<td align="center">-1.109</td>
+<td align="center">0.2675</td>
 </tr>
 <tr class="even">
-<td align="center">0.00000007654</td>
+<td align="center">rate behMLC period 1</td>
+<td align="center">1.781</td>
+<td align="center">0.3933</td>
+<td align="center">4.528</td>
+<td align="center">0.000005965</td>
 </tr>
 <tr class="odd">
-<td align="center">0.2029</td>
+<td align="center">behMLC linear shape</td>
+<td align="center">0.1756</td>
+<td align="center">0.1431</td>
+<td align="center">1.227</td>
+<td align="center">0.2197</td>
 </tr>
 <tr class="even">
-<td align="center">0.02379</td>
+<td align="center">behMLC quadratic shape</td>
+<td align="center">-0.3466</td>
+<td align="center">0.1634</td>
+<td align="center">-2.121</td>
+<td align="center">0.03393</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Figure 2</strong></p>
-<div id="goodness-of-fit-for-model-1"
-class="section level3 tabset tabset-fade" number="1.2.1">
+</div>
+<div id="model-2" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> Model 2:</h2>
+<p>Goodness of fit en RI voor model 2 omdat dit met control variables
+is</p>
+<p><strong>Table 2:</strong> <em>Results of Model 1</em></p>
+<pre class="r"><code>pander::pander(results_m2)</code></pre>
+<table>
+<colgroup>
+<col width="36%" />
+<col width="15%" />
+<col width="12%" />
+<col width="14%" />
+<col width="21%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">effect</th>
+<th align="center">b</th>
+<th align="center">se</th>
+<th align="center">t</th>
+<th align="center">p</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">basic rate parameter netMLC</td>
+<td align="center">11.12</td>
+<td align="center">1.378</td>
+<td align="center">8.073</td>
+<td align="center">6.878e-16</td>
+</tr>
+<tr class="even">
+<td align="center">outdegree (density)</td>
+<td align="center">-1.735</td>
+<td align="center">0.2797</td>
+<td align="center">-6.205</td>
+<td align="center">0.0000000005476</td>
+</tr>
+<tr class="odd">
+<td align="center">reciprocity</td>
+<td align="center">1.91</td>
+<td align="center">0.2901</td>
+<td align="center">6.584</td>
+<td align="center">4.574e-11</td>
+</tr>
+<tr class="even">
+<td align="center">GWESP I -&gt; K -&gt; J (69)</td>
+<td align="center">1.375</td>
+<td align="center">0.162</td>
+<td align="center">8.489</td>
+<td align="center">2.083e-17</td>
+</tr>
+<tr class="odd">
+<td align="center">indegree - popularity</td>
+<td align="center">-0.08469</td>
+<td align="center">0.0358</td>
+<td align="center">-2.366</td>
+<td align="center">0.018</td>
+</tr>
+<tr class="even">
+<td align="center">outdegree - activity</td>
+<td align="center">-0.07126</td>
+<td align="center">0.02413</td>
+<td align="center">-2.953</td>
+<td align="center">0.00315</td>
+</tr>
+<tr class="odd">
+<td align="center">out-isolate</td>
+<td align="center">3.272</td>
+<td align="center">0.502</td>
+<td align="center">6.518</td>
+<td align="center">7.105e-11</td>
+</tr>
+<tr class="even">
+<td align="center">parent_edu_ccv alter</td>
+<td align="center">0.1586</td>
+<td align="center">0.1605</td>
+<td align="center">0.9881</td>
+<td align="center">0.3231</td>
+</tr>
+<tr class="odd">
+<td align="center">parent_edu_ccv ego</td>
+<td align="center">-0.1802</td>
+<td align="center">0.1563</td>
+<td align="center">-1.153</td>
+<td align="center">0.2491</td>
+</tr>
+<tr class="even">
+<td align="center">same parent_edu_ccv</td>
+<td align="center">-0.01257</td>
+<td align="center">0.1695</td>
+<td align="center">-0.07416</td>
+<td align="center">0.9409</td>
+</tr>
+<tr class="odd">
+<td align="center">same parent_edu_ccv x reciprocity</td>
+<td align="center">-0.3109</td>
+<td align="center">0.3518</td>
+<td align="center">-0.8836</td>
+<td align="center">0.3769</td>
+</tr>
+<tr class="even">
+<td align="center">ethnicity_ccv alter</td>
+<td align="center">0.00003757</td>
+<td align="center">0.0403</td>
+<td align="center">0.0009324</td>
+<td align="center">0.9993</td>
+</tr>
+<tr class="odd">
+<td align="center">ethnicity_ccv ego</td>
+<td align="center">0.03682</td>
+<td align="center">0.03705</td>
+<td align="center">0.9938</td>
+<td align="center">0.3203</td>
+</tr>
+<tr class="even">
+<td align="center">same ethnicity_ccv</td>
+<td align="center">0.2061</td>
+<td align="center">0.1347</td>
+<td align="center">1.53</td>
+<td align="center">0.126</td>
+</tr>
+<tr class="odd">
+<td align="center">same ethnicity_ccv x reciprocity</td>
+<td align="center">-0.06905</td>
+<td align="center">0.3146</td>
+<td align="center">-0.2195</td>
+<td align="center">0.8263</td>
+</tr>
+<tr class="even">
+<td align="center">rate behMLC period 1</td>
+<td align="center">1.776</td>
+<td align="center">0.3732</td>
+<td align="center">4.757</td>
+<td align="center">0.00000196</td>
+</tr>
+<tr class="odd">
+<td align="center">behMLC linear shape</td>
+<td align="center">0.1815</td>
+<td align="center">0.1496</td>
+<td align="center">1.213</td>
+<td align="center">0.2252</td>
+</tr>
+<tr class="even">
+<td align="center">behMLC quadratic shape</td>
+<td align="center">-0.3425</td>
+<td align="center">0.1429</td>
+<td align="center">-2.396</td>
+<td align="center">0.01658</td>
+</tr>
+</tbody>
+</table>
+<div id="figure-2-goodness-of-fit-for-model-2"
+class="section level3 tabset tabset-fade" number="1.3.1">
 <h3 class="tabset tabset-fade"><span
-class="header-section-number">1.2.1</span> <em>Goodness Of Fit for Model
-1</em></h3>
-<div id="indegree-distribution" class="section level4" number="1.2.1.1">
-<h4><span class="header-section-number">1.2.1.1</span> Indegree
+class="header-section-number">1.3.1</span> <strong>Figure 2:</strong>
+<em>Goodness Of Fit for Model 2</em></h3>
+<div id="indegree-distribution" class="section level4" number="1.3.1.1">
+<h4><span class="header-section-number">1.3.1.1</span> Indegree
 distribution</h4>
-<pre class="r"><code>plot(gofi1)</code></pre>
-<p><img src="expl_files/figure-html/unnamed-chunk-8-1.png" alt="" width="672" /></p>
+<pre class="r"><code>plot(gofi2)</code></pre>
+<p><img src="expl_files/figure-html/unnamed-chunk-11-1.png" alt="" width="672" /></p>
 </div>
 <div id="outdegree-distribution" class="section level4"
-number="1.2.1.2">
-<h4><span class="header-section-number">1.2.1.2</span> Outdegree
+number="1.3.1.2">
+<h4><span class="header-section-number">1.3.1.2</span> Outdegree
 distribution</h4>
-<pre class="r"><code>plot(gofo1)</code></pre>
-<p><img src="expl_files/figure-html/unnamed-chunk-9-1.png" alt="" width="672" /></p>
+<pre class="r"><code>plot(gofo2)</code></pre>
+<p><img src="expl_files/figure-html/unnamed-chunk-12-1.png" alt="" width="672" /></p>
 </div>
-<div id="triadcensus" class="section level4" number="1.2.1.3">
-<h4><span class="header-section-number">1.2.1.3</span> TriadCensus</h4>
-<pre class="r"><code>plot(gof1tc, center = T, scale = T)</code></pre>
-<p><img src="expl_files/figure-html/unnamed-chunk-10-1.png" alt="" width="672" /></p>
+<div id="triadcensus" class="section level4" number="1.3.1.3">
+<h4><span class="header-section-number">1.3.1.3</span> TriadCensus</h4>
+<pre class="r"><code>plot(gof2tc, center = T, scale = T)</code></pre>
+<p><img src="expl_files/figure-html/unnamed-chunk-13-1.png" alt="" width="672" /></p>
 </div>
 </div>
 <div id="section" class="section level3 unlisted unnumbered">
 <h3 class="unlisted unnumbered"></h3>
 </div>
+<div id="figure-3-relative-influence"
+class="section level3 tabset tabset-fade" number="1.3.2">
+<h3 class="tabset tabset-fade"><span
+class="header-section-number">1.3.2</span> <strong>Figure 3:</strong>
+<em>Relative Influence</em></h3>
+<div id="relative-influence-on-network" class="section level4"
+number="1.3.2.1">
+<h4><span class="header-section-number">1.3.2.1</span> Relative
+influence on network</h4>
+<pre class="r"><code>plot(RI2[[1]], addPieChart = TRUE, legendColumns = 3)</code></pre>
+<p><img src="expl_files/figure-html/unnamed-chunk-14-1.png" alt="" width="672" /></p>
+</div>
+<div id="relative-influence-on-behaviour" class="section level4"
+number="1.3.2.2">
+<h4><span class="header-section-number">1.3.2.2</span> Relative
+influence on behaviour</h4>
+<pre class="r"><code>plot(RI2[[2]], addPieChart = TRUE, legendColumns = 3)</code></pre>
+<p><img src="expl_files/figure-html/unnamed-chunk-15-1.png" alt="" width="672" /></p>
+</div>
+</div>
+<div id="section-1" class="section level3 unlisted unnumbered">
+<h3 class="unlisted unnumbered"></h3>
+</div>
+</div>
+<div id="model-3-reciprocity-and-social-satisfaction"
+class="section level2" number="1.4">
+<h2><span class="header-section-number">1.4</span> Model 3: Reciprocity
+and social satisfaction</h2>
+<p>The first model is used to look at whether reciprocated ties are more
+likely to occur among students whose parents have the same educational
+level.</p>
+<p><strong>Table 4:</strong> <em>Results of Model 3</em></p>
+<pre class="r"><code>pander::pander(results_m3)</code></pre>
+<table>
+<colgroup>
+<col width="37%" />
+<col width="15%" />
+<col width="12%" />
+<col width="12%" />
+<col width="22%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">effect</th>
+<th align="center">b</th>
+<th align="center">se</th>
+<th align="center">t</th>
+<th align="center">p</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">basic rate parameter netMLC</td>
+<td align="center">11.13</td>
+<td align="center">1.45</td>
+<td align="center">7.676</td>
+<td align="center">1.641e-14</td>
+</tr>
+<tr class="even">
+<td align="center">outdegree (density)</td>
+<td align="center">-1.738</td>
+<td align="center">0.2651</td>
+<td align="center">-6.556</td>
+<td align="center">5.509e-11</td>
+</tr>
+<tr class="odd">
+<td align="center">reciprocity</td>
+<td align="center">1.917</td>
+<td align="center">0.3006</td>
+<td align="center">6.377</td>
+<td align="center">0.0000000001802</td>
+</tr>
+<tr class="even">
+<td align="center">GWESP I -&gt; K -&gt; J (69)</td>
+<td align="center">1.379</td>
+<td align="center">0.1644</td>
+<td align="center">8.389</td>
+<td align="center">4.909e-17</td>
+</tr>
+<tr class="odd">
+<td align="center">indegree - popularity</td>
+<td align="center">-0.0816</td>
+<td align="center">0.03212</td>
+<td align="center">-2.541</td>
+<td align="center">0.01106</td>
+</tr>
+<tr class="even">
+<td align="center">outdegree - activity</td>
+<td align="center">-0.07334</td>
+<td align="center">0.02517</td>
+<td align="center">-2.914</td>
+<td align="center">0.003566</td>
+</tr>
+<tr class="odd">
+<td align="center">out-isolate</td>
+<td align="center">3.287</td>
+<td align="center">0.4656</td>
+<td align="center">7.06</td>
+<td align="center">1.664e-12</td>
+</tr>
+<tr class="even">
+<td align="center">parent_edu_ccv alter</td>
+<td align="center">0.1697</td>
+<td align="center">0.1482</td>
+<td align="center">1.145</td>
+<td align="center">0.2522</td>
+</tr>
+<tr class="odd">
+<td align="center">parent_edu_ccv ego</td>
+<td align="center">-0.1775</td>
+<td align="center">0.1391</td>
+<td align="center">-1.275</td>
+<td align="center">0.2022</td>
+</tr>
+<tr class="even">
+<td align="center">same parent_edu_ccv</td>
+<td align="center">-0.008278</td>
+<td align="center">0.1583</td>
+<td align="center">-0.0523</td>
+<td align="center">0.9583</td>
+</tr>
+<tr class="odd">
+<td align="center">same parent_edu_ccv x reciprocity</td>
+<td align="center">-0.3222</td>
+<td align="center">0.3712</td>
+<td align="center">-0.8678</td>
+<td align="center">0.3855</td>
+</tr>
+<tr class="even">
+<td align="center">ethnicity_ccv alter</td>
+<td align="center">0.005385</td>
+<td align="center">0.04161</td>
+<td align="center">0.1294</td>
+<td align="center">0.897</td>
+</tr>
+<tr class="odd">
+<td align="center">ethnicity_ccv ego</td>
+<td align="center">0.03469</td>
+<td align="center">0.03829</td>
+<td align="center">0.9058</td>
+<td align="center">0.365</td>
+</tr>
+<tr class="even">
+<td align="center">same ethnicity_ccv</td>
+<td align="center">0.2132</td>
+<td align="center">0.1306</td>
+<td align="center">1.632</td>
+<td align="center">0.1026</td>
+</tr>
+<tr class="odd">
+<td align="center">same ethnicity_ccv x reciprocity</td>
+<td align="center">-0.08012</td>
+<td align="center">0.3053</td>
+<td align="center">-0.2624</td>
+<td align="center">0.793</td>
+</tr>
+<tr class="even">
+<td align="center">rate behMLC period 1</td>
+<td align="center">1.755</td>
+<td align="center">0.4319</td>
+<td align="center">4.063</td>
+<td align="center">0.00004844</td>
+</tr>
+<tr class="odd">
+<td align="center">behMLC linear shape</td>
+<td align="center">0.1727</td>
+<td align="center">0.2362</td>
+<td align="center">0.731</td>
+<td align="center">0.4648</td>
+</tr>
+<tr class="even">
+<td align="center">behMLC quadratic shape</td>
+<td align="center">-0.4241</td>
+<td align="center">0.2395</td>
+<td align="center">-1.771</td>
+<td align="center">0.07655</td>
+</tr>
+<tr class="odd">
+<td align="center">behMLC average rec. alters</td>
+<td align="center">0.8055</td>
+<td align="center">0.9673</td>
+<td align="center">0.8327</td>
+<td align="center">0.405</td>
+</tr>
+<tr class="even">
+<td align="center">behMLC reciprocated degree</td>
+<td align="center">-0.06512</td>
+<td align="center">0.1466</td>
+<td align="center">-0.4443</td>
+<td align="center">0.6568</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Figure 4:</strong> <em>Goodness Of Fit for Model 3,
+Behavioural Distribution</em></p>
+<pre class="r"><code>plot(gofb3, center = T, scale = T)</code></pre>
+<pre><code>## Note: some statistics are not plotted because their variance is 0.
+## This holds for the statistic: 7.</code></pre>
+<p><img src="expl_files/figure-html/unnamed-chunk-19-1.png" alt="" width="672" /></p>
+<div id="figure-5-relative-influence-for-model-3" class="section level3"
+number="1.4.1">
+<h3><span class="header-section-number">1.4.1</span> <strong>Figure
+5:</strong> <em>Relative Influence for Model 3</em></h3>
+<div id="relative-influence-on-behaviour-1" class="section level4"
+number="1.4.1.1">
+<h4><span class="header-section-number">1.4.1.1</span> Relative
+influence on behaviour</h4>
+<pre class="r"><code>plot(RI3[[2]], addPieChart = TRUE, legendColumns = 3)</code></pre>
+<p><img src="expl_files/figure-html/unnamed-chunk-20-1.png" alt="" width="672" /></p>
+</div>
+</div>
+</div>
+<div
+id="model-4-homogeneity-in-reciprocated-ties-ties-with-control-variables"
+class="section level2" number="1.5">
+<h2><span class="header-section-number">1.5</span> Model 4: Homogeneity
+in Reciprocated Ties ties with control variables</h2>
+<p><strong>Table 5:</strong> <em>Results of Model 4</em></p>
+<pre class="r"><code>pander::pander(results_m4)</code></pre>
+<table>
+<colgroup>
+<col width="38%" />
+<col width="15%" />
+<col width="12%" />
+<col width="15%" />
+<col width="17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">effect</th>
+<th align="center">b</th>
+<th align="center">se</th>
+<th align="center">t</th>
+<th align="center">p</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">basic rate parameter netMLC</td>
+<td align="center">11.14</td>
+<td align="center">1.269</td>
+<td align="center">8.78</td>
+<td align="center">1.642e-18</td>
+</tr>
+<tr class="even">
+<td align="center">outdegree (density)</td>
+<td align="center">-1.755</td>
+<td align="center">0.2281</td>
+<td align="center">-7.693</td>
+<td align="center">1.438e-14</td>
+</tr>
+<tr class="odd">
+<td align="center">reciprocity</td>
+<td align="center">1.912</td>
+<td align="center">0.2919</td>
+<td align="center">6.551</td>
+<td align="center">5.729e-11</td>
+</tr>
+<tr class="even">
+<td align="center">GWESP I -&gt; K -&gt; J (69)</td>
+<td align="center">1.369</td>
+<td align="center">0.1566</td>
+<td align="center">8.742</td>
+<td align="center">2.282e-18</td>
+</tr>
+<tr class="odd">
+<td align="center">indegree - popularity</td>
+<td align="center">-0.08206</td>
+<td align="center">0.0392</td>
+<td align="center">-2.093</td>
+<td align="center">0.03634</td>
+</tr>
+<tr class="even">
+<td align="center">outdegree - activity</td>
+<td align="center">-0.07041</td>
+<td align="center">0.02171</td>
+<td align="center">-3.244</td>
+<td align="center">0.00118</td>
+</tr>
+<tr class="odd">
+<td align="center">out-isolate</td>
+<td align="center">3.259</td>
+<td align="center">0.4891</td>
+<td align="center">6.663</td>
+<td align="center">2.677e-11</td>
+</tr>
+<tr class="even">
+<td align="center">parent_edu_ccv alter</td>
+<td align="center">0.1605</td>
+<td align="center">0.1635</td>
+<td align="center">0.9818</td>
+<td align="center">0.3262</td>
+</tr>
+<tr class="odd">
+<td align="center">parent_edu_ccv ego</td>
+<td align="center">-0.1756</td>
+<td align="center">0.1496</td>
+<td align="center">-1.174</td>
+<td align="center">0.2405</td>
+</tr>
+<tr class="even">
+<td align="center">same parent_edu_ccv</td>
+<td align="center">-0.000734</td>
+<td align="center">0.1594</td>
+<td align="center">-0.004605</td>
+<td align="center">0.9963</td>
+</tr>
+<tr class="odd">
+<td align="center">same parent_edu_ccv x reciprocity</td>
+<td align="center">-0.3336</td>
+<td align="center">0.34</td>
+<td align="center">-0.9814</td>
+<td align="center">0.3264</td>
+</tr>
+<tr class="even">
+<td align="center">ethnicity_ccv alter</td>
+<td align="center">0.003233</td>
+<td align="center">0.04867</td>
+<td align="center">0.06643</td>
+<td align="center">0.947</td>
+</tr>
+<tr class="odd">
+<td align="center">ethnicity_ccv ego</td>
+<td align="center">0.03474</td>
+<td align="center">0.03705</td>
+<td align="center">0.9376</td>
+<td align="center">0.3484</td>
+</tr>
+<tr class="even">
+<td align="center">same ethnicity_ccv</td>
+<td align="center">0.2103</td>
+<td align="center">0.1323</td>
+<td align="center">1.59</td>
+<td align="center">0.1119</td>
+</tr>
+<tr class="odd">
+<td align="center">same ethnicity_ccv x reciprocity</td>
+<td align="center">-0.0735</td>
+<td align="center">0.3186</td>
+<td align="center">-0.2307</td>
+<td align="center">0.8175</td>
+</tr>
+<tr class="even">
+<td align="center">rate behMLC period 1</td>
+<td align="center">1.724</td>
+<td align="center">0.3629</td>
+<td align="center">4.749</td>
+<td align="center">0.000002042</td>
+</tr>
+<tr class="odd">
+<td align="center">behMLC linear shape</td>
+<td align="center">0.05039</td>
+<td align="center">0.259</td>
+<td align="center">0.1946</td>
+<td align="center">0.8457</td>
+</tr>
+<tr class="even">
+<td align="center">behMLC quadratic shape</td>
+<td align="center">-0.4742</td>
+<td align="center">0.2499</td>
+<td align="center">-1.897</td>
+<td align="center">0.05777</td>
+</tr>
+<tr class="odd">
+<td align="center">behMLC average rec. alters</td>
+<td align="center">0.8161</td>
+<td align="center">1.129</td>
+<td align="center">0.7226</td>
+<td align="center">0.4699</td>
+</tr>
+<tr class="even">
+<td align="center">behMLC reciprocated degree</td>
+<td align="center">-0.2664</td>
+<td align="center">0.2559</td>
+<td align="center">-1.041</td>
+<td align="center">0.2978</td>
+</tr>
+<tr class="odd">
+<td align="center">behMLC: rec. alt’s (netMLC) same parent_edu_ccv
+av.</td>
+<td align="center">1.367</td>
+<td align="center">1.408</td>
+<td align="center">0.9709</td>
+<td align="center">0.3316</td>
+</tr>
+<tr class="even">
+<td align="center">behMLC: average rec. alter (netMLC) for same
+parent_edu_ccv</td>
+<td align="center">-0.01717</td>
+<td align="center">1.319</td>
+<td align="center">-0.01301</td>
+<td align="center">0.9896</td>
+</tr>
+</tbody>
+</table>
+<div id="figure-6-goodness-of-fit-for-model-4" class="section level3"
+number="1.5.1">
+<h3><span class="header-section-number">1.5.1</span> <strong>Figure
+6:</strong> <em>Goodness Of Fit for Model 4</em></h3>
+<div id="behaviour-distribution" class="section level4"
+number="1.5.1.1">
+<h4><span class="header-section-number">1.5.1.1</span> Behaviour
+distribution</h4>
+<pre class="r"><code>plot(gofb4)</code></pre>
+<pre><code>## Note: some statistics are not plotted because their variance is 0.
+## This holds for the statistic: 7.</code></pre>
+<p><img src="expl_files/figure-html/unnamed-chunk-24-1.png" alt="" width="672" /></p>
+</div>
+</div>
+<div id="figure-7-relative-influence" class="section level3"
+number="1.5.2">
+<h3><span class="header-section-number">1.5.2</span> <strong>Figure
+7:</strong> <em>Relative Influence</em></h3>
+<div id="relative-influence-on-behaviour-2" class="section level4"
+number="1.5.2.1">
+<h4><span class="header-section-number">1.5.2.1</span> Relative
+influence on behaviour</h4>
+<pre class="r"><code>plot(RI4[[2]], addPieChart = TRUE, legendColumns = 1)</code></pre>
+<p><img src="expl_files/figure-html/unnamed-chunk-25-1.png" alt="" width="672" /></p>
+</div>
+</div>
+<div id="section-2" class="section level3 unlisted unnumbered">
+<h3 class="unlisted unnumbered"></h3>
+<hr />
+</div>
 </div>
 </div>
 <div id="rcode" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> RCode</h1>
-<p>The coding process… and some thoughts</p>
-<div id="preparation" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> Preparation</h2>
-<pre class="r"><code>#dependent variable 
-netMLC &lt;- sienaDependent(array(data = c(wave1, wave2), dim = c(dim(wave1), 2)))
-#behavioural variable
-behy &lt;- df2 %&gt;% 
-  dplyr::select(&quot;socsatw1n&quot;, &quot;socsatw2n&quot;) %&gt;%
-  as.matrix()
-behMLC &lt;- sienaDependent(behy, type = c(&quot;behavior&quot;))
-#independent variables
-parent_edu_ccv &lt;- coCovar(as.numeric(df2$parentshighf))
-gender_ccv &lt;- coCovar(as.numeric(df2$genderf))
-ethnicity_ccv &lt;- coCovar(as.numeric(df2$ethnicityf))
-#data
-mydata &lt;- sienaDataCreate(netMLC, behMLC, parent_edu_ccv, gender_ccv, ethnicity_ccv)
-#effects structure
-myeff &lt;- getEffects(mydata)
-#?
-myAlgorithm &lt;- (sienaAlgorithmCreate(projname = &quot;results&quot;))</code></pre>
-<pre><code>## If you use this algorithm object, siena07 will create/use an output file results.txt .</code></pre>
-</div>
-<div id="model-0-simple-model-1" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> Model 0: Simple
+<div id="model-0-simple-model-1" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Model 0: Simple
 Model</h2>
-<pre class="r"><code>simple_model &lt;- siena07(myAlgorithm, data = mydata, effects = myeff, thetaBound = 10000, returnDeps = T)</code></pre>
+<pre class="r"><code>simple_model &lt;- siena07(myAlgorithm, data = mydata, effects = myeff, thetaBound = 10000, returnDeps = T)
+#saveRDS(simple_model, &quot;simple_model.rds&quot;)</code></pre>
 </div>
 <div id="model-1-homogeneity-in-reciprocated-ties-1"
-class="section level2" number="2.3">
-<h2><span class="header-section-number">2.3</span> Model 1: Homogeneity
+class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Model 1: Homogeneity
 in reciprocated ties</h2>
 <pre class="r"><code>myeff &lt;- includeEffects(myeff, egoX, altX, sameX, sameXRecip, interaction1 = &quot;parent_edu_ccv&quot;) </code></pre>
 <pre><code>##   effectNumber effectName                        shortName  include fix   test 
@@ -789,81 +1279,38 @@ in reciprocated ties</h2>
 ## 3          0   0   
 ## 4          0   0</code></pre>
 <pre class="r"><code>model1.1 &lt;- siena07(myAlgorithm, data = mydata, effects = myeff, thetaBound = 10000, returnDeps = T)
-model1.1</code></pre>
-<pre><code>## Estimates, standard errors and convergence t-ratios
-## 
-##                                              Estimate   Standard   Convergence 
-##                                                           Error      t-ratio   
-## Network Dynamics 
-##    1. rate basic rate parameter netMLC        6.8770  ( 0.5522   )   -0.0251   
-##    2. eval outdegree (density)               -2.7312  ( 0.1275   )    0.0034   
-##    3. eval reciprocity                        2.2057  ( 0.2215   )    0.0019   
-##    4. eval parent_edu_ccv alter               0.2018  ( 0.1483   )    0.0293   
-##    5. eval parent_edu_ccv ego                -0.2922  ( 0.1726   )   -0.0016   
-##    6. eval same parent_edu_ccv                0.0669  ( 0.1481   )   -0.0201   
-##    7. eval same parent_edu_ccv x reciprocity -0.1074  ( 0.2861   )   -0.0246   
-## 
-## Behavior Dynamics
-##    8. rate rate behMLC period 1               1.7788  ( 0.3411   )    0.0179   
-##    9. eval behMLC linear shape                0.1740  ( 0.1489   )   -0.0140   
-##   10. eval behMLC quadratic shape            -0.3439  ( 0.1509   )   -0.0127   
-## 
-## Overall maximum convergence ratio:    0.0763 
-## 
-## 
-## Total of 2926 iteration steps.</code></pre>
-<pre class="r"><code>gofi1.1 &lt;- sienaGOF(model1.1, IndegreeDistribution, verbose = FALSE, join = TRUE, varName = &quot;netMLC&quot;)
+#saveRDS(model1.1, &quot;model1.1.rds&quot;)</code></pre>
+<pre class="r"><code>model1.1 &lt;- readRDS(&quot;model1.1.rds&quot;)
+gofi1.1 &lt;- sienaGOF(model1.1, IndegreeDistribution, verbose = FALSE, join = TRUE, varName = &quot;netMLC&quot;)
 gofo1.1 &lt;- sienaGOF(model1.1, OutdegreeDistribution, verbose = FALSE, join = TRUE, varName = &quot;netMLC&quot;)
 #gof0.gd &lt;- sienaGOF(model1.1, GeodesicDistribution, cumulative = FALSE, verbose = FALSE, join = TRUE, varName = &quot;netMLC&quot;)
-# Q: wat moet er een matrix zijn dan? Hij runt niet
+# Doet het niet
 gof1.1.tc &lt;- sienaGOF(model1.1, TriadCensus, verbose = FALSE, join = TRUE, varName = &quot;netMLC&quot;)</code></pre>
 <pre class="r"><code>plot(gofi1.1)</code></pre>
-<p><img src="expl_files/figure-html/unnamed-chunk-17-1.png" alt="" width="672" /></p>
+<p><img src="expl_files/figure-html/unnamed-chunk-31-1.png" alt="" width="672" /></p>
 <pre class="r"><code>plot(gofo1.1)</code></pre>
-<p><img src="expl_files/figure-html/unnamed-chunk-17-2.png" alt="" width="672" /></p>
+<p><img src="expl_files/figure-html/unnamed-chunk-31-2.png" alt="" width="672" /></p>
 <pre class="r"><code>plot(gof1.1.tc, center = T, scale = T)</code></pre>
-<p><img src="expl_files/figure-html/unnamed-chunk-17-3.png" alt="" width="672" /></p>
+<p><img src="expl_files/figure-html/unnamed-chunk-31-3.png" alt="" width="672" /></p>
 <p>WELL, that does not very good. But that’s not weird, because I have
 not added any additional effects. Let’s add a triad effect :)</p>
-<pre class="r"><code>myeff &lt;- includeEffects(myeff, transTrip) </code></pre>
-<pre><code>##   effectNumber effectName          shortName include fix   test  initialValue
-## 1 24           transitive triplets transTrip TRUE    FALSE FALSE          0  
+<pre class="r"><code>myeff &lt;- includeEffects(myeff, gwespFF) </code></pre>
+<pre><code>##   effectNumber effectName            shortName include fix   test  initialValue
+## 1 57           GWESP I -&gt; K -&gt; J (#) gwespFF   TRUE    FALSE FALSE          0  
 ##   parm
-## 1 0</code></pre>
+## 1 69</code></pre>
 <pre class="r"><code>model1.2 &lt;- siena07(myAlgorithm, data = mydata, effects = myeff, thetaBound = 10000, returnDeps = T)
-model1.2</code></pre>
-<pre><code>## Estimates, standard errors and convergence t-ratios
-## 
-##                                              Estimate   Standard   Convergence 
-##                                                           Error      t-ratio   
-## Network Dynamics 
-##    1. rate basic rate parameter netMLC        8.1383  ( 0.6585   )   -0.0828   
-##    2. eval outdegree (density)               -2.7871  ( 0.1163   )    0.0175   
-##    3. eval reciprocity                        1.9452  ( 0.2595   )    0.0640   
-##    4. eval transitive triplets                0.2962  ( 0.0375   )    0.0639   
-##    5. eval parent_edu_ccv alter               0.1663  ( 0.1426   )    0.0555   
-##    6. eval parent_edu_ccv ego                -0.2843  ( 0.1490   )    0.0177   
-##    7. eval same parent_edu_ccv                0.0256  ( 0.1439   )    0.0361   
-##    8. eval same parent_edu_ccv x reciprocity -0.3133  ( 0.3143   )    0.0885   
-## 
-## Behavior Dynamics
-##    9. rate rate behMLC period 1               1.7935  ( 0.3409   )    0.0454   
-##   10. eval behMLC linear shape                0.1757  ( 0.1342   )   -0.0347   
-##   11. eval behMLC quadratic shape            -0.3351  ( 0.1593   )    0.0610   
-## 
-## Overall maximum convergence ratio:    0.1546 
-## 
-## 
-## Total of 3007 iteration steps.</code></pre>
-<pre class="r"><code>gofi1.2 &lt;- sienaGOF(model1.2, IndegreeDistribution, verbose = FALSE, join = TRUE, varName = &quot;netMLC&quot;)
+#saveRDS(model1.2, &quot;model1.2.rds&quot;)</code></pre>
+<pre class="r"><code>model1.2 &lt;- readRDS(&quot;model1.2.rds&quot;)
+gofi1.2 &lt;- sienaGOF(model1.2, IndegreeDistribution, verbose = FALSE, join = TRUE, varName = &quot;netMLC&quot;)
 gofo1.2 &lt;- sienaGOF(model1.2, OutdegreeDistribution, verbose = FALSE, join = TRUE, varName = &quot;netMLC&quot;)
 gof1.2.tc &lt;- sienaGOF(model1.1, TriadCensus, verbose = FALSE, join = TRUE, varName = &quot;netMLC&quot;)</code></pre>
 <pre class="r"><code>plot(gofi1.2)</code></pre>
-<p><img src="expl_files/figure-html/unnamed-chunk-20-1.png" alt="" width="672" /></p>
+<p><img src="expl_files/figure-html/unnamed-chunk-35-1.png" alt="" width="672" /></p>
 <pre class="r"><code>plot(gofo1.2)</code></pre>
-<p><img src="expl_files/figure-html/unnamed-chunk-20-2.png" alt="" width="672" /></p>
+<p><img src="expl_files/figure-html/unnamed-chunk-35-2.png" alt="" width="672" /></p>
 <pre class="r"><code>plot(gof1.2.tc, center = T, scale = T)</code></pre>
-<p><img src="expl_files/figure-html/unnamed-chunk-20-3.png" alt="" width="672" /></p>
+<p><img src="expl_files/figure-html/unnamed-chunk-35-3.png" alt="" width="672" /></p>
 <p>Another one…</p>
 <pre class="r"><code>myeff1.3 &lt;- includeEffects(myeff, inPop, outAct, outIso) </code></pre>
 <pre><code>##   effectNumber effectName            shortName include fix   test  initialValue
@@ -875,96 +1322,227 @@ gof1.2.tc &lt;- sienaGOF(model1.1, TriadCensus, verbose = FALSE, join = TRUE, va
 ## 2 0   
 ## 3 1</code></pre>
 <pre class="r"><code>model1.3 &lt;- siena07(myAlgorithm, data = mydata, effects = myeff1.3, thetaBound = 10000, returnDeps = T)
-model1.3</code></pre>
-<pre><code>## Estimates, standard errors and convergence t-ratios
-## 
-##                                              Estimate   Standard   Convergence 
-##                                                           Error      t-ratio   
-## Network Dynamics 
-##    1. rate basic rate parameter netMLC        9.9145  ( 1.3039   )   -0.0582   
-##    2. eval outdegree (density)               -1.7916  ( 0.1966   )   -0.0427   
-##    3. eval reciprocity                        1.9295  ( 0.2482   )   -0.0312   
-##    4. eval transitive triplets                0.2922  ( 0.0518   )    0.0034   
-##    5. eval indegree - popularity             -0.0313  ( 0.0287   )   -0.0501   
-##    6. eval outdegree - activity              -0.0535  ( 0.0170   )   -0.0242   
-##    7. eval out-isolate                        3.4212  ( 0.4610   )    0.0609   
-##    8. eval parent_edu_ccv alter               0.2017  ( 0.1570   )    0.0083   
-##    9. eval parent_edu_ccv ego                -0.1678  ( 0.1406   )   -0.0634   
-##   10. eval same parent_edu_ccv               -0.0239  ( 0.1453   )   -0.0402   
-##   11. eval same parent_edu_ccv x reciprocity -0.3775  ( 0.3295   )   -0.0543   
-## 
-## Behavior Dynamics
-##   12. rate rate behMLC period 1               1.7850  ( 0.3260   )    0.0284   
-##   13. eval behMLC linear shape                0.1810  ( 0.1496   )    0.0130   
-##   14. eval behMLC quadratic shape            -0.3406  ( 0.1445   )   -0.0745   
-## 
-## Overall maximum convergence ratio:    0.1713 
-## 
-## 
-## Total of 3194 iteration steps.</code></pre>
-<pre class="r"><code>gofi1.3 &lt;- sienaGOF(model1.3, IndegreeDistribution, verbose = FALSE, join = TRUE, varName = &quot;netMLC&quot;)
+#saveRDS(model1.3, &quot;model1.rds&quot;)</code></pre>
+<pre class="r"><code>model1.3 &lt;- readRDS(&quot;model1.rds&quot;)
+gofi1.3 &lt;- sienaGOF(model1.3, IndegreeDistribution, verbose = FALSE, join = TRUE, varName = &quot;netMLC&quot;)
 gofo1.3 &lt;- sienaGOF(model1.3, OutdegreeDistribution, verbose = FALSE, join = TRUE, varName = &quot;netMLC&quot;)
 gof1.3.tc &lt;- sienaGOF(model1.3, TriadCensus, verbose = FALSE, join = TRUE, varName = &quot;netMLC&quot;)</code></pre>
 <pre class="r"><code>plot(gofi1.3)</code></pre>
-<p><img src="expl_files/figure-html/unnamed-chunk-23-1.png" alt="" width="672" /></p>
+<p><img src="expl_files/figure-html/unnamed-chunk-39-1.png" alt="" width="672" /></p>
 <pre class="r"><code>plot(gofo1.3)</code></pre>
-<p><img src="expl_files/figure-html/unnamed-chunk-23-2.png" alt="" width="672" /></p>
+<p><img src="expl_files/figure-html/unnamed-chunk-39-2.png" alt="" width="672" /></p>
 <pre class="r"><code>plot(gof1.3.tc, center = T, scale = T)</code></pre>
-<p><img src="expl_files/figure-html/unnamed-chunk-23-3.png" alt="" width="672" /></p>
-<p>Another one?</p>
-<pre class="r"><code>myeff1.5 &lt;- includeEffects(myeff1.3, between) </code></pre>
-<pre><code>##   effectNumber effectName  shortName include fix   test  initialValue parm
-## 1 50           betweenness between   TRUE    FALSE FALSE          0   0</code></pre>
-<pre class="r"><code>model1.5 &lt;- siena07(myAlgorithm, data = mydata, effects = myeff1.3, thetaBound = 10000, returnDeps = T)
-model1.5</code></pre>
-<pre><code>## Estimates, standard errors and convergence t-ratios
-## 
-##                                              Estimate   Standard   Convergence 
-##                                                           Error      t-ratio   
-## Network Dynamics 
-##    1. rate basic rate parameter netMLC        9.9541  ( 0.8887   )    0.0218   
-##    2. eval outdegree (density)               -1.8064  ( 0.2317   )    0.0318   
-##    3. eval reciprocity                        1.9268  ( 0.2582   )   -0.0176   
-##    4. eval transitive triplets                0.2867  ( 0.0492   )   -0.0633   
-##    5. eval indegree - popularity             -0.0290  ( 0.0282   )    0.0173   
-##    6. eval outdegree - activity              -0.0523  ( 0.0203   )    0.0086   
-##    7. eval out-isolate                        3.3950  ( 0.4529   )   -0.0602   
-##    8. eval parent_edu_ccv alter               0.1840  ( 0.1438   )   -0.0673   
-##    9. eval parent_edu_ccv ego                -0.1621  ( 0.1259   )    0.0144   
-##   10. eval same parent_edu_ccv               -0.0194  ( 0.1463   )    0.0154   
-##   11. eval same parent_edu_ccv x reciprocity -0.3751  ( 0.3192   )   -0.0059   
-## 
-## Behavior Dynamics
-##   12. rate rate behMLC period 1               1.7708  ( 0.3817   )   -0.0458   
-##   13. eval behMLC linear shape                0.1735  ( 0.1427   )   -0.0403   
-##   14. eval behMLC quadratic shape            -0.3432  ( 0.1506   )   -0.0071   
-## 
-## Overall maximum convergence ratio:    0.1817 
-## 
-## 
-## Total of 3194 iteration steps.</code></pre>
-<pre class="r"><code>#saveRDS(model1.5, &quot;model1.rds&quot;)</code></pre>
-<pre class="r"><code>gofi1.5 &lt;- sienaGOF(model1.5, IndegreeDistribution, verbose = FALSE, join = TRUE, varName = &quot;netMLC&quot;)
-gofo1.5 &lt;- sienaGOF(model1.5, OutdegreeDistribution, verbose = FALSE, join = TRUE, varName = &quot;netMLC&quot;)
-gof1.5.tc &lt;- sienaGOF(model1.5, TriadCensus, verbose = FALSE, join = TRUE, varName = &quot;netMLC&quot;)</code></pre>
-<pre class="r"><code>plot(gofi1.5)</code></pre>
-<p><img src="expl_files/figure-html/unnamed-chunk-26-1.png" alt="" width="672" /></p>
-<pre class="r"><code>plot(gofo1.5)</code></pre>
-<p><img src="expl_files/figure-html/unnamed-chunk-26-2.png" alt="" width="672" /></p>
-<pre class="r"><code>plot(gof1.5.tc, center = T, scale = T)</code></pre>
-<p><img src="expl_files/figure-html/unnamed-chunk-26-3.png" alt="" width="672" /></p>
-<p>I do not want to over control, so even though my Goodness-of-Fit is
-still not significant I think I will go with this model.</p>
+<p><img src="expl_files/figure-html/unnamed-chunk-39-3.png" alt="" width="672" /></p>
+<pre class="r"><code>RI &lt;- interpret_size(model1, data = mydata, theta = theta.eval, addPieChart = T, legend = T, getChangeStats = T)</code></pre>
+<pre><code>## more than one dependent variable
+##  return value is therefore not of class &#39;sienaRI&#39;
+##  but a list of objects of class &#39;sienaRI&#39;.</code></pre>
+<pre class="r"><code>plot(RI[[1]], addPieChart = TRUE, legendColumns = 3)</code></pre>
+<p><img src="expl_files/figure-html/unnamed-chunk-40-1.png" alt="" width="672" /></p>
+<pre class="r"><code>plot(RI[[2]], addPieChart = TRUE, legendColumns = 3)</code></pre>
+<p><img src="expl_files/figure-html/unnamed-chunk-40-2.png" alt="" width="672" /></p>
 </div>
 <div
 id="model-2-homogeneity-in-reciprocated-ties-with-control-variables"
-class="section level2" number="2.4">
-<h2><span class="header-section-number">2.4</span> Model 2: Homogeneity
+class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Model 2: Homogeneity
 in reciprocated ties with control variables</h2>
+<pre class="r"><code>myeff2 &lt;- includeEffects(myeff1.3, egoX, altX, sameX, sameXRecip, interaction1 = &quot;gender_ccv&quot;)</code></pre>
+<pre><code>##   effectNumber effectName                    shortName  include fix   test 
+## 1 449          gender_ccv alter              altX       TRUE    FALSE FALSE
+## 2 464          gender_ccv ego                egoX       TRUE    FALSE FALSE
+## 3 520          same gender_ccv               sameX      TRUE    FALSE FALSE
+## 4 526          same gender_ccv x reciprocity sameXRecip TRUE    FALSE FALSE
+##   initialValue parm
+## 1          0   0   
+## 2          0   0   
+## 3          0   0   
+## 4          0   0</code></pre>
+<pre class="r"><code>myeff2 &lt;- includeEffects(myeff1.3, egoX, altX, sameX, sameXRecip, interaction1 = &quot;ethnicity_ccv&quot;)</code></pre>
+<pre><code>##   effectNumber effectName                       shortName  include fix   test 
+## 1 633          ethnicity_ccv alter              altX       TRUE    FALSE FALSE
+## 2 648          ethnicity_ccv ego                egoX       TRUE    FALSE FALSE
+## 3 704          same ethnicity_ccv               sameX      TRUE    FALSE FALSE
+## 4 710          same ethnicity_ccv x reciprocity sameXRecip TRUE    FALSE FALSE
+##   initialValue parm
+## 1          0   0   
+## 2          0   0   
+## 3          0   0   
+## 4          0   0</code></pre>
+<pre class="r"><code>myeff2</code></pre>
+<pre><code>##    name   effectName                        include fix   test  initialValue
+## 1  netMLC basic rate parameter netMLC       TRUE    FALSE FALSE    6.21791  
+## 2  netMLC outdegree (density)               TRUE    FALSE FALSE   -1.72530  
+## 3  netMLC reciprocity                       TRUE    FALSE FALSE    0.00000  
+## 4  netMLC GWESP I -&gt; K -&gt; J (#)             TRUE    FALSE FALSE    0.00000  
+## 5  netMLC indegree - popularity             TRUE    FALSE FALSE    0.00000  
+## 6  netMLC outdegree - activity              TRUE    FALSE FALSE    0.00000  
+## 7  netMLC out-isolate                       TRUE    FALSE FALSE    0.00000  
+## 8  netMLC parent_edu_ccv alter              TRUE    FALSE FALSE    0.00000  
+## 9  netMLC parent_edu_ccv ego                TRUE    FALSE FALSE    0.00000  
+## 10 netMLC same parent_edu_ccv               TRUE    FALSE FALSE    0.00000  
+## 11 netMLC same parent_edu_ccv x reciprocity TRUE    FALSE FALSE    0.00000  
+## 12 netMLC ethnicity_ccv alter               TRUE    FALSE FALSE    0.00000  
+## 13 netMLC ethnicity_ccv ego                 TRUE    FALSE FALSE    0.00000  
+## 14 netMLC same ethnicity_ccv                TRUE    FALSE FALSE    0.00000  
+## 15 netMLC same ethnicity_ccv x reciprocity  TRUE    FALSE FALSE    0.00000  
+## 16 behMLC rate behMLC period 1              TRUE    FALSE FALSE    1.20356  
+## 17 behMLC behMLC linear shape               TRUE    FALSE FALSE    0.04242  
+## 18 behMLC behMLC quadratic shape            TRUE    FALSE FALSE    0.00000  
+##    parm
+## 1   0  
+## 2   0  
+## 3   0  
+## 4  69  
+## 5   0  
+## 6   0  
+## 7   1  
+## 8   0  
+## 9   0  
+## 10  0  
+## 11  0  
+## 12  0  
+## 13  0  
+## 14  0  
+## 15  0  
+## 16  0  
+## 17  0  
+## 18  0</code></pre>
+<pre class="r"><code>model2 &lt;- siena07(myAlgorithm, data = mydata, effects = myeff2, thetaBound = 10000, returnDeps = T)
+model2
+#saveRDS(model2, &quot;model2.rds&quot;)</code></pre>
+</div>
+<div id="model-3-reciprocity-and-social-satisfaction-1"
+class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> Model 3: Reciprocity
+and social satisfaction</h2>
+<pre class="r"><code>myeff3 &lt;- includeEffects(myeff2, name = &quot;behMLC&quot;, recipDeg, avRecAlt, interaction1 = &quot;netMLC&quot;)</code></pre>
+<pre><code>##   effectNumber effectName                 shortName include fix   test 
+## 1 1162         behMLC average rec. alters avRecAlt  TRUE    FALSE FALSE
+## 2 1203         behMLC reciprocated degree recipDeg  TRUE    FALSE FALSE
+##   initialValue parm
+## 1          0   0   
+## 2          0   0</code></pre>
+<pre class="r"><code>myeff3</code></pre>
+<pre><code>##    name   effectName                        include fix   test  initialValue
+## 1  netMLC basic rate parameter netMLC       TRUE    FALSE FALSE    6.21791  
+## 2  netMLC outdegree (density)               TRUE    FALSE FALSE   -1.72530  
+## 3  netMLC reciprocity                       TRUE    FALSE FALSE    0.00000  
+## 4  netMLC GWESP I -&gt; K -&gt; J (#)             TRUE    FALSE FALSE    0.00000  
+## 5  netMLC indegree - popularity             TRUE    FALSE FALSE    0.00000  
+## 6  netMLC outdegree - activity              TRUE    FALSE FALSE    0.00000  
+## 7  netMLC out-isolate                       TRUE    FALSE FALSE    0.00000  
+## 8  netMLC parent_edu_ccv alter              TRUE    FALSE FALSE    0.00000  
+## 9  netMLC parent_edu_ccv ego                TRUE    FALSE FALSE    0.00000  
+## 10 netMLC same parent_edu_ccv               TRUE    FALSE FALSE    0.00000  
+## 11 netMLC same parent_edu_ccv x reciprocity TRUE    FALSE FALSE    0.00000  
+## 12 netMLC ethnicity_ccv alter               TRUE    FALSE FALSE    0.00000  
+## 13 netMLC ethnicity_ccv ego                 TRUE    FALSE FALSE    0.00000  
+## 14 netMLC same ethnicity_ccv                TRUE    FALSE FALSE    0.00000  
+## 15 netMLC same ethnicity_ccv x reciprocity  TRUE    FALSE FALSE    0.00000  
+## 16 behMLC rate behMLC period 1              TRUE    FALSE FALSE    1.20356  
+## 17 behMLC behMLC linear shape               TRUE    FALSE FALSE    0.04242  
+## 18 behMLC behMLC quadratic shape            TRUE    FALSE FALSE    0.00000  
+## 19 behMLC behMLC average rec. alters        TRUE    FALSE FALSE    0.00000  
+## 20 behMLC behMLC reciprocated degree        TRUE    FALSE FALSE    0.00000  
+##    parm
+## 1   0  
+## 2   0  
+## 3   0  
+## 4  69  
+## 5   0  
+## 6   0  
+## 7   1  
+## 8   0  
+## 9   0  
+## 10  0  
+## 11  0  
+## 12  0  
+## 13  0  
+## 14  0  
+## 15  0  
+## 16  0  
+## 17  0  
+## 18  0  
+## 19  0  
+## 20  0</code></pre>
+<pre class="r"><code>model3 &lt;- siena07(myAlgorithm, data = mydata, effects = myeff3, thetaBound = 10000, returnDeps = T)
+model3
+#saveRDS(model3, &quot;model3.rds&quot;)</code></pre>
+</div>
+<div
+id="model-4-reciprocity-between-same-covariates-and-social-satisfaction"
+class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> Model 4: Reciprocity
+between same covariates and social satisfaction</h2>
+<pre class="r"><code>myeff4 &lt;- set_effect(myeff3, list(avRecAltSameX, avSameXRecAlt), depvar = &quot;behMLC&quot;, covar1 = &quot;parent_edu_ccv&quot;, covar2 = &quot;netMLC&quot;)</code></pre>
+<pre><code>##   effectNumber effectName                                                 
+## 1 1245         behMLC: rec. alt&#39;s (netMLC) same parent_edu_ccv av.        
+## 2 1269         behMLC: average rec. alter (netMLC) for same parent_edu_ccv
+##   shortName     include fix   test  initialValue parm
+## 1 avSameXRecAlt TRUE    FALSE FALSE          0   0   
+## 2 avRecAltSameX TRUE    FALSE FALSE          0   0</code></pre>
+<pre class="r"><code>myeff4</code></pre>
+<pre><code>##    name   effectName                                                  include
+## 1  netMLC basic rate parameter netMLC                                 TRUE   
+## 2  netMLC outdegree (density)                                         TRUE   
+## 3  netMLC reciprocity                                                 TRUE   
+## 4  netMLC GWESP I -&gt; K -&gt; J (#)                                       TRUE   
+## 5  netMLC indegree - popularity                                       TRUE   
+## 6  netMLC outdegree - activity                                        TRUE   
+## 7  netMLC out-isolate                                                 TRUE   
+## 8  netMLC parent_edu_ccv alter                                        TRUE   
+## 9  netMLC parent_edu_ccv ego                                          TRUE   
+## 10 netMLC same parent_edu_ccv                                         TRUE   
+## 11 netMLC same parent_edu_ccv x reciprocity                           TRUE   
+## 12 netMLC ethnicity_ccv alter                                         TRUE   
+## 13 netMLC ethnicity_ccv ego                                           TRUE   
+## 14 netMLC same ethnicity_ccv                                          TRUE   
+## 15 netMLC same ethnicity_ccv x reciprocity                            TRUE   
+## 16 behMLC rate behMLC period 1                                        TRUE   
+## 17 behMLC behMLC linear shape                                         TRUE   
+## 18 behMLC behMLC quadratic shape                                      TRUE   
+## 19 behMLC behMLC average rec. alters                                  TRUE   
+## 20 behMLC behMLC reciprocated degree                                  TRUE   
+## 21 behMLC behMLC: rec. alt&#39;s (netMLC) same parent_edu_ccv av.         TRUE   
+## 22 behMLC behMLC: average rec. alter (netMLC) for same parent_edu_ccv TRUE   
+##    fix   test  initialValue parm
+## 1  FALSE FALSE    6.21791    0  
+## 2  FALSE FALSE   -1.72530    0  
+## 3  FALSE FALSE    0.00000    0  
+## 4  FALSE FALSE    0.00000   69  
+## 5  FALSE FALSE    0.00000    0  
+## 6  FALSE FALSE    0.00000    0  
+## 7  FALSE FALSE    0.00000    1  
+## 8  FALSE FALSE    0.00000    0  
+## 9  FALSE FALSE    0.00000    0  
+## 10 FALSE FALSE    0.00000    0  
+## 11 FALSE FALSE    0.00000    0  
+## 12 FALSE FALSE    0.00000    0  
+## 13 FALSE FALSE    0.00000    0  
+## 14 FALSE FALSE    0.00000    0  
+## 15 FALSE FALSE    0.00000    0  
+## 16 FALSE FALSE    1.20356    0  
+## 17 FALSE FALSE    0.04242    0  
+## 18 FALSE FALSE    0.00000    0  
+## 19 FALSE FALSE    0.00000    0  
+## 20 FALSE FALSE    0.00000    0  
+## 21 FALSE FALSE    0.00000    0  
+## 22 FALSE FALSE    0.00000    0</code></pre>
+<pre class="r"><code>model4 &lt;- siena07(myAlgorithm, data = mydata, effects = myeff4, thetaBound = 10000, returnDeps = T)
+model4
+#saveRDS(model4, &quot;model4.rds&quot;)</code></pre>
+<hr />
+</div>
+</div>
+<div id="references" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> References</h1>
+<div class="::::">
+
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIkV4cGxvcmF0b3J5IFJlc3VsdHMiDQphdXRob3I6ICJieTogTmluYSBTbmVpamVycyINCmJpYmxpb2dyYXBoeTogcmVmZXJlbmNlcy5iaWINCmVkaXRvcl9vcHRpb25zOiANCiAgbWFya2Rvd246IA0KICAgIHdyYXA6IDcyDQotLS0NCg0KIyBFeHBsb3JhdG9yeSBSZXN1bHRzDQoNCmBgYHtyLCBpbmNsdWRlPSBGQUxTRX0NCmxpYnJhcnkoImNhciIpDQpsaWJyYXJ5KCJkcGx5ciIpDQpsaWJyYXJ5KCJhcGUiKQ0KbGlicmFyeSgic25hIikNCmxpYnJhcnkoIlJTaWVuYSIpDQpsaWJyYXJ5KCJSc2llbmFUd29TdGVwIikNCmxpYnJhcnkoImRldnRvb2xzIikNCmxpYnJhcnkoIm5ldHNlZyIpDQpsaWJyYXJ5KCJpZ3JhcGgiKQ0Kb3B0aW9ucyhzY2lwZW4gPSAyNSkNCmBgYA0KDQojIyBNb2RlbCAwOiBTaW1wbGUgTW9kZWwNCg0KYGBge3IsaW5jbHVkZT0gRkFMU0V9DQpsaWJyYXJ5KCJwYW5kZXIiKQ0Kc2ltcGxlX21vZGVsIDwtIHJlYWRSRFMoInNpbXBsZV9tb2RlbC5yZHMiKQ0KcmVzdWx0c19tMCA8LSBkYXRhLmZyYW1lKA0KICBlZmZlY3QgPSBzaW1wbGVfbW9kZWwkZWZmZWN0cyRlZmZlY3ROYW1lLA0KICBiID0gc2ltcGxlX21vZGVsJHRoZXRhLA0KICBzZSA9IHNpbXBsZV9tb2RlbCRzZSwNCiAgdCA9IHNpbXBsZV9tb2RlbCR0aGV0YSAvIHNpbXBsZV9tb2RlbCRzZSwNCiAgcCA9IDIgKiBwbm9ybSgtYWJzKHNpbXBsZV9tb2RlbCR0aGV0YSAvIHNpbXBsZV9tb2RlbCRzZSkpDQopDQpgYGANCg0KVGhlIG51bGwgbW9kZWwgY29udmVyZ2VzIGF0IDAuMTMsIHdoaWNoIGlzIGFjY2VwdGFibGUuIFRoZSBvdXRjb21lcyBvZg0KdGhlIHNpbXBsZSBtb2RlbCBzaG93IHRoaW5ncyB3ZSBoYXZlIGFscmVhZHkgbGVhcm5lZCBmcm9tIHRoZQ0KZGVzY3JpcHRpdmUgcmVzdWx0cyBhbmQgdGhlIG5ldHdvcmsgZ3JhcGgsIG5hbWVseSB0aGF0IHRoZXJlIGlzIGENCnNpZ25pZmljYW50IGNoYW5jZSB0aGF0IG9uZSBkb2VzIG5vdCBvYnNlcnZlIGEgdGllIGNvbXBhcmVkIHRvIHRoZQ0KY2hhbmNlIHRoYXQgb25lIG9ic2VydmVzIGEgdGllICgqYiogPSAtMi42NywgKlNFKiA9IDAuNTMsICpwKiBcPiAuMDEpLg0KDQpUaGUgcmF0ZSBmb3IgdGhlIGJlaGF2aW91cmFsIGlzIHNpZ25pZmljYW50LCBtZWFuaW5nIHRoYXQuLi4gQ2hhbmdlIGluDQpzb2NpYWwgc2F0aXNmYWN0aW9uIGlzIG5vdCBzaWduaWZpY2FudCBvbiBhIGxpbmVhciBsZXZlbCAoKmIqID0gMC4xNywNCipTRSogPSAwLjE0LCAqcCogPSAwLjIyKSwgYnV0IGl0IGlzIHNpZ25pZmljYW50IG9uIGEgcXVhZHJhdGljIGxldmVsDQooKmIqID0gLTAuMzQsICpTRSogPSAwLjE1LCAqcCA9KiAwLjAyKSBhbmQgZ29pbmcgaW50byBhIG5lZ2F0aXZlDQpkaXJlY3Rpb24sIHdoaWNoIGluZGljYXRlcyB0aGF0IC4uLg0KDQpIb3dldmVyLCB0aGVzZSBzdGF0aXN0aWNzIGRvIG5vdCB0ZWxsIG1lIGEgbG90IHlldCwgYXMgSSBoYXZlIG5vdCBhZGRlZA0KaXQgYW55IGFkZGl0aW9uYWwgc3RhdGlzdGljcy4gQmVjYXVzZSBvZiB0aGF0LCB0aGUgR29vZG5lc3MtT2YtRml0DQptb2RlbHMgZm9yIHRoaXMgbW9kZWwgd2lsbCBpbmRpY2F0ZSB0aGF0IHRoZSBtb2RlbHMgZG8gbm90IGZpdCB3ZWxsLg0KVGhlcmVmb3JlLCBJIHdpbGwgbm90IHBsb3QgdGhlbSB5ZXQuDQoNCioqVGFibGUgMToqKiAqUmVzdWx0cyBvZiBNb2RlbCAwKg0KDQpgYGB7cn0NCnBhbmRlcjo6cGFuZGVyKHJlc3VsdHNfbTApDQpgYGANCg0KIyMgTW9kZWwgMTogSG9tb2dlbmVpdHkgaW4gUmVjaXByb2NhdGVkIFRpZXMNCg0KYGBge3IsIGluY2x1ZGU9IEZBTFNFfQ0KbW9kZWwxIDwtIHJlYWRSRFMoIm1vZGVsMS5yZHMiKQ0KcmVzdWx0c19tMSA8LSBkYXRhLmZyYW1lKA0KICBlZmZlY3QgPSBtb2RlbDEkZWZmZWN0cyRlZmZlY3ROYW1lLA0KICBiID0gbW9kZWwxJHRoZXRhLA0KICBzZSA9IG1vZGVsMSRzZSwNCiAgdCA9IG1vZGVsMSR0aGV0YSAvIG1vZGVsMSRzZSwNCiAgcCA9IDIgKiBwbm9ybSgtYWJzKG1vZGVsMSR0aGV0YSAvIG1vZGVsMSRzZSkpDQopDQpgYGANCg0KVGhlIGZpcnN0IG1vZGVsIGlzIHVzZWQgdG8gbG9vayBhdCB3aGV0aGVyIHJlY2lwcm9jYXRlZCB0aWVzIGFyZSBtb3JlIGxpa2VseSB0byBvY2N1ciBhbW9uZyBzdHVkZW50cyB3aG9zZSBwYXJlbnRzIGhhdmUgdGhlIHNhbWUgZWR1Y2F0aW9uYWwgbGV2ZWwuIA0KDQoNCmBgYHtyfQ0KcmVzdWx0c19tMQ0KYGBgDQoNCg0KKipUYWJsZSAyOioqICpSZXN1bHRzIG9mIE1vZGVsIDEqDQoNCmBgYHtyfQ0KcGFuZGVyOjpwYW5kZXIocmVzdWx0c19tMSkNCmBgYA0KDQpgYGB7ciwgaW5jbHVkZT0gRkFMU0V9DQpnb2ZpMSA8LSBzaWVuYUdPRihtb2RlbDEsIEluZGVncmVlRGlzdHJpYnV0aW9uLCB2ZXJib3NlID0gRkFMU0UsIGpvaW4gPSBUUlVFLCB2YXJOYW1lID0gIm5ldE1MQyIpDQpnb2ZvMSA8LSBzaWVuYUdPRihtb2RlbDEsIE91dGRlZ3JlZURpc3RyaWJ1dGlvbiwgdmVyYm9zZSA9IEZBTFNFLCBqb2luID0gVFJVRSwgdmFyTmFtZSA9ICJuZXRNTEMiKQ0KZ29mMXRjIDwtIHNpZW5hR09GKG1vZGVsMSwgVHJpYWRDZW5zdXMsIHZlcmJvc2UgPSBGQUxTRSwgam9pbiA9IFRSVUUsIHZhck5hbWUgPSAibmV0TUxDIikNCmBgYA0KDQoqKkZpZ3VyZSAyKioNCg0KIyMjICpHb29kbmVzcyBPZiBGaXQgZm9yIE1vZGVsIDEqIHsudGFic2V0IC50YWJzZXQtZmFkZX0NCg0KIyMjIyBJbmRlZ3JlZSBkaXN0cmlidXRpb24NCg0KYGBge3J9DQpwbG90KGdvZmkxKQ0KYGBgDQoNCiMjIyMgT3V0ZGVncmVlIGRpc3RyaWJ1dGlvbg0KDQpgYGB7cn0NCnBsb3QoZ29mbzEpDQpgYGANCg0KIyMjIyBUcmlhZENlbnN1cw0KDQpgYGB7cn0NCnBsb3QoZ29mMXRjLCBjZW50ZXIgPSBULCBzY2FsZSA9IFQpDQpgYGANCg0KIyMjICB7LnVubGlzdGVkIC51bm51bWJlcmVkfQ0KDQojIFJDb2RlDQpUaGUgY29kaW5nIHByb2Nlc3MuLi4gYW5kIHNvbWUgdGhvdWdodHMgDQoNCiMjIFByZXBhcmF0aW9uDQoNCmBgYHtyLCBpbmNsdWRlPSBGQUxTRX0NCiNMb2FkaW5nIHRoZSBkYXRhDQpybShsaXN0ID1scygpKQ0KbG9hZCgiQzpcXFVzZXJzXFxuaW5hc1xcT25lRHJpdmUgLSBSYWRib3VkIFVuaXZlcnNpdGVpdFxcUlNDU1xcU29jaWFsIE5ldHdvcmtzXFxsYWJqb3VybmFsU05cXHBhcmVudGVkdWRhdGEuUmRhdGEiKQ0KbG9hZCgiQzpcXFVzZXJzXFxuaW5hc1xcT25lRHJpdmUgLSBSYWRib3VkIFVuaXZlcnNpdGVpdFxcUlNDU1xcU29jaWFsIE5ldHdvcmtzXFxsYWJqb3VybmFsU05cXHdhdmUxLlJkYXRhIikNCmxvYWQoIkM6XFxVc2Vyc1xcbmluYXNcXE9uZURyaXZlIC0gUmFkYm91ZCBVbml2ZXJzaXRlaXRcXFJTQ1NcXFNvY2lhbCBOZXR3b3Jrc1xcbGFiam91cm5hbFNOXFx3YXZlMi5SZGF0YSIpDQpgYGANCg0KYGBge3J9DQojZGVwZW5kZW50IHZhcmlhYmxlIA0KbmV0TUxDIDwtIHNpZW5hRGVwZW5kZW50KGFycmF5KGRhdGEgPSBjKHdhdmUxLCB3YXZlMiksIGRpbSA9IGMoZGltKHdhdmUxKSwgMikpKQ0KI2JlaGF2aW91cmFsIHZhcmlhYmxlDQpiZWh5IDwtIGRmMiAlPiUgDQogIGRwbHlyOjpzZWxlY3QoInNvY3NhdHcxbiIsICJzb2NzYXR3Mm4iKSAlPiUNCiAgYXMubWF0cml4KCkNCmJlaE1MQyA8LSBzaWVuYURlcGVuZGVudChiZWh5LCB0eXBlID0gYygiYmVoYXZpb3IiKSkNCiNpbmRlcGVuZGVudCB2YXJpYWJsZXMNCnBhcmVudF9lZHVfY2N2IDwtIGNvQ292YXIoYXMubnVtZXJpYyhkZjIkcGFyZW50c2hpZ2hmKSkNCmdlbmRlcl9jY3YgPC0gY29Db3Zhcihhcy5udW1lcmljKGRmMiRnZW5kZXJmKSkNCmV0aG5pY2l0eV9jY3YgPC0gY29Db3Zhcihhcy5udW1lcmljKGRmMiRldGhuaWNpdHlmKSkNCiNkYXRhDQpteWRhdGEgPC0gc2llbmFEYXRhQ3JlYXRlKG5ldE1MQywgYmVoTUxDLCBwYXJlbnRfZWR1X2NjdiwgZ2VuZGVyX2NjdiwgZXRobmljaXR5X2NjdikNCiNlZmZlY3RzIHN0cnVjdHVyZQ0KbXllZmYgPC0gZ2V0RWZmZWN0cyhteWRhdGEpDQojPw0KbXlBbGdvcml0aG0gPC0gKHNpZW5hQWxnb3JpdGhtQ3JlYXRlKHByb2puYW1lID0gInJlc3VsdHMiKSkNCmBgYA0KDQojIyBNb2RlbCAwOiBTaW1wbGUgTW9kZWwNCg0KYGBge3IsIGV2YWw9IEZBTFNFfQ0Kc2ltcGxlX21vZGVsIDwtIHNpZW5hMDcobXlBbGdvcml0aG0sIGRhdGEgPSBteWRhdGEsIGVmZmVjdHMgPSBteWVmZiwgdGhldGFCb3VuZCA9IDEwMDAwLCByZXR1cm5EZXBzID0gVCkNCmBgYA0KDQojIyBNb2RlbCAxOiBIb21vZ2VuZWl0eSBpbiByZWNpcHJvY2F0ZWQgdGllcw0KDQpgYGB7ciwgaW5jbHVkZT0gRkFMU0V9DQojZ29vZG5lc3Mgb2YgZml0IHByYWN0aWNhbGl0aWVzDQpHZW9kZXNpY0Rpc3RyaWJ1dGlvbiA8LSBmdW5jdGlvbihpLCBkYXRhLCBzaW1zLCBwZXJpb2QsIGdyb3VwTmFtZSwgdmFyTmFtZSwgbGV2bHMgPSBjKDE6NSwgSW5mKSwgY3VtdWxhdGl2ZSA9IFRSVUUsDQogICAgLi4uKSB7DQogICAgeCA8LSBuZXR3b3JrRXh0cmFjdGlvbihpLCBkYXRhLCBzaW1zLCBwZXJpb2QsIGdyb3VwTmFtZSwgdmFyTmFtZSkNCiAgICByZXF1aXJlKG5ldHdvcmspDQogICAgcmVxdWlyZShzbmEpDQogICAgYSA8LSBzbmE6Omdlb2Rpc3Qoc3ltbWV0cml6ZSh4KSkkZ2Rpc3QNCiAgICBpZiAoY3VtdWxhdGl2ZSkgew0KICAgICAgICBnZGkgPC0gc2FwcGx5KGxldmxzLCBmdW5jdGlvbihpKSB7DQogICAgICAgICAgICBzdW0oYSA8PSBpKQ0KICAgICAgICB9KQ0KICAgIH0gZWxzZSB7DQogICAgICAgIGdkaSA8LSBzYXBwbHkobGV2bHMsIGZ1bmN0aW9uKGkpIHsNCiAgICAgICAgICAgIHN1bShhID09IGkpDQogICAgICAgIH0pDQogICAgfQ0KICAgIG5hbWVzKGdkaSkgPC0gYXMuY2hhcmFjdGVyKGxldmxzKQ0KICAgIGdkaQ0KfQ0KDQojIFRoZSBmb2xsb3dpbmcgZnVuY3Rpb24gaXMgdGFrZW4gZnJvbSB0aGUgaGVscCBwYWdlIGZvciBzaWVuYVRlc3QNCg0KdGVzdGFsbCA8LSBmdW5jdGlvbihhbnMpIHsNCiAgICBmb3IgKGkgaW4gd2hpY2goYW5zJHRlc3QpKSB7DQogICAgICAgIHNjdCA8LSBzY29yZS5UZXN0KGFucywgaSkNCiAgICAgICAgY2F0KGFucyRyZXF1ZXN0ZWRFZmZlY3RzJGVmZmVjdE5hbWVbaV0sICJcbiIpDQogICAgICAgIHByaW50KHNjdCkNCiAgICB9DQogICAgaW52aXNpYmxlKHNjb3JlLlRlc3QoYW5zKSkNCn0NCmBgYA0KDQpgYGB7cn0NCm15ZWZmIDwtIGluY2x1ZGVFZmZlY3RzKG15ZWZmLCBlZ29YLCBhbHRYLCBzYW1lWCwgc2FtZVhSZWNpcCwgaW50ZXJhY3Rpb24xID0gInBhcmVudF9lZHVfY2N2IikgDQptb2RlbDEuMSA8LSBzaWVuYTA3KG15QWxnb3JpdGhtLCBkYXRhID0gbXlkYXRhLCBlZmZlY3RzID0gbXllZmYsIHRoZXRhQm91bmQgPSAxMDAwMCwgcmV0dXJuRGVwcyA9IFQpDQptb2RlbDEuMQ0KYGBgDQoNCmBgYHtyfQ0KZ29maTEuMSA8LSBzaWVuYUdPRihtb2RlbDEuMSwgSW5kZWdyZWVEaXN0cmlidXRpb24sIHZlcmJvc2UgPSBGQUxTRSwgam9pbiA9IFRSVUUsIHZhck5hbWUgPSAibmV0TUxDIikNCmdvZm8xLjEgPC0gc2llbmFHT0YobW9kZWwxLjEsIE91dGRlZ3JlZURpc3RyaWJ1dGlvbiwgdmVyYm9zZSA9IEZBTFNFLCBqb2luID0gVFJVRSwgdmFyTmFtZSA9ICJuZXRNTEMiKQ0KI2dvZjAuZ2QgPC0gc2llbmFHT0YobW9kZWwxLjEsIEdlb2Rlc2ljRGlzdHJpYnV0aW9uLCBjdW11bGF0aXZlID0gRkFMU0UsIHZlcmJvc2UgPSBGQUxTRSwgam9pbiA9IFRSVUUsIHZhck5hbWUgPSAibmV0TUxDIikNCiMgUTogd2F0IG1vZXQgZXIgZWVuIG1hdHJpeCB6aWpuIGRhbj8gSGlqIHJ1bnQgbmlldA0KZ29mMS4xLnRjIDwtIHNpZW5hR09GKG1vZGVsMS4xLCBUcmlhZENlbnN1cywgdmVyYm9zZSA9IEZBTFNFLCBqb2luID0gVFJVRSwgdmFyTmFtZSA9ICJuZXRNTEMiKQ0KYGBgDQoNCmBgYHtyfQ0KcGxvdChnb2ZpMS4xKQ0KcGxvdChnb2ZvMS4xKQ0KcGxvdChnb2YxLjEudGMsIGNlbnRlciA9IFQsIHNjYWxlID0gVCkNCmBgYA0KDQpXRUxMLCB0aGF0IGRvZXMgbm90IHZlcnkgZ29vZC4gQnV0IHRoYXQncyBub3Qgd2VpcmQsIGJlY2F1c2UgSSBoYXZlIG5vdA0KYWRkZWQgYW55IGFkZGl0aW9uYWwgZWZmZWN0cy4gTGV0J3MgYWRkIGEgdHJpYWQgZWZmZWN0IDopDQoNCmBgYHtyfQ0KbXllZmYgPC0gaW5jbHVkZUVmZmVjdHMobXllZmYsIHRyYW5zVHJpcCkgDQptb2RlbDEuMiA8LSBzaWVuYTA3KG15QWxnb3JpdGhtLCBkYXRhID0gbXlkYXRhLCBlZmZlY3RzID0gbXllZmYsIHRoZXRhQm91bmQgPSAxMDAwMCwgcmV0dXJuRGVwcyA9IFQpDQptb2RlbDEuMg0KYGBgDQoNCmBgYHtyfQ0KZ29maTEuMiA8LSBzaWVuYUdPRihtb2RlbDEuMiwgSW5kZWdyZWVEaXN0cmlidXRpb24sIHZlcmJvc2UgPSBGQUxTRSwgam9pbiA9IFRSVUUsIHZhck5hbWUgPSAibmV0TUxDIikNCmdvZm8xLjIgPC0gc2llbmFHT0YobW9kZWwxLjIsIE91dGRlZ3JlZURpc3RyaWJ1dGlvbiwgdmVyYm9zZSA9IEZBTFNFLCBqb2luID0gVFJVRSwgdmFyTmFtZSA9ICJuZXRNTEMiKQ0KZ29mMS4yLnRjIDwtIHNpZW5hR09GKG1vZGVsMS4xLCBUcmlhZENlbnN1cywgdmVyYm9zZSA9IEZBTFNFLCBqb2luID0gVFJVRSwgdmFyTmFtZSA9ICJuZXRNTEMiKQ0KYGBgDQoNCmBgYHtyfQ0KcGxvdChnb2ZpMS4yKQ0KcGxvdChnb2ZvMS4yKQ0KcGxvdChnb2YxLjIudGMsIGNlbnRlciA9IFQsIHNjYWxlID0gVCkNCmBgYA0KDQpBbm90aGVyIG9uZS4uLg0KDQpgYGB7cn0NCm15ZWZmMS4zIDwtIGluY2x1ZGVFZmZlY3RzKG15ZWZmLCBpblBvcCwgb3V0QWN0LCBvdXRJc28pIA0KbW9kZWwxLjMgPC0gc2llbmEwNyhteUFsZ29yaXRobSwgZGF0YSA9IG15ZGF0YSwgZWZmZWN0cyA9IG15ZWZmMS4zLCB0aGV0YUJvdW5kID0gMTAwMDAsIHJldHVybkRlcHMgPSBUKQ0KbW9kZWwxLjMNCmBgYA0KDQpgYGB7cn0NCmdvZmkxLjMgPC0gc2llbmFHT0YobW9kZWwxLjMsIEluZGVncmVlRGlzdHJpYnV0aW9uLCB2ZXJib3NlID0gRkFMU0UsIGpvaW4gPSBUUlVFLCB2YXJOYW1lID0gIm5ldE1MQyIpDQpnb2ZvMS4zIDwtIHNpZW5hR09GKG1vZGVsMS4zLCBPdXRkZWdyZWVEaXN0cmlidXRpb24sIHZlcmJvc2UgPSBGQUxTRSwgam9pbiA9IFRSVUUsIHZhck5hbWUgPSAibmV0TUxDIikNCmdvZjEuMy50YyA8LSBzaWVuYUdPRihtb2RlbDEuMywgVHJpYWRDZW5zdXMsIHZlcmJvc2UgPSBGQUxTRSwgam9pbiA9IFRSVUUsIHZhck5hbWUgPSAibmV0TUxDIikNCmBgYA0KDQpgYGB7cn0NCnBsb3QoZ29maTEuMykNCnBsb3QoZ29mbzEuMykNCnBsb3QoZ29mMS4zLnRjLCBjZW50ZXIgPSBULCBzY2FsZSA9IFQpDQpgYGANCg0KQW5vdGhlciBvbmU/DQoNCmBgYHtyfQ0KbXllZmYxLjUgPC0gaW5jbHVkZUVmZmVjdHMobXllZmYxLjMsIGJldHdlZW4pIA0KbW9kZWwxLjUgPC0gc2llbmEwNyhteUFsZ29yaXRobSwgZGF0YSA9IG15ZGF0YSwgZWZmZWN0cyA9IG15ZWZmMS4zLCB0aGV0YUJvdW5kID0gMTAwMDAsIHJldHVybkRlcHMgPSBUKQ0KbW9kZWwxLjUNCiNzYXZlUkRTKG1vZGVsMS41LCAibW9kZWwxLnJkcyIpDQpgYGANCg0KYGBge3J9DQpnb2ZpMS41IDwtIHNpZW5hR09GKG1vZGVsMS41LCBJbmRlZ3JlZURpc3RyaWJ1dGlvbiwgdmVyYm9zZSA9IEZBTFNFLCBqb2luID0gVFJVRSwgdmFyTmFtZSA9ICJuZXRNTEMiKQ0KZ29mbzEuNSA8LSBzaWVuYUdPRihtb2RlbDEuNSwgT3V0ZGVncmVlRGlzdHJpYnV0aW9uLCB2ZXJib3NlID0gRkFMU0UsIGpvaW4gPSBUUlVFLCB2YXJOYW1lID0gIm5ldE1MQyIpDQpnb2YxLjUudGMgPC0gc2llbmFHT0YobW9kZWwxLjUsIFRyaWFkQ2Vuc3VzLCB2ZXJib3NlID0gRkFMU0UsIGpvaW4gPSBUUlVFLCB2YXJOYW1lID0gIm5ldE1MQyIpDQpgYGANCg0KYGBge3J9DQpwbG90KGdvZmkxLjUpDQpwbG90KGdvZm8xLjUpDQpwbG90KGdvZjEuNS50YywgY2VudGVyID0gVCwgc2NhbGUgPSBUKQ0KYGBgDQoNCkkgZG8gbm90IHdhbnQgdG8gb3ZlciBjb250cm9sLCBzbyBldmVuIHRob3VnaCBteSBHb29kbmVzcy1vZi1GaXQgaXMNCnN0aWxsIG5vdCBzaWduaWZpY2FudCBJIHRoaW5rIEkgd2lsbCBnbyB3aXRoIHRoaXMgbW9kZWwuDQoNCiMjIE1vZGVsIDI6IEhvbW9nZW5laXR5IGluIHJlY2lwcm9jYXRlZCB0aWVzIHdpdGggY29udHJvbCB2YXJpYWJsZXMNCg==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkV4cGxvcmF0b3J5IFJlc3VsdHMgLSBFeHBsb3JhdG9yeSINCmF1dGhvcjogImJ5OiBOaW5hIFNuZWlqZXJzIg0KYmlibGlvZ3JhcGh5OiByZWZlcmVuY2VzLmJpYg0KZWRpdG9yX29wdGlvbnM6IA0KICBtYXJrZG93bjogDQogICAgd3JhcDogMTAwDQotLS0NCg0KIyBFeHBsb3JhdG9yeSBSZXN1bHRzDQoNCmBgYHtyLCBpbmNsdWRlPSBGQUxTRX0NCmxpYnJhcnkoImNhciIpDQpsaWJyYXJ5KCJkcGx5ciIpDQpsaWJyYXJ5KCJhcGUiKQ0KbGlicmFyeSgic25hIikNCmxpYnJhcnkoIlJTaWVuYSIpDQpsaWJyYXJ5KCJSc2llbmFUd29TdGVwIikNCmxpYnJhcnkoImRldnRvb2xzIikNCmxpYnJhcnkoIm5ldHNlZyIpDQpsaWJyYXJ5KCJpZ3JhcGgiKQ0KbGlicmFyeSgicGFuZGVyIikNCm9wdGlvbnMoc2NpcGVuID0gNikNCmBgYA0KDQpgYGB7ciwgaW5jbHVkZT0gRkFMU0V9DQojTG9hZGluZyB0aGUgZGF0YQ0Kcm0obGlzdCA9bHMoKSkNCmxvYWQoIkM6XFxVc2Vyc1xcbmluYXNcXE9uZURyaXZlIC0gUmFkYm91ZCBVbml2ZXJzaXRlaXRcXFJTQ1NcXFNvY2lhbCBOZXR3b3Jrc1xcbGFiam91cm5hbFNOXFxwYXJlbnRlZHVkYXRhLlJkYXRhIikNCmxvYWQoIkM6XFxVc2Vyc1xcbmluYXNcXE9uZURyaXZlIC0gUmFkYm91ZCBVbml2ZXJzaXRlaXRcXFJTQ1NcXFNvY2lhbCBOZXR3b3Jrc1xcbGFiam91cm5hbFNOXFx3YXZlMS5SZGF0YSIpDQpsb2FkKCJDOlxcVXNlcnNcXG5pbmFzXFxPbmVEcml2ZSAtIFJhZGJvdWQgVW5pdmVyc2l0ZWl0XFxSU0NTXFxTb2NpYWwgTmV0d29ya3NcXGxhYmpvdXJuYWxTTlxcd2F2ZTIuUmRhdGEiKQ0KYGBgDQoNCmBgYHtyLCBpbmNsdWRlPSBGQUxTRX0NCiNkZXBlbmRlbnQgdmFyaWFibGUgDQpuZXRNTEMgPC0gc2llbmFEZXBlbmRlbnQoYXJyYXkoZGF0YSA9IGMod2F2ZTEsIHdhdmUyKSwgZGltID0gYyhkaW0od2F2ZTEpLCAyKSkpDQojYmVoYXZpb3VyYWwgdmFyaWFibGUNCmJlaHkgPC0gZGYyICU+JSANCiAgZHBseXI6OnNlbGVjdCgic29jc2F0dzFuIiwgInNvY3NhdHcybiIpICU+JQ0KICBhcy5tYXRyaXgoKQ0KYmVoTUxDIDwtIHNpZW5hRGVwZW5kZW50KGJlaHksIHR5cGUgPSBjKCJiZWhhdmlvciIpKQ0KI2luZGVwZW5kZW50IHZhcmlhYmxlcw0KcGFyZW50X2VkdV9jY3YgPC0gY29Db3Zhcihhcy5udW1lcmljKGRmMiRwYXJlbnRzaGlnaGYpKQ0KZ2VuZGVyX2NjdiA8LSBjb0NvdmFyKGFzLm51bWVyaWMoZGYyJGdlbmRlcmYpKQ0KZXRobmljaXR5X2NjdiA8LSBjb0NvdmFyKGFzLm51bWVyaWMoZGYyJGV0aG5pY2l0eWYpKQ0KI2RhdGENCm15ZGF0YSA8LSBzaWVuYURhdGFDcmVhdGUobmV0TUxDLCBiZWhNTEMsIHBhcmVudF9lZHVfY2N2LCBnZW5kZXJfY2N2LCBldGhuaWNpdHlfY2N2KQ0KI2VmZmVjdHMgc3RydWN0dXJlDQpteWVmZiA8LSBnZXRFZmZlY3RzKG15ZGF0YSkNCmVmZmVjdHNEb2N1bWVudGF0aW9uKCkNCiM/DQpteUFsZ29yaXRobSA8LSAoc2llbmFBbGdvcml0aG1DcmVhdGUocHJvam5hbWUgPSAicmVzdWx0cyIpKQ0KYGBgDQoNCiMjIE1vZGVsIDA6IFNpbXBsZSBNb2RlbA0KDQpgYGB7cixpbmNsdWRlPSBGQUxTRX0NCnNpbXBsZV9tb2RlbCA8LSByZWFkUkRTKCJzaW1wbGVfbW9kZWwucmRzIikNCnJlc3VsdHNfbTAgPC0gZGF0YS5mcmFtZSgNCiAgZWZmZWN0ID0gc2ltcGxlX21vZGVsJGVmZmVjdHMkZWZmZWN0TmFtZSwNCiAgYiA9IHNpbXBsZV9tb2RlbCR0aGV0YSwNCiAgc2UgPSBzaW1wbGVfbW9kZWwkc2UsDQogIHQgPSBzaW1wbGVfbW9kZWwkdGhldGEgLyBzaW1wbGVfbW9kZWwkc2UsDQogIHAgPSAyICogcG5vcm0oLWFicyhzaW1wbGVfbW9kZWwkdGhldGEgLyBzaW1wbGVfbW9kZWwkc2UpKQ0KKQ0KYGBgDQoNClRoZSBudWxsIG1vZGVsIGNvbnZlcmdlcyBhdCAwLjEzLCB3aGljaCBpcyBhY2NlcHRhYmxlLiBUaGUgb3V0Y29tZXMgb2YgdGhlIHNpbXBsZSBtb2RlbCAoVGFibGUgMSkNCnNob3cgdGhpbmdzIHdlIGhhdmUgYWxyZWFkeSBsZWFybmVkIGZyb20gdGhlIGRlc2NyaXB0aXZlIHJlc3VsdHMgYW5kIHRoZSBuZXR3b3JrIGdyYXBoLCBuYW1lbHkgdGhhdA0KdGhlcmUgaXMgYSBzaWduaWZpY2FudGx5IGJpZ2dlciBjaGFuY2UgdGhhdCBvbmUgZG9lcyBub3Qgb2JzZXJ2ZSBhIHRpZSwgY29tcGFyZWQgdG8gdGhlIGNoYW5jZSB0aGF0DQpvbmUgd291bGQgb2JzZXJ2ZSBhIHRpZSwgdGh1cyBtZWFuaW5nIHRoYXQgZGVuc2l0eSBpcyB2ZXJ5IGxvdyAoKmIqID0gLTIuNjcsICpTRSogPSAwLjUzLCAqcCoNClw+LjAxKS4gVGhlIHJlY2lwcm9jaXR5IHN0YXRpc3RpYyBpcyBwb3NpdGl2ZSwgaW5kaWNhdGluZyB0aGF0IHRoZSBzdHVkZW50cyBpbiB0aGUgbmV0d29yayBkbyB0ZW5kDQp0byByZWNpcHJvY2F0ZSB0aGVpciB0aWUgKCpiKiA9IDIuMDksICpTRSogPSAwLjE0LCAqcCogXD4uMDEpDQoNCkNoYW5nZSBpbiBzb2NpYWwgc2F0aXNmYWN0aW9uIGlzIG5vdCBzaWduaWZpY2FudCBvbiBhIGxpbmVhciBsZXZlbCAoKmIqID0gMC4xNywgKlNFKiA9IDAuMTQsICpwKiA9DQowLjIyKSwgYnV0IGl0IGlzIHNpZ25pZmljYW50IG9uIGEgcXVhZHJhdGljIGxldmVsICgqYiogPSAtMC4zNCwgKlNFKiA9IDAuMTUsICpwID0qIDAuMDIpIGFuZCBnb2luZw0KaW50byBhIG5lZ2F0aXZlIGRpcmVjdGlvbiwgd2hpY2ggaW5kaWNhdGVzIHRoYXQgc3R1ZGVudHMgd2hvc2Ugc29jaWFsIHNhdGlzZmFjdGlvbiBpcyBiZWxvdyB0aGUgbWVhbg0KaGF2ZSBhIHN0cm9uZ2VyIHRlbmRlbmN5IHRvIG1vdmUgdG93YXJkcyB0byBtZWFuIHRoYW4gc3R1ZGVudHMgd2hvIGFyZSBhYm92ZSB0aGUgbWVhbi4NCg0KSG93ZXZlciwgdGhlc2Ugc3RhdGlzdGljcyBvbiB0aGVpciBvd24gZG8gbm90IG1lYW4gYSBsb3QgeWV0LCBhcyB0aGUgc3RhdGlzdGljcyBhcyBkZWZpbmVkIGluIHRoZQ0KbWV0aG9kb2xvZ3kgbmVlZCB0byBiZSBhZGRlZCB0byB0aGUgbW9kZWxzIGFuZCBzb21lIGFkZGl0aW9uYWwgY29udHJvbCBzdGF0aXN0aWNzLg0KDQoqKlRhYmxlIDE6KiogKlJlc3VsdHMgb2YgTW9kZWwgMCoNCg0KYGBge3J9DQpwYW5kZXI6OnBhbmRlcihyZXN1bHRzX20wKQ0KYGBgDQoNCiMjIE1vZGVsIDE6IEhvbW9nZW5laXR5IGluIFJlY2lwcm9jYXRlZCBUaWVzDQoNCmBgYHtyLCBpbmNsdWRlPSBGQUxTRX0NCm1vZGVsMSA8LSByZWFkUkRTKCJtb2RlbDEucmRzIikNCnJlc3VsdHNfbTEgPC0gZGF0YS5mcmFtZSgNCiAgZWZmZWN0ID0gbW9kZWwxJGVmZmVjdHMkZWZmZWN0TmFtZSwNCiAgYiA9IG1vZGVsMSR0aGV0YSwNCiAgc2UgPSBtb2RlbDEkc2UsDQogIHQgPSBtb2RlbDEkdGhldGEgLyBtb2RlbDEkc2UsDQogIHAgPSAyICogcG5vcm0oLWFicyhtb2RlbDEkdGhldGEgLyBtb2RlbDEkc2UpKQ0KKQ0KYGBgDQoNClRoZSBmaXJzdCBtb2RlbCBjb252ZXJnZXMgYXQgMC4xMiwgd2hpY2ggaXMgbG93ZXIgdGhhbiB0aGUgMC4yNSB0aHJlc2hvbGQgYW5kIGFsbCBjb252ZXJnZW5jZQ0KdC1yYXRpb3MgYXJlIHNtYWxsZXIgdGhhbiAwLjEsIHdpdGggdGhlIG1heGltdW0gY29udmVyZ2VuY2UgdC1yYXRpbyBvZiAtMC4wOS4NCg0KKipUYWJsZSAyOioqICpSZXN1bHRzIG9mIE1vZGVsIDEqDQoNCmBgYHtyfQ0KcGFuZGVyOjpwYW5kZXIocmVzdWx0c19tMSkNCmBgYA0KDQojIyBNb2RlbCAyOg0KDQpgYGB7ciwgaW5jbHVkZT0gRkFMU0V9DQptb2RlbDIgPC0gcmVhZFJEUygibW9kZWwyLnJkcyIpDQpyZXN1bHRzX20yIDwtIGRhdGEuZnJhbWUoDQogIGVmZmVjdCA9IG1vZGVsMiRlZmZlY3RzJGVmZmVjdE5hbWUsDQogIGIgPSBtb2RlbDIkdGhldGEsDQogIHNlID0gbW9kZWwyJHNlLA0KICB0ID0gbW9kZWwyJHRoZXRhIC8gbW9kZWwyJHNlLA0KICBwID0gMiAqIHBub3JtKC1hYnMobW9kZWwyJHRoZXRhIC8gbW9kZWwyJHNlKSkNCikNCmBgYA0KDQpHb29kbmVzcyBvZiBmaXQgZW4gUkkgdm9vciBtb2RlbCAyIG9tZGF0IGRpdCBtZXQgY29udHJvbCB2YXJpYWJsZXMgaXMNCg0KKipUYWJsZSAyOioqICpSZXN1bHRzIG9mIE1vZGVsIDEqDQoNCmBgYHtyfQ0KcGFuZGVyOjpwYW5kZXIocmVzdWx0c19tMikNCmBgYA0KDQpgYGB7ciwgaW5jbHVkZT0gRkFMU0V9DQpnb2ZpMiA8LSBzaWVuYUdPRihtb2RlbDIsIEluZGVncmVlRGlzdHJpYnV0aW9uLCB2ZXJib3NlID0gRkFMU0UsIGpvaW4gPSBUUlVFLCB2YXJOYW1lID0gIm5ldE1MQyIpDQpnb2ZvMiA8LSBzaWVuYUdPRihtb2RlbDIsIE91dGRlZ3JlZURpc3RyaWJ1dGlvbiwgdmVyYm9zZSA9IEZBTFNFLCBqb2luID0gVFJVRSwgdmFyTmFtZSA9ICJuZXRNTEMiKQ0KZ29mMnRjIDwtIHNpZW5hR09GKG1vZGVsMiwgVHJpYWRDZW5zdXMsIHZlcmJvc2UgPSBGQUxTRSwgam9pbiA9IFRSVUUsIHZhck5hbWUgPSAibmV0TUxDIikNClJJMiA8LSBpbnRlcnByZXRfc2l6ZShtb2RlbDIsIGRhdGEgPSBteWRhdGEsIHRoZXRhID0gdGhldGEuZXZhbCwgYWRkUGllQ2hhcnQgPSBULCBsZWdlbmQgPSBULCBnZXRDaGFuZ2VTdGF0cyA9IFQpDQpgYGANCg0KIyMjICoqRmlndXJlIDI6KiogKkdvb2RuZXNzIE9mIEZpdCBmb3IgTW9kZWwgMiogey50YWJzZXQgLnRhYnNldC1mYWRlfQ0KDQojIyMjIEluZGVncmVlIGRpc3RyaWJ1dGlvbg0KDQpgYGB7cn0NCnBsb3QoZ29maTIpDQpgYGANCg0KIyMjIyBPdXRkZWdyZWUgZGlzdHJpYnV0aW9uDQoNCmBgYHtyfQ0KcGxvdChnb2ZvMikNCmBgYA0KDQojIyMjIFRyaWFkQ2Vuc3VzDQoNCmBgYHtyfQ0KcGxvdChnb2YydGMsIGNlbnRlciA9IFQsIHNjYWxlID0gVCkNCmBgYA0KDQojIyMgIHsudW5saXN0ZWQgLnVubnVtYmVyZWR9DQoNCiMjIyAqKkZpZ3VyZSAzOioqICpSZWxhdGl2ZSBJbmZsdWVuY2UqIHsudGFic2V0IC50YWJzZXQtZmFkZX0NCg0KIyMjIyBSZWxhdGl2ZSBpbmZsdWVuY2Ugb24gbmV0d29yaw0KDQpgYGB7cn0NCnBsb3QoUkkyW1sxXV0sIGFkZFBpZUNoYXJ0ID0gVFJVRSwgbGVnZW5kQ29sdW1ucyA9IDMpDQpgYGANCg0KIyMjIyBSZWxhdGl2ZSBpbmZsdWVuY2Ugb24gYmVoYXZpb3VyDQoNCmBgYHtyfQ0KcGxvdChSSTJbWzJdXSwgYWRkUGllQ2hhcnQgPSBUUlVFLCBsZWdlbmRDb2x1bW5zID0gMykNCmBgYA0KDQojIyMgIHsudW5saXN0ZWQgLnVubnVtYmVyZWR9DQoNCiMjIE1vZGVsIDM6IFJlY2lwcm9jaXR5IGFuZCBzb2NpYWwgc2F0aXNmYWN0aW9uDQoNCmBgYHtyLCBpbmNsdWRlPSBGQUxTRX0NCm1vZGVsMyA8LSByZWFkUkRTKCJtb2RlbDMucmRzIikNCnJlc3VsdHNfbTMgPC0gZGF0YS5mcmFtZSgNCiAgZWZmZWN0ID0gbW9kZWwzJGVmZmVjdHMkZWZmZWN0TmFtZSwNCiAgYiA9IG1vZGVsMyR0aGV0YSwNCiAgc2UgPSBtb2RlbDMkc2UsDQogIHQgPSBtb2RlbDMkdGhldGEgLyBtb2RlbDMkc2UsDQogIHAgPSAyICogcG5vcm0oLWFicyhtb2RlbDMkdGhldGEgLyBtb2RlbDMkc2UpKQ0KKQ0KYGBgDQoNClRoZSBmaXJzdCBtb2RlbCBpcyB1c2VkIHRvIGxvb2sgYXQgd2hldGhlciByZWNpcHJvY2F0ZWQgdGllcyBhcmUgbW9yZSBsaWtlbHkgdG8gb2NjdXIgYW1vbmcgc3R1ZGVudHMNCndob3NlIHBhcmVudHMgaGF2ZSB0aGUgc2FtZSBlZHVjYXRpb25hbCBsZXZlbC4NCg0KKipUYWJsZSA0OioqICpSZXN1bHRzIG9mIE1vZGVsIDMqDQoNCmBgYHtyfQ0KcGFuZGVyOjpwYW5kZXIocmVzdWx0c19tMykNCmBgYA0KDQpgYGB7ciwgaW5jbHVkZT0gRkFMU0V9DQpnb2ZiMyA8LSBzaWVuYUdPRihtb2RlbDMsIEJlaGF2aW9yRGlzdHJpYnV0aW9uLCB2ZXJib3NlID0gRkFMU0UsIGpvaW4gPSBUUlVFLCB2YXJOYW1lID0gImJlaE1MQyIpDQpSSTMgPC0gaW50ZXJwcmV0X3NpemUobW9kZWwzLCBkYXRhID0gbXlkYXRhLCB0aGV0YSA9IHRoZXRhLmV2YWwsIGFkZFBpZUNoYXJ0ID0gVCwgbGVnZW5kID0gVCwgZ2V0Q2hhbmdlU3RhdHMgPSBUKQ0KYGBgDQoNCioqRmlndXJlIDQ6KiogKkdvb2RuZXNzIE9mIEZpdCBmb3IgTW9kZWwgMywgQmVoYXZpb3VyYWwgRGlzdHJpYnV0aW9uKg0KDQpgYGB7cn0NCnBsb3QoZ29mYjMsIGNlbnRlciA9IFQsIHNjYWxlID0gVCkNCmBgYA0KDQojIyMgKipGaWd1cmUgNToqKiAqUmVsYXRpdmUgSW5mbHVlbmNlIGZvciBNb2RlbCAzKg0KDQojIyMjIFJlbGF0aXZlIGluZmx1ZW5jZSBvbiBiZWhhdmlvdXINCg0KYGBge3J9DQpwbG90KFJJM1tbMl1dLCBhZGRQaWVDaGFydCA9IFRSVUUsIGxlZ2VuZENvbHVtbnMgPSAzKQ0KYGBgDQoNCiMjIE1vZGVsIDQ6IEhvbW9nZW5laXR5IGluIFJlY2lwcm9jYXRlZCBUaWVzIHRpZXMgd2l0aCBjb250cm9sIHZhcmlhYmxlcw0KDQpgYGB7ciwgaW5jbHVkZT0gRkFMU0V9DQptb2RlbDQgPC0gcmVhZFJEUygibW9kZWw0LnJkcyIpDQpyZXN1bHRzX200IDwtIGRhdGEuZnJhbWUoDQogIGVmZmVjdCA9IG1vZGVsNCRlZmZlY3RzJGVmZmVjdE5hbWUsDQogIGIgPSBtb2RlbDQkdGhldGEsDQogIHNlID0gbW9kZWw0JHNlLA0KICB0ID0gbW9kZWw0JHRoZXRhIC8gbW9kZWw0JHNlLA0KICBwID0gMiAqIHBub3JtKC1hYnMobW9kZWw0JHRoZXRhIC8gbW9kZWw0JHNlKSkNCikNCmBgYA0KDQoqKlRhYmxlIDU6KiogKlJlc3VsdHMgb2YgTW9kZWwgNCoNCg0KYGBge3J9DQpwYW5kZXI6OnBhbmRlcihyZXN1bHRzX200KQ0KYGBgDQoNCmBgYHtyLCBpbmNsdWRlPSBGQUxTRX0NCmdvZmI0IDwtIHNpZW5hR09GKG1vZGVsNCwgQmVoYXZpb3JEaXN0cmlidXRpb24sIHZlcmJvc2UgPSBGQUxTRSwgam9pbiA9IFRSVUUsIHZhck5hbWUgPSAiYmVoTUxDIikNClJJNCA8LSBpbnRlcnByZXRfc2l6ZShtb2RlbDQsIGRhdGEgPSBteWRhdGEsIHRoZXRhID0gdGhldGEuZXZhbCwgYWRkUGllQ2hhcnQgPSBULCBsZWdlbmQgPSBULCBnZXRDaGFuZ2VTdGF0cyA9IFQpDQpgYGANCg0KIyMjICoqRmlndXJlIDY6KiogKkdvb2RuZXNzIE9mIEZpdCBmb3IgTW9kZWwgNCoNCg0KIyMjIyBCZWhhdmlvdXIgZGlzdHJpYnV0aW9uDQoNCmBgYHtyfQ0KcGxvdChnb2ZiNCkNCmBgYA0KDQojIyMgKipGaWd1cmUgNzoqKiAqUmVsYXRpdmUgSW5mbHVlbmNlKg0KDQojIyMjIFJlbGF0aXZlIGluZmx1ZW5jZSBvbiBiZWhhdmlvdXINCg0KYGBge3J9DQpwbG90KFJJNFtbMl1dLCBhZGRQaWVDaGFydCA9IFRSVUUsIGxlZ2VuZENvbHVtbnMgPSAxKQ0KYGBgDQoNCiMjIyAgey51bmxpc3RlZCAudW5udW1iZXJlZH0NCg0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KDQojIFJDb2RlDQoNCiMjIE1vZGVsIDA6IFNpbXBsZSBNb2RlbA0KDQpgYGB7ciwgZXZhbD0gRkFMU0V9DQpzaW1wbGVfbW9kZWwgPC0gc2llbmEwNyhteUFsZ29yaXRobSwgZGF0YSA9IG15ZGF0YSwgZWZmZWN0cyA9IG15ZWZmLCB0aGV0YUJvdW5kID0gMTAwMDAsIHJldHVybkRlcHMgPSBUKQ0KI3NhdmVSRFMoc2ltcGxlX21vZGVsLCAic2ltcGxlX21vZGVsLnJkcyIpDQpgYGANCg0KIyMgTW9kZWwgMTogSG9tb2dlbmVpdHkgaW4gcmVjaXByb2NhdGVkIHRpZXMNCg0KYGBge3IsIGluY2x1ZGU9IEZBTFNFfQ0KI2dvb2RuZXNzIG9mIGZpdCBwcmFjdGljYWxpdGllcw0KR2VvZGVzaWNEaXN0cmlidXRpb24gPC0gZnVuY3Rpb24oaSwgZGF0YSwgc2ltcywgcGVyaW9kLCBncm91cE5hbWUsIHZhck5hbWUsIGxldmxzID0gYygxOjUsIEluZiksIGN1bXVsYXRpdmUgPSBUUlVFLA0KICAgIC4uLikgew0KICAgIHggPC0gbmV0d29ya0V4dHJhY3Rpb24oaSwgZGF0YSwgc2ltcywgcGVyaW9kLCBncm91cE5hbWUsIHZhck5hbWUpDQogICAgcmVxdWlyZShuZXR3b3JrKQ0KICAgIHJlcXVpcmUoc25hKQ0KICAgIGEgPC0gc25hOjpnZW9kaXN0KHN5bW1ldHJpemUoeCkpJGdkaXN0DQogICAgaWYgKGN1bXVsYXRpdmUpIHsNCiAgICAgICAgZ2RpIDwtIHNhcHBseShsZXZscywgZnVuY3Rpb24oaSkgew0KICAgICAgICAgICAgc3VtKGEgPD0gaSkNCiAgICAgICAgfSkNCiAgICB9IGVsc2Ugew0KICAgICAgICBnZGkgPC0gc2FwcGx5KGxldmxzLCBmdW5jdGlvbihpKSB7DQogICAgICAgICAgICBzdW0oYSA9PSBpKQ0KICAgICAgICB9KQ0KICAgIH0NCiAgICBuYW1lcyhnZGkpIDwtIGFzLmNoYXJhY3RlcihsZXZscykNCiAgICBnZGkNCn0NCg0KIyBUaGUgZm9sbG93aW5nIGZ1bmN0aW9uIGlzIHRha2VuIGZyb20gdGhlIGhlbHAgcGFnZSBmb3Igc2llbmFUZXN0DQoNCnRlc3RhbGwgPC0gZnVuY3Rpb24oYW5zKSB7DQogICAgZm9yIChpIGluIHdoaWNoKGFucyR0ZXN0KSkgew0KICAgICAgICBzY3QgPC0gc2NvcmUuVGVzdChhbnMsIGkpDQogICAgICAgIGNhdChhbnMkcmVxdWVzdGVkRWZmZWN0cyRlZmZlY3ROYW1lW2ldLCAiXG4iKQ0KICAgICAgICBwcmludChzY3QpDQogICAgfQ0KICAgIGludmlzaWJsZShzY29yZS5UZXN0KGFucykpDQp9DQpgYGANCg0KYGBge3J9DQpteWVmZiA8LSBpbmNsdWRlRWZmZWN0cyhteWVmZiwgZWdvWCwgYWx0WCwgc2FtZVgsIHNhbWVYUmVjaXAsIGludGVyYWN0aW9uMSA9ICJwYXJlbnRfZWR1X2NjdiIpIA0KYGBgDQoNCmBgYHtyLCBldmFsID0gRkFMU0V9DQptb2RlbDEuMSA8LSBzaWVuYTA3KG15QWxnb3JpdGhtLCBkYXRhID0gbXlkYXRhLCBlZmZlY3RzID0gbXllZmYsIHRoZXRhQm91bmQgPSAxMDAwMCwgcmV0dXJuRGVwcyA9IFQpDQojc2F2ZVJEUyhtb2RlbDEuMSwgIm1vZGVsMS4xLnJkcyIpDQpgYGANCg0KYGBge3J9DQptb2RlbDEuMSA8LSByZWFkUkRTKCJtb2RlbDEuMS5yZHMiKQ0KZ29maTEuMSA8LSBzaWVuYUdPRihtb2RlbDEuMSwgSW5kZWdyZWVEaXN0cmlidXRpb24sIHZlcmJvc2UgPSBGQUxTRSwgam9pbiA9IFRSVUUsIHZhck5hbWUgPSAibmV0TUxDIikNCmdvZm8xLjEgPC0gc2llbmFHT0YobW9kZWwxLjEsIE91dGRlZ3JlZURpc3RyaWJ1dGlvbiwgdmVyYm9zZSA9IEZBTFNFLCBqb2luID0gVFJVRSwgdmFyTmFtZSA9ICJuZXRNTEMiKQ0KI2dvZjAuZ2QgPC0gc2llbmFHT0YobW9kZWwxLjEsIEdlb2Rlc2ljRGlzdHJpYnV0aW9uLCBjdW11bGF0aXZlID0gRkFMU0UsIHZlcmJvc2UgPSBGQUxTRSwgam9pbiA9IFRSVUUsIHZhck5hbWUgPSAibmV0TUxDIikNCiMgRG9ldCBoZXQgbmlldA0KZ29mMS4xLnRjIDwtIHNpZW5hR09GKG1vZGVsMS4xLCBUcmlhZENlbnN1cywgdmVyYm9zZSA9IEZBTFNFLCBqb2luID0gVFJVRSwgdmFyTmFtZSA9ICJuZXRNTEMiKQ0KYGBgDQoNCmBgYHtyfQ0KcGxvdChnb2ZpMS4xKQ0KcGxvdChnb2ZvMS4xKQ0KcGxvdChnb2YxLjEudGMsIGNlbnRlciA9IFQsIHNjYWxlID0gVCkNCmBgYA0KDQpXRUxMLCB0aGF0IGRvZXMgbm90IHZlcnkgZ29vZC4gQnV0IHRoYXQncyBub3Qgd2VpcmQsIGJlY2F1c2UgSSBoYXZlIG5vdCBhZGRlZCBhbnkgYWRkaXRpb25hbA0KZWZmZWN0cy4gTGV0J3MgYWRkIGEgdHJpYWQgZWZmZWN0IDopDQoNCmBgYHtyfQ0KbXllZmYgPC0gaW5jbHVkZUVmZmVjdHMobXllZmYsIGd3ZXNwRkYpIA0KYGBgDQoNCmBgYHtyLCBldmFsID0gRkFMU0V9DQptb2RlbDEuMiA8LSBzaWVuYTA3KG15QWxnb3JpdGhtLCBkYXRhID0gbXlkYXRhLCBlZmZlY3RzID0gbXllZmYsIHRoZXRhQm91bmQgPSAxMDAwMCwgcmV0dXJuRGVwcyA9IFQpDQojc2F2ZVJEUyhtb2RlbDEuMiwgIm1vZGVsMS4yLnJkcyIpDQpgYGANCg0KYGBge3J9DQptb2RlbDEuMiA8LSByZWFkUkRTKCJtb2RlbDEuMi5yZHMiKQ0KZ29maTEuMiA8LSBzaWVuYUdPRihtb2RlbDEuMiwgSW5kZWdyZWVEaXN0cmlidXRpb24sIHZlcmJvc2UgPSBGQUxTRSwgam9pbiA9IFRSVUUsIHZhck5hbWUgPSAibmV0TUxDIikNCmdvZm8xLjIgPC0gc2llbmFHT0YobW9kZWwxLjIsIE91dGRlZ3JlZURpc3RyaWJ1dGlvbiwgdmVyYm9zZSA9IEZBTFNFLCBqb2luID0gVFJVRSwgdmFyTmFtZSA9ICJuZXRNTEMiKQ0KZ29mMS4yLnRjIDwtIHNpZW5hR09GKG1vZGVsMS4xLCBUcmlhZENlbnN1cywgdmVyYm9zZSA9IEZBTFNFLCBqb2luID0gVFJVRSwgdmFyTmFtZSA9ICJuZXRNTEMiKQ0KYGBgDQoNCmBgYHtyfQ0KcGxvdChnb2ZpMS4yKQ0KcGxvdChnb2ZvMS4yKQ0KcGxvdChnb2YxLjIudGMsIGNlbnRlciA9IFQsIHNjYWxlID0gVCkNCmBgYA0KDQpBbm90aGVyIG9uZS4uLg0KDQpgYGB7cn0NCm15ZWZmMS4zIDwtIGluY2x1ZGVFZmZlY3RzKG15ZWZmLCBpblBvcCwgb3V0QWN0LCBvdXRJc28pIA0KYGBgDQoNCmBgYHtyLCBldmFsID0gRkFMU0V9DQptb2RlbDEuMyA8LSBzaWVuYTA3KG15QWxnb3JpdGhtLCBkYXRhID0gbXlkYXRhLCBlZmZlY3RzID0gbXllZmYxLjMsIHRoZXRhQm91bmQgPSAxMDAwMCwgcmV0dXJuRGVwcyA9IFQpDQojc2F2ZVJEUyhtb2RlbDEuMywgIm1vZGVsMS5yZHMiKQ0KYGBgDQoNCmBgYHtyfQ0KbW9kZWwxLjMgPC0gcmVhZFJEUygibW9kZWwxLnJkcyIpDQpnb2ZpMS4zIDwtIHNpZW5hR09GKG1vZGVsMS4zLCBJbmRlZ3JlZURpc3RyaWJ1dGlvbiwgdmVyYm9zZSA9IEZBTFNFLCBqb2luID0gVFJVRSwgdmFyTmFtZSA9ICJuZXRNTEMiKQ0KZ29mbzEuMyA8LSBzaWVuYUdPRihtb2RlbDEuMywgT3V0ZGVncmVlRGlzdHJpYnV0aW9uLCB2ZXJib3NlID0gRkFMU0UsIGpvaW4gPSBUUlVFLCB2YXJOYW1lID0gIm5ldE1MQyIpDQpnb2YxLjMudGMgPC0gc2llbmFHT0YobW9kZWwxLjMsIFRyaWFkQ2Vuc3VzLCB2ZXJib3NlID0gRkFMU0UsIGpvaW4gPSBUUlVFLCB2YXJOYW1lID0gIm5ldE1MQyIpDQpgYGANCg0KYGBge3J9DQpwbG90KGdvZmkxLjMpDQpwbG90KGdvZm8xLjMpDQpwbG90KGdvZjEuMy50YywgY2VudGVyID0gVCwgc2NhbGUgPSBUKQ0KYGBgDQoNCmBgYHtyfQ0KUkkgPC0gaW50ZXJwcmV0X3NpemUobW9kZWwxLCBkYXRhID0gbXlkYXRhLCB0aGV0YSA9IHRoZXRhLmV2YWwsIGFkZFBpZUNoYXJ0ID0gVCwgbGVnZW5kID0gVCwgZ2V0Q2hhbmdlU3RhdHMgPSBUKQ0KcGxvdChSSVtbMV1dLCBhZGRQaWVDaGFydCA9IFRSVUUsIGxlZ2VuZENvbHVtbnMgPSAzKQ0KcGxvdChSSVtbMl1dLCBhZGRQaWVDaGFydCA9IFRSVUUsIGxlZ2VuZENvbHVtbnMgPSAzKQ0KYGBgDQoNCiMjIE1vZGVsIDI6IEhvbW9nZW5laXR5IGluIHJlY2lwcm9jYXRlZCB0aWVzIHdpdGggY29udHJvbCB2YXJpYWJsZXMNCg0KYGBge3J9DQpteWVmZjIgPC0gaW5jbHVkZUVmZmVjdHMobXllZmYxLjMsIGVnb1gsIGFsdFgsIHNhbWVYLCBzYW1lWFJlY2lwLCBpbnRlcmFjdGlvbjEgPSAiZ2VuZGVyX2NjdiIpDQpteWVmZjIgPC0gaW5jbHVkZUVmZmVjdHMobXllZmYxLjMsIGVnb1gsIGFsdFgsIHNhbWVYLCBzYW1lWFJlY2lwLCBpbnRlcmFjdGlvbjEgPSAiZXRobmljaXR5X2NjdiIpDQpteWVmZjINCmBgYA0KDQpgYGB7ciwgZXZhbCA9IEZBTFNFfQ0KbW9kZWwyIDwtIHNpZW5hMDcobXlBbGdvcml0aG0sIGRhdGEgPSBteWRhdGEsIGVmZmVjdHMgPSBteWVmZjIsIHRoZXRhQm91bmQgPSAxMDAwMCwgcmV0dXJuRGVwcyA9IFQpDQptb2RlbDINCiNzYXZlUkRTKG1vZGVsMiwgIm1vZGVsMi5yZHMiKQ0KYGBgDQoNCiMjIE1vZGVsIDM6IFJlY2lwcm9jaXR5IGFuZCBzb2NpYWwgc2F0aXNmYWN0aW9uDQoNCmBgYHtyfQ0KbXllZmYzIDwtIGluY2x1ZGVFZmZlY3RzKG15ZWZmMiwgbmFtZSA9ICJiZWhNTEMiLCByZWNpcERlZywgYXZSZWNBbHQsIGludGVyYWN0aW9uMSA9ICJuZXRNTEMiKQ0KbXllZmYzDQpgYGANCg0KYGBge3IsIGV2YWwgPSBGQUxTRX0NCm1vZGVsMyA8LSBzaWVuYTA3KG15QWxnb3JpdGhtLCBkYXRhID0gbXlkYXRhLCBlZmZlY3RzID0gbXllZmYzLCB0aGV0YUJvdW5kID0gMTAwMDAsIHJldHVybkRlcHMgPSBUKQ0KbW9kZWwzDQojc2F2ZVJEUyhtb2RlbDMsICJtb2RlbDMucmRzIikNCmBgYA0KDQojIyBNb2RlbCA0OiBSZWNpcHJvY2l0eSBiZXR3ZWVuIHNhbWUgY292YXJpYXRlcyBhbmQgc29jaWFsIHNhdGlzZmFjdGlvbg0KDQpgYGB7cn0NCm15ZWZmNCA8LSBzZXRfZWZmZWN0KG15ZWZmMywgbGlzdChhdlJlY0FsdFNhbWVYLCBhdlNhbWVYUmVjQWx0KSwgZGVwdmFyID0gImJlaE1MQyIsIGNvdmFyMSA9ICJwYXJlbnRfZWR1X2NjdiIsIGNvdmFyMiA9ICJuZXRNTEMiKQ0KbXllZmY0DQpgYGANCg0KYGBge3IsIGV2YWwgPSBGQUxTRX0NCm1vZGVsNCA8LSBzaWVuYTA3KG15QWxnb3JpdGhtLCBkYXRhID0gbXlkYXRhLCBlZmZlY3RzID0gbXllZmY0LCB0aGV0YUJvdW5kID0gMTAwMDAsIHJldHVybkRlcHMgPSBUKQ0KbW9kZWw0DQojc2F2ZVJEUyhtb2RlbDQsICJtb2RlbDQucmRzIikNCmBgYA0KDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQoNCiMgUmVmZXJlbmNlcw0KDQo6OjogOjo6Og0KOjo6DQo=</div>
 
 
 </div>

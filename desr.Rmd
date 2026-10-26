@@ -1,22 +1,17 @@
 ---
-title: "Descriptive Results"
+title: "Final Project - Descriptive Results"
 author: "by: Nina Sneijers"
 bibliography: references.bib
 editor_options: 
   markdown: 
-    wrap: 72
+    wrap: 100
 ---
 # Descriptive Results
 
 ## Population characteristics
+ From the population of 121 students, 75% of the students had at least one parents that had enjoyed higher education. 65.3% of the student population was female and 34.7% of the students was male. No one said they identified as non-binary. The biggest ethnic groups were Asian (41.3%), white (29.7%), black (12.4%) and Hispanic (10.7%). Furthermore, 5% was multiracial and one student was Hawaiian. 
 
-From the population of 121 students, 34.7% of the students was male and
-65.3% was female. No one said they identified as non-binary. In terms of
-parental education level, 75% of the students had at least one parents
-that had enjoyed higher education.
-
-Average social satisfaction in the first wave was a 5.6 and for the
-second wave it was a 5.7.
+Average social satisfaction in the first wave was a 5.6 and for the second wave it was a 5.7.
 
 ## Network characteristics
 
@@ -48,6 +43,7 @@ When looking at how the nodes are divided, three somewhat bigger friendgroups (a
 When looking at social satisfaction, it is difficult to clearly see which nodes have been decreasing or increasing in their social satisfaction, except for those who are missing in one of the two rounds. Therefore, running a model might be more helpful in understanding whether there has been an effect of reciprocity on social satisfaction and whether this is strengthened by the fact that parental education level is the same. 
 
 
+------------------------------------------------------------------------
 # RCode
 ## Basics
 
@@ -160,12 +156,11 @@ layout = layout.fruchterman.reingold.grid(gw2)
      edge.color = colourrec1, 
      layout = layout,
     main = "Wave 1")
-    title(sub = "Note 1: Edge colour is black when reciprocated tie occurs between students with parents with different educational backgrounds\n and is violet when reciprocated tie occurs between students with parents with the same educational background.\nNote 2: Node size is based on social satisfaction, a small node indicates that social satisfaction was missing",
-          cex.sub = 1.1, 
-          font.sub = 3, 
-          )
-legend("topleft", c("Higher educated parent(s)", "No higher educated parents", "Missing"), pch = 21, col = "#777777", pt.bg = c("navy", "skyblue2", "grey75"), pt.cex = 2,
-    cex = 1.5, bty = "n", ncol = 1)
+   # title(sub = "Note 1: Edge colour is black when reciprocated tie occurs between students with parents with different educational backgrounds\n and is violet when reciprocated tie occurs between students with parents with the same educational background.\nNote 2: Node size is based on social satisfaction, a small node indicates that social satisfaction was missing",
+         # cex.sub = 1.1, 
+         # font.sub = 3)
+#legend("topleft", c("Higher educated parent(s)", "No higher educated parents", "Missing"), pch = 21, col = "#777777", pt.bg = c("navy", "skyblue2", "grey75"), pt.cex = 2,
+    #cex = 1.5, bty = "n", ncol = 1)
   plot.igraph(gw2,
      vertex.color = adjustcolor(parentedu, alpha.f = .5),
      vertex.frame.width = 1.5,
@@ -179,3 +174,9 @@ legend("topleft", c("Higher educated parent(s)", "No higher educated parents", "
 #ev.off()}
 
 ```
+------------------------------------------------------------------------
+
+# References
+
+::: ::::
+:::

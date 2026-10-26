@@ -1,87 +1,142 @@
 ---
-title: "Final Project"
+title: "Final Project - Data & Methods"
 author: "by: Nina Sneijers"
 bibliography: references.bib
 editor_options: 
   markdown: 
-    wrap: 72
+    wrap: 100
 ---
 
 # Data & Methods
 
 # Data Description
-For this research, the dataset of the Michigan Residential Community Survey was used. This survey was used to evaluate the Michigan Learning Communities and focussed, among other things, on the social satisfaction of their first-year students. For the sake of this course, only the data of one of the programs was used, from the first cohort (2022-2023). The pre-survey (Wave 1) could be answered from October 19 to November 19 and the post-survey (Wave 2) could be answered from March 3th to April 10th. 
 
-This specific program contained 121 students who answered at least one of these surveys. The response rate for the first wave was 91,474% and for the second wave it was 94,21%. Eleven students only answered the questions of the second wave and thirteen students only answered the questions of the first wave.
+For this research, the dataset of the Michigan Residential Community Survey was used. This survey
+was used to evaluate the Michigan Learning Communities and focussed, among other things, on the
+social satisfaction of their first-year students. For the sake of this course, only the data of one
+of the programs was used, from the first cohort (2022-2023). The pre-survey (Wave 1) could be
+answered from October 19 to November 19 and the post-survey (Wave 2) could be answered from March
+3th to April 10th.
+
+This specific program contained 121 students who answered at least one of these surveys. The
+response rate for the first wave was 91,474% and for the second wave it was 94,21%. Eleven students
+only answered the questions of the second wave and thirteen students only answered the questions of
+the first wave.
 
 ## Variables
 
-### Hanging out
-The reciprocated ties of the 'hanging out' variable are the dependent variable for the first hypothesis and an independent variable for the second and third hypothesis. The question asked for this variable was 'Which students in your MLC do you hang around with and talk to the most?'. Students could nominate up to ten of their fellow students. 
+**Hanging out**
 
-For the students that only participated in one of the two waves, it meant that if they were nominated by their fellow students anyways, this was still coded as a non-nomination (0), because they did not consent to participating in that specific wave. Additionally, their own nominations (which was an NA), were also coded as 0. This means that there could be some bias in the network structures. 
+The 'hanging out' variable is the network variable used for this study. For the second hypothesis,
+this variable is the dependent variable, for the third and fourth hypothesis, it is an independent
+variable. The question asked for this variable was 'Which students in your MLC do you hang around
+with and talk to the most?'. Students could nominate up to ten of their fellow students.
 
-### Social satisfaction
-Social satisfaction is the dependent variable for the second and third hypothesis. 
+For the students that only participated in one of the two waves, it meant that if they were
+nominated by their fellow students anyways, this was still coded as a non-nomination (0), because
+they did not consent to participating in that specific wave. Additionally, their own nominations
+(which was an NA), were also coded as 0. This means that there could be some bias in the network
+structures.
 
-Five questions were asked to measure the social satisfaction of the students. As two of these questions were asked as a negative (I feel left out of things, I am lonely), only the three positive questions (I have made some good friends at the U of M, I am happy with my friends at the U of M, I like how my social life is going this year) were taken into account for the sake of this course. Answered were proposed on a scale from 1 (Strongly disagree) to 7 (Strongly agree). The average of these three positives was taken to measure the social satisfaction of students. 
+**Social satisfaction**
 
-## Covariate: Parental Education Level
-Parental education level is one of the independent variables for the first and third hypothesis. Students had to answer what the highest education level was for both of their parents. For this study, these responses were first binary coded for both of the parents. If the highest education the parent had completed was 'trade/technical/vocational training' or less than this, the response was coded as 0, anything above that was coded as 1. Followingly, responses for parent 1 and parent 2 were taken together. If at least one of the parents had completed higher education, the variable was coded as 1 for the student. 
+Social satisfaction is the dependent behaviour variable for the second and third hypothesis. Five
+questions were asked to measure the social satisfaction of the students. As two of these questions
+were asked as a negative (I feel left out of things, I am lonely), only the three positive questions
+(I have made some good friends at the U of M, I am happy with my friends at the U of M, I like how
+my social life is going this year) were taken into account for the sake of this course. Answers were
+proposed on a scale from 1 (Strongly disagree) to 7 (Strongly agree). The average of these three
+positives was taken to measure the social satisfaction of students.
 
-## Control covariates
-To account for the influence of other factors on the hypotheses, gender and ethnicity were taken into account as control variables. 
+**Covariate: Parental Education Level**
+
+Parental education level is one of the independent variables for the first and third hypothesis.
+Students had to answer what the highest education level was for both of their parents. For this
+study, these responses were first binary coded for both of the parents. If the highest education the
+parent had completed was 'trade/technical/vocational training' or less than this, the response was
+coded as 0, anything above that was coded as 1. Followingly, responses for parent 1 and parent 2
+were taken together. If at least one of the parents had completed higher education, the variable was
+coded as 1 for the student.
+
+**Control variables**
+
+To account for the influence of other factors on the hypotheses, gender and ethnicity were taken
+into account as control variables.
 
 # Methods
-## Descriptives 
-As my first research question is about whether segregation based on parental education level occurs on the macro-level, I will look at two relevant segregation statistics for this: Coleman's homophily index and Moran's I. Additionally, I am interested in reciprocity, so I will also look into what that looks like for both of the waves and I will also report how many mutual dyads have occurred. Lastly, for some basic descriptives, the number of ties will be reported, as well as the density of the network in both waves. 
+
+## Descriptives
+
+As my first research question is about whether segregation based on parental education level occurs
+on the macro-level, I will look at two relevant segregation statistics for this: Coleman's homophily
+index and Moran's I. Additionally, I am interested in reciprocity, so I will also look into what
+that looks like for both of the waves and I will also report how many mutual dyads have occurred.
+Lastly, for some basic descriptives, the number of ties will be reported, as well as the density of
+the network in both waves.
 
 ## Explanatory
-I have done the exploratory analyses by making use of the Stochastic Actor-Oriented Models (SAOMs) with RSiena [@ripley2025].These model the evolution of network structures and in this case, also the behaviour of the agents. It does this through estimating 'rules' for the agents on how they change their ties or behaviour. These rules can be seen as the micro theory of action. Into my RSiena model, structural effects, covariate effects and behavioural effects have been taken into account. For each hypothesis, there are a couple of effects that will be taken into account.
 
-**Hypothesis 2** 
-The second research question aims to estimate to what extent reciprocated friendships occur between students whose parents have the same educational level and whether this is significant. For this model, I include sameX and sameXRecip and because the underlying mechanisms for sameX are egoX and altX, these are included as well. 
+I have done the exploratory analyses by making use of the Stochastic Actor-Oriented Models (SAOMs)
+with RSiena [@ripley2025].These model the evolution of network structures and in this case, also the
+behaviour of the agents. It does this through estimating 'rules' for the agents on how they change
+their ties or behaviour. These rules can be seen as the micro theory of action. Into my RSiena
+model, structural effects, covariate effects and behavioural effects have been taken into account.
+For each hypothesis, there are a couple of effects that will be taken into account.
 
-*EgoX takes into account how many out-degrees ego sends and how this relates to the average amount of out-degrees that a node with the same covariate send out. AltX looks at how many of the actors that i has a tie to, have the same covariate.* SameX then looks at how many of the ties that i has send out to actors j, have exactly the same value on their covariate [@ripley2025]. So, in this case, SameX looks at if I send out a tie to for example, four people, how many of these people have parents with the same educational level as my parents? sameXRecip, followingly, then looks at how many of the reciprocated ties that i has, are with an actor that has the same covariate as them [@ripley2025]. 
+**Research question 2**
 
+The second research question aims to estimate to what extent reciprocated friendships occur between
+students whose parents have the same educational level and whether this is significant. For this
+model, I include sameX and sameXRecip and because the underlying mechanisms for sameX are egoX and
+altX, these are included as well.
 
-Hyp3: 
-- RecipDeg
-- avRecAlt
+The egoX variable takes into account the likelihood that ego gets a tie if it has a certain
+covariate. The altX variable assesses the chance that ego sends a tie to an alter with a certain
+covariate, regardless of ego's covariate. SameX then looks at how many of the ties that ego has send
+out to alter, have exactly the same value on their covariate [@ripley2025]. So, in this case, sameX
+looks at if a student whose parents have attended higher education, has send out ties to, for
+example, four people, how many of those ties are send to people whose parents have also attended
+higher education. SameXRecip, followingly, then looks at how many of the reciprocated ties that ego
+has, are with an alter that has the same covariate as them [@ripley2025].
 
-Hyp4: 
-- avSameXRecAlt
-- avRecAltSameX 
+**Research question 3**
 
+The third research question looks into the extent to which reciprocated ties between students have a
+positive effect on social satisfaction. For this model, I included RecipDeg and avRecAlt. The
+RecipDeg effect takes into account what the effect is of reciprocated relations on behaviour, the
+behaviour in this case being social satisfaction. The avRecAlt effect controls for the influence
+that alter's behaviour has on ego, by looking into the extent that ego is influenced by the people
+to whom it has a reciprocated tie. It takes ego's behaviour and multiplies it by the average
+behaviour of his reciprocated alters [ripley2025].
 
- - how models were constructed
- (Maybe move a part of this to methodology). The construction of the first model resulted from a process of trial-and-error. After checking a couple of Goodness-of-Fit distributions (see the RCode-section), it turns out that the model with the most statistics seemed the best, although the Goodness-Of-Fit distribution is still significant. The first model is used to look at whether reciprocated ties are more likely to occur among students whose parents have the same educational level. The additional effects included were the transitive triplets effect, the indegree-popularity effect, the outdegree-activity effect and the out-isolate effect
+**Research question 4**
 
+The last question builds on to the mechanism analysed in question 3, but then taking into account to
+what extent having a same covariate, in this case having parents with the same educational level,
+plays a role in the effect of the reciprocated tie on behaviour, in this case, social satisfaction.
+For this question, the effects avSameXRecAlt and avRecAltSameX are taken into account.
 
+The avSameXRecAlt effect looks into what the influence is of reciprocated ties between the same
+covariate on behaviour, meaning, in this case, what the influence is of a reciprocated tie between
+students whose parents have the same educational level, on the student's social satisfaction. The
+avRecAltSameX takes into account the average social satisfaction of all alters whose parents have
+the same educational level as ego, to whom ego has a reciprocated tie [ripley2025]. This effect thus
+also controls for the influence of alter's behaviour on ego, but with taking into account whether
+ego and alter have the same covariate or not.
 
-# Variables of interest
+**Model Construction**
 
-**Ego-level:**
+The construction of the first model resulted from a process of trial-and-error. After checking a
+couple of Goodness-of-Fit distributions (see the RCode-section in the exploratory results), it turns
+out that the model with the most statistics seemed the best, although the Goodness-Of-Fit
+distribution is still significant, indicating that the model does not fit very well. The additional
+effects included were the gwespFF effect, the indegree-popularity effect, the outdegree-activity
+effect and the out-isolate effect. Perhaps other control variables would have made the model better,
+but I also do not want to face the risk of over-controlling.
 
-- Educational level of parents (high/low)
-
-- Gender (control)
-
-- Ethnicity (control)
-
-- Social satisfaction (dependent variable)
-
-**On dyadic level:**
-
-- social satisfaction assimilation
-
-- dyadic similarity based on gender, ethnicity and parental education level
-
-**On a network level:**
-
-- Homogeneity based on parental education level
-------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
 
 # References
 
 ::: ::::
+:::

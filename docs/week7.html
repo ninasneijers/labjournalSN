@@ -717,59 +717,59 @@ myeff_edu &lt;- set_effect(myeff_basis, egoX, covar1=&quot;covar_parentedu&quot;
 <pre class="r"><code>myAlgorithm &lt;- sienaAlgorithmCreate(projname = &quot;MLC_initial&quot;)</code></pre>
 <pre><code>## If you use this algorithm object, siena07 will create/use an output file MLC_initial.txt .</code></pre>
 <pre class="r"><code>(ans_M0 &lt;- siena07(myAlgorithm, data = mydata, effects = myeff_basis, thetaBound = 10000, returnDeps = T))</code></pre>
+<pre><code>## Warning in phase3.2(z, x): *** Warning: Covariance matrix not positive definite ***</code></pre>
+<pre><code>## *** Standard errors not reliable ***</code></pre>
+<pre><code>## The following is approximately a linear combination</code></pre>
+<pre><code>## for which the data carries no information:
+## 1 * beta[6]</code></pre>
+<pre><code>## It is advisable to drop one or more of these effects.</code></pre>
 <pre><code>## Estimates, standard errors and convergence t-ratios
 ## 
 ##                                 Estimate    Standard   Convergence 
 ##                                               Error      t-ratio   
 ## 
 ## Rate parameters: 
-##   0       Rate parameter           3.4494 (   0.1884 )             
+##   0       Rate parameter           3.9001 ( 0.2133   )             
 ## 
 ## Other parameters: 
-##   1. eval outdegree (density)     61.4466 ( 377.9811 )   97.1081   
-##   2. eval reciprocity           -147.2952 ( 644.9243 )   -3.1815   
-##   3. eval transitive triplets      2.1952 (   0.4893 )   20.3459   
-##   4. eval indegree - popularity    0.0136 (   0.0267 )   16.8248   
-##   5. eval outdegree - activity     0.7004 (   5.9130 )   29.8982   
-##   6. eval network-isolate        833.1017 ( 237.2647 )   -2.7253   
-## 
-## Overall maximum convergence ratio:  193.0433 
-## 
-## 
-## Total of 2669 iteration steps.</code></pre>
-<pre class="r"><code>myAlgorithm &lt;- sienaAlgorithmCreate(projname = &quot;MLC_edu&quot;)</code></pre>
-<pre><code>## If you use this algorithm object, siena07 will create/use an output file MLC_edu.txt .</code></pre>
-<pre class="r"><code>(ans_M1 &lt;- siena07(myAlgorithm, data = mydata, effects = myeff_edu, thetaBound = 10000, returnDeps = T))</code></pre>
-<pre><code>## Warning in phase3.2(z, x): *** Warning: Covariance matrix not positive definite ***</code></pre>
-<pre><code>## *** Standard errors not reliable ***</code></pre>
-<pre><code>## The following is approximately a linear combination</code></pre>
-<pre><code>## for which the data carries no information:
-## -1 * beta[6]</code></pre>
-<pre><code>## It is advisable to drop one or more of these effects.</code></pre>
-<pre><code>## Estimates, standard errors and convergence t-ratios
-## 
-##                                               Estimate    Standard   Convergence 
-##                                                             Error      t-ratio   
-## 
-## Rate parameters: 
-##   0        Rate parameter                        4.2139 ( 0.2404   )             
-## 
-## Other parameters: 
-##    1. eval outdegree (density)                   6.5773 (     NA   )     7.1813  
-##    2. eval reciprocity                          16.4830 (     NA   )     5.4601  
-##    3. eval transitive triplets                 -23.3562 (     NA   )   -19.3621  
-##    4. eval indegree - popularity                -5.1012 (     NA   )     0.5695  
-##    5. eval outdegree - activity                  1.9465 (     NA   )     5.5328  
-##    6. eval network-isolate                    1608.7042 (     NA   )             
-##    7. eval covar_parentedu alter                11.1168 (     NA   )    -8.4663  
-##    8. eval covar_parentedu ego                  13.1913 (     NA   )    -3.1571  
-##    9. eval same covar_parentedu                -13.8695 (     NA   )    -6.4287  
-##   10. eval same covar_parentedu x reciprocity -122.5200 (     NA   )   -77.2511  
+##   1. eval outdegree (density)     90.1128 (     NA   )    17.3388  
+##   2. eval reciprocity            -26.0287 (     NA   )   -10.9718  
+##   3. eval transitive triplets   -145.5741 (     NA   )   -16.6467  
+##   4. eval indegree - popularity  -44.1720 (     NA   )     7.3148  
+##   5. eval outdegree - activity    14.5379 (     NA   )    11.1341  
+##   6. eval network-isolate       1083.2382 (     NA   )             
 ## 
 ## Overall maximum convergence ratio:        NA</code></pre>
 <pre><code>## Warning in doTryCatch(return(expr), name, parentenv, handler): 
 ## Warning:*** Warning: Noninvertible estimated covariance matrix ***</code></pre>
 <pre><code>## 
+## Total of 2669 iteration steps.</code></pre>
+<pre class="r"><code>myAlgorithm &lt;- sienaAlgorithmCreate(projname = &quot;MLC_edu&quot;)</code></pre>
+<pre><code>## If you use this algorithm object, siena07 will create/use an output file MLC_edu.txt .</code></pre>
+<pre class="r"><code>(ans_M1 &lt;- siena07(myAlgorithm, data = mydata, effects = myeff_edu, thetaBound = 10000, returnDeps = T))</code></pre>
+<pre><code>## Estimates, standard errors and convergence t-ratios
+## 
+##                                               Estimate   Standard   Convergence 
+##                                                            Error      t-ratio   
+## 
+## Rate parameters: 
+##   0        Rate parameter                       6.3167 (   0.5092 )             
+## 
+## Other parameters: 
+##    1. eval outdegree (density)                  0.6310 (   1.4164 )    1.7645   
+##    2. eval reciprocity                          1.6011 (   0.3064 )   -1.5213   
+##    3. eval transitive triplets                  0.9310 (   0.2043 )    0.6161   
+##    4. eval indegree - popularity                0.0180 (   0.0255 )    1.9408   
+##    5. eval outdegree - activity                -0.7130 (   0.3120 )   -1.8291   
+##    6. eval network-isolate                    891.0630 ( 251.1420 )   -1.0217   
+##    7. eval covar_parentedu alter                0.2427 (   0.1976 )   -0.9309   
+##    8. eval covar_parentedu ego                 -4.1631 (   1.7877 )   -9.3157   
+##    9. eval same covar_parentedu                 0.1884 (   0.1637 )   -0.6149   
+##   10. eval same covar_parentedu x reciprocity  -0.6573 (   0.3731 )   -2.3395   
+## 
+## Overall maximum convergence ratio:   20.7742 
+## 
+## 
 ## Total of 2926 iteration steps.</code></pre>
 <pre class="r"><code>#myAlgorithm &lt;- sienaAlgorithmCreate(projname = &quot;MLC_gender&quot;)
 #(ans_M2 &lt;- siena07(myAlgorithm, data = mydata, effects = myeff_gender, thetaBound = 1000, returnDeps = T))
@@ -802,19 +802,20 @@ think it would be nice to take a look at it together.</p>
 ##                                               Error      t-ratio   
 ## 
 ## Rate parameters: 
-##   0       Rate parameter           3.4494 (   0.1884 )             
+##   0       Rate parameter           3.9001 ( 0.2133   )             
 ## 
 ## Other parameters: 
-##   1. eval outdegree (density)     61.4466 ( 377.9811 )   97.1081   
-##   2. eval reciprocity           -147.2952 ( 644.9243 )   -3.1815   
-##   3. eval transitive triplets      2.1952 (   0.4893 )   20.3459   
-##   4. eval indegree - popularity    0.0136 (   0.0267 )   16.8248   
-##   5. eval outdegree - activity     0.7004 (   5.9130 )   29.8982   
-##   6. eval network-isolate        833.1017 ( 237.2647 )   -2.7253   
+##   1. eval outdegree (density)     90.1128 (     NA   )    17.3388  
+##   2. eval reciprocity            -26.0287 (     NA   )   -10.9718  
+##   3. eval transitive triplets   -145.5741 (     NA   )   -16.6467  
+##   4. eval indegree - popularity  -44.1720 (     NA   )     7.3148  
+##   5. eval outdegree - activity    14.5379 (     NA   )    11.1341  
+##   6. eval network-isolate       1083.2382 (     NA   )             
 ## 
-## Overall maximum convergence ratio:  193.0433 
-## 
-## 
+## Overall maximum convergence ratio:        NA</code></pre>
+<pre><code>## Warning in doTryCatch(return(expr), name, parentenv, handler): 
+## Warning:*** Warning: Noninvertible estimated covariance matrix ***</code></pre>
+<pre><code>## 
 ## Total of 2669 iteration steps.</code></pre>
 <p>This null model has a very high convergence ratio of 20.96. I am not
 sure whether this is expected or very strange. The RSiena model results
@@ -834,28 +835,27 @@ isolates (b = 636.65, SE = 230.39).</p>
 <pre class="r"><code>ans_M1</code></pre>
 <pre><code>## Estimates, standard errors and convergence t-ratios
 ## 
-##                                               Estimate    Standard   Convergence 
-##                                                             Error      t-ratio   
+##                                               Estimate   Standard   Convergence 
+##                                                            Error      t-ratio   
 ## 
 ## Rate parameters: 
-##   0        Rate parameter                        4.2139 ( 0.2404   )             
+##   0        Rate parameter                       6.3167 (   0.5092 )             
 ## 
 ## Other parameters: 
-##    1. eval outdegree (density)                   6.5773 (     NA   )     7.1813  
-##    2. eval reciprocity                          16.4830 (     NA   )     5.4601  
-##    3. eval transitive triplets                 -23.3562 (     NA   )   -19.3621  
-##    4. eval indegree - popularity                -5.1012 (     NA   )     0.5695  
-##    5. eval outdegree - activity                  1.9465 (     NA   )     5.5328  
-##    6. eval network-isolate                    1608.7042 (     NA   )             
-##    7. eval covar_parentedu alter                11.1168 (     NA   )    -8.4663  
-##    8. eval covar_parentedu ego                  13.1913 (     NA   )    -3.1571  
-##    9. eval same covar_parentedu                -13.8695 (     NA   )    -6.4287  
-##   10. eval same covar_parentedu x reciprocity -122.5200 (     NA   )   -77.2511  
+##    1. eval outdegree (density)                  0.6310 (   1.4164 )    1.7645   
+##    2. eval reciprocity                          1.6011 (   0.3064 )   -1.5213   
+##    3. eval transitive triplets                  0.9310 (   0.2043 )    0.6161   
+##    4. eval indegree - popularity                0.0180 (   0.0255 )    1.9408   
+##    5. eval outdegree - activity                -0.7130 (   0.3120 )   -1.8291   
+##    6. eval network-isolate                    891.0630 ( 251.1420 )   -1.0217   
+##    7. eval covar_parentedu alter                0.2427 (   0.1976 )   -0.9309   
+##    8. eval covar_parentedu ego                 -4.1631 (   1.7877 )   -9.3157   
+##    9. eval same covar_parentedu                 0.1884 (   0.1637 )   -0.6149   
+##   10. eval same covar_parentedu x reciprocity  -0.6573 (   0.3731 )   -2.3395   
 ## 
-## Overall maximum convergence ratio:        NA</code></pre>
-<pre><code>## Warning in doTryCatch(return(expr), name, parentenv, handler): 
-## Warning:*** Warning: Noninvertible estimated covariance matrix ***</code></pre>
-<pre><code>## 
+## Overall maximum convergence ratio:   20.7742 
+## 
+## 
 ## Total of 2926 iteration steps.</code></pre>
 <hr />
 </div>

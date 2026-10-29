@@ -88,7 +88,7 @@ For each hypothesis, there are a couple of effects that will be taken into accou
 The second research question aims to estimate to what extent reciprocated friendships occur between
 students whose parents have the same educational level and whether this is significant. For this
 model, I include sameX and sameXRecip and because the underlying mechanisms for sameX are egoX and
-altX, these are included as well.
+altX, these were initially included as well.
 
 The egoX variable takes into account the likelihood that ego gets a tie if it has a certain
 covariate. The altX variable assesses the chance that ego sends a tie to an alter with a certain
@@ -96,7 +96,7 @@ covariate, regardless of ego's covariate. SameX then looks at how many of the ti
 out to alter, have exactly the same value on their covariate [@ripley2025]. So, in this case, sameX
 looks at if a student whose parents have attended higher education, has send out ties to, for
 example, four people, how many of those ties are send to people whose parents have also attended
-higher education. SameXRecip, followingly, then looks at how many of the reciprocated ties that ego
+higher education. sameXRecip, followingly, then looks at how many of the reciprocated ties that ego
 has, are with an alter that has the same covariate as them [@ripley2025].
 
 **Research question 3**
@@ -130,9 +130,9 @@ The construction of the first model resulted from a process of trial-and-error. 
 couple of Goodness-of-Fit distributions (see the RCode-section in the exploratory results), it turns
 out that the model with the most statistics seemed the best, although the Goodness-Of-Fit
 distribution is still significant, indicating that the model does not fit very well. The additional
-effects included were the gwespFF effect, the indegree-popularity effect, the outdegree-activity
-effect and the out-isolate effect. Perhaps other control variables would have made the model better,
-but I also do not want to face the risk of over-controlling.
+effects included were the gwespFF effect, which accounts for transitivity, the indegree-popularity
+effect, the outdegree-activity effect and the out-isolate effect. Perhaps other control variables
+would have made the model better, but I also do not want to face the risk of over-controlling.
 
 ----------------------------------------------------------------------------------------------------
 

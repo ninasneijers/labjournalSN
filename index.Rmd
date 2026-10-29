@@ -59,7 +59,7 @@ We, Jochem Tolsma and Bas Hofstra, use this repository for our Social Network An
 :::
 
 ::: {.column width="50%"}
-![](images/cover.jpg)
+![](C:\Users\ninas\OneDrive - Radboud Universiteit\RSCS\Social Networks\shark.jpg)
 :::
 :::::
 

@@ -47,7 +47,6 @@ ethnicity_ccv <- coCovar(as.numeric(df2$ethnicityf))
 mydata <- sienaDataCreate(netMLC, behMLC, parent_edu_ccv, gender_ccv, ethnicity_ccv)
 #effects structure
 myeff <- getEffects(mydata)
-effectsDocumentation()
 #?
 myAlgorithm <- (sienaAlgorithmCreate(projname = "results"))
 ```
@@ -63,28 +62,80 @@ results_m0 <- data.frame(
   t = simple_model$theta / simple_model$se,
   p = 2 * pnorm(-abs(simple_model$theta / simple_model$se))
 )
+simple_model
 ```
 
-The null model converges at 0.13, which is acceptable. The outcomes of the simple model (Table 1)
-show things we have already learned from the descriptive results and the network graph, namely that
-there is a significantly bigger chance that one does not observe a tie, compared to the chance that
-one would observe a tie, thus meaning that density is very low (*b* = -2.67, *SE* = 0.53, *p*
-\>.01). The reciprocity statistic is positive, indicating that the students in the network do tend
-to reciprocate their tie (*b* = 2.09, *SE* = 0.14, *p* \>.01)
+The null model converges at 0.13, which is acceptable. Convergence t-ratios remain below the 0.1
+threshold. The outcomes of the simple model (Table 1) show things we have already learned from the
+descriptive results and the network graph, namely that students in the network are forming generally
+very few ties, as the density is very low (*b* = -2.67, *SE* = 0.53, *p* \< .01). The reciprocity
+statistic is positive, indicating that if a tie is made, the students do tend to reciprocate these
+ties (*b* = 2.09, *SE* = 0.14, *p* \< .01).
 
-Change in social satisfaction is not significant on a linear level (*b* = 0.17, *SE* = 0.14, *p* =
-0.22), but it is significant on a quadratic level (*b* = -0.34, *SE* = 0.15, *p =* 0.02) and going
+Change in social satisfaction is not significant on a linear shape (*b* = 0.17, *SE* = 0.14, *p* =
+0.22), but it is significant on a quadratic shape (*b* = -0.34, *SE* = 0.15, *p =* 0.02) and going
 into a negative direction, which indicates that students whose social satisfaction is below the mean
 have a stronger tendency to move towards to mean than students who are above the mean.
-
-However, these statistics on their own do not mean a lot yet, as the statistics as defined in the
-methodology need to be added to the models and some additional control statistics.
 
 **Table 1:** *Results of Model 0*
 
 ```{r}
 pander::pander(results_m0)
 ```
+
+```{r, include= FALSE}
+gofi0 <- sienaGOF(simple_model, IndegreeDistribution, verbose = FALSE, join = TRUE, varName = "netMLC")
+gofo0 <- sienaGOF(simple_model, OutdegreeDistribution, verbose = FALSE, join = TRUE, varName = "netMLC")
+gof0tc <- sienaGOF(simple_model, TriadCensus, verbose = FALSE, join = TRUE, varName = "netMLC")
+gofb0 <- sienaGOF(simple_model, BehaviorDistribution, verbose = FALSE, join = TRUE, varName = "behMLC")
+```
+
+Goodness-of-fit testing helps me to ensure that the estimated SIENA-model accurately represents the
+observed data of the dependent variable, based on auxiliary statistics [@SNASS].
+
+The goodness-of-fit of the null-model achieves a p-value of 0.013 for the indegree distribution.
+From the plot can be seen that the model slightly underestimates the amount of actors with zero
+incoming ties.
+
+The outdegree distribution plot achieves a p-value of 0. From the plot can be seen that the model
+underestimates the amount of actors with zero out-going ties and overestimates the amount of actors
+with four or more outgoing ties.
+
+The TriadCensus plot also achieves a p-value of 0 and the plot illustrates that many of the triads
+are either highly under- or over-estimated. These results are not unexpected, as these are the plots
+for the null-model, with no theory-based on control-statistics added into it.
+
+Finally, the inital distribution for behaviour achieves a p-value of 0.017. From the plot returns
+that the model tends to overestimate the amount of people scoring a five or six on social
+satisfaction.
+
+### **Figure 2:** *Goodness Of Fit for Null Model* {.tabset .tabset-fade}
+
+#### Indegree distribution
+
+```{r}
+plot(gofi0)
+```
+
+#### Outdegree distribution
+
+```{r}
+plot(gofo0)
+```
+
+#### TriadCensus
+
+```{r}
+plot(gof0tc, center = T, scale = T)
+```
+
+#### Behaviour distribution
+
+```{r}
+plot(gofb0, center = T, scale = T)
+```
+
+###  {.unlisted .unnumbered}
 
 ## Model 1: Homogeneity in Reciprocated Ties
 
@@ -97,10 +148,33 @@ results_m1 <- data.frame(
   t = model1$theta / model1$se,
   p = 2 * pnorm(-abs(model1$theta / model1$se))
 )
+model1
 ```
 
 The first model converges at 0.12, which is lower than the 0.25 threshold and all convergence
-t-ratios are smaller than 0.1, with the maximum convergence t-ratio of -0.09.
+t-ratios are smaller than 0.1, with the maximum convergence t-ratio of -0.09. The underlying egoX
+and altX effects that were added previously, were taken out of the final model, as these effects
+were not significant. Density (*b* = -1.63, *SE* = 0.22) and reciprocity effects have (*b =* 1.86,
+*SE =* 0.23) have both decreased somewhat compared to the null-model, but still remain significant.
+The behavioural statistics have remained more or less the same as in the null model.
+
+All of the added control statistics were also significant. The gwespFF statistic accounted for
+transitivity and was positive (*b =* 1.38, *SE* = 0.15), indicating that the students in the network
+have the tendency for transitive closure. Indegree popularity was negative, but remains close to
+zero (*b =* -0.08, *SE* = 0.03), showing that students who receive many incoming ties are slighlty
+less likely to receive any additional ones. Outdegree activity was also negative and also remained
+close to zero (*b* = -0.07, *SE* = 0.02), indicating that students who sent out many ties, are less
+likely to send out more ties. Finally, the out-isolate effect was positive (*b* = 3.3, *SE =* 0.48).
+This effect accounts for the fact that students who have not send out any ties, have a different
+level of attractiveness for indegrees.
+
+There was no significant effect of same parental education level (*b =* -0.04, *SE* = 0.12, *p* =
+0.75), and the value was close to zero, showing that students are not likely to send out more ties
+to others whose parents have enjoyed the same education level. This is not unexpected, as the
+descriptive analysis also showed that there is no segregation in the network. The value for
+reciprocated ties is negative, indicating that students are less likely to reciprocate a tie with
+students whose parents have the same educational level. However, this effect was not significant (*b
+=* -0.31, *SE* = 0.32, *p* = 0.33).
 
 **Table 2:** *Results of Model 1*
 
@@ -119,11 +193,22 @@ results_m2 <- data.frame(
   t = model2$theta / model2$se,
   p = 2 * pnorm(-abs(model2$theta / model2$se))
 )
+model2
 ```
 
-Goodness of fit en RI voor model 2 omdat dit met control variables is
+The second model also takes into account the control variables and converges at 0.14, with all
+convergence t-ratios smaller than 0.1. For gender and ethnicity, the egoX and alterX effects were
+also not significant and therefore taken out of the model. For this model, density (*b* = -1.89, *SE
+=* 0.27) and reciprocity (*b* = 1.97, *SE* = 0.35) slightly increased again, remaining significant.
+The other control statistics, as well as the behavioural statistics, stayed more or less the same.
 
-**Table 2:** *Results of Model 1*
+The adding of the control variables did not affect the parent education p-values. The second
+hypothesis is therefore also rejected. The control variables show that students are only more likely
+to send out ties to students with the same gender (*b =* 0.29, *SE* = 0.13, *p* = 0.02), but there
+is no significant effect for this for ethnicity (*b* = 0.19, *SE* = 0.13, *p* = 0.13). Reciprocated
+ties did also not occur more between students with the same gender or ethnicity.
+
+**Table 3:** *Results of Model 2*
 
 ```{r}
 pander::pander(results_m2)
@@ -134,9 +219,22 @@ gofi2 <- sienaGOF(model2, IndegreeDistribution, verbose = FALSE, join = TRUE, va
 gofo2 <- sienaGOF(model2, OutdegreeDistribution, verbose = FALSE, join = TRUE, varName = "netMLC")
 gof2tc <- sienaGOF(model2, TriadCensus, verbose = FALSE, join = TRUE, varName = "netMLC")
 RI2 <- interpret_size(model2, data = mydata, theta = theta.eval, addPieChart = T, legend = T, getChangeStats = T)
+
 ```
 
-### **Figure 2:** *Goodness Of Fit for Model 2* {.tabset .tabset-fade}
+Goodness-of-Fit plots were generated for the whole model. The indegree-distribution plot now fits
+better than the first model and has a p-value of 0.08, which is a good thing. The plot shows that
+the amount of actors with zero in-degrees are still slightly underestimated and the amount of actors
+with one in-degree are slightly underestimated.
+
+The outdegree plot has a p-value of 0.003, which is better than the null-model out-degree plot. The
+amount of actors with one out-degree are slightly underestimated, while the amount of actors with 3
+or 4 out-degrees are slightly over-estimated.
+
+The TriadCensus plot still has a p-value of 0, though the plot is more fitting than that of the
+null-model. There can be seen that especially the 021U, 030C and 120U triads are over-estimated.
+
+### **Figure 3:** *Goodness Of Fit for Model 2* {.tabset .tabset-fade}
 
 #### Indegree distribution
 
@@ -156,23 +254,19 @@ plot(gofo2)
 plot(gof2tc, center = T, scale = T)
 ```
 
-###  {.unlisted .unnumbered}
+The relative influence measure can be used to assess the influence of each of the effects on network
+changes, relative to the other effects [@SNASS]. The plot reveals that the density, reciprocity,
+gwespFF, indegree popularity, outdegree activity and out-isolate effects have the biggest influence
+on network changes. This is no surprise, as these were also the effects that were significant.
+Moreover, the plot reveals what results have also shown, namely that same gender also has some
+influence on network changes. Parental education level does not seem to play a role at all, which is
+not surprising after the assessment of the results, and same ethnicity influences a small part.
 
-### **Figure 3:** *Relative Influence* {.tabset .tabset-fade}
-
-#### Relative influence on network
-
-```{r}
-plot(RI2[[1]], addPieChart = TRUE, legendColumns = 3)
-```
-
-#### Relative influence on behaviour
+**Figure 4:** *Relative influence of effects on the network*
 
 ```{r}
-plot(RI2[[2]], addPieChart = TRUE, legendColumns = 3)
+plot(RI2[[1]], addPieChart = TRUE, radius = 1, width = 2.5, height = 2.5, legendColumns = 1, cex.legend = 0.6)
 ```
-
-###  {.unlisted .unnumbered}
 
 ## Model 3: Reciprocity and social satisfaction
 
@@ -187,8 +281,22 @@ results_m3 <- data.frame(
 )
 ```
 
-The first model is used to look at whether reciprocated ties are more likely to occur among students
-whose parents have the same educational level.
+This model delves into the behaviour statistics and assesses the effect of reciprocated ties on
+social satisfaction. The model converges at 0.17 and none of the convergence t-ratios exceed 0.1.
+The values for change in social satisfaction for linear shape have not changed much, but have
+increased for the quadratic shape (*b* = -0.4, *SE* = 0.23, *p* = 0.08). However, interestingly
+enough, this result is not significant anymore. Thus, while the tendency of students whose social
+satisfaction scores below the mean to move towards the mean seems to have increased, this effect is
+not significant anymore now that influence effects have been added.
+
+The effect of the average social satisfaction of its reciprocated alters on ego is positive (*b* =
+0.77, *SE* = 0.71, *p* = 0.28), indicating that average social satisfaction of a student's friends
+influences their own social satisfaction. However, this effect was found not-significant.
+
+The effect I am interested in for the hypothesis is the reciprocated degree effect. This effect is
+negative, but has a value close to zero (*b* = -0.06, *SE =* 0.11, *p* = 0.54), indicating that
+reciprocated ties have a slightly negative effect on social satisfaction. This effect was, however,
+not significant, meaning that hypothesis 3 can also be rejected.
 
 **Table 4:** *Results of Model 3*
 
@@ -201,18 +309,24 @@ gofb3 <- sienaGOF(model3, BehaviorDistribution, verbose = FALSE, join = TRUE, va
 RI3 <- interpret_size(model3, data = mydata, theta = theta.eval, addPieChart = T, legend = T, getChangeStats = T)
 ```
 
-**Figure 4:** *Goodness Of Fit for Model 3, Behavioural Distribution*
+The Goodness of Fit distribution has a value of 0.059. This indicates that compared to the null
+model, this model has a better fit. However, the model still tends to overestimate the amount of
+people scoring a five or six on social satisfaction.
+
+**Figure 4:** *Goodness Of Fit for Model 3, Behaviour Distribution*
 
 ```{r}
 plot(gofb3, center = T, scale = T)
 ```
 
-### **Figure 5:** *Relative Influence for Model 3*
+The relative influence plot for the behavioural effects reveals that the quadratic shape effect
+plays the biggest role in a change of social satisfaction. Next to that, the average social
+satisfaction of someone's alters also plays a bigger role in these changes.
 
-#### Relative influence on behaviour
+**Figure 5:** *Relative influence of effects on behaviour*
 
 ```{r}
-plot(RI3[[2]], addPieChart = TRUE, legendColumns = 3)
+plot(RI3[[2]], addPieChart = TRUE, radius = 1, width = 2, height = 2, legendColumns = 1.2, cex.legend = 0.6)
 ```
 
 ## Model 4: Homogeneity in Reciprocated Ties ties with control variables
@@ -226,7 +340,25 @@ results_m4 <- data.frame(
   t = model4$theta / model4$se,
   p = 2 * pnorm(-abs(model4$theta / model4$se))
 )
+model4
 ```
+
+Model 4 converges at a ratio of 0.21 and its converged t-ratios remain below 0.1 The adding of the
+two effects have changed the effects of the linear and the quadratic shape. The effect of the linear
+shape has moved closer to zero (*b* = 0.06, *SE* = 0.25). The quadratic shape, to the contrary, has
+increased, though it is still not significant (*b* = -0.48, *SE* = 0.26, *p =* 0.06). Both the
+average influence of reciprocated alters effect (*b* = 0.83, *SE* = 1.17) and the effect of
+reciprocated ties on social satisfaction (*b* = -0.29, *SE =* 0.26) have become stronger, though
+remain not significant.
+
+The effect of reciprocated ties between students whose parents have the same educational level on
+social satisfaction is positive (*b =* 1.43, *SE* = 1.43, *p* = 0.33), indicating that if students
+befriend other students whose parents have the same educational level, this increases their social
+satisfaction. The effect was, however, not significant. The effect of average social satisfaction of
+students whose parents have enjoyed the same education level with whom ego has a reciprocated tie is
+close to zero (*b* = -0.01, *SE* = 1.29, *p* = 0.99), indicating that this has no influence on a
+student's change in social satisfaction. Following from this, there can be concluded that hypothesis
+4 is also rejected.
 
 **Table 5:** *Results of Model 4*
 
@@ -239,23 +371,28 @@ gofb4 <- sienaGOF(model4, BehaviorDistribution, verbose = FALSE, join = TRUE, va
 RI4 <- interpret_size(model4, data = mydata, theta = theta.eval, addPieChart = T, legend = T, getChangeStats = T)
 ```
 
-### **Figure 6:** *Goodness Of Fit for Model 4*
+Interestingly enough, the Goodness of Fit of this model is, with a p-value of 0.036, a worse fit
+than the previous one. Here as well, the model tends to overestimate the amount of people scoring a
+5 or 6 on social satisfaction. This Goodness of Fit indicates that the added variables did not help
+with explaining change in behaviour for the network.
 
-#### Behaviour distribution
+**Figure 6:** *Goodness of Fit for Model 4, Behaviour distribution*
 
 ```{r}
 plot(gofb4)
 ```
 
-### **Figure 7:** *Relative Influence*
+As for Figure 5, there can be seen in Figure 7 as well that the quadratic shape effect has the most
+influence on changes in behaviour. What also follows from the figure is that having reciprocted ties
+between alters with the same parental education level also has quite some influence on changes in
+social satisfaction, more than having reciprocated ties in general or the average social
+satisfaction of one's alters.
 
-#### Relative influence on behaviour
+**Figure 7:** Relative influence on behaviour
 
 ```{r}
-plot(RI4[[2]], addPieChart = TRUE, legendColumns = 1)
+plot(RI4[[2]], addPieChart = TRUE, legendColumns = 1, radius = 1, width = 2, height = 2, cex.legend = 0.6)
 ```
-
-###  {.unlisted .unnumbered}
 
 ----------------------------------------------------------------------------------------------------
 
@@ -270,41 +407,9 @@ simple_model <- siena07(myAlgorithm, data = mydata, effects = myeff, thetaBound 
 
 ## Model 1: Homogeneity in reciprocated ties
 
-```{r, include= FALSE}
-#goodness of fit practicalities
-GeodesicDistribution <- function(i, data, sims, period, groupName, varName, levls = c(1:5, Inf), cumulative = TRUE,
-    ...) {
-    x <- networkExtraction(i, data, sims, period, groupName, varName)
-    require(network)
-    require(sna)
-    a <- sna::geodist(symmetrize(x))$gdist
-    if (cumulative) {
-        gdi <- sapply(levls, function(i) {
-            sum(a <= i)
-        })
-    } else {
-        gdi <- sapply(levls, function(i) {
-            sum(a == i)
-        })
-    }
-    names(gdi) <- as.character(levls)
-    gdi
-}
-
-# The following function is taken from the help page for sienaTest
-
-testall <- function(ans) {
-    for (i in which(ans$test)) {
-        sct <- score.Test(ans, i)
-        cat(ans$requestedEffects$effectName[i], "\n")
-        print(sct)
-    }
-    invisible(score.Test(ans))
-}
-```
-
 ```{r}
-myeff <- includeEffects(myeff, egoX, altX, sameX, sameXRecip, interaction1 = "parent_edu_ccv") 
+myeff1<- includeEffects(myeff, egoX, altX, sameX, sameXRecip, interaction1 = "parent_edu_ccv") 
+myeff <- includeEffects(myeff, sameX, sameXRecip, interaction1 = "parent_edu_ccv") #egoX and altX not significant so can be left out
 ```
 
 ```{r, eval = FALSE}
@@ -336,6 +441,7 @@ myeff <- includeEffects(myeff, gwespFF)
 
 ```{r, eval = FALSE}
 model1.2 <- siena07(myAlgorithm, data = mydata, effects = myeff, thetaBound = 10000, returnDeps = T)
+model1.2
 #saveRDS(model1.2, "model1.2.rds")
 ```
 
@@ -360,6 +466,7 @@ myeff1.3 <- includeEffects(myeff, inPop, outAct, outIso)
 
 ```{r, eval = FALSE}
 model1.3 <- siena07(myAlgorithm, data = mydata, effects = myeff1.3, thetaBound = 10000, returnDeps = T)
+model1.3
 #saveRDS(model1.3, "model1.rds")
 ```
 
@@ -385,9 +492,8 @@ plot(RI[[2]], addPieChart = TRUE, legendColumns = 3)
 ## Model 2: Homogeneity in reciprocated ties with control variables
 
 ```{r}
-myeff2 <- includeEffects(myeff1.3, egoX, altX, sameX, sameXRecip, interaction1 = "gender_ccv")
-myeff2 <- includeEffects(myeff1.3, egoX, altX, sameX, sameXRecip, interaction1 = "ethnicity_ccv")
-myeff2
+myeff2 <- includeEffects(myeff1.3, sameX, sameXRecip, interaction1 = "gender_ccv")
+myeff2 <- includeEffects(myeff2, sameX, sameXRecip, interaction1 = "ethnicity_ccv")
 ```
 
 ```{r, eval = FALSE}
@@ -400,12 +506,10 @@ model2
 
 ```{r}
 myeff3 <- includeEffects(myeff2, name = "behMLC", recipDeg, avRecAlt, interaction1 = "netMLC")
-myeff3
 ```
 
 ```{r, eval = FALSE}
 model3 <- siena07(myAlgorithm, data = mydata, effects = myeff3, thetaBound = 10000, returnDeps = T)
-model3
 #saveRDS(model3, "model3.rds")
 ```
 
@@ -413,7 +517,6 @@ model3
 
 ```{r}
 myeff4 <- set_effect(myeff3, list(avRecAltSameX, avSameXRecAlt), depvar = "behMLC", covar1 = "parent_edu_ccv", covar2 = "netMLC")
-myeff4
 ```
 
 ```{r, eval = FALSE}

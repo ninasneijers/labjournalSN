@@ -11,7 +11,7 @@ editor_options:
 ## Population characteristics
  From the population of 121 students, 75% of the students had at least one parents that had enjoyed higher education. 65.3% of the student population was female and 34.7% of the students was male. No one said they identified as non-binary. The biggest ethnic groups were Asian (41.3%), white (29.7%), black (12.4%) and Hispanic (10.7%). Furthermore, 5% was multiracial and one student was Hawaiian. 
 
-Average social satisfaction in the first wave was a 5.6 and for the second wave it was a 5.7.
+Average social satisfaction in the first wave was a 5.6 and for the second wave it was a 5.7. The mean for students with lower educated parents in the first wave was 5.3 and for students with higher educated parents this was 5.8. In the second wave, the mean for students with lower educated parents was 5.7 and for students with higher educated parents it was also 5.8. 
 
 ## Network characteristics
 
@@ -22,12 +22,12 @@ In terms of the number of isolates in the network, meaning people who have not s
 
 Lastly, I have looked into whether segregation on parental education level overall seems to occur. Coleman's homophily index describes the extent to which similar people are more likely to be connected [@SNASS]. When looking at the results of wave 1, there can be seen that for both groups, the value is close to 0, (0.01 for the no higher-educated parents group and -0.01 for the higher-educated parent(s) group). For wave 2, the values are still very low, but for students with at least one higher-educated parent there is a bit more likelihood to connect with other students that have higher-educated parents (0.13), whereas for the no higher-educated parents group, there is a bit more of a likelihood that they send out ties to students who have at least one higher educated parent (-0.12), thus to students who are dissimilar to them. 
 
-To look a bit further into the homophily, I have also calculated Moran’s I for both waves. This statistic look at whether nodes who are closer to one another in the network are more alike [@SNASS]. To calculate Moran’s I, I have made use of the ape package in R. This package row-standardises by default, but because parental education level is a fixed characteristic, the amount of neighbours does not influence it. For Wave 1, Moran’s I yielded no significant results, (Moran’s I = -0.01, SD = .07, p = .93), confirming what Coleman’s homophily index has also shown, namely that there is no clear segregation based on parental education level. Wave 2 also did not yield a significant result (Moran’s I = 0.05, SD = .08, p = .48). 
+To look a bit further into the homophily, I have also calculated Moran’s I for both waves. This statistic look at whether nodes who are closer to one another in the network are more alike [@SNASS]. To calculate Moran’s I, I have made use of the ape package in R. This package row-standardises by default. For Wave 1, Moran’s I yielded no significant results, (Moran’s I = -0.01, SD = .07, p = .93), confirming what Coleman’s homophily index has also shown, namely that there is no clear segregation based on parental education level. Wave 2 also did not yield a significant result (Moran’s I = 0.05, SD = .08, p = .48). 
 
 Based on this there can be concluded that hypothesis 1 is rejected. 
 
 ## Network visualisation
-::: {.column width="120%"}
+::: {.column width="100%"}
 
 **Figure 1** 
 *Evolution of the hanging out ties of students of the Michigan Learning Community*
@@ -38,12 +38,10 @@ Figure 1 depicts the network evolution of the Michigan Learning Community from t
 
 Moreover, although Moran's I and Coleman's homophily index do not indicate that segregation has been taking place, when looking at the reciprocated ties, in the first wave homophily does seem to occur among reciprocated ties, as the violet ties are more present than the black ties. This indicates that while someone's parental education might not matter for sending out a tie, it potentially does matter for receiving this tie back or not. 
 
-When looking at how the nodes are divided, three somewhat bigger friendgroups (a friendgroup being a group where multiple reciprocated ties occur) can be identified. One of these groups can be seen on the left side and seems to be quite homogeneous, mainly consisting of students whose parents have enjoyed higher education, as there a quite some violet ties occurring there. Also on the right-side at the bottom, a homogeneous friendgroup consisting of students whose parents have enjoyed higher education seems to occur. A bit more above that, also on the right side, a more mixed friendgroup seems to have emerged. Homogene friendgroups of students whose parents have not enjoyed higher education seem to not really be present. However, there should be looked into the exploratory analyses in order to discover whether these reciprocated ties between students are an actual pattern or not. 
+When looking at how the nodes are divided, three somewhat bigger friendgroups (a friendgroup being a group where multiple reciprocated ties occur) can be identified. One of these groups can be seen on the left side and seems to be quite homogeneous, mainly consisting of students whose parents have enjoyed higher education, as there are quite some violet ties occurring there. Also on the right-side at the bottom, a homogeneous friendgroup consisting of students whose parents have enjoyed higher education seems to occur. A bit more above that, also on the right side, a more mixed friendgroup seems to have emerged. Homogene friendgroups of students whose parents have not enjoyed higher education seem to not really be present. However, there should be looked into the exploratory analyses in order to discover whether these reciprocated ties between students are an actual pattern or not. 
 
 When looking at social satisfaction, it is difficult to clearly see which nodes have been decreasing or increasing in their social satisfaction, except for those who are missing in one of the two rounds. Therefore, running a model might be more helpful in understanding whether there has been an effect of reciprocity on social satisfaction and whether this is strengthened by the fact that parental education level is the same. 
 
-
-------------------------------------------------------------------------
 # RCode
 ## Basics
 
@@ -76,11 +74,21 @@ gw1 <- igraph:: graph_from_adjacency_matrix(wave1, mode = "directed")
 gw2 <- igraph:: graph_from_adjacency_matrix(wave2, mode = "directed")
 ```
 
+
 ## Descriptives
 
 ```{r}
 mean(df2$socsatw1n, na.rm = T)
 mean(df2$socsatw2n, na.rm = T)
+
+dflow <- subset(df2, subset = parentshighf == "0")
+dfhigh <- subset(df2, subset = parentshighf == "1")
+
+mean(dflow$socsatw1n, na.rm = T)
+mean(dflow$socsatw2n, na.rm = T)
+
+mean(dfhigh$socsatw1n, na.rm = T)
+mean(dfhigh$socsatw2n, na.rm = T)
 ```
 
 ```{r}

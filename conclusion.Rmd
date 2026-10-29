@@ -1,0 +1,112 @@
+---
+title: "Conclusion - Exploratory"
+author: "by: Nina Sneijers"
+bibliography: references.bib
+editor_options: 
+  markdown: 
+    wrap: 100
+---
+
+# Conclusion
+
+This study has investigated to what extent students' social networks are segregated on parental
+education level and what the effect of having parents with the same educational level is on a
+student's social satisfaction. The data used to investigate this question was from one of the
+Michigan Learning Communities, consisting of 121 students. For analysis, Stochastic Action Oriented
+Models were used. This study has posed four research questions:
+
+1.  "To what extent is the MLC network segregated based on parental education level?"
+2.  "To what extent do reciprocated friendships among students with parents with the same
+    educational level occur?"
+3.  "To what extent do reciprocated friendships affect students' social satisfaction throughout the
+    year?"
+4.  "To what extent do reciprocated friendships among students with parents with the same education
+    level affect their social satisfaction throughout the year?"
+
+The first question took a macro-perspective on the network. I used Moran's I and Coleman's homophily
+index to answer this question and concluded that the first hypothesis "The MLC network is segregated
+on parental education level" should be rejected as the statistics did not indicate that this was the
+case. This is interesting, because it contrasts what other studies have found previously (see:
+[@ZWIER2023127]). However, this study took place in an American context and additionally, other
+studies have also taken into account the parental income-level. This finding indicates that
+income-level might play a bigger role in SES-segregation.
+
+The second question posed a micro-perspective and specifically looked into homophily among
+reciprocated ties. The results seemed to indicate that students were rather less likely than more
+likely to have reciprocated ties with other students whose parents had the same educational level,
+though this was not significant. Therefore, the second hypothesis "Reciprocated ties are more likely
+to exist among students with parents with the same educational level" was also rejected. For the
+control variables gender and ethnicity, this was also not the case. As reciprocity itself was
+positive and significant, this shows that if a tie is send, it is likely that it well be
+reciprocated, no matter the characteristics of the other person.
+
+The third question assessed the effect of the network on behaviour. The behaviour, in this case, was
+social satisfaction. Results showed that the effect of reciprocated ties on social satisfaction was
+close to zero, indicating that reciprocation in friendship has no influence on social satisfaction.
+This leads to the third hypothesis, "Reciprocated ties positively affect students' social
+satisfaction" also being rejected.
+
+The last question assessed an interaction effect of reciprocated ties between students whose parents
+have the same educational level. This effect was positive, but not significant and therefore also
+rejected. Additionally, the Goodness-of-Fit of this model was worse than the Goodness-of-Fit of the
+model of question three. This indicates that there are other network or interaction effects that
+affect change in behaviour, that are more influential than these characteristics. In both models,
+the influence of the quadratic shape effect remained the biggest, indicating that students whose
+social satisfaction is below the mean are likely to move towards the mean.
+
+This study also has several limitations. Firstly, this study has not distinctly looked at students
+whose parents are higher educated versus students whose parents are not higher educated, meaning
+that the study has looked into, *overall*, does homophily in reciprocated ties affect social
+satisfaction. It could be the case that this homophily does not have an influence on students whose
+parents are higher educated and that their social satisfaction depends on other things, but that it
+does have an influence on students whose parents are not higher educated. The study by [@melian2026]
+suggests that this is indeed the case. The Michigan Learning Communities prioritises first
+generation students and shape the program towards their needs [@rambaran2025], which could have
+affected their social satisfaction. However, because I was limited to only one learning community,
+the amount of students whose parents had not enjoyed higher education was relatively small, which
+would have made it harder to assess the effect of homophily of reciprocated ties on their
+friendships. This is why I have chosen to assess the overall effect of same parental education level
+homophily on social satisfaction. Therefore, a future study could look into the effects specifically
+for students whose parents have not enjoyed higher education. Additionally, the study could then
+assess multiple learning communities, so network differences can be assessed.
+
+Secondly, the Goodness-of-Fit models for the Outdegree Distribution and for the TriadCensus
+distribution did not reach values that are desirable. This indicates that perhaps more or other
+effects should have been included in the models to create a better fit. Additionally, the
+Goodness-of-Fit of the Behavioural distribution worsened and overestimated the amount of people with
+very high social satisfaction, indicating that here as well, other effects might were more relevant
+for explaining changes in behaviour than the effects that were used in this study.
+
+Another limitation of the study is that students that the indegree ties of students that were
+missing in one of the two waves, were coded as a non-nomination in these waves. This could have led
+to biases in certain statistics, such as transitivity, and reciprocity, which was my effect of
+interest. When looking at the network graph provided in the descriptives, it can be seen that some
+of the students who were big tie-senders and receivers in wave 1, were missing in wave 2. Would
+their incoming ties have been included, it perhaps would have lead to different results.
+
+While this study has not yielded significant results and knows its limitations, this does not mean
+that the social network perspective is not relevant. Firstly, a social network perspective allowed
+me to assess whether segregation takes place in a network and account for this. Would this study be
+conducted over multiple communities and for a longer period of time, for example segregation helps
+us to assess differences in a network and control for this. Perhaps a more segregated network also
+has a different culture and different effects on students who do or do not befriend other students
+whose parents have enjoyed a similar education level.
+
+Additionally, a social network perspective gives the opportunity to assess different types of
+networks, for example, the amount of ties ones has, how many triads it consists of and how many ties
+are reciprocated. [@Wittner2023] has shown that for first generation students, it matters if their
+network is for example close-knit or "have-it-all", as this influences how they manage at
+universities. A social network perspective would enable one to take differences in these networks
+into account in their analysis.
+
+Lastly, this study has taken some control-variables into account, such as the average social
+satisfaction of ones friends, as this can also influence ones social satisfaction. A linear
+regression analysis, for example, would have not been able to do this, while friends can be of
+important influential factors on how someone is feeling.
+
+----------------------------------------------------------------------------------------------------
+
+# References
+
+::: ::::
+:::

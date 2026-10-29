@@ -9,101 +9,82 @@ editor_options:
 
 # Introduction
 
-Starting one's first year at university brings quite a lot of
-challenges. Students often move-out of their family homes, have to get
-acquainted with a new environment, navigate new social contexts and
-learn how to study more independently than in high school. Challenges
-are especially present for students whose parents or guardians have not
-enjoyed higher education themselves, as these students often lack the
-practical support of someone who can assist them with navigating through
-this new type of environment. These students not only face structural
-inequalities that make them less prepared for the academic world
-[@melian2026], but once entering college, they are also confronted with
-a different type of world than what their family has prepared them for,
-with different cultural expectations that give them a harder time
-accessing the right skills, knowledge and resources needed to navigate
-this world [@phillips2020 @stephens2014].
+Starting one's first year at university brings quite a lot of challenges. Students often move-out of
+their family homes, have to get acquainted with a new environment, navigate new social contexts and
+learn how to study more independently than in high school. Challenges are especially present for
+students whose parents or guardians have not enjoyed higher education themselves, as these students
+often lack the practical support of someone who can assist them with navigating through this new
+type of environment. These students not only face structural inequalities that make them less
+prepared for the academic world [@melian2026], but once entering college, they are also confronted
+with a different type of world than what their family has prepared them for, with different cultural
+expectations that give them a harder time accessing the right skills, knowledge and resources needed
+to navigate this world [@phillips2020 @stephens2014].
 
-These students often experience a lack of social support within
-universities and feel less like they belong there than students with
-parents who have enjoyed university [@Janke2024 @Wittner2023]. This,
-while a positive correlation exists between belonging, motivation and
-enjoyment and a combination of these three affects the academic
-achievement of students [@Pedler2022]. Thus, while these students are
-already facing more challenges than others at universities, their
-chances of better academic achievement are also affected by how much
-they feel like they belong.
+These students often experience a lack of social support within universities and feel less like they
+belong there than students with parents who have enjoyed university [@Janke2024 @Wittner2023]. This,
+while a positive correlation exists between belonging, motivation and enjoyment and a combination of
+these three affects the academic achievement of students [@Pedler2022]. Thus, while these students
+are already facing more challenges than others at universities, their chances of better academic
+achievement are also affected by how much they feel like they belong.
 
-This does, however, not mean that all first generation students
-experience the same level of difficulties at university. This also
-depends on, for example, what their network at university looks like in
-terms of socio-emotional support and instrumental support
-[@Wittner2023]. What especially seems to be of importance is what the
-friendship network of these students looks like. Melian et al. (2025)
-show that for first-generation students, their mental and social
-well-being was consistently linked to their friendship networks, while
-this was not the case for other student groups.
+This does, however, not mean that all first generation students experience the same level of
+difficulties at university. This also depends on, for example, what their network at university
+looks like in terms of socio-emotional support and instrumental support [@Wittner2023]. What
+especially seems to be of importance is what the friendship network of these students looks like.
+Melian et al. (2025) show that for first-generation students, their mental and social well-being was
+consistently linked to their friendship networks, while this was not the case for other student
+groups.
 
-However, there are differences in the type of friendship networks that
-are positive for social well-being. [@Wittner2023] shows that the type
-of network in terms of closeness affects how FGS manage at universities
-and what influence it has on social well-being. Additionally, there can
-be questioned how friendship-network similarity influences the
-well-being of students. For example, in terms of racial diversity, it is
-shown that for white students, there is a benefit in developing more
-diverse friendships, while this is not necessarily the case for students
-with a migration background [@Janke2024][@Salusky2024]. In the more
-general population, it is shown that there are benefits to having a more
-heterogeneous rather than a homogeneous network, as it leads to higher
-levels of social well-being [@ramos2024]. Though, while in the more
-general population it seems to lead to more positive effects, for first
-generation students, this does not necessarily seem to be the case. For
-this group, a more socioeconomically diverse network is linked to lower
-levels of social well-being. They are likely facing more and different
-challenges in these heterogeneous contexts, as they are navigating
-between multiple cultural contexts and managing feelings of mismatch
-[@melian2026 @phillips2020 @stephens2014].
+However, there are differences in the type of friendship networks that are positive for social
+well-being. [@Wittner2023] shows that the type of network in terms of closeness affects how FGS
+manage at universities and what influence it has on social well-being. Additionally, there can be
+questioned how friendship-network similarity influences the well-being of students. For example, in
+terms of racial diversity, it is shown that for white students, there is a benefit in developing
+more diverse friendships, while this is not necessarily the case for students with a migration
+background [@Janke2024][@Salusky2024]. In the more general population, it is shown that there are
+benefits to having a more heterogeneous rather than a homogeneous network, as it leads to higher
+levels of social well-being [@ramos2024]. Though, while in the more general population it seems to
+lead to more positive effects, for first generation students, this does not necessarily seem to be
+the case. For this group, a more socioeconomically diverse network is linked to lower levels of
+social well-being. They are likely facing more and different challenges in these heterogeneous
+contexts, as they are navigating between multiple cultural contexts and managing feelings of
+mismatch [@melian2026 @phillips2020 @stephens2014].
 
-Previous studies have thus already looked into the relationship between
-friendship diversity and social well-being for students with parents
-that do not have a university background. However, these students lack
-the social network perspective that this study will take into account.
-For example, Ramos et al. (2024) mention that their study is limited by
-the fact that friendship is a subjective experience. A social network
-perspective makes it possible to look into whether friendships are
-*reciprocated*, meaning that if you see someone as your friend, there
-can be also considered whether you see this person as a friend. Taking
-this into account potentially yield a more complete picture between
-diversity in friendship networks and social well-being, as it is likely
-that answered friendships make someone feel more socially satisfied than
-one-directed friendships.
+Previous studies have thus already looked into the relationship between friendship diversity and
+social well-being for students with parents that do not have a university background. However, these
+students lack the social network perspective that this study will take into account. For example,
+Ramos et al. (2024) mention that their study is limited by the fact that friendship is a subjective
+experience. A social network perspective makes it possible to look into whether friendships are
+*reciprocated*, meaning that if you see someone as your friend, there can be also considered whether
+you see this person as a friend. Taking this into account potentially yield a more complete picture
+between diversity in friendship networks and social well-being, as it is likely that answered
+friendships make someone feel more socially satisfied than one-directed friendships.
 
-Additionally, while Melian et al. (2025) have already looked into the
-influence of a socioeconomically diverse network on social satisfaction
-of first generation students, they did not take into account the
-interdependencies that a social network analysis can take into account.
-This perspective allows me to look into influence effects of social
-networks, because the people with whom we form social relations
-influence our attitudes, behaviours and also future relations [@SNASS].
-For this study, that means that a social network perspective allows me
-to control for assimilation effects of social satisfaction, meaning that
-the social satisfaction ratings of students befriended with each other
-may become more alike over time.
+Additionally, while Melian et al. (2025) have already looked into the influence of a
+socioeconomically diverse network on social satisfaction of first generation students, they did not
+take into account the interdependencies that a social network analysis can take into account. This
+perspective allows me to look into influence effects of social networks, because the people with
+whom we form social relations influence our attitudes, behaviours and also future relations
+[@SNASS]. For this study, that means that a social network perspective allows me to control for
+assimilation effects of social satisfaction, meaning that the social satisfaction ratings of
+students befriended with each other may become more alike over time.
 
-Thus, a social network perspective allows me to look into this topic in
-new and different ways than previous studies have done and different
-questions emerge from this. The study aims to answer four research
-questions:
+Thus, a social network perspective allows me to look into this topic in new and different ways than
+previous studies have done and different questions emerge from this. The study aims to answer four
+research questions:
+
 1.  "To what extent is the MLC network segregated based on parental education level?"
-2.  "To what extent do reciprocated friendships among students with
-    parents with the same educational level occur?"
-3.  "To what extent do reciprocated friendships affect students' social
-    satisfaction throughout the year?"
-4.  "To what extent do reciprocated friendships among students with
-    parents with the same education level affect their social
-    satisfaction throughout the year?"
 
-------------------------------------------------------------------------
+2.  "To what extent do reciprocated friendships among students with parents with the same
+    educational level occur?"
+
+3.  "To what extent do reciprocated friendships affect students' social satisfaction throughout the
+    year?"
+
+4.  "To what extent do reciprocated friendships among students with parents with the same education
+    level affect their social satisfaction throughout the year?"
+
+----------------------------------------------------------------------------------------------------
 
 # References
 

@@ -265,31 +265,16 @@ print01Report(mydata, modelname = "./results/soc_init")
 Now, we start the theoretical complexities. These are your hypotheses. This you do with include effects:
 
 ```{r}
-myeff <- includeEffects(myeff, isolateNet, inPop, outAct, inAct, transTrip)  #we know that quite a lot of staff has not published with someone else
-
-# it is recommended to make a separate line for every effect. like this: 
-#myeff <- includeEffects(myeff, isolateNet)
-#myeff <- includeEffects(myeff, inPop)
-#etc...
+myeff <- includeEffects(myeff, isolateNet, inPop, outAct, inAct, transTrip)
 myeff <- includeEffects(myeff, sameX, egoX, altX, interaction1 = "gender")
-#interaction has nothing to interaction. It is X = gender. 
-
 ```
 
-Now we are going to estimate:
+Now we are going to estimate: 
 
 ```{r}
 myAlgorithm <- sienaAlgorithmCreate(projname = "soc_init")
-(ans <- siena07(myAlgorithm, data = mydata, effects = myeff))
-# (the outer parentheses lead to printing the obtained result on the screen) if necessary, estimate
-# further
-(ans <- siena07(myAlgorithm, data = mydata, effects = myeff, prevAns = ans, returnDeps = TRUE))
+(ans <- siena07(myAlgorithm, data = mydata, effects = myeff, thetaBound = 1000, returnDeps = TRUE))
 ans
-
-#so on average, there are 4 ministeps taken per agent (rate parameter)
-#like we saw in our print report, there is a very low density 
-#high reciprocity: if I collaborate with you, you want to collaborate with me
-#sterk network isolate effects. veel mensen die niet met anderen gepubliceerd hebben
 ```
 
 ## Klungelen
@@ -307,13 +292,11 @@ require(tidyverse)
 gender1 <- gender[[1]][,1]
 gender2 <- gender[[1]][,2]
 gender_test <- coalesce(gender1, gender2)
-head(gender_test)
 #what do I use this for genderrsiena <- coCovar(as.numeric(gender_test))
 
 head(parentedu)
 parent1 <- coalesce(parentedu[[1]][,1],parentedu[[1]][,3])
 parent2 <- coalesce(parentedu[[1]][,2], parentedu[[1]][,4])
-head(parent2)
 
 df_klooien <- data.frame(gender_test, parent1, parent2)
 head(df_klooien)
@@ -323,7 +306,6 @@ df_klooien$rsiena_gender <- coCovar(as.numeric(df_klooien$gender_test))
 df_klooien$rsiena_parent1 <- coCovar(as.numeric(df_klooien$parent1))
 df_klooien$rsiena_parent2 <- coCovar(as.numeric(df_klooien$parent2))
 save(df_klooien, file = "klooien.Rdata")
-head(df_klooien)
 ```
 
 Attempts for something with a network. I am looking at the variable 'hanging'
@@ -350,7 +332,6 @@ net <- sienaDependent(net_klooien_array)
 #how do I check if this is what I want and whether it is not trash?
 
 klooien2 <- sienaDataCreate(net, df_klooien$rsiena_gender, df_klooien$rsiena_parent1, df_klooien$rsiena_parent2)
-head(klooien2)
 #I get output, but is this what I want? 
 
 myeff <- getEffects(klooien2)
@@ -376,11 +357,8 @@ myeff <- includeEffects(myeff, sameX, egoX, altX, interaction1 = "rsiena_gender"
 
 myeff2 <- includeEffects(myeff, sameX, egoX, altX, interaction1 = "etni")
 #so this one does not work. Ask in class
-myeff2 
-
+(ans <- siena07(myAlgorithm, data = klooien2, effects = myeff, prevAns = ans, thetaBound = 1000, returnDeps = TRUE))
 myAlgorithm <- sienaAlgorithmCreate(projname = "klooien2")
-(ans <- siena07(myAlgorithm, data = klooien2, effects = myeff, prevAns = ans, returnDeps = TRUE))
-ans
 ```
 
 # References

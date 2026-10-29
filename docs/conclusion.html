@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="by: Nina Sneijers" />
+
+
+<title>Conclusion - Exploratory</title>
+
+<script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+<style type="text/css">
+#rmd-source-code {
+  display: none;
+}
+</style>
+
+<style type="text/css">
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="tweaks.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    My journal
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="week1.html">Week 1: 31-8-2026</a>
+    </li>
+    <li>
+      <a href="week2.html">Week 2: 7-9-2026</a>
+    </li>
+    <li>
+      <a href="week3.html">Week 3: 14-9-2026</a>
+    </li>
+    <li>
+      <a href="week4.html">Week 4: 21-9-2026</a>
+    </li>
+    <li>
+      <a href="week5.html">Week 5: 28-9-2026</a>
+    </li>
+    <li>
+      <a href="week6.html">Week 6: 5-10-2026</a>
+    </li>
+    <li>
+      <a href="week7.html">Week 7: 12-10-2026</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Final Project
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="introduction.html">Introduction</a>
+    </li>
+    <li>
+      <a href="theory.html">Theory</a>
+    </li>
+    <li>
+      <a href="dm.html">Data &amp; Methods</a>
+    </li>
+    <li>
+      <a href="desr.html">Descriptive Results</a>
+    </li>
+    <li>
+      <a href="expl.html">Exploratory Results</a>
+    </li>
+    <li>
+      <a href="conclusion.html">Conclusion</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="dc.html">Data Construction Final Project</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/ninasneijers/labjournalSN">
+    <span class="fab fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+<li role="separator" class="divider"></li>
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Conclusion - Exploratory</h1>
+<h4 class="author">by: Nina Sneijers</h4>
+
+</div>
+
+
+<div id="conclusion" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Conclusion</h1>
+<p>This study has investigated to what extent students’ social networks
+are segregated on parental education level and what the effect of having
+parents with the same educational level is on a student’s social
+satisfaction. The data used to investigate this question was from one of
+the Michigan Learning Communities, consisting of 121 students. For
+analysis, Stochastic Action Oriented Models were used. This study has
+posed four research questions:</p>
+<ol style="list-style-type: decimal">
+<li>“To what extent is the MLC network segregated based on parental
+education level?”</li>
+<li>“To what extent do reciprocated friendships among students with
+parents with the same educational level occur?”</li>
+<li>“To what extent do reciprocated friendships affect students’ social
+satisfaction throughout the year?”</li>
+<li>“To what extent do reciprocated friendships among students with
+parents with the same education level affect their social satisfaction
+throughout the year?”</li>
+</ol>
+<p>The first question took a macro-perspective on the network. I used
+Moran’s I and Coleman’s homophily index to answer this question and
+concluded that the first hypothesis “The MLC network is segregated on
+parental education level” should be rejected as the statistics did not
+indicate that this was the case. This is interesting, because it
+contrasts what other studies have found previously (see: <span
+class="citation">(Zwier and Geven 2023)</span>). However, this study
+took place in an American context and additionally, other studies have
+also taken into account the parental income-level. This finding
+indicates that income-level might play a bigger role in
+SES-segregation.</p>
+<p>The second question posed a micro-perspective and specifically looked
+into homophily among reciprocated ties. The results seemed to indicate
+that students were rather less likely than more likely to have
+reciprocated ties with other students whose parents had the same
+educational level, though this was not significant. Therefore, the
+second hypothesis “Reciprocated ties are more likely to exist among
+students with parents with the same educational level” was also
+rejected. For the control variables gender and ethnicity, this was also
+not the case. As reciprocity itself was positive and significant, this
+shows that if a tie is send, it is likely that it well be reciprocated,
+no matter the characteristics of the other person.</p>
+<p>The third question assessed the effect of the network on behaviour.
+The behaviour, in this case, was social satisfaction. Results showed
+that the effect of reciprocated ties on social satisfaction was close to
+zero, indicating that reciprocation in friendship has no influence on
+social satisfaction. This leads to the third hypothesis, “Reciprocated
+ties positively affect students’ social satisfaction” also being
+rejected.</p>
+<p>The last question assessed an interaction effect of reciprocated ties
+between students whose parents have the same educational level. This
+effect was positive, but not significant and therefore also rejected.
+Additionally, the Goodness-of-Fit of this model was worse than the
+Goodness-of-Fit of the model of question three. This indicates that
+there are other network or interaction effects that affect change in
+behaviour, that are more influential than these characteristics. In both
+models, the influence of the quadratic shape effect remained the
+biggest, indicating that students whose social satisfaction is below the
+mean are likely to move towards the mean.</p>
+<p>This study also has several limitations. Firstly, this study has not
+distinctly looked at students whose parents are higher educated versus
+students whose parents are not higher educated, meaning that the study
+has looked into, <em>overall</em>, does homophily in reciprocated ties
+affect social satisfaction. It could be the case that this homophily
+does not have an influence on students whose parents are higher educated
+and that their social satisfaction depends on other things, but that it
+does have an influence on students whose parents are not higher
+educated. The study by <span class="citation">(Melian et al.
+2026)</span> suggests that this is indeed the case. The Michigan
+Learning Communities prioritises first generation students and shape the
+program towards their needs <span class="citation">(Rambaran, Ashwin
+2025)</span>, which could have affected their social satisfaction.
+However, because I was limited to only one learning community, the
+amount of students whose parents had not enjoyed higher education was
+relatively small, which would have made it harder to assess the effect
+of homophily of reciprocated ties on their friendships. This is why I
+have chosen to assess the overall effect of same parental education
+level homophily on social satisfaction. Therefore, a future study could
+look into the effects specifically for students whose parents have not
+enjoyed higher education. Additionally, the study could then assess
+multiple learning communities, so network differences can be
+assessed.</p>
+<p>Secondly, the Goodness-of-Fit models for the Outdegree Distribution
+and for the TriadCensus distribution did not reach values that are
+desirable. This indicates that perhaps more or other effects should have
+been included in the models to create a better fit. Additionally, the
+Goodness-of-Fit of the Behavioural distribution worsened and
+overestimated the amount of people with very high social satisfaction,
+indicating that here as well, other effects might were more relevant for
+explaining changes in behaviour than the effects that were used in this
+study.</p>
+<p>Another limitation of the study is that students that the indegree
+ties of students that were missing in one of the two waves, were coded
+as a non-nomination in these waves. This could have led to biases in
+certain statistics, such as transitivity, and reciprocity, which was my
+effect of interest. When looking at the network graph provided in the
+descriptives, it can be seen that some of the students who were big
+tie-senders and receivers in wave 1, were missing in wave 2. Would their
+incoming ties have been included, it perhaps would have lead to
+different results.</p>
+<p>While this study has not yielded significant results and knows its
+limitations, this does not mean that the social network perspective is
+not relevant. Firstly, a social network perspective allowed me to assess
+whether segregation takes place in a network and account for this. Would
+this study be conducted over multiple communities and for a longer
+period of time, for example segregation helps us to assess differences
+in a network and control for this. Perhaps a more segregated network
+also has a different culture and different effects on students who do or
+do not befriend other students whose parents have enjoyed a similar
+education level.</p>
+<p>Additionally, a social network perspective gives the opportunity to
+assess different types of networks, for example, the amount of ties ones
+has, how many triads it consists of and how many ties are reciprocated.
+<span class="citation">(Wittner et al. 2023)</span> has shown that for
+first generation students, it matters if their network is for example
+close-knit or “have-it-all”, as this influences how they manage at
+universities. A social network perspective would enable one to take
+differences in these networks into account in their analysis.</p>
+<p>Lastly, this study has taken some control-variables into account,
+such as the average social satisfaction of ones friends, as this can
+also influence ones social satisfaction. A linear regression analysis,
+for example, would have not been able to do this, while friends can be
+of important influential factors on how someone is feeling.</p>
+<hr />
+</div>
+<div id="references" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> References</h1>
+<div class="::::">
+
+</div>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-melian2026" class="csl-entry">
+Melian, Nicole, Tiffanie Cheng, and Rebecca M. Carey. 2026.
+<span>“Friendship and <span>Well</span>-<span>Being</span>
+<span>Among</span> <span>College</span> <span>Students</span>
+<span>From</span> <span>Diverse</span> <span>Socioeconomic</span>
+<span>Backgrounds</span>.”</span> <em>Personality and Social Psychology
+Bulletin</em>, January, 01461672251406664. <a
+href="https://doi.org/10.1177/01461672251406664">https://doi.org/10.1177/01461672251406664</a>.
+</div>
+<div id="ref-rambaran2025" class="csl-entry">
+Rambaran, Ashwin. 2025. <em>The <span>Evaluation</span> of the
+<span>Michigan</span> <span>Learning</span> <span>Communities</span>:
+<span>Data</span> Collection Report and Codebook 2022-2024</em>.
+</div>
+<div id="ref-Wittner2023" class="csl-entry">
+Wittner, Britta, Luisa Barthauer, and Simone Kauffeld. 2023.
+<span>“Accessibility and Mobilisation of Social Capital in
+First-Generation Students’ Social Networks—a Mixed-Methods
+Approach.”</span> <em>Journal of College Student Retention: Research,
+Theory &amp; Practice</em> 25 (2): 254–78. <a
+href="https://doi.org/10.1177/1521025120979643">https://doi.org/10.1177/1521025120979643</a>.
+</div>
+<div id="ref-ZWIER2023127" class="csl-entry">
+Zwier, Dieuwke, and Sara Geven. 2023. <span>“Knowing Me, Knowing You:
+Socio-Economic Status and (Segregation in) Peer and Parental Networks in
+Primary School.”</span> <em>Social Networks</em> 74: 127–38.
+https://doi.org/<a
+href="https://doi.org/10.1016/j.socnet.2023.03.003">https://doi.org/10.1016/j.socnet.2023.03.003</a>.
+</div>
+</div>
+</div>
+
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkNvbmNsdXNpb24gLSBFeHBsb3JhdG9yeSINCmF1dGhvcjogImJ5OiBOaW5hIFNuZWlqZXJzIg0KYmlibGlvZ3JhcGh5OiByZWZlcmVuY2VzLmJpYg0KZWRpdG9yX29wdGlvbnM6IA0KICBtYXJrZG93bjogDQogICAgd3JhcDogMTAwDQotLS0NCg0KIyBDb25jbHVzaW9uDQoNClRoaXMgc3R1ZHkgaGFzIGludmVzdGlnYXRlZCB0byB3aGF0IGV4dGVudCBzdHVkZW50cycgc29jaWFsIG5ldHdvcmtzIGFyZSBzZWdyZWdhdGVkIG9uIHBhcmVudGFsDQplZHVjYXRpb24gbGV2ZWwgYW5kIHdoYXQgdGhlIGVmZmVjdCBvZiBoYXZpbmcgcGFyZW50cyB3aXRoIHRoZSBzYW1lIGVkdWNhdGlvbmFsIGxldmVsIGlzIG9uIGENCnN0dWRlbnQncyBzb2NpYWwgc2F0aXNmYWN0aW9uLiBUaGUgZGF0YSB1c2VkIHRvIGludmVzdGlnYXRlIHRoaXMgcXVlc3Rpb24gd2FzIGZyb20gb25lIG9mIHRoZQ0KTWljaGlnYW4gTGVhcm5pbmcgQ29tbXVuaXRpZXMsIGNvbnNpc3Rpbmcgb2YgMTIxIHN0dWRlbnRzLiBGb3IgYW5hbHlzaXMsIFN0b2NoYXN0aWMgQWN0aW9uIE9yaWVudGVkDQpNb2RlbHMgd2VyZSB1c2VkLiBUaGlzIHN0dWR5IGhhcyBwb3NlZCBmb3VyIHJlc2VhcmNoIHF1ZXN0aW9uczoNCg0KMS4gICJUbyB3aGF0IGV4dGVudCBpcyB0aGUgTUxDIG5ldHdvcmsgc2VncmVnYXRlZCBiYXNlZCBvbiBwYXJlbnRhbCBlZHVjYXRpb24gbGV2ZWw/Ig0KMi4gICJUbyB3aGF0IGV4dGVudCBkbyByZWNpcHJvY2F0ZWQgZnJpZW5kc2hpcHMgYW1vbmcgc3R1ZGVudHMgd2l0aCBwYXJlbnRzIHdpdGggdGhlIHNhbWUNCiAgICBlZHVjYXRpb25hbCBsZXZlbCBvY2N1cj8iDQozLiAgIlRvIHdoYXQgZXh0ZW50IGRvIHJlY2lwcm9jYXRlZCBmcmllbmRzaGlwcyBhZmZlY3Qgc3R1ZGVudHMnIHNvY2lhbCBzYXRpc2ZhY3Rpb24gdGhyb3VnaG91dCB0aGUNCiAgICB5ZWFyPyINCjQuICAiVG8gd2hhdCBleHRlbnQgZG8gcmVjaXByb2NhdGVkIGZyaWVuZHNoaXBzIGFtb25nIHN0dWRlbnRzIHdpdGggcGFyZW50cyB3aXRoIHRoZSBzYW1lIGVkdWNhdGlvbg0KICAgIGxldmVsIGFmZmVjdCB0aGVpciBzb2NpYWwgc2F0aXNmYWN0aW9uIHRocm91Z2hvdXQgdGhlIHllYXI/Ig0KDQpUaGUgZmlyc3QgcXVlc3Rpb24gdG9vayBhIG1hY3JvLXBlcnNwZWN0aXZlIG9uIHRoZSBuZXR3b3JrLiBJIHVzZWQgTW9yYW4ncyBJIGFuZCBDb2xlbWFuJ3MgaG9tb3BoaWx5DQppbmRleCB0byBhbnN3ZXIgdGhpcyBxdWVzdGlvbiBhbmQgY29uY2x1ZGVkIHRoYXQgdGhlIGZpcnN0IGh5cG90aGVzaXMgIlRoZSBNTEMgbmV0d29yayBpcyBzZWdyZWdhdGVkDQpvbiBwYXJlbnRhbCBlZHVjYXRpb24gbGV2ZWwiIHNob3VsZCBiZSByZWplY3RlZCBhcyB0aGUgc3RhdGlzdGljcyBkaWQgbm90IGluZGljYXRlIHRoYXQgdGhpcyB3YXMgdGhlDQpjYXNlLiBUaGlzIGlzIGludGVyZXN0aW5nLCBiZWNhdXNlIGl0IGNvbnRyYXN0cyB3aGF0IG90aGVyIHN0dWRpZXMgaGF2ZSBmb3VuZCBwcmV2aW91c2x5IChzZWU6DQpbQFpXSUVSMjAyMzEyN10pLiBIb3dldmVyLCB0aGlzIHN0dWR5IHRvb2sgcGxhY2UgaW4gYW4gQW1lcmljYW4gY29udGV4dCBhbmQgYWRkaXRpb25hbGx5LCBvdGhlcg0Kc3R1ZGllcyBoYXZlIGFsc28gdGFrZW4gaW50byBhY2NvdW50IHRoZSBwYXJlbnRhbCBpbmNvbWUtbGV2ZWwuIFRoaXMgZmluZGluZyBpbmRpY2F0ZXMgdGhhdA0KaW5jb21lLWxldmVsIG1pZ2h0IHBsYXkgYSBiaWdnZXIgcm9sZSBpbiBTRVMtc2VncmVnYXRpb24uDQoNClRoZSBzZWNvbmQgcXVlc3Rpb24gcG9zZWQgYSBtaWNyby1wZXJzcGVjdGl2ZSBhbmQgc3BlY2lmaWNhbGx5IGxvb2tlZCBpbnRvIGhvbW9waGlseSBhbW9uZw0KcmVjaXByb2NhdGVkIHRpZXMuIFRoZSByZXN1bHRzIHNlZW1lZCB0byBpbmRpY2F0ZSB0aGF0IHN0dWRlbnRzIHdlcmUgcmF0aGVyIGxlc3MgbGlrZWx5IHRoYW4gbW9yZQ0KbGlrZWx5IHRvIGhhdmUgcmVjaXByb2NhdGVkIHRpZXMgd2l0aCBvdGhlciBzdHVkZW50cyB3aG9zZSBwYXJlbnRzIGhhZCB0aGUgc2FtZSBlZHVjYXRpb25hbCBsZXZlbCwNCnRob3VnaCB0aGlzIHdhcyBub3Qgc2lnbmlmaWNhbnQuIFRoZXJlZm9yZSwgdGhlIHNlY29uZCBoeXBvdGhlc2lzICJSZWNpcHJvY2F0ZWQgdGllcyBhcmUgbW9yZSBsaWtlbHkNCnRvIGV4aXN0IGFtb25nIHN0dWRlbnRzIHdpdGggcGFyZW50cyB3aXRoIHRoZSBzYW1lIGVkdWNhdGlvbmFsIGxldmVsIiB3YXMgYWxzbyByZWplY3RlZC4gRm9yIHRoZQ0KY29udHJvbCB2YXJpYWJsZXMgZ2VuZGVyIGFuZCBldGhuaWNpdHksIHRoaXMgd2FzIGFsc28gbm90IHRoZSBjYXNlLiBBcyByZWNpcHJvY2l0eSBpdHNlbGYgd2FzDQpwb3NpdGl2ZSBhbmQgc2lnbmlmaWNhbnQsIHRoaXMgc2hvd3MgdGhhdCBpZiBhIHRpZSBpcyBzZW5kLCBpdCBpcyBsaWtlbHkgdGhhdCBpdCB3ZWxsIGJlDQpyZWNpcHJvY2F0ZWQsIG5vIG1hdHRlciB0aGUgY2hhcmFjdGVyaXN0aWNzIG9mIHRoZSBvdGhlciBwZXJzb24uDQoNClRoZSB0aGlyZCBxdWVzdGlvbiBhc3Nlc3NlZCB0aGUgZWZmZWN0IG9mIHRoZSBuZXR3b3JrIG9uIGJlaGF2aW91ci4gVGhlIGJlaGF2aW91ciwgaW4gdGhpcyBjYXNlLCB3YXMNCnNvY2lhbCBzYXRpc2ZhY3Rpb24uIFJlc3VsdHMgc2hvd2VkIHRoYXQgdGhlIGVmZmVjdCBvZiByZWNpcHJvY2F0ZWQgdGllcyBvbiBzb2NpYWwgc2F0aXNmYWN0aW9uIHdhcw0KY2xvc2UgdG8gemVybywgaW5kaWNhdGluZyB0aGF0IHJlY2lwcm9jYXRpb24gaW4gZnJpZW5kc2hpcCBoYXMgbm8gaW5mbHVlbmNlIG9uIHNvY2lhbCBzYXRpc2ZhY3Rpb24uDQpUaGlzIGxlYWRzIHRvIHRoZSB0aGlyZCBoeXBvdGhlc2lzLCAiUmVjaXByb2NhdGVkIHRpZXMgcG9zaXRpdmVseSBhZmZlY3Qgc3R1ZGVudHMnIHNvY2lhbA0Kc2F0aXNmYWN0aW9uIiBhbHNvIGJlaW5nIHJlamVjdGVkLg0KDQpUaGUgbGFzdCBxdWVzdGlvbiBhc3Nlc3NlZCBhbiBpbnRlcmFjdGlvbiBlZmZlY3Qgb2YgcmVjaXByb2NhdGVkIHRpZXMgYmV0d2VlbiBzdHVkZW50cyB3aG9zZSBwYXJlbnRzDQpoYXZlIHRoZSBzYW1lIGVkdWNhdGlvbmFsIGxldmVsLiBUaGlzIGVmZmVjdCB3YXMgcG9zaXRpdmUsIGJ1dCBub3Qgc2lnbmlmaWNhbnQgYW5kIHRoZXJlZm9yZSBhbHNvDQpyZWplY3RlZC4gQWRkaXRpb25hbGx5LCB0aGUgR29vZG5lc3Mtb2YtRml0IG9mIHRoaXMgbW9kZWwgd2FzIHdvcnNlIHRoYW4gdGhlIEdvb2RuZXNzLW9mLUZpdCBvZiB0aGUNCm1vZGVsIG9mIHF1ZXN0aW9uIHRocmVlLiBUaGlzIGluZGljYXRlcyB0aGF0IHRoZXJlIGFyZSBvdGhlciBuZXR3b3JrIG9yIGludGVyYWN0aW9uIGVmZmVjdHMgdGhhdA0KYWZmZWN0IGNoYW5nZSBpbiBiZWhhdmlvdXIsIHRoYXQgYXJlIG1vcmUgaW5mbHVlbnRpYWwgdGhhbiB0aGVzZSBjaGFyYWN0ZXJpc3RpY3MuIEluIGJvdGggbW9kZWxzLA0KdGhlIGluZmx1ZW5jZSBvZiB0aGUgcXVhZHJhdGljIHNoYXBlIGVmZmVjdCByZW1haW5lZCB0aGUgYmlnZ2VzdCwgaW5kaWNhdGluZyB0aGF0IHN0dWRlbnRzIHdob3NlDQpzb2NpYWwgc2F0aXNmYWN0aW9uIGlzIGJlbG93IHRoZSBtZWFuIGFyZSBsaWtlbHkgdG8gbW92ZSB0b3dhcmRzIHRoZSBtZWFuLg0KDQpUaGlzIHN0dWR5IGFsc28gaGFzIHNldmVyYWwgbGltaXRhdGlvbnMuIEZpcnN0bHksIHRoaXMgc3R1ZHkgaGFzIG5vdCBkaXN0aW5jdGx5IGxvb2tlZCBhdCBzdHVkZW50cw0Kd2hvc2UgcGFyZW50cyBhcmUgaGlnaGVyIGVkdWNhdGVkIHZlcnN1cyBzdHVkZW50cyB3aG9zZSBwYXJlbnRzIGFyZSBub3QgaGlnaGVyIGVkdWNhdGVkLCBtZWFuaW5nDQp0aGF0IHRoZSBzdHVkeSBoYXMgbG9va2VkIGludG8sICpvdmVyYWxsKiwgZG9lcyBob21vcGhpbHkgaW4gcmVjaXByb2NhdGVkIHRpZXMgYWZmZWN0IHNvY2lhbA0Kc2F0aXNmYWN0aW9uLiBJdCBjb3VsZCBiZSB0aGUgY2FzZSB0aGF0IHRoaXMgaG9tb3BoaWx5IGRvZXMgbm90IGhhdmUgYW4gaW5mbHVlbmNlIG9uIHN0dWRlbnRzIHdob3NlDQpwYXJlbnRzIGFyZSBoaWdoZXIgZWR1Y2F0ZWQgYW5kIHRoYXQgdGhlaXIgc29jaWFsIHNhdGlzZmFjdGlvbiBkZXBlbmRzIG9uIG90aGVyIHRoaW5ncywgYnV0IHRoYXQgaXQNCmRvZXMgaGF2ZSBhbiBpbmZsdWVuY2Ugb24gc3R1ZGVudHMgd2hvc2UgcGFyZW50cyBhcmUgbm90IGhpZ2hlciBlZHVjYXRlZC4gVGhlIHN0dWR5IGJ5IFtAbWVsaWFuMjAyNl0NCnN1Z2dlc3RzIHRoYXQgdGhpcyBpcyBpbmRlZWQgdGhlIGNhc2UuIFRoZSBNaWNoaWdhbiBMZWFybmluZyBDb21tdW5pdGllcyBwcmlvcml0aXNlcyBmaXJzdA0KZ2VuZXJhdGlvbiBzdHVkZW50cyBhbmQgc2hhcGUgdGhlIHByb2dyYW0gdG93YXJkcyB0aGVpciBuZWVkcyBbQHJhbWJhcmFuMjAyNV0sIHdoaWNoIGNvdWxkIGhhdmUNCmFmZmVjdGVkIHRoZWlyIHNvY2lhbCBzYXRpc2ZhY3Rpb24uIEhvd2V2ZXIsIGJlY2F1c2UgSSB3YXMgbGltaXRlZCB0byBvbmx5IG9uZSBsZWFybmluZyBjb21tdW5pdHksDQp0aGUgYW1vdW50IG9mIHN0dWRlbnRzIHdob3NlIHBhcmVudHMgaGFkIG5vdCBlbmpveWVkIGhpZ2hlciBlZHVjYXRpb24gd2FzIHJlbGF0aXZlbHkgc21hbGwsIHdoaWNoDQp3b3VsZCBoYXZlIG1hZGUgaXQgaGFyZGVyIHRvIGFzc2VzcyB0aGUgZWZmZWN0IG9mIGhvbW9waGlseSBvZiByZWNpcHJvY2F0ZWQgdGllcyBvbiB0aGVpcg0KZnJpZW5kc2hpcHMuIFRoaXMgaXMgd2h5IEkgaGF2ZSBjaG9zZW4gdG8gYXNzZXNzIHRoZSBvdmVyYWxsIGVmZmVjdCBvZiBzYW1lIHBhcmVudGFsIGVkdWNhdGlvbiBsZXZlbA0KaG9tb3BoaWx5IG9uIHNvY2lhbCBzYXRpc2ZhY3Rpb24uIFRoZXJlZm9yZSwgYSBmdXR1cmUgc3R1ZHkgY291bGQgbG9vayBpbnRvIHRoZSBlZmZlY3RzIHNwZWNpZmljYWxseQ0KZm9yIHN0dWRlbnRzIHdob3NlIHBhcmVudHMgaGF2ZSBub3QgZW5qb3llZCBoaWdoZXIgZWR1Y2F0aW9uLiBBZGRpdGlvbmFsbHksIHRoZSBzdHVkeSBjb3VsZCB0aGVuDQphc3Nlc3MgbXVsdGlwbGUgbGVhcm5pbmcgY29tbXVuaXRpZXMsIHNvIG5ldHdvcmsgZGlmZmVyZW5jZXMgY2FuIGJlIGFzc2Vzc2VkLg0KDQpTZWNvbmRseSwgdGhlIEdvb2RuZXNzLW9mLUZpdCBtb2RlbHMgZm9yIHRoZSBPdXRkZWdyZWUgRGlzdHJpYnV0aW9uIGFuZCBmb3IgdGhlIFRyaWFkQ2Vuc3VzDQpkaXN0cmlidXRpb24gZGlkIG5vdCByZWFjaCB2YWx1ZXMgdGhhdCBhcmUgZGVzaXJhYmxlLiBUaGlzIGluZGljYXRlcyB0aGF0IHBlcmhhcHMgbW9yZSBvciBvdGhlcg0KZWZmZWN0cyBzaG91bGQgaGF2ZSBiZWVuIGluY2x1ZGVkIGluIHRoZSBtb2RlbHMgdG8gY3JlYXRlIGEgYmV0dGVyIGZpdC4gQWRkaXRpb25hbGx5LCB0aGUNCkdvb2RuZXNzLW9mLUZpdCBvZiB0aGUgQmVoYXZpb3VyYWwgZGlzdHJpYnV0aW9uIHdvcnNlbmVkIGFuZCBvdmVyZXN0aW1hdGVkIHRoZSBhbW91bnQgb2YgcGVvcGxlIHdpdGgNCnZlcnkgaGlnaCBzb2NpYWwgc2F0aXNmYWN0aW9uLCBpbmRpY2F0aW5nIHRoYXQgaGVyZSBhcyB3ZWxsLCBvdGhlciBlZmZlY3RzIG1pZ2h0IHdlcmUgbW9yZSByZWxldmFudA0KZm9yIGV4cGxhaW5pbmcgY2hhbmdlcyBpbiBiZWhhdmlvdXIgdGhhbiB0aGUgZWZmZWN0cyB0aGF0IHdlcmUgdXNlZCBpbiB0aGlzIHN0dWR5Lg0KDQpBbm90aGVyIGxpbWl0YXRpb24gb2YgdGhlIHN0dWR5IGlzIHRoYXQgc3R1ZGVudHMgdGhhdCB0aGUgaW5kZWdyZWUgdGllcyBvZiBzdHVkZW50cyB0aGF0IHdlcmUNCm1pc3NpbmcgaW4gb25lIG9mIHRoZSB0d28gd2F2ZXMsIHdlcmUgY29kZWQgYXMgYSBub24tbm9taW5hdGlvbiBpbiB0aGVzZSB3YXZlcy4gVGhpcyBjb3VsZCBoYXZlIGxlZA0KdG8gYmlhc2VzIGluIGNlcnRhaW4gc3RhdGlzdGljcywgc3VjaCBhcyB0cmFuc2l0aXZpdHksIGFuZCByZWNpcHJvY2l0eSwgd2hpY2ggd2FzIG15IGVmZmVjdCBvZg0KaW50ZXJlc3QuIFdoZW4gbG9va2luZyBhdCB0aGUgbmV0d29yayBncmFwaCBwcm92aWRlZCBpbiB0aGUgZGVzY3JpcHRpdmVzLCBpdCBjYW4gYmUgc2VlbiB0aGF0IHNvbWUNCm9mIHRoZSBzdHVkZW50cyB3aG8gd2VyZSBiaWcgdGllLXNlbmRlcnMgYW5kIHJlY2VpdmVycyBpbiB3YXZlIDEsIHdlcmUgbWlzc2luZyBpbiB3YXZlIDIuIFdvdWxkDQp0aGVpciBpbmNvbWluZyB0aWVzIGhhdmUgYmVlbiBpbmNsdWRlZCwgaXQgcGVyaGFwcyB3b3VsZCBoYXZlIGxlYWQgdG8gZGlmZmVyZW50IHJlc3VsdHMuDQoNCldoaWxlIHRoaXMgc3R1ZHkgaGFzIG5vdCB5aWVsZGVkIHNpZ25pZmljYW50IHJlc3VsdHMgYW5kIGtub3dzIGl0cyBsaW1pdGF0aW9ucywgdGhpcyBkb2VzIG5vdCBtZWFuDQp0aGF0IHRoZSBzb2NpYWwgbmV0d29yayBwZXJzcGVjdGl2ZSBpcyBub3QgcmVsZXZhbnQuIEZpcnN0bHksIGEgc29jaWFsIG5ldHdvcmsgcGVyc3BlY3RpdmUgYWxsb3dlZA0KbWUgdG8gYXNzZXNzIHdoZXRoZXIgc2VncmVnYXRpb24gdGFrZXMgcGxhY2UgaW4gYSBuZXR3b3JrIGFuZCBhY2NvdW50IGZvciB0aGlzLiBXb3VsZCB0aGlzIHN0dWR5IGJlDQpjb25kdWN0ZWQgb3ZlciBtdWx0aXBsZSBjb21tdW5pdGllcyBhbmQgZm9yIGEgbG9uZ2VyIHBlcmlvZCBvZiB0aW1lLCBmb3IgZXhhbXBsZSBzZWdyZWdhdGlvbiBoZWxwcw0KdXMgdG8gYXNzZXNzIGRpZmZlcmVuY2VzIGluIGEgbmV0d29yayBhbmQgY29udHJvbCBmb3IgdGhpcy4gUGVyaGFwcyBhIG1vcmUgc2VncmVnYXRlZCBuZXR3b3JrIGFsc28NCmhhcyBhIGRpZmZlcmVudCBjdWx0dXJlIGFuZCBkaWZmZXJlbnQgZWZmZWN0cyBvbiBzdHVkZW50cyB3aG8gZG8gb3IgZG8gbm90IGJlZnJpZW5kIG90aGVyIHN0dWRlbnRzDQp3aG9zZSBwYXJlbnRzIGhhdmUgZW5qb3llZCBhIHNpbWlsYXIgZWR1Y2F0aW9uIGxldmVsLg0KDQpBZGRpdGlvbmFsbHksIGEgc29jaWFsIG5ldHdvcmsgcGVyc3BlY3RpdmUgZ2l2ZXMgdGhlIG9wcG9ydHVuaXR5IHRvIGFzc2VzcyBkaWZmZXJlbnQgdHlwZXMgb2YNCm5ldHdvcmtzLCBmb3IgZXhhbXBsZSwgdGhlIGFtb3VudCBvZiB0aWVzIG9uZXMgaGFzLCBob3cgbWFueSB0cmlhZHMgaXQgY29uc2lzdHMgb2YgYW5kIGhvdyBtYW55IHRpZXMNCmFyZSByZWNpcHJvY2F0ZWQuIFtAV2l0dG5lcjIwMjNdIGhhcyBzaG93biB0aGF0IGZvciBmaXJzdCBnZW5lcmF0aW9uIHN0dWRlbnRzLCBpdCBtYXR0ZXJzIGlmIHRoZWlyDQpuZXR3b3JrIGlzIGZvciBleGFtcGxlIGNsb3NlLWtuaXQgb3IgImhhdmUtaXQtYWxsIiwgYXMgdGhpcyBpbmZsdWVuY2VzIGhvdyB0aGV5IG1hbmFnZSBhdA0KdW5pdmVyc2l0aWVzLiBBIHNvY2lhbCBuZXR3b3JrIHBlcnNwZWN0aXZlIHdvdWxkIGVuYWJsZSBvbmUgdG8gdGFrZSBkaWZmZXJlbmNlcyBpbiB0aGVzZSBuZXR3b3Jrcw0KaW50byBhY2NvdW50IGluIHRoZWlyIGFuYWx5c2lzLg0KDQpMYXN0bHksIHRoaXMgc3R1ZHkgaGFzIHRha2VuIHNvbWUgY29udHJvbC12YXJpYWJsZXMgaW50byBhY2NvdW50LCBzdWNoIGFzIHRoZSBhdmVyYWdlIHNvY2lhbA0Kc2F0aXNmYWN0aW9uIG9mIG9uZXMgZnJpZW5kcywgYXMgdGhpcyBjYW4gYWxzbyBpbmZsdWVuY2Ugb25lcyBzb2NpYWwgc2F0aXNmYWN0aW9uLiBBIGxpbmVhcg0KcmVncmVzc2lvbiBhbmFseXNpcywgZm9yIGV4YW1wbGUsIHdvdWxkIGhhdmUgbm90IGJlZW4gYWJsZSB0byBkbyB0aGlzLCB3aGlsZSBmcmllbmRzIGNhbiBiZSBvZg0KaW1wb3J0YW50IGluZmx1ZW50aWFsIGZhY3RvcnMgb24gaG93IHNvbWVvbmUgaXMgZmVlbGluZy4NCg0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KDQojIFJlZmVyZW5jZXMNCg0KOjo6IDo6OjoNCjo6Og0K</div>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("conclusion.Rmd");
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -94,9 +94,9 @@ The fifth model will include avSameXRecAlt and the sixth model will be compared 
 
 # Let's go build some models
 
-## Loading the packages
+Note 27-10: In retrospective, this did not go very well... But luckily, I learned from my mistakes and did it correct in my final report! (At least, that's what I think)
 
-```{r}
+```{r, include= FALSE}
 #loading packages
 fpackage.check <- function(packages) {
     lapply(packages, FUN = function(x) {
@@ -144,7 +144,7 @@ fpackage.check(packages)
 
 ## Loading in the data
 
-```{r}
+```{r, include = FALSE}
 load("C:\\Users\\ninas\\OneDrive - Radboud Universiteit\\RSCS\\Social Networks\\labjournalSN\\parentedudata.Rdata")
 load("C:\\Users\\ninas\\OneDrive - Radboud Universiteit\\RSCS\\Social Networks\\labjournalSN\\wave1.Rdata")
 load("C:\\Users\\ninas\\OneDrive - Radboud Universiteit\\RSCS\\Social Networks\\labjournalSN\\wave2.Rdata")
@@ -216,20 +216,20 @@ myeff_edu
 
 Let's run the models and see what happens
 
-```{r}
+```{r, eval = FALSE}
 myAlgorithm <- sienaAlgorithmCreate(projname = "MLC_initial")
-(ans_M0 <- siena07(myAlgorithm, data = mydata, effects = myeff_basis, thetaBound = 10000, returnDeps = T))
+ans_M0 <- siena07(myAlgorithm, data = mydata, effects = myeff_basis, thetaBound = 10000, returnDeps = T)
+#saveRDS(ans_M0, "ans_M0.rds")
 myAlgorithm <- sienaAlgorithmCreate(projname = "MLC_edu")
-(ans_M1 <- siena07(myAlgorithm, data = mydata, effects = myeff_edu, thetaBound = 10000, returnDeps = T))
+ans_M1 <- siena07(myAlgorithm, data = mydata, effects = myeff_edu, thetaBound = 10000, returnDeps = T)
+#saveRDS(ans_M1, "ans_M1.rds")
+
+#These did not work:
 #myAlgorithm <- sienaAlgorithmCreate(projname = "MLC_gender")
 #(ans_M2 <- siena07(myAlgorithm, data = mydata, effects = myeff_gender, thetaBound = 1000, returnDeps = T))
 #myAlgorithm <- sienaAlgorithmCreate(projname = "MLC_eth")
 #(ans_M3 <- siena07(myAlgorithm, data = mydata, effects = myeff_eth, thetaBound = 1000, returnDeps = T))
 
-save(ans_M0, file = "ansM0.RData")
-save(ans_M1, file = "ansM1.RData")
-#save(ans_M2, file = "ansM2.RData")
-#save(ans_M3, file = "ansM3.RData")
 ```
 
 ## Interpretation
@@ -241,7 +241,8 @@ I am generally very unsure about the interpretation overall so I think it would 
 ### Model 0
 
 ```{r}
-ans_M0
+M0 <- readRDS("ans_M0.rds")
+M0
 ```
 
 This null model has a very high convergence ratio of 20.96. I am not sure whether this is expected or very strange. The RSiena model results indicate that the network is sparse, as a negative density effect is seen (b = -0.74, SE = 0.4). The students overall thus form relatively few ties within their community. However, ties seem to be relatively reciprocal, because the effect is positive (b = 2.14, SE = .26).
@@ -251,7 +252,8 @@ This null model has a very high convergence ratio of 20.96. I am not sure whethe
 ### Model 1
 
 ```{r}
-ans_M1
+M1 <- readRDS("ans_M1.rds")
+M1
 ```
 
 ------------------------------------------------------------------------
